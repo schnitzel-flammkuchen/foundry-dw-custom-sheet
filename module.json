@@ -1,0 +1,23 @@
+{
+  "id": "dw-custom-sheet",
+  "title": "Dungeon World Custom Sheet",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "13.351"
+  },
+  "description": "<p>Adds a custom player character sheet for Dungeon World.</p><p>This module leverages and builds upon ideas and functionality from <a href=\"https://github.com/GreybeardGM/dw-extra-sheets\">Dungeon World: Extra Sheets</a> by GreybeardGM.</p><hr /><h3>Features</h3><ul dir=\"auto\"><li><p dir=\"auto\">A different UI layout and clearer data organization</p></li><li><p dir=\"auto\">Better separation of:</p><ul dir=\"auto\"><li>Core attributes (HP, Armor, Damage, Level, XP)</li><li>Resources (Forward, Ongoing, Hold, etc.)</li><li>Economy (Coin and Load)</li><li>Abilities and moves</li></ul></li><li><p dir=\"auto\">Additional roll functionality (including custom roll modes)</p></li><li><p dir=\"auto\">Designed for Foundry VTT <strong>v12+</strong></p></li><li><p dir=\"auto\">Non-intrusive: does not alter core system data or rules</p></li></ul>",
+  "url": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet",
+  "flags": {
+    "canUpload": true
+  },
+  "relationships": {
+    "requires": [
+      {
+        "id": "dw-extra-sheets",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  }
+}
