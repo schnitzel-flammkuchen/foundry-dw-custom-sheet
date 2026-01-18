@@ -48,52 +48,35 @@ export function defineCharacterCustomClass(baseClass) {
       context.system.abilities ??= {};
       context.system.xpSvg ??= ""; // Optional SVG representation of XP
 
-      // --- SHEET VIEW MODEL ---
-      context.sheet = {};
-
-      // Core attributes (top section of sheet)
-      // Excludes weight, coin and abilities
-      context.sheet.coreAttributes = {
-        hp: system.attributes.hp,
-        ac: system.attributes.ac,
-        damage: system.attributes.damage,
-        level: system.attributes.level,
-        xp: system.attributes.xp
-      };
-
-      // Game resources (moves, ongoing values, etc.)
-      context.sheet.resources = {
-        forward: system.attributes.forward,
-        ongoing: system.attributes.ongoing,
-        hold: system.attributes.hold,
-        resource1: system.attributes.resource1,
-        rollFormula: system.attributes.rollFormula
-      };
-
-      // Economy section — separates weight and coin
-      context.sheet.economy = {
-        weight: system.attributes.weight,
-        coin: system.attributes.coin
-      };
-
-      // Abilities block — separate section in the sheet
-      context.sheet.abilities = system.abilities;
-
       // --- ITEMS ORGANIZATION ---
       const items = actor.items.contents;
 
-      // Filter items by type to display in separate sections
-      context.bonds = items.filter(i => i.type === "bond");
-      context.basicMoves = items.filter(i => i.type === "move" && i.system.moveType === "basic");
-      context.startingMoves = items.filter(i => i.type === "move" && i.system.moveType === "starting");
-      context.advancedMoves = items.filter(i => i.type === "move" && i.system.moveType === "advanced");
-      context.specialMoves = items.filter(i => i.type === "move" && i.system.moveType === "special");
-      context.moves = items.filter(i =>
-        i.type === "move" &&
-        !["basic", "starting", "advanced", "special"].includes(i.system.moveType)
-      );
-      context.spells = items.filter(i => i.type === "spell");
-      context.equipment = items.filter(i => i.type === "equipment");
+      // Define categories and filter functions
+      const itemCategories = {
+        bonds: i => i.type === "bond",
+        basicMoves: i => i.type === "move" && i.system.moveType === "basic",
+        startingMoves: i => i.type === "move" && i.system.moveType === "starting",
+        advancedMoves: i => i.type === "move" && i.system.moveType === "advanced",
+        specialMoves: i => i.type === "move" && i.system.moveType === "special",
+        moves: i => i.type === "move" && !["basic","starting","advanced","special"].includes(i.system.moveType),
+        spells: i => i.type === "spell",
+        equipment: i => i.type === "equipment"
+      };
+
+      // Apply filters dynamically
+      for (const [category, filterFn] of Object.entries(itemCategories)) {
+        context[category] = items.filter(filterFn);
+      }
+
+      // Add roll modes, including the new "push" mode
+      context.rollModes = {
+        def: "DW.Normal",
+        adv: "DW.Advantage",
+        dis: "DW.Disadvantage",
+        psh: "DW.Push"
+      };
+
+      // console.log("Context with rollModes:", context.rollModes);
 
       return context;
     }
