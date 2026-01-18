@@ -19,5 +19,8 @@
         "compatibility": {}
       }
     ]
-  }
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ]
 }
