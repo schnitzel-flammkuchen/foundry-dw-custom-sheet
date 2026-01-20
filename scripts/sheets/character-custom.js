@@ -37,46 +37,40 @@ export function defineCharacterCustomClass(baseClass) {
      */
     async getData(options) {
       const context = await super.getData(options);
-      const actor = this.actor;
-      const system = actor.system ?? {};
 
-      // --- BASE DATA ---
-      context.actor = actor; // The entire actor object
-      context.system = system; // The actor's system data
-      context.system.details ??= {}; // Ensure certain objects exist
-      context.system.attributes ??= {};
-      context.system.abilities ??= {};
-      context.system.xpSvg ??= ""; // Optional SVG representation of XP
+      // Commit: Replace explicit item categories with dynamic structure (scripts/sheets/character-custom.js)
+      
+      /* --- SHEET VIEWER --- */
+      /* Define categories to simplify the custom template */
 
-      // --- ITEMS ORGANIZATION ---
-      const items = actor.items.contents;
+      // Filters the actor's items to include only those of type "move"
+      context.moves = this.actor.items.filter(i => i.type === "move");
 
-      // Define categories and filter functions
-      const itemCategories = {
-        bonds: i => i.type === "bond",
-        basicMoves: i => i.type === "move" && i.system.moveType === "basic",
-        startingMoves: i => i.type === "move" && i.system.moveType === "starting",
-        advancedMoves: i => i.type === "move" && i.system.moveType === "advanced",
-        specialMoves: i => i.type === "move" && i.system.moveType === "special",
-        moves: i => i.type === "move" && !["basic","starting","advanced","special"].includes(i.system.moveType),
-        spells: i => i.type === "spell",
-        equipment: i => i.type === "equipment"
-      };
+      // Define the categories of moves with metadata for each
+      context.moveMeta = [
+        { key: "basicMoves", title: "DW.MovesBasic", moveType: "basic", name: "basic-moves" },
+        { key: "startingMoves", title: "DW.MovesStarting", moveType: "starting", name: "starting-moves" },
+        { key: "advancedMoves", title: "DW.MovesAdvanced", moveType: "advanced", name: "advanced-moves" },
+        { key: "specialMoves", title: "DW.MovesSpecial", moveType: "special", name: "special-moves" },
+        { key: "moves", title: "DW.MovesOther", name: "other-moves" } // "Other" moves that don't fit the above categories
+      ];
 
-      // Apply filters dynamically
-      for (const [category, filterFn] of Object.entries(itemCategories)) {
-        context[category] = items.filter(filterFn);
-      }
+      // Filters the full move list by each category's type to be used on the template
+      context.moveCategories = context.moveMeta.map(cat => {
+        const moves = context.moves.filter(m => {
+          if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
+          // Otherwise, include moves matching this category's type
+          return m.system.moveType === cat.moveType;
+        });
 
-      // Add roll modes, including the new "push" mode
-      context.rollModes = {
-        def: "DW.Normal",
-        adv: "DW.Advantage",
-        dis: "DW.Disadvantage",
-        psh: "DW.Push"
-      };
+        // Return a new category object containing the metadata plus the filtered moves
+        return {
+          ...cat,
+          moves
+        };
+      });
 
-      // console.log("Context with rollModes:", context.rollModes);
+      console.log(context);
 
       return context;
     }
