@@ -38,8 +38,6 @@ export function defineCharacterCustomClass(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
 
-      // Commit: Replace explicit item categories with dynamic structure (scripts/sheets/character-custom.js)
-      
       /* --- SHEET VIEWER --- */
       /* Define categories to simplify the custom template */
 
