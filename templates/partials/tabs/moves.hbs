@@ -1,0 +1,61 @@
+{{!-- Moves tab --}}
+<div class="tab moves" data-group="primary" data-tab="moves">
+    
+    <section class="notifications">
+        {{#if system.isToken}}
+        <div class="cell__title warning small-text">
+            Moves cannot be rearranged while this token is not linked to an actor.
+        </div>
+        {{/if}}
+    </section>
+
+    <section class="more-resources">
+
+        {{!-- More resources --}}
+        {{!-- <div class="cell cell--resource1">
+            <label class="cell__title"><input type="text" name="system.attributes.resource1.label" value="{{system.attributes.resource1.label}}" data-dtype="String"/></label>
+            <div class="cell__counter">
+                <div class="cell__wrapper">
+                    <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.resource1.value">-</button>
+                    <input type="number" name="system.attributes.resource1.value" value="{{system.attributes.resource1.value}}" data-dtype="Number"/>
+                    <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.resource1.value">+</button>
+                </div>
+                <span> / </span>
+                <div class="cell__wrapper">
+                    <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.resource1.max">-</button>
+                    <input type="number" name="system.attributes.resource1.max" value="{{system.attributes.resource1.max}}" data-dtype="Number"/>
+                    <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.resource1.max">+</button>
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="cell cell--roll-mode flexrow">
+            <label class="cell__title">{{localize "DW.RollMode"}}</label>
+            {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
+        </div>
+    </section>
+
+    {{#each moveCategories as |category|}}
+    <div class="cell cell--{{category.name}}">
+        <h2>
+            <label>{{localize category.title}}</label>
+            <div class="item-controls">
+                <button type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="move" data-moveType="{{category.moveType}}">
+                <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </h2>
+        <ol class="items-list">
+        {{#each category.moves as |item|}}
+            <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+            {{> "systems/dungeonworld/templates/parts/sheet-moves.html"
+                item=item
+                rollData=../rollData
+                statSettings=../../system.statSettings}}
+            </li>
+        {{/each}}
+        </ol>
+    </div>
+    {{/each}}
+
+</div>

@@ -1,109 +1,46 @@
-<form class="dw-custom-sheet {{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
 
-  {{!-- Atributos principais (core) --}}
-  <section class="sheet-attributes">
-    {{#each sheet.coreAttributes as |attr key|}}
-      <div>{{key}}: {{attr.value}}</div>
-    {{/each}}
-  </section>
+    <div class="sheet-container">
+        {{!-- Sidebar --}}
 
-  {{!-- Economia --}}
-  <section class="sheet-economy">
-    <div>Weight: {{sheet.economy.weight.value}}</div>
-    <div>Coin: {{sheet.economy.coin.value}}</div>
-  </section>
+        {{> "modules/dw-custom-sheet/templates/partials/sidebar.hbs"}}
 
-  {{!-- Habilidades --}}
-  <section class="sheet-abilities">
-    {{#each sheet.abilities as |ability key|}}
-      <div>{{key}}: {{ability.value}}</div>
-    {{/each}}
-  </section>
+        {{!-- Body --}}
+        <div class="body">
+            {{!-- Header --}}
+            {{> "modules/dw-custom-sheet/templates/partials/header.hbs"}}
 
-  <div class="cell cell--roll-formula">
-    <label class="cell__title">{{localize "DW.RollFormula"}}</label>
-    <div class="cell__wrapper">
-      <input type="text" name="system.attributes.rollFormula.value" value="{{system.attributes.rollFormula.value}}" placeholder="2d6" data-dtype="String"/>
+            {{!-- Main --}}
+            <div class="main">
+                {{!-- Forward, Ongoing, Hold, Resource and Roll formula & modes --}}
+                {{> "modules/dw-custom-sheet/templates/partials/overview.hbs"}}
+
+                {{!-- Navigation tabs --}}
+                <nav class="sheet-tabs tabs" data-group="primary">
+                    <a class="item" data-tab="description">{{localize "DW.Description"}}</a>
+                    <a class="item" data-tab="moves">{{localize "DW.Moves"}}</a>
+                    <a class="item" data-tab="spells">{{localize "DW.Spells"}}</a>
+                    <a class="item" data-tab="equipment">{{localize "DW.Equipment"}}</a>
+                </nav>
+                <!-- TODO: MAIN -->
+
+                {{!-- Tabs section --}}
+                <section class="tabs-section">
+                    {{!-- Description tab --}}
+                    {{> "modules/dw-custom-sheet/templates/partials/tabs/description.hbs"}}
+
+                    {{!-- Moves tab --}}
+                    {{> "modules/dw-custom-sheet/templates/partials/tabs/moves.hbs"}}
+
+                    {{!-- Spells tab --}}
+                    {{> "modules/dw-custom-sheet/templates/partials/tabs/spells.hbs"}}
+
+                    {{!-- Equipment tabs --}}
+                    {{> "modules/dw-custom-sheet/templates/partials/tabs/equipment.hbs"}}
+                </section>
+
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="cell cell--roll-mode flexrow">
-    <label class="cell__title">{{localize "DW.RollMode"}}</label>
-    {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
-  </div>
-
-
-  {{!-- Attributes --}}
-        <section class="sheet-attributes">
-
-          <div class="cell cell--damage">
-            <label class="cell__title damage-rollable rollable" data-roll="{{system.attributes.damage.value}}{{#if system.attributes.damage.misc}}+{{system.attributes.damage.misc}}{{/if}}" data-label="{{localize "DW.Damage"}}"><i class="fas fa-dice-d20"></i> {{localize "DW.Damage"}}</label>
-            {{!-- <input type="text" name="system.attributes.damage.value" value="{{system.attributes.damage.value}}" data-dtype="String"/> --}}
-            <div class="damage-inputs">
-              <select name="system.attributes.damage.value" data-dtype="String">
-                {{selectOptions selects.damages selected=system.attributes.damage.value blank='—'}}
-              </select>
-              <span>+</span>
-              <input type="text" name="system.attributes.damage.misc" value="{{system.attributes.damage.misc}}" placeholder="{{localize "DW.Misc"}}" data-dtype="String"/>
-            </div>
-          </div>
-
-          <div class="cell cell--ac">
-            <label class="cell__title">{{localize "DW.Armor"}}<i class="fas fa-shield-alt attribute-icon"></i></label>
-            <input type="text" name="system.attributes.ac.value" value="{{system.attributes.ac.value}}" data-dtype="Number"/>
-          </div>
-
-          <div class="cell cell--hp">
-            <label for="system.attributes.hp.value" class="cell__title">{{localize "DW.HP"}}<i class="fas fa-heart attribute-icon"></i></label>
-            <div class="cell__counter">
-              <div class="cell__wrapper">
-                <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.hp.value">-</button>
-                <input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-dtype="Number"/>
-                <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.hp.value">+</button>
-              </div>
-              <span> / </span>
-              <input type="text" class="hp--max" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number"/>
-            </div>
-          </div>
-
-          <div class="cell cell--weight">
-            <label for="system.attributes.weight.value" class="cell__title">{{localize "DW.Weight"}}<i class="fas fa-weight-hanging attribute-icon"></i></label>
-            <div class="cell__counter">
-              <input class="disabled" type="text" name="system.attributes.weight.value" value="{{system.attributes.weight.value}}" data-dtype="Number" readonly/>
-              <span> / </span>
-              <input type="text" name="system.attributes.weight.max" value="{{system.attributes.weight.max}}" data-dtype="Number"/>
-            </div>
-          </div>
-
-          <div class="cell cell--coin">
-            <label class="cell__title">{{localize "DW.Coin"}}<i class="fas fa-coins attribute-icon"></i></label>
-            <div class="cell__wrapper">
-              <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.coin.value">-</button>
-              <input type="text" name="system.attributes.coin.value" value="{{system.attributes.coin.value}}" data-dtype="Number"/>
-              <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.coin.value">+</button>
-            </div>
-          </div>
-
-          <div class="cell cell--abilities">
-            <ol class="abilities-list">
-            {{#each system.abilities as |ability key|}}
-                <li class="ability flexrow" data-ability="{{key}}">
-                    <label for="system.abilities.{{key}}.value" class="cell__title ability-rollable rollable" data-roll="{{key}}" data-label="{{ability.label}}">{{ localize ability.label }}</label>
-                    {{#if ../system.noAbilityScores}}
-                      <input class="ability-mod" type="text" name="system.abilities.{{key}}.value" value="{{#if ability.value}}{{numberFormat ability.value decimals=0 sign=true}}{{else}}0{{/if}}" data-dtype="Number"/>
-                    {{else}}
-                      <input class="ability-value" type="text" name="system.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
-                      <span class="ability-mod">{{numberFormat ability.mod decimals=0 sign=true}}</span>
-                    {{/if}}
-                    <label class="ability-debility checkbox"><input type="checkbox" name="system.abilities.{{key}}.debility" {{checked ability.debility}}/>{{ ability.debilityLabel }}</label>
-                </li>
-            {{/each}}
-            </ol>
-          </div>
-
-        </section>
-
-
-
 
 </form>
