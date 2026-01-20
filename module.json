@@ -21,6 +21,25 @@
     ]
   },
   "esmodules": [
-    "scripts/main.js"
+    "scripts/main.js",
+    "scripts/custom-listeners.js",
+    "scripts/sheets/character-custom.js"
+  ],
+  "styles": [
+    "styles/styles.css",
+    "styles/equipment-mod.css",
+    "styles/items.css",
+    "styles/layout-description.css",
+    "styles/spells-mod.css",
+    "styles/moves-mod.css",
+    "styles/attributes-mod.css",
+    "styles/custom-resources.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "DWCS": {
+    "Placeholder": {
+      "Class": "Select class",
+      "Name": "Name",
+      "Level": "Level",
+      "XP": "XP"
+    },
+    "Warnings": {
+      "InvalidClass": "Invalid class entered"
+    },
+
+    "Classes": {
+      "Barbarian": "The Barbarian",
+      "Bard": "The Bard",
+      "Cleric": "The Cleric",
+      "Druid": "The Druid",
+      "Fighter": "The Fighter",
+      "Immolator": "The Immolator",
+      "Paladin": "The Paladin",
+      "Ranger": "The Ranger",
+      "Thief": "The Thief",
+      "Wizard": "The Wizard"
+    }
+  }
+}
