@@ -3,9 +3,9 @@
 import { defineCharacterCustomClass } from "./sheets/character-custom.js";
 
 /**
- * Preload all HBS partials used in the custom sheet.
- * It loads all custom Handlebars partials used in the custom template.
- * This avoids "partial not found" errors.
+ * Preload all HBS partials used in the custom sheet
+ * It loads all custom Handlebars partials used in the custom template
+ * This avoids "partial not found" errors
  */
 async function preloadTemplates() {
   const ROOT = "modules/dw-custom-sheet/templates/partials";
@@ -24,7 +24,7 @@ async function preloadTemplates() {
 }
 
 /**
- * Hook that runs once Foundry is initializing.
+ * Hook that runs once Foundry is initializing
  */
 Hooks.once("init", async () => {
   await preloadTemplates();
@@ -32,8 +32,8 @@ Hooks.once("init", async () => {
 });
 
 /**
- * Hook that runs once Foundry is ready.
- * Registers the custom character sheet for Dungeon World actors.
+ * Hook that runs once Foundry is ready
+ * Registers the custom character sheet for Dungeon World actors
  */
 Hooks.once("ready", async () => {
     // Foundry V12 + V13
@@ -48,10 +48,7 @@ Hooks.once("ready", async () => {
         return;
     }
 
-    // // Remove default sheet:
-    // ActorsCollection.unregisterSheet("dungeonworld", ActorSheet);
-
-    // Registers new sheet:
+    // Registers new sheet
     const CustomCharacterSheet = defineCharacterCustomClass(DwActorSheet);
     ActorsCollection.registerSheet("dungeonworld", CustomCharacterSheet, {
         types: ["character"],
@@ -59,4 +56,4 @@ Hooks.once("ready", async () => {
         label: "Customized Character Sheet"
     });
     console.log("✅ DW Custom Sheet | Ready");
-})
+});
