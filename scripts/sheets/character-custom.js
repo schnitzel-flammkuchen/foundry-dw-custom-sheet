@@ -17,7 +17,8 @@ export function defineCharacterCustomClass(baseClass) {
         classes: ["dungeonworld", "sheet", "actor", "dw-custom-sheet"], // CSS classes for styling
         template: "modules/dw-custom-sheet/templates/character-sheet.hbs", // Custom Handlebars template
         width: 800, // Sheet width
-        height: 600 // Sheet height
+        height: 600, // Sheet height
+        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
       });
     }
 
@@ -39,7 +40,13 @@ export function defineCharacterCustomClass(baseClass) {
       const context = await super.getData(options);
 
       /* --- SHEET VIEWER --- */
-      /* Define categories to simplify the custom template */
+      /* Define aliases to simplify the custom template */
+
+      // So it will appear the short version instead; it's included on lang folder of DW
+      // Ability short labels (STR, DEX, etc.)
+      for (const [key, ability] of Object.entries(context.system.abilities)) {
+        ability.short = game.i18n.localize(`DW.${key.toUpperCase()}`);
+      }
 
       // Filters the actor's items to include only those of type "move"
       context.moves = this.actor.items.filter(i => i.type === "move");
@@ -68,7 +75,7 @@ export function defineCharacterCustomClass(baseClass) {
         };
       });
 
-      console.log(context);
+      // console.log(context); // For debug and test purposes
 
       return context;
     }

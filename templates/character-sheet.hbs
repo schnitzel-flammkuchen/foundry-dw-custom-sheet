@@ -1,17 +1,17 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    <div class="sheet-container">
+    <div class="sheet-wrapper">
         {{!-- Sidebar --}}
 
         {{> "modules/dw-custom-sheet/templates/partials/sidebar.hbs"}}
 
         {{!-- Body --}}
-        <div class="body">
+        <div class="sheet-body">
             {{!-- Header --}}
             {{> "modules/dw-custom-sheet/templates/partials/header.hbs"}}
 
             {{!-- Main --}}
-            <div class="main">
+            <div class="sheet-main">
                 {{!-- Forward, Ongoing, Hold, Resource and Roll formula & modes --}}
                 {{> "modules/dw-custom-sheet/templates/partials/overview.hbs"}}
 
@@ -22,7 +22,6 @@
                     <a class="item" data-tab="spells">{{localize "DW.Spells"}}</a>
                     <a class="item" data-tab="equipment">{{localize "DW.Equipment"}}</a>
                 </nav>
-                <!-- TODO: MAIN -->
 
                 {{!-- Tabs section --}}
                 <section class="tabs-section">

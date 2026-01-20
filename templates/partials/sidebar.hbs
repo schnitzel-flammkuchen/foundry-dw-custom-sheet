@@ -1,48 +1,48 @@
 {{!-- Sidebar --}}
-<div class="sidebar">
+<aside class="sheet-sidebar">
     {{!-- Portrait --}}
-    <div class="portrait">
+    <div class="sheet-portrait">
         <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" class="profile-img">
     </div>
     {{!-- Attributes --}}
-    <div class="stats">
+    <div class="sheet-attributes">
         <!-- TODO: STATS -->
             <div class="cell cell--damage">
+
             <label class="cell__title damage-rollable rollable" data-roll="{{system.attributes.damage.value}}{{#if system.attributes.damage.misc}}+{{system.attributes.damage.misc}}{{/if}}" data-label="{{localize "DW.Damage"}}">
-                <i class="fas fa-dice-d20"></i>
+                <i class="fa-thin fa-dice-d20"></i>
                 {{localize "DW.Damage"}}
             </label>
-            <!-- TODO: DAMAGE INPUT -->
-            {{!-- <input type="text" name="system.attributes.damage.value" value="{{system.attributes.damage.value}}" data-dtype="String"/> --}}
             <div class="damage-inputs">
                 <select name="system.attributes.damage.value" data-dtype="String">
                     {{selectOptions selects.damages selected=system.attributes.damage.value blank='—'}}
                 </select>
-                <span>
-                    +
-                </span>
+                <span> + </span>
                 <input type="text" name="system.attributes.damage.misc" value="{{system.attributes.damage.misc}}" placeholder="{{localize "DW.Misc"}}" data-dtype="String"/>
             </div>
         </div>
 
-        <div class="cell cell--ac">
-            <label class="cell__title">
-                {{localize "DW.Armor"}}
-                <i class="fas fa-shield-alt attribute-icon"></i>
-            </label>
-            <input type="text" name="system.attributes.ac.value" value="{{system.attributes.ac.value}}" data-dtype="Number"/>
-        </div>
-
-        <div class="cell cell--hp">
-            <label for="system.attributes.hp.value" class="cell__title">{{localize "DW.HP"}}<i class="fas fa-heart attribute-icon"></i></label>
-            <div class="cell__counter">
-            <div class="cell__wrapper">
-                <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.hp.value">-</button>
-                <input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-dtype="Number"/>
-                <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.hp.value">+</button>
+        {{!-- Stats (Armor and Health) --}}
+        <div class="cell--stats-wrapper">
+            <div class="cell cell--ac">
+                <label class="cell__title">
+                    {{localize "DW.Armor"}}
+                    <i class="fas fa-shield-alt attribute-icon"></i>
+                </label>
+                <input type="text" name="system.attributes.ac.value" value="{{system.attributes.ac.value}}" data-dtype="Number"/>
             </div>
-            <span> / </span>
-            <input type="text" class="hp--max" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number"/>
+
+            <div class="cell cell--hp">
+                <label for="system.attributes.hp.value" class="cell__title">{{localize "DW.HP"}}<i class="fas fa-heart attribute-icon"></i></label>
+                <div class="cell__counter">
+                <div class="cell__wrapper">
+                    <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.hp.value">-</button>
+                    <input type="text" name="system.attributes.hp.value" value="{{system.attributes.hp.value}}" data-dtype="Number"/>
+                    <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.hp.value">+</button>
+                </div>
+                <span> / </span>
+                <input type="text" class="hp--max" name="system.attributes.hp.max" value="{{system.attributes.hp.max}}" data-dtype="Number"/>
+                </div>
             </div>
         </div>
 
@@ -51,7 +51,9 @@
             {{#each system.abilities as |ability key|}}
                 <li class="ability flexrow" data-ability="{{key}}">
                     <label for="system.abilities.{{key}}.value" class="cell__title ability-rollable rollable" data-roll="{{key}}" data-label="{{ability.label}}">
-                        {{ localize ability.label }}
+                        <i class="fat fa-dice-d20"></i>
+                        {{!-- Display the short version of the ability (shortcut made on 'getData()') for compactness --}}
+                        {{localize ability.short}}
                     </label>
                     {{#if ../system.noAbilityScores}}
                     <input class="ability-mod" type="text" name="system.abilities.{{key}}.value" value="{{#if ability.value}}{{numberFormat ability.value decimals=0 sign=true}}{{else}}0{{/if}}" data-dtype="Number"/>
@@ -67,4 +69,4 @@
             </ol>
         </div>
     </div>
-</div>
+</aside>
