@@ -4,19 +4,47 @@
     <div class="cell cell--forward">
         <label class="cell__title">{{localize "DW.Forward"}}</label>
         <div class="cell__wrapper">
-            <button  type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.forward.value">-</button>
-            <input type="number" name="system.attributes.forward.value" value="{{system.attributes.forward.value}}" data-dtype="Number"/>
-            <button  type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.forward.value">+</button>
+            <button type="button"
+                class="resource-control resource-decrease"
+                data-attr="attributes.forward.value"
+                data-action="decrease">
+                -
+            </button>
+            <input type="number"
+                name="system.attributes.forward.value"
+               
+               value="{{system.attributes.forward.value}}"
+                data-dtype="Number">
+            <button type="button"
+                class="resource-control resource-increase"
+                data-attr="attributes.forward.value"
+                data-action="increase">
+                +
+            </button>
         </div>
     </div>
 
-        {{!-- Ongoing --}}
+    {{!-- Ongoing --}}
     <div class="cell cell--ongoing">
         <label class="cell__title">{{localize "DW.Ongoing"}}</label>
         <div class="cell__wrapper">
-            <button  type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.ongoing.value">-</button>
-            <input type="number" name="system.attributes.ongoing.value" value="{{system.attributes.ongoing.value}}" data-dtype="Number"/>
-            <button  type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.ongoing.value">+</button>
+            <button type="button"
+                class="resource-control resource-decrease"
+                data-attr="attributes.ongoing.value"
+                data-action="decrease">
+                -
+            </button>
+            <input type="number"
+                name="system.attributes.ongoing.value"
+               
+               value="{{system.attributes.ongoing.value}}"
+                data-dtype="Number">
+            <button type="button"
+                class="resource-control resource-increase"
+                data-attr="attributes.ongoing.value"
+                data-action="increase">
+                +
+            </button>
         </div>
     </div>
 
@@ -24,26 +52,70 @@
     <div class="cell cell--hold">
         <label class="cell__title">{{localize "DW.Hold"}}</label>
         <div class="cell__wrapper">
-            <button  type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.hold.value">-</button>
-            <input type="number" name="system.attributes.hold.value" value="{{system.attributes.hold.value}}" data-dtype="Number"/>
-            <button  type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.hold.value">+</button>
+            <button type="button"
+                class="resource-control resource-decrease"
+                data-attr="attributes.hold.value"
+                data-action="decrease">
+                -
+            </button>
+            <input type="number"
+                name="system.attributes.hold.value"
+                value="{{system.attributes.hold.value}}"
+                data-dtype="Number">
+            <button type="button"
+                class="resource-control resource-increase"
+                data-action="increase"
+                data-attr="attributes.hold.value">
+                +
+            </button>
         </div>
     </div>
 
     {{!-- Most important resource --}}
     <div class="ready-on-resource">
-        <label class="cell__title"><input type="text" name="system.attributes.resource1.label" value="{{system.attributes.resource1.label}}" data-dtype="String"/></label>
+        <label class="cell__title">
+            <input type="text"
+                name="system.attributes.resource1.label"
+                value="{{system.attributes.resource1.label}}"
+                data-dtype="String">
+            </label>
         <div class="cell__counter">
             <div class="cell__wrapper">
-                <button  type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.resource1.value">-</button>
-                <input type="number" name="system.attributes.resource1.value" value="{{system.attributes.resource1.value}}" data-dtype="Number"/>
-                <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.resource1.value">+</button>
+                <button type="button"
+                    class="resource-control resource-decrease"
+                    data-action="decrease"
+                    data-attr="attributes.resource1.value">
+                    -
+                </button>
+                <input type="number"
+                    name="system.attributes.resource1.value"
+                    value="{{system.attributes.resource1.value}}"
+                    data-dtype="Number">
+                <button type="button"
+                    class="resource-control resource-increase"
+                    data-action="increase"
+                    data-attr="attributes.resource1.value">
+                    +
+                </button>
             </div>
             <span> / </span>
             <div class="cell__wrapper">
-                <button  type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.resource1.max">-</button>
-                <input type="number" name="system.attributes.resource1.max" value="{{system.attributes.resource1.max}}" data-dtype="Number"/>
-                <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.resource1.max">+</button>
+                <button type="button"
+                    class="resource-control resource-decrease"
+                    data-action="decrease"
+                    data-attr="attributes.resource1.max">
+                    -
+                </button>
+                <input type="number"
+                    name="system.attributes.resource1.max"
+                    value="{{system.attributes.resource1.max}}"
+                    data-dtype="Number">
+                <button type="button"
+                    class="resource-control resource-increase"
+                    data-action="increase"
+                    data-attr="attributes.resource1.max">
+                    +
+                </button>
             </div>
         </div>
     </div>
@@ -52,13 +124,19 @@
     <div class="cell cell--roll-formula">
         <label class="cell__title">{{localize "DW.RollFormula"}}</label>
         <div class="cell__wrapper">
-            <input type="text" name="system.attributes.rollFormula.value" value="{{system.attributes.rollFormula.value}}" placeholder="2d6" data-dtype="String"/>
+            <input type="text"
+                name="system.attributes.rollFormula.value"
+                value="{{system.attributes.rollFormula.value}}"
+                placeholder="2d6"
+                data-dtype="String">
         </div>
     </div>
 
     {{!-- Roll modes --}}
     <div class="cell cell--roll-mode flexrow">
-        <label class="cell__title">{{localize "DW.RollMode"}}</label>
+        <label class="cell__title">
+            {{localize "DW.RollMode"}}
+        </label>
         {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
     </div>
 </div>
