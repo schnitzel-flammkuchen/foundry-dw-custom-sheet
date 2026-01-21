@@ -30,7 +30,9 @@
         </div> --}}
 
         <div class="cell cell--roll-mode flexrow">
-            <label class="cell__title">{{localize "DW.RollMode"}}</label>
+            <label class="cell__title">
+                {{localize "DW.RollMode"}}
+            </label>
             {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
         </div>
     </section>
@@ -38,21 +40,20 @@
     {{#each moveCategories as |category|}}
     <div class="cell cell--{{category.name}}">
         <h2>
-            <label>{{localize category.title}}</label>
+            <label>
+                {{localize category.title}}
+            </label>
             <div class="item-controls">
-                <button type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="move" data-moveType="{{category.moveType}}">
+                <button type="button" class="item-control item-create" title="{{localize "DW.MoveCreate"}}" data-type="move" data-moveType="{{category.moveType}}">
                 <i class="fas fa-plus"></i>
                 </button>
             </div>
         </h2>
         <ol class="items-list">
         {{#each category.moves as |item|}}
-            <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-            {{> "systems/dungeonworld/templates/parts/sheet-moves.html"
-                item=item
-                rollData=../rollData
-                statSettings=../../system.statSettings}}
-            </li>
+        <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+            {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../rollData statSettings=../../system.statSettings}}
+        </li>
         {{/each}}
         </ol>
     </div>

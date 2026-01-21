@@ -1,16 +1,9 @@
 {{!-- Header --}}
 <header class="sheet-header">
-
-    <!-- TODO: HEADER -->
-
     <div class="sheet-header__fields">
         {{!-- Name --}}
         <div class="character-name">
-            <input type="text"
-                class="input--title"
-                name="name"
-                value="{{actor.name}}"
-                placeholder="Name">           
+            <input type="text" class="input--title" name="name" value="{{actor.name}}" placeholder="Name">           
         </div>
 
         {{!-- Race --}}
@@ -25,13 +18,12 @@
             <select class="input--title charclass" name="system.details.class">
                 <option value=""></option>
                 {{#each system.classlist as |class|}}
-                    <option
-                        value="{{class}}"
-                        {{#if (eq class ../system.details.class)}}
-                            selected
-                        {{/if}}>
-                        {{class}}
-                    </option>
+                <option value="{{class}}"
+                    {{#if (eq class ../system.details.class)}}
+                    selected
+                    {{/if}}>
+                    {{class}}
+                </option>
                 {{/each}}
             </select>
             <a class="clickable-class-viewer" title="{{localize "DW.ClassViewer"}}">
@@ -44,47 +36,31 @@
                 <label for="system.attributes.level">
                     {{localize "DW.Level"}}
                 </label>
-                <input type="text"
-                    name="system.attributes.level.value"
-                    value="{{system.attributes.level.value}}"
-                    placeholder="Level"
-                    data-dtype="Number">
+                <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}" placeholder="Level" data-dtype="Number">
             </div>
 
             <div class="flex-item flex-item--xp">
                 <label for="system.attributes.level.value">
                     {{localize "DW.Level"}}
                 </label>
-                <input type="text"
-                    name="system.attributes.xp.value"
-                    value="{{system.attributes.xp.value}}"
-                    placeholder="XP"
-                    {{{progressCircle system.xpSvg}}}>
+                <input type="text" name="system.attributes.xp.value" value="{{system.attributes.xp.value}}" placeholder="XP">
+                    {{!-- {{{progressCircle system.xpSvg}}}> --}}
             </div>
 
             <div class="flex-item flex-item--xp-button">
-                <button type="button"
-                    class="resource-control resource-decrease"
-                    data-attr="attributes.xp.value"
-                    data-action="decrease">
+                <button type="button" class="resource-control resource-decrease" data-attr="attributes.xp.value" data-action="decrease">
                     -
                 </button>
-                <button type="button"
-                    class="resource-control resource-increase"
-                    data-attr="attributes.xp.value"
-                    data-action="increase">
+                <button type="button" class="resource-control resource-increase" data-attr="attributes.xp.value" data-action="increase">
                     +
                 </button>
             </div>
 
             <div class="flex-item flex-item--level-up">
-                <a class="
-                    {{#if system.levelup}} clickable-level-up
-                    {{else}} disabled-level-up {{/if}}">
+                <a class="{{#if system.levelup}} clickable-level-up {{else}} disabled-level-up {{/if}}">
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
         </div>
     </div>
-    
 </header>
