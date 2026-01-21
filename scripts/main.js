@@ -29,6 +29,24 @@ async function preloadTemplates() {
 Hooks.once("init", async () => {
   await preloadTemplates();
   console.log("✅ DW Custom Sheet | Loaded partials");
+
+  // Localize helper - for equipment filter
+  Handlebars.registerHelper('localizeFallback', function(key) {
+    if (!key.startsWith("DW.")) key = "DW." + key;
+    key = key.replace(/\s+/g, ''); // Normalize key
+
+    // Tries Dungeon World lang/*.json localize first (DW.*)
+    let dwValue = game.i18n.localize(key);
+    if (dwValue !== key) return dwValue;
+
+    // If the translation doesn't exist, tries mine (DWCS.*)
+    let fallbackKey = key.replace(/^DW\./, 'DWCS.FilteredEquipment.');
+    let fallbackValue = game.i18n.localize(fallbackKey);
+    if (fallbackValue !== fallbackKey) return fallbackValue;
+
+    // If none of them exist, returns the original key (maintain the way it is)
+    return key;
+  });
 });
 
 /**
