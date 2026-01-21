@@ -45,6 +45,11 @@ export function defineCharacterCustomClass(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
 
+      console.log(this.actor.system.classlist);
+
+      /* --- SHEET VIEWER --- */
+      /* Define aliases to simplify the custom template or add new functionalities */
+
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
       const allItems = context.equipment;
@@ -79,6 +84,8 @@ export function defineCharacterCustomClass(baseClass) {
         hoard: "Hoard",
         landbuilding: "LandBuildings"
       };
+
+      // Provide Type Icons
       context.typeIcons = {
         weapon: "fa-sword",
         armor: "fa-shield-alt",
@@ -102,6 +109,43 @@ export function defineCharacterCustomClass(baseClass) {
       }
       context.equipment = itemsToShow;
       context.activeFilter = this.itemFilter;
+
+      /* --- ABILITIES --- */
+
+      // So it will appear the short version instead; it's included on lang folder of DW
+      // Ability short labels (STR, DEX, etc.)
+      for (const [key, ability] of Object.entries(context.system.abilities)) {
+        ability.short = game.i18n.localize(`DW.${key.toUpperCase()}`);
+      }
+
+      /* --- MOVES --- */
+
+      // Filters the actor's items to include only those of type "move"
+      context.moves = this.actor.items.filter(i => i.type === "move");
+
+      // Define the categories of moves with metadata for each
+      context.moveMeta = [
+        { key: "basicMoves", title: "DW.MovesBasic", moveType: "basic", name: "basic-moves" },
+        { key: "startingMoves", title: "DW.MovesStarting", moveType: "starting", name: "starting-moves" },
+        { key: "advancedMoves", title: "DW.MovesAdvanced", moveType: "advanced", name: "advanced-moves" },
+        { key: "specialMoves", title: "DW.MovesSpecial", moveType: "special", name: "special-moves" },
+        { key: "moves", title: "DW.MovesOther", name: "other-moves" } // "Other" moves that don't fit the above categories
+      ];
+
+      // Filters the full move list by each category's type to be used on the template
+      context.moveCategories = context.moveMeta.map(cat => {
+        const moves = context.moves.filter(m => {
+          if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
+          // Otherwise, include moves matching this category's type
+          return m.system.moveType === cat.moveType;
+        });
+
+        // Return a new category object containing the metadata plus the filtered moves
+        return {
+          ...cat,
+          moves
+        };
+      });
     
       return context;
     }
@@ -115,6 +159,7 @@ export function defineCharacterCustomClass(baseClass) {
         this.render();
       });
 
+      // NOTE: Add custom click handlers or interactive features here
     }
   };
 }
