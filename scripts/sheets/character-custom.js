@@ -1,5 +1,7 @@
 // scripts/sheets/character-custom.js
 
+import { prepareEquipmentItems } from "../utils/equipment.js";
+
 /**
  * Defines the custom character sheet class.
  * @param {*} baseClass - The base class to extend (usually the system's default ActorSheet)
@@ -36,60 +38,83 @@ export function defineCharacterCustomClass(baseClass) {
      * @param {*} options - Options passed from Foundry VTT
      * @returns {Object} Context object for the template
      */
+    // Save filter selection (survives re-render)
+    itemFilter = "all";
+
+    // Get Data
     async getData(options) {
       const context = await super.getData(options);
 
-      /* --- SHEET VIEWER --- */
-      /* Define aliases to simplify the custom template */
-
-      // So it will appear the short version instead; it's included on lang folder of DW
-      // Ability short labels (STR, DEX, etc.)
-      for (const [key, ability] of Object.entries(context.system.abilities)) {
-        ability.short = game.i18n.localize(`DW.${key.toUpperCase()}`);
+      // Get and Prep all items
+      await prepareEquipmentItems(context, this.actor);
+      const allItems = context.equipment;
+    
+      // Get unique itemTypes actually present and sort them
+      const ITEM_TYPE_ORDER = [
+        "weapon", "armor", "dungeongear", "poison", "meal",
+        "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
+      ];
+      
+      const typeSet = new Set();
+      for (const item of allItems) {
+        if (item.system?.itemType) typeSet.add(item.system.itemType);
       }
 
-      // Filters the actor's items to include only those of type "move"
-      context.moves = this.actor.items.filter(i => i.type === "move");
+      const filterTypes = Array.from(typeSet).sort(
+        (a, b) => ITEM_TYPE_ORDER.indexOf(a) - ITEM_TYPE_ORDER.indexOf(b)
+      );
+      context.filterTypes = filterTypes;
 
-      // Define the categories of moves with metadata for each
-      context.moveMeta = [
-        { key: "basicMoves", title: "DW.MovesBasic", moveType: "basic", name: "basic-moves" },
-        { key: "startingMoves", title: "DW.MovesStarting", moveType: "starting", name: "starting-moves" },
-        { key: "advancedMoves", title: "DW.MovesAdvanced", moveType: "advanced", name: "advanced-moves" },
-        { key: "specialMoves", title: "DW.MovesSpecial", moveType: "special", name: "special-moves" },
-        { key: "moves", title: "DW.MovesOther", name: "other-moves" } // "Other" moves that don't fit the above categories
-      ];
-
-      // Filters the full move list by each category's type to be used on the template
-      context.moveCategories = context.moveMeta.map(cat => {
-        const moves = context.moves.filter(m => {
-          if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
-          // Otherwise, include moves matching this category's type
-          return m.system.moveType === cat.moveType;
-        });
-
-        // Return a new category object containing the metadata plus the filtered moves
-        return {
-          ...cat,
-          moves
-        };
-      });
-
-      // console.log(context); // For debug and test purposes
-
+      // Provide Type Labels
+      context.typeLabels = {
+        weapon: "Weapon",
+        armor: "Armor",
+        dungeongear: "DungeonGear",
+        poison: "Poison",
+        meal: "Meal",
+        service: "Service",
+        transport: "Transport",
+        bribe: "Bribe",
+        giftsfinery: "GiftsFinery",
+        hoard: "Hoard",
+        landbuilding: "LandBuildings"
+      };
+      context.typeIcons = {
+        weapon: "fa-sword",
+        armor: "fa-shield-alt",
+        dungeongear: "fa-tools",
+        poison: "fa-flask",
+        meal: "fa-drumstick-bite",
+        service: "fa-hands-helping",
+        transport: "fa-horse-head",
+        bribe: "fa-coins",
+        giftsfinery: "fa-gem",
+        hoard: "fa-treasure-chest",
+        landbuilding: "fa-home"
+      };
+      
+      // Filtering logic
+      let itemsToShow;
+      if (this.itemFilter === "all") {
+        itemsToShow = allItems;
+      } else {
+        itemsToShow = allItems.filter(i => i.system?.itemType === this.itemFilter);
+      }
+      context.equipment = itemsToShow;
+      context.activeFilter = this.itemFilter;
+    
       return context;
     }
 
-    /**
-     * Sets up event listeners for interactive elements on the sheet.
-     * Only attaches listeners if the sheet is editable.
-     * @param {*} html - The jQuery-wrapped HTML of the sheet
-     */
     activateListeners(html) {
       super.activateListeners(html);
-      if (!this.options.editable) return;
 
-      // NOTE: Add custom click handlers or interactive features here
+      // Item filter radio
+      html.find('input[name="itemFilter"]').change(ev => {
+        this.itemFilter = ev.currentTarget.value;
+        this.render();
+      });
+
     }
   };
 }

@@ -1,0 +1,18 @@
+{
+    "DWCS": {
+        "FilteredEquipment": {
+            "AllItems": "All items",
+            "Weapon": "Weapons",
+            "Armor": "Armor",
+            "DungeonGear": "Gear",
+            "Poison": "Poison",
+            "Meal": "Meal",
+            "Service": "Service",
+            "Transport": "Transport",
+            "Bribe": "Bribe",
+            "GiftsFinery": "Gifts & Finery",
+            "Hoard": "Hoard",
+            "LandBuildings": "Land & Buildings"
+        }
+    }   
+}
