@@ -1,6 +1,13 @@
-// scripts/sheets/character-custom.js
+// scripts/sheets/character-sheet.js
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
+import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
+
+// Custom Resources Configuration
+// Maximum number of custom resources allowed per actor
+const MAX_CUSTOM_RESOURCES = 4;
+// Valid custom resource keys (resource1 already exists in system)
+const RESOURCE_KEYS = ["resource1", "resource2", "resource3", "resource4"];
 
 /**
  * Defines the custom character sheet class.
@@ -44,21 +51,13 @@ export function defineCharacterCustomClass(baseClass) {
     // Get Data
     async getData(options) {
       const context = await super.getData(options);
-
-      console.log(this.actor.system.classlist);
-
+      
       /* --- SHEET VIEWER --- */
       /* Define aliases to simplify the custom template or add new functionalities */
 
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
       const allItems = context.equipment;
-    
-      // Get unique itemTypes actually present and sort them
-      const ITEM_TYPE_ORDER = [
-        "weapon", "armor", "dungeongear", "poison", "meal",
-        "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
-      ];
       
       const typeSet = new Set();
       for (const item of allItems) {
@@ -71,34 +70,10 @@ export function defineCharacterCustomClass(baseClass) {
       context.filterTypes = filterTypes;
 
       // Provide Type Labels
-      context.typeLabels = {
-        weapon: "Weapon",
-        armor: "Armor",
-        dungeongear: "DungeonGear",
-        poison: "Poison",
-        meal: "Meal",
-        service: "Service",
-        transport: "Transport",
-        bribe: "Bribe",
-        giftsfinery: "GiftsFinery",
-        hoard: "Hoard",
-        landbuilding: "LandBuildings"
-      };
+      context.typeLabels = ITEM_TYPE_LABELS;
 
       // Provide Type Icons
-      context.typeIcons = {
-        weapon: "fa-sword",
-        armor: "fa-shield-alt",
-        dungeongear: "fa-tools",
-        poison: "fa-flask",
-        meal: "fa-drumstick-bite",
-        service: "fa-hands-helping",
-        transport: "fa-horse-head",
-        bribe: "fa-coins",
-        giftsfinery: "fa-gem",
-        hoard: "fa-treasure-chest",
-        landbuilding: "fa-home"
-      };
+      context.typeIcons = ITEM_TYPE_ICONS;
       
       // Filtering logic
       let itemsToShow;
@@ -124,13 +99,7 @@ export function defineCharacterCustomClass(baseClass) {
       context.moves = this.actor.items.filter(i => i.type === "move");
 
       // Define the categories of moves with metadata for each
-      context.moveMeta = [
-        { key: "basicMoves", title: "DW.MovesBasic", moveType: "basic", name: "basic-moves" },
-        { key: "startingMoves", title: "DW.MovesStarting", moveType: "starting", name: "starting-moves" },
-        { key: "advancedMoves", title: "DW.MovesAdvanced", moveType: "advanced", name: "advanced-moves" },
-        { key: "specialMoves", title: "DW.MovesSpecial", moveType: "special", name: "special-moves" },
-        { key: "moves", title: "DW.MovesOther", name: "other-moves" } // "Other" moves that don't fit the above categories
-      ];
+      context.moveMeta = MOVE_META;
 
       // Filters the full move list by each category's type to be used on the template
       context.moveCategories = context.moveMeta.map(cat => {
@@ -146,6 +115,19 @@ export function defineCharacterCustomClass(baseClass) {
           moves
         };
       });
+
+      /* --- CUSTOM RESOURCES --- */
+
+      // Dungeon World's 'template.json' gives an actor:
+      // "resource1": {
+      //   "label": "Custom Resource",
+      //   "value": 0,
+      //   "max": 0
+      // }
+      // But will change its label and add up 4 resources
+
+      // Define maximum of custom resources allowed
+      const MAX_RESOURCES = 4;
     
       return context;
     }
@@ -153,7 +135,7 @@ export function defineCharacterCustomClass(baseClass) {
     activateListeners(html) {
       super.activateListeners(html);
 
-      // Item filter radio
+      // Item filter listener
       html.find('input[name="itemFilter"]').change(ev => {
         this.itemFilter = ev.currentTarget.value;
         this.render();
