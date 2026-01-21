@@ -10,7 +10,7 @@
                 class="input--title"
                 name="name"
                 value="{{actor.name}}"
-                placeholder="{{localize "DWCS.Placeholder.Name"}}">           
+                placeholder="Name">           
         </div>
 
         {{!-- Race --}}
@@ -22,17 +22,18 @@
 
         {{!-- Class --}}
         <div class="character-class">
-            <input type="text"
-                class="input--title charclass"
-                name="system.details.class"
-                value="{{system.details.class}}"
-                placeholder="{{localize "DWCS.Placeholder.Class"}}"
-                list="classlist">
-            <datalist id="classlist">
-                {{#each system.classlist as |class id|}}
-                <option value="{{class}}"></option>
+            <select class="input--title charclass" name="system.details.class">
+                <option value=""></option>
+                {{#each system.classlist as |class|}}
+                    <option
+                        value="{{class}}"
+                        {{#if (eq class ../system.details.class)}}
+                            selected
+                        {{/if}}>
+                        {{class}}
+                    </option>
                 {{/each}}
-            </datalist>
+            </select>
             <a class="clickable-class-viewer" title="{{localize "DW.ClassViewer"}}">
                 <i class="fas fa-book"></i>
             </a>
@@ -46,7 +47,7 @@
                 <input type="text"
                     name="system.attributes.level.value"
                     value="{{system.attributes.level.value}}"
-                    placeholder="{{localize "DWCS.Placeholder.Level"}}"
+                    placeholder="Level"
                     data-dtype="Number">
             </div>
 
@@ -57,7 +58,7 @@
                 <input type="text"
                     name="system.attributes.xp.value"
                     value="{{system.attributes.xp.value}}"
-                    placeholder="{{localize "DWCS.Placeholder.XP"}}"
+                    placeholder="XP"
                     {{{progressCircle system.xpSvg}}}>
             </div>
 
