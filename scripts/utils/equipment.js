@@ -19,7 +19,6 @@ export async function prepareEquipmentItems(context, actor) {
   const actorData = actor.toObject(false);
 
   context.actor = actorData;
-  context.system = actorData.system;
   context.items = actorData.items ?? [];
 
   // Ensure consistent ordering
