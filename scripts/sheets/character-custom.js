@@ -1,7 +1,5 @@
 // scripts/sheets/character-custom.js
 
-import { setupClassListeners, setupNameListeners } from "../custom-listeners.js";
-
 /**
  * Defines the custom character sheet class.
  * @param {*} baseClass - The base class to extend (usually the system's default ActorSheet)
@@ -91,10 +89,7 @@ export function defineCharacterCustomClass(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
-      setupClassListeners(html);
-      setupNameListeners(html, this.actor, this.form);
       // NOTE: Add custom click handlers or interactive features here
-      // or in scripts/custom-listeners.js then import up this archive
     }
   };
 }

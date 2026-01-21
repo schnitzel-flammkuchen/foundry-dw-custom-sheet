@@ -22,7 +22,6 @@
   },
   "esmodules": [
     "scripts/main.js",
-    "scripts/custom-listeners.js",
     "scripts/sheets/character-custom.js"
   ],
   "styles": [
