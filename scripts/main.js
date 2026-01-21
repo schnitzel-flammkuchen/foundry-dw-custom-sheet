@@ -1,6 +1,6 @@
 // scripts/main.js
 
-import { defineCharacterCustomClass } from "./sheets/character-custom.js";
+import { defineCharacterCustomClass } from "./sheets/character-sheet.js";
 
 /**
  * Preload all HBS partials used in the custom sheet
