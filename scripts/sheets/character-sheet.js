@@ -3,12 +3,6 @@
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
 
-// Custom Resources Configuration
-// Maximum number of custom resources allowed per actor
-const MAX_CUSTOM_RESOURCES = 4;
-// Valid custom resource keys (resource1 already exists in system)
-const RESOURCE_KEYS = ["resource1", "resource2", "resource3", "resource4"];
-
 /**
  * Defines the custom character sheet class.
  * @param {*} baseClass - The base class to extend (usually the system's default ActorSheet)
@@ -126,19 +120,201 @@ export function defineCharacterCustomClass(baseClass) {
       // }
       // But will change its label and add up 4 resources
 
-      // Define maximum of custom resources allowed
-      const MAX_RESOURCES = 4;
+      const attrs = context.actor.system.attributes;
+      // Starts with value and max. being 0
+      // 0 if undefined
+      RESOURCE_KEYS.forEach(k => {
+        const attr = this.actor.system.attributes[k];
+        if (attr) {
+          attr.value = Number(attr.value ?? 0);
+          attr.max = Number(attr.max   ?? 0);
+        }
+      });
+
+      // Creates list for the template
+      context.customResources = RESOURCE_KEYS.filter(k => attrs[k]).map(k => ({
+        key: k,
+        label: attrs[k].label ?? game.i18n.localize("DWCS.Custom.DefaultResource"),
+        value: Number(attrs[k].value ?? 0),
+        max: Number(attrs[k].max ?? 0),
+        removable: k !== "resource1"
+      }));
+
+
+      // Controls UI visibility for the add button
+      context.canAddResource = this._countCustomResources() < MAX_CUSTOM_RESOURCES;
     
       return context;
     }
 
+    /**
+     * Ensures that resource1 exists and has a proper structure.
+     * Does not override label if user has edited it.
+     * @async
+     * @returns {Promise<void>}
+     */
+    async _ensureResource1() {
+      const attrs = this.actor.system.attributes;
+      const res1 = attrs.resource1;
+
+      // Only set label if it doesn't exist yet
+      if (!res1) {
+        await this.actor.update({
+          "system.attributes.resource1": {
+            label: game.i18n.localize("DWCS.Custom.DefaultResource"),
+            value: 0,
+            max: 0
+          }
+        });
+      } else {
+        // Ensure value/max exist, but leave label intact
+        const updates = {};
+        if (res1.value === undefined) updates["system.attributes.resource1.value"] = 0;
+        if (res1.max === undefined) updates["system.attributes.resource1.max"] = 0;
+        if (Object.keys(updates).length) await this.actor.update(updates);
+      }
+    }
+
+    /**
+     * Counts how many custom resources currently exist on the actor.
+     * Includes resource1 and any additional (resource2–resource4).
+     * @returns {number} Number of custom resources defined on the actor
+     */
+    _countCustomResources() {
+      const attrs = this.actor.system.attributes;
+      return RESOURCE_KEYS.filter(k => attrs[k]).length;
+    }
+
+    /**
+     * Adds a new custom resource (resource2–resource4 only).
+     * Sets a default label from localization but preserves user's future edits.
+     * @async
+     * @returns {Promise<void>}
+     */
+    async _addExtraResource() {
+      const attrs = this.actor.system.attributes;
+      const localizedLabel = game.i18n.localize("DWCS.CustomResource");
+
+      // Hard stop: never allow more than MAX_CUSTOM_RESOURCES
+      if (this._countCustomResources() >= MAX_CUSTOM_RESOURCES) {
+        ui.notifications.warn(game.i18n.localize("DWCS.MaxCustomResourcesReached"));
+        return;
+      }
+
+      // Find first available resource slot (excluding resource1)
+      const nextKey = RESOURCE_KEYS.slice(1).find(k => !attrs[k]);
+      if (!nextKey) return;
+
+      await this.actor.update({
+        [`system.attributes.${nextKey}`]: {
+          label: localizedLabel, // Only default label
+          value: 0,
+          max: 0
+        }
+      });
+    }
+
+    /**
+     * Removes a custom resource from the actor (resource2–resource4 only).
+     * Will not remove resource1.
+     * @async
+     * @param {string} key The resource key to remove (e.g., "resource2")
+     * @returns {Promise<void>}
+     */
+    async _removeExtraResource(key) {
+      if (!key || key === "resource1") return;
+
+      await this.actor.update({
+        [`system.attributes.-=${key}`]: null
+      });
+    }
+
+    /** @override */
     activateListeners(html) {
       super.activateListeners(html);
+
+      /* --- EQUIPMENT --- */
 
       // Item filter listener
       html.find('input[name="itemFilter"]').change(ev => {
         this.itemFilter = ev.currentTarget.value;
         this.render();
+      });
+
+      // Equipment search bar: filter equipment on input
+      html.find('.equipment-search input').on('input', ev => {
+          const query = ev.currentTarget.value.toLowerCase();
+          html.find('.items-list li').each((i, li) => {
+              const name = $(li).find('.item-label').text().toLowerCase();
+              $(li).toggle(name.includes(query));
+          });
+      });
+
+      // Equipment search bar interactivity (label on click)
+      const equipmentTitle = html.find('h2.cell__title label');
+      const equipmentSearchDiv = html.find('.equipment-search');
+      const equipmentInput = equipmentSearchDiv.find('input');
+
+      // Click on title shows search bar and input
+      equipmentTitle.on('click', () => {
+        equipmentSearchDiv.addClass('active');
+        equipmentInput.focus();
+      });
+
+      // If lost focus and input is empty, it hides again
+      equipmentInput.on('blur', () => {
+        if (equipmentInput.val().trim() === "") equipmentSearchDiv.removeClass('active');
+      });
+
+      /* --- CUSTOM RESOURCE --- */
+
+      // Ensure base custom resource exists and is normalized
+      this._ensureResource1();
+
+      // Dropdown toggle for custom resources
+      html.find(".custom-resources-toggle").click(ev => {
+        ev.preventDefault();
+        const content = $(ev.currentTarget).siblings(".custom-resources-content");
+        content.slideToggle(150); // Smooth expand/collapse
+        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-down fa-chevron-up");
+      });
+
+      // Add custom resource
+      html.find(".add-extra-resource").click(async ev => {
+        ev.preventDefault();
+        await this._addExtraResource();
+        this.render();
+      });
+
+      // Remove custom resource
+      html.find(".remove-extra-resource").click(async ev => {
+        ev.preventDefault();
+        const key = ev.currentTarget.dataset.resource;
+        await this._removeExtraResource(key);
+        this.render();
+      });
+
+      /* --- INPUT IN GENERAL --- */
+
+      // Normalize every input number
+      html.find('input[type="number"]').each((i, el) => {
+        const $el = $(el);
+
+        // Losting focus, if empty, it's 0
+        $el.on("blur", ev => {
+          if (ev.currentTarget.value === "" || isNaN(ev.currentTarget.value)) {
+            ev.currentTarget.value = 0;
+          }
+        });
+
+        // If press 'Enter', guarantee it's 0
+        $el.on("keypress", ev => {
+          if (ev.key === "Enter") {
+            if (ev.currentTarget.value === "" || isNaN(ev.currentTarget.value)) {
+              ev.currentTarget.value = 0;
+            }
+          }
+        });
       });
 
       // NOTE: Add custom click handlers or interactive features here
