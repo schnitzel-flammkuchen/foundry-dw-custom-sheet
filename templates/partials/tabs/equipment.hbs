@@ -56,18 +56,18 @@
                 </div>
             </div>
         </div>
-        <h2 id="equipment-search" class="cell__title">
+        <h2 class="cell__title">
             <label>{{localize "DW.Equipment"}}</label>
             <div class="item-controls">
                 <button  type="button" class="item-control item-create" title="{{localize "DW.Equipment"}}" data-type="equipment">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
-            {{!-- Search bar (initially hidden) --}}
-            <div class="equipment-search">
-                <input type="text" placeholder="{{localize "DWCS.Custom.SearchItems"}}">
-            </div>
         </h2>
+        {{!-- Search bar (initially hidden) --}}
+        <div class="equipment-search">
+            <input type="text" placeholder="{{localize "DWCS.Custom.SearchItems"}}">
+        </div>
         <ol class="items-list">
         {{#each equipment as |item id|}}
         <li class="item flexrow" data-item-id="{{item._id}}" data-item-type="{{item.system.itemType}}" draggable="true">
