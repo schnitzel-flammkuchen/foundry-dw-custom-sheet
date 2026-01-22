@@ -21,7 +21,8 @@
             "LandBuildings": "Land & Buildings"
         },
         "Custom": {
-            "DefaultResource": "Custom Resource"
+            "DefaultResource": "Custom Resource",
+            "SearchItems": "Search items..."
         }
     }   
 }
