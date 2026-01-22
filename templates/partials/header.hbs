@@ -3,7 +3,7 @@
     <div class="sheet-header__fields">
         {{!-- Name --}}
         <div class="character-name">
-            <input type="text" class="input--title" name="name" value="{{actor.name}}" placeholder="{{localizeFallback "Placeholder.Class"}}">           
+            <input type="text" class="input--title" name="name" value="{{actor.name}}" placeholder="{{localizeFallback "Placeholder.Name"}}">
         </div>
 
         {{!-- Race --}}
@@ -15,7 +15,7 @@
 
         {{!-- Class --}}
         <div class="character-class">
-            <select class="input--title charclass" name="system.details.class">
+            <select class="input--title charclass" name="system.details.class" aria-placeholder="{{localizeFallback "Placeholder.Class"}}">
                 <option value=""></option>
                 {{#each system.classlist as |class|}}
                 <option value="{{class}}" {{#if (eq class ../system.details.class)}} selected {{/if}}>
@@ -33,14 +33,14 @@
                 <label for="system.attributes.level">
                     {{localize "DW.Level"}}
                 </label>
-                <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}" placeholder="{{localize "DW.Placeholder.Level"}}" data-dtype="Number">
+                <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}" placeholder="LvL" data-dtype="Number">
             </div>
 
             <div class="flex-item flex-item--xp">
                 <label for="system.attributes.level.value">
                     {{localize "DW.Level"}}
                 </label>
-                <input type="text" name="system.attributes.xp.value" value="{{system.attributes.xp.value}}" placeholder="{{localize "DW.Placeholder.XP"}}">
+                <input type="text" name="system.attributes.xp.value" value="{{system.attributes.xp.value}}" placeholder="XP">
                 {{!-- {{{progressCircle system.xpSvg}}}> --}}
             </div>
 
