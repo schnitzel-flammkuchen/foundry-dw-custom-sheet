@@ -1,7 +1,13 @@
 {
+    "DW": {
+        "Placeholder": {
+            "Name": "Name",
+            "Class": "Class"
+        }
+    },
     "DWCS": {
         "FilteredEquipment": {
-            "AllItems": "All items",
+            "AllItems": "All Items",
             "Weapon": "Weapons",
             "Armor": "Armor",
             "DungeonGear": "Gear",
@@ -13,6 +19,9 @@
             "GiftsFinery": "Gifts & Finery",
             "Hoard": "Hoard",
             "LandBuildings": "Land & Buildings"
+        },
+        "Custom": {
+            "DefaultResource": "Custom Resource"
         }
     }   
 }
