@@ -16,8 +16,7 @@
                     {{localize (concat "DW.Spells" spellLevel)}}
                 </label>
                 <div class="item-controls">
-                <button type="button"
-                        class="item-control item-create" data-type="spell" data-level="{{spellLevel}}">
+                <button type="button" class="item-control item-create" data-type="spell" data-level="{{spellLevel}}">
                     <i class="fas fa-plus"></i>
                 </button>
                 </div>
@@ -45,11 +44,11 @@
                     </span>
                     </h4>
                     <div class="item-meta tags">
-                    {{#if item.system.prepared}}
-                    <a class="tag prepared">{{localize "DW.Prepared"}}</a>
-                    {{else}}
-                    <a class="tag prepared unprepared">{{localize "DW.Unprepared"}}</a>
-                    {{/if}}
+                        {{#if item.system.prepared}}
+                        <a class="tag prepared">{{localize "DW.Prepared"}}</a>
+                        {{else}}
+                        <a class="tag prepared unprepared">{{localize "DW.Unprepared"}}</a>
+                        {{/if}}
                     </div>
                     <div class="item-controls">
                         <a class="item-control item-edit">
