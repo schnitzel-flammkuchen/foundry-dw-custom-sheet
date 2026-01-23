@@ -33,9 +33,9 @@ body.theme-light {
   /* General colors */
   --accent-color: #398de0;
   --border-color: #727c88;
-  --background-color: #243f6d;
-  --background-darker-color: #1a436d;
-  --text-color: #001220;
+  --background-color: #4976c3;
+  --background-darker-color: #164574;
+  --text-color: #00243f;
 
   /* Buttons */
   --remove-btn-color: #dc3545;
