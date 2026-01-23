@@ -61,10 +61,26 @@
                 <label class="equipment-title">
                     {{localize "DW.Equipment"}}
                 </label>
+                {{#if totalWorth}}
                 <span class="equipment-worth">
-                    Total Worth: {{totalWorth}}
+                    {{!-- Between parentesis "( 12 {icon} {label} )" --}}
+                    ( {{totalWorth}}
                     <i class="fas fa-sack-dollar"></i>
+
+                    {{#if totalWorthLabel}}
+                    <span class="tag">
+                        {{localizeFallback totalWorthLabel}}
+                    </span>
+                    {{/if}}
+                    )
+                    <span class="tooltip">
+                        {{localizeFallback "InventoryTotalWorth"}}
+                        {{#if totalWorthLabel}}
+                        ({{localizeFallback totalWorthLabel}})
+                        {{/if}}
+                    </span>
                 </span>
+                {{/if}}
             </div>
             <div class="item-controls">
                 <button  type="button" class="item-control item-create" title="{{localize "DW.Equipment"}}" data-type="equipment">
