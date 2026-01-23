@@ -241,18 +241,9 @@ export function defineCharacterCustomClass(baseClass) {
         this.render();
       });
 
-      // Equipment search bar: filter equipment on input
-      html.find('.equipment-search input').on('input', ev => {
-          const query = ev.currentTarget.value.toLowerCase();
-          html.find('.items-list li').each((i, li) => {
-              const name = $(li).find('.item-label').text().toLowerCase();
-              $(li).toggle(name.includes(query));
-          });
-      });
-
       // Equipment search bar interactivity (label on click)
-      const equipmentTitle = html.find('h2.cell__title label');
-      const equipmentSearchDiv = html.find('.equipment-search');
+      const equipmentTitle = html.find('.equipment-title').first();
+      const equipmentSearchDiv = html.find('#equipment-search');
       const equipmentInput = equipmentSearchDiv.find('input');
 
       // Click on title shows search bar and input
@@ -264,6 +255,15 @@ export function defineCharacterCustomClass(baseClass) {
       // If lost focus and input is empty, it hides again
       equipmentInput.on('blur', () => {
         if (equipmentInput.val().trim() === "") equipmentSearchDiv.removeClass('active');
+      });
+
+      // Equipment search bar: filter equipment on input
+      html.find('.equipment-search input').on('input', ev => {
+          const query = ev.currentTarget.value.toLowerCase();
+          html.find('.items-list li').each((i, li) => {
+              const name = $(li).find('.item-label').text().toLowerCase();
+              $(li).toggle(name.includes(query));
+          });
       });
 
       /* --- CUSTOM RESOURCE --- */

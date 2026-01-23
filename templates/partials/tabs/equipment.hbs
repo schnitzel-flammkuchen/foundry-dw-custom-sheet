@@ -57,7 +57,7 @@
             </div>
         </div>
         <h2 class="cell__title">
-            <label>{{localize "DW.Equipment"}}</label>
+            <label class="equipment-title">{{localize "DW.Equipment"}}</label>
             <div class="item-controls">
                 <button  type="button" class="item-control item-create" title="{{localize "DW.Equipment"}}" data-type="equipment">
                     <i class="fas fa-plus"></i>
@@ -65,7 +65,7 @@
             </div>
         </h2>
         {{!-- Search bar (initially hidden) --}}
-        <div class="equipment-search">
+        <div id="equipment-search">
             <input type="text" placeholder="{{localize "DWCS.Custom.SearchItems"}}">
         </div>
         <ol class="items-list">
