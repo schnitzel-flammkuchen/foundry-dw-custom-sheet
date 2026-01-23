@@ -19,7 +19,8 @@
   "styles": [
     "styles/styles.css",
     "styles/equipment.css",
-    "styles/items.css"
+    "styles/items.css",
+    "styles/sheet.css"
   ],
   "languages": [
     {
