@@ -18,13 +18,8 @@
   ],
   "styles": [
     "styles/styles.css",
-    "styles/equipment-mod.css",
-    "styles/items.css",
-    "styles/layout-description.css",
-    "styles/spells-mod.css",
-    "styles/moves-mod.css",
-    "styles/attributes-mod.css",
-    "styles/custom-resources.css"
+    "styles/equipment.css",
+    "styles/items.css"
   ],
   "languages": [
     {
