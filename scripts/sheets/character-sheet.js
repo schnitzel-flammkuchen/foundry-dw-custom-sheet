@@ -48,6 +48,8 @@ export function defineCharacterCustomClass(baseClass) {
       
       /* --- SHEET VIEWER --- */
       /* Define aliases to simplify the custom template or add new functionalities */
+      
+      /* --- INVENTORY FILTER --- */
 
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
@@ -78,6 +80,25 @@ export function defineCharacterCustomClass(baseClass) {
       }
       context.equipment = itemsToShow;
       context.activeFilter = this.itemFilter;
+
+      /* --- INVENTORY VALUE (Total Worth) --- */
+
+      // Initialize total worth accumulator
+      let totalWorth = 0;
+
+      // Loop through all items in the inventory
+      for (const item of allItems) {
+        // Get the quantity of the item, default to 1 if not specified
+        const qty = Number(item.system?.quantity ?? 1);
+        // Get the price of the item, default to 0 if not specified
+        const price = Number(item.system?.price ?? 0);
+
+        // Only include items with a positive value and add the total value of this item (value * quantity) to the accumulator
+        if (price > 0) totalWorth += price * qty;
+      }
+
+      // Expose the total worth context for display on template
+      context.totalWorth = totalWorth;
 
       /* --- ABILITIES --- */
 
