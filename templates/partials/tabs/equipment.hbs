@@ -30,13 +30,13 @@
             <div class="gold-weight">
                 <div class="cell cell--weight">
                     <label for="system.attributes.weight.value" class="cell__title">
-                        Weight
+                        {{localize "DW.Weight"}}
                         <i class="fas fa-weight-hanging attribute-icon"></i>
                     </label>
                     <div class="cell__counter">
-                        <input class="disabled" type="text" name="system.attributes.weight.value" value="0" data-dtype="Number" readonly="">
+                        <input class="disabled" type="text" name="system.attributes.weight.value" value="{{system.attributes.weight.value}}" data-dtype="Number" readonly="">
                         <span> / </span>
-                        <input type="text" name="system.attributes.weight.max" value="1" data-dtype="Number">
+                        <input type="text" name="system.attributes.weight.max" value="{{system.attributes.weight.max}}" data-dtype="Number">
                     </div>
                 </div>
                 <div class="cell cell--coin">
@@ -48,7 +48,7 @@
                         <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.coin.value">
                             -
                         </button>
-                        <input type="text" name="system.attributes.coin.value" value="0" data-dtype="Number">
+                            <input type="text" name="system.attributes.coin.value" value="{{system.attributes.coin.value}}" data-dtype="Number">
                         <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.coin.value">
                             +
                         </button>
@@ -56,8 +56,16 @@
                 </div>
             </div>
         </div>
-        <h2 class="cell__title">
-            <label class="equipment-title">{{localize "DW.Equipment"}}</label>
+        <h2 class="cell__title equipment-header">
+            <div class="equipment-header__left">
+                <label class="equipment-title">
+                    {{localize "DW.Equipment"}}
+                </label>
+                <span class="equipment-worth">
+                    Total Worth: {{totalWorth}}
+                    <i class="fas fa-sack-dollar"></i>
+                </span>
+            </div>
             <div class="item-controls">
                 <button  type="button" class="item-control item-create" title="{{localize "DW.Equipment"}}" data-type="equipment">
                     <i class="fas fa-plus"></i>
