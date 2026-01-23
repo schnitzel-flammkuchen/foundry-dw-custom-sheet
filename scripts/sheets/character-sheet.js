@@ -82,12 +82,14 @@ export function defineCharacterCustomClass(baseClass) {
       context.activeFilter = this.itemFilter;
 
       /* --- INVENTORY VALUE (Total Worth) --- */
+      /* Can be calculated for all items or a filtered subset */
 
       // Initialize total worth accumulator
       let totalWorth = 0;
 
       // Loop through all items in the inventory
-      for (const item of allItems) {
+      // If not using a filtered list, replace 'itemsToShow' with 'allItems'
+      for (const item of itemsToShow) {
         // Get the quantity of the item, default to 1 if not specified
         const qty = Number(item.system?.quantity ?? 1);
         // Get the price of the item, default to 0 if not specified
@@ -97,8 +99,15 @@ export function defineCharacterCustomClass(baseClass) {
         if (price > 0) totalWorth += price * qty;
       }
 
+      // If using 'itemsToShow', this means the items are filtered
+      // Determine the label for the item type (for display/tag)
+      let filterLabel = this.itemFilter === "all"
+        ? ""
+        : ITEM_TYPE_LABELS[this.itemFilter] ?? this.itemFilter;
+
       // Expose the total worth context for display on template
       context.totalWorth = totalWorth;
+      context.totalWorthLabel = filterLabel; // Only used if filtering by item type
 
       /* --- ABILITIES --- */
 
