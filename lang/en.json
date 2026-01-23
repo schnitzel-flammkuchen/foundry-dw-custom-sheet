@@ -1,11 +1,13 @@
 {
     "DW": {
+        "Equipment": "Inventory",
         "Placeholder": {
             "Name": "Name",
             "Class": "Class"
         }
     },
     "DWCS": {
+        "InventoryTotalWorth": "Inventory's worth value",
         "FilteredEquipment": {
             "AllItems": "All Items",
             "Weapon": "Weapons",
