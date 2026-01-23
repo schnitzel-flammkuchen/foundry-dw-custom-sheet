@@ -2,7 +2,7 @@
 /* (filtering, search bar and weight/gold) */
 
 /* Filter container */
-.item-filters {
+.dw-custom-sheet .item-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 /* Each filter label (types capsule) */
-.item-filters label {
+.dw-custom-sheet .item-filters label {
   font-size: 0.9em;
   padding: 0.2em 0.7em 0.2em 0.5em;
   color: var(--text-color);
@@ -25,17 +25,17 @@
 }
 
 /* Icon spacing in labels */
-.item-filters i {
+.dw-custom-sheet .item-filters i {
   margin-right: 5px;
 }
 
 /* Hide native radio buttons */
-.item-filters input[type='radio'] {
+.dw-custom-sheet .item-filters input[type='radio'] {
   display: none;
 }
 
 /* Selected filter style */
-.item-filters label.selected {
+.dw-custom-sheet .item-filters label.selected {
   color: var(--accent-color);
   background: var(--background-darker-color);
   border-color: var(--accent-color);
@@ -43,14 +43,14 @@
 }
 
 /* Hide items with 'hidden' class */
-.item-filters .item.hidden {
+.dw-custom-sheet .item-filters .item.hidden {
   display: none;
 }
 
 /* --- FILTER + GOLD/WEIGHT CONTAINER --- */
 
 /* Flexbox para garantir que ouro/peso e filtro fiquem ao lado */
-.equipment-info {
+.dw-custom-sheet .equipment-info {
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -61,15 +61,15 @@
 /* --- GOLD WEIGHT SECTION --- */
 
 /* Gold and weight container */
-.gold-weight {
+.dw-custom-sheet .gold-weight {
   display: grid;
   gap: 8px;
   padding: 4px 8px;
 }
 
 /* Gold/Weight boxes */
-.gold-weight .cell--weight,
-.gold-weight .cell--coin {
+.dw-custom-sheet .gold-weight .cell--weight,
+.dw-custom-sheet .gold-weight .cell--coin {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,21 +85,21 @@
 /* --- CONTROL AREA (GOLD WEIGHT) --- */
 
 /* Input sizes */
-.gold-weight input {
+.dw-custom-sheet .gold-weight input {
   font-size: 1.6em;
   text-align: center;
 }
-.gold-weight .cell--coin input {
+.dw-custom-sheet .gold-weight .cell--coin input {
   width: 4.8em;
 }
-.gold-weight .cell--weight input {
+.dw-custom-sheet .gold-weight .cell--weight input {
   width: 1.4em;
 }
 
 /* --- GOLD WEIGHT (ALIGN TITLES WITH INPUTS) --- */
 /* (titles and controls on the same line) */
-.gold-weight .cell--weight,
-.gold-weight .cell--coin {
+.dw-custom-sheet .gold-weight .cell--weight,
+.dw-custom-sheet .gold-weight .cell--coin {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,64 +109,64 @@
 }
 
 /* Avoids line break and aligns icon and text */
-.gold-weight .cell__title {
+.dw-custom-sheet .gold-weight .cell__title {
   display: flex;
   gap: 8px;
 }
 
 /* --- WEIGHT --- */
 /* (maintain (value / max) alined horizontaly) */
-.cell--weight .cell__counter {
+.dw-custom-sheet .cell--weight .cell__counter {
   display: flex;
   gap: 6px;
 }
 
 /* Separator between inputs */
-.cell--weight .cell__counter span {
+.dw-custom-sheet .cell--weight .cell__counter span {
   font-size: 1.4em;
 }
 
 /* --- ENCUMBRANCE INDICATORS --- */
 /* If it's encumbered, be colored in orange */
-.cell--weight.encumbered {
+.dw-custom-sheet .cell--weight.encumbered {
   background-color: var(--encumbered-color);
   color: var(--text-color);
 }
 /* Title to be visible with background color */
-.cell--weight.encumbered.encumbered .cell__title {
+.dw-custom-sheet .cell--weight.encumbered.encumbered .cell__title {
   color: var(--text-color);
 }
 
 /* If it's (encumbered and) overencumbered, replaces the orange color and be red instead */
-.cell--weight.encumbered.overencumbered {
+.dw-custom-sheet .cell--weight.encumbered.overencumbered {
   background-color: var(--overencumbered-color);
   color: var(--text-color);
 }
 /* Title to be visible with background color */
-.cell--weight.encumbered.overencumbered .cell__title {
+.dw-custom-sheet .cell--weight.encumbered.overencumbered .cell__title {
   color: var(--text-color);
 }
 
 /* --- EQUIPMENT TAB INDICATORS (ONLY WHEN IT'S NOT ACTIVE) --- */
 /* If the equipment tab is NOT active and there is an overload (encumbered), it turns orange */
-nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.encumbered:not(.overencumbered)) a.item[data-tab="equipment"]:not(.active) {
+.dw-custom-sheet nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.encumbered:not(.overencumbered)) a.item[data-tab="equipment"]:not(.active) {
   background-color: var(--encumbered-color);
   color: var(--text-color);
 }
 /* If the equipment tab is not active and there is extreme overload (encumbered), it turns red instead */
-nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbered) a.item[data-tab="equipment"]:not(.active) {
+.dw-custom-sheet nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbered) a.item[data-tab="equipment"]:not(.active) {
   background-color: var(--overencumbered-color);
   color: var(--text-color);
 }
 
 /* --- GOLD --- */
 /* (organizes input and buttons on the same line) */
-.gold-weight .cell--coin .cell__wrapper {
+.dw-custom-sheet .gold-weight .cell--coin .cell__wrapper {
   position: relative;
 }
 
 /* Stylizes resource-control (increase and decrease buttons) */
-.gold-weight .cell--coin .resource-control {
+.dw-custom-sheet .gold-weight .cell--coin .resource-control {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -180,28 +180,28 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
   padding: 0;
   border: 1px solid #bcc8de;
 }
-.gold-weight .cell--coin .resource-decrease {
+.dw-custom-sheet .gold-weight .cell--coin .resource-decrease {
   left: 5px;
 }
-.gold-weight .cell--coin .resource-increase {
+.dw-custom-sheet .gold-weight .cell--coin .resource-increase {
   right: 5px;
 }
 
 /* --- EQUIPMENT WORTH VALUE --- */
 
-.equipment-header {
+.dw-custom-sheet .equipment-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.equipment-header__left {
+.dw-custom-sheet .equipment-header__left {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
 }
 
-.equipment-worth {
+.dw-custom-sheet .equipment-worth {
   font-size: 0.64em;
   opacity: 0.75;
   white-space: nowrap;
@@ -210,11 +210,11 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
   cursor: help;
 }
 
-.equipment-worth i {
+.dw-custom-sheet .equipment-worth i {
   margin-left: 0.25rem;
 }
 
-.equipment-worth .tooltip {
+.dw-custom-sheet .equipment-worth .tooltip {
   visibility: hidden;
   opacity: 0;
   width: max-content;
@@ -234,7 +234,7 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
   z-index: 1000;
 }
 
-.equipment-worth .tooltip::after {
+.dw-custom-sheet .equipment-worth .tooltip::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -245,7 +245,7 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
   border-color: #222 transparent transparent transparent;
 }
 
-.equipment-worth:hover .tooltip {
+.dw-custom-sheet .equipment-worth:hover .tooltip {
   visibility: visible;
   opacity: 1;
 }
@@ -253,13 +253,13 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
 /* --- SEARCH BAR --- */
 
 /* Equipment title container */
-.equipment-title {
+.dw-custom-sheet .equipment-title {
   position: relative;
   cursor: pointer;
 }
 
 /* Search bar input container */
-#equipment-search {
+.dw-custom-sheet #equipment-search {
   overflow: hidden;
   height: 0;
   transition: height 0.25s ease, opacity 0.25s ease;
@@ -268,13 +268,13 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
 }
 
 /* Shows input when the search container has the 'active' class */
-#equipment-search.active {
+.dw-custom-sheet #equipment-search.active {
   height: 32px;
   opacity: 1;
 }
 
 /* An effect when input is focused */
-#equipment-search input:focus {
+.dw-custom-sheet #equipment-search input:focus {
   outline: none;
   border-color: var(--accent-color);
   box-shadow: 0 0 4px var(--accent-color);
@@ -283,10 +283,10 @@ nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbe
 /* --- EQUIPMENT TAGS --- */
 
 /* 'Equipped' item tag won't appear */
-.tag.equipped {
+.dw-custom-sheet .tag.equipped {
   display: none;
 }
 /* The icon will change color instead */
-li.item:has(.item-meta.tags > .tag.equipped) .item-control.item-equip {
+.dw-custom-sheet li.item:has(.item-meta.tags > .tag.equipped) .item-control.item-equip {
   color: var(--accent-color);
 }
