@@ -1,0 +1,31 @@
+/* --- GENERAL ITEM EFFECTS --- */
+
+/* Effect when hovering over the item */
+.dw-custom-sheet .item-name:hover {
+  margin-left: 10px;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+/* --- MAGICAL ITEMS IN THE EQUIPMENT TAB OF THE CHARACTER SHEET --- */
+
+/* Coloring of magical items */
+.dw-custom-sheet .magic-item .item-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dw-custom-sheet .magic-item .item-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  box-shadow:
+    inset 0 0 4px var(--effect-init),
+    inset 0 0 8px var(--effect-end);
+
+  /* Radial white effect */
+  /* mask-image: radial-gradient(white 80%, transparent 100%); */
+}
