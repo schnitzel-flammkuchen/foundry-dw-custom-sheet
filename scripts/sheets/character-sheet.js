@@ -328,7 +328,9 @@ export function defineCharacterCustomClass(baseClass) {
       // Dropdown toggle for custom resources
       html.find(".custom-resources-toggle").click(ev => {
         ev.preventDefault();
-        const content = $(ev.currentTarget).siblings(".custom-resources-content");
+        const button = $(ev.currentTarget);
+        const section = button.closest(".extra-custom-resources");
+        const content = section.children().not(button); // Everything except buttons
         content.slideToggle(150);
         $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-down fa-chevron-up");
       });
