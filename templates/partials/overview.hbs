@@ -1,4 +1,4 @@
-{{!-- Forward, Ongoing, Hold, Resource and Roll formula & modes --}}
+{{!-- Overview --}}
 <div class="overview">
     <div class="sheet-resources">
         {{!-- Forward --}}
@@ -44,7 +44,7 @@
         </div>
 
         {{!-- Most important resource --}}
-        <div class="ready-on-resource">
+        <div class="cell cell--resource1">
             <label class="cell__title">
                 <input type="text" name="system.attributes.resource1.label" value="{{system.attributes.resource1.label}}" data-dtype="String">
                 </label>
@@ -70,22 +70,22 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    {{!-- Roll formula --}}
-    <div class="cell cell--roll-formula">
-        <label class="cell__title">{{localize "DW.RollFormula"}}</label>
-        <div class="cell__wrapper">
-            <input type="text" name="system.attributes.rollFormula.value" value="{{system.attributes.rollFormula.value}}"
-                placeholder="2d6" data-dtype="String">
+        
+        {{!-- Roll formula --}}
+        <div class="cell cell--roll-formula">
+            <label class="cell__title">{{localize "DW.RollFormula"}}</label>
+            <div class="cell__wrapper">
+                <input type="text" name="system.attributes.rollFormula.value" value="{{system.attributes.rollFormula.value}}"
+                    placeholder="2d6" data-dtype="String">
+            </div>
         </div>
-    </div>
 
-    {{!-- Roll modes --}}
-    <div class="cell cell--roll-mode flexrow">
-        <label class="cell__title">
-            {{localize "DW.RollMode"}}
-        </label>
-        {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
+        {{!-- Roll modes --}}
+        <div class="cell cell--roll-mode flexrow">
+            <label class="cell__title">
+                {{localize "DW.RollMode"}}
+            </label>
+            {{radioBoxes 'flags.dungeonworld.rollMode' rollModes checked=flags.dungeonworld.rollMode localize=true}}
+        </div>
     </div>
 </div>
