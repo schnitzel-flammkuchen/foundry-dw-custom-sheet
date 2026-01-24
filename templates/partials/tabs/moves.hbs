@@ -9,59 +9,43 @@
         {{/if}}
     </section>
 
-    <section class="more-resources">
-        {{!-- More resources (dropdown) --}}
-        <div class="custom-resources-wrapper">
-            {{!-- Toggle button --}}
-            <button type="button" class="custom-resources-toggle">
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="custom-resources-content">
-                {{!-- EXTRA RESOURCES --}}
-                {{#each customResources}}
-                {{#unless (eq this.key "resource1")}}
-                <div class="cell cell--{{this.key}}">
-                    <label class="cell__title">
-                    <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
-                    </label>
-                    <div class="cell__counter">
-                        <div class="cell__wrapper">
-                            <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.{{this.key}}.value">
-                                -
-                            </button>
-                                <input type="number" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number">
-                            <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.{{this.key}}.value">
-                                +
-                            </button>
-                        </div>
-                        <span> / </span>
-                        <div class="cell__wrapper">
-                            <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.{{this.key}}.max">
-                                -
-                            </button>
-                                <input type="number" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number">
-                            <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.{{this.key}}.max">
-                                +
-                            </button>
-                        </div>
-                        <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
+    {{!-- More custom resources (dropdown) --}}
+    <section class="extra-custom-resources">
+        {{!-- Toggle button --}}
+        <button type="button" class="custom-resources-toggle">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        {{!-- Extra custom resources --}}
+        {{#each customResources}}
+        {{#unless (eq this.key "resource1")}}
+        <div class="cell cell--{{this.key}}">
+            <label class="cell__title">
+            <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
+            </label>
+            <div class="cell__counter">
+                <div class="cell__wrapper">
+                    {{!-- Current value input --}}
+                    <input type="number" class="resource-input current-value" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" min="0" max="{{this.max}}">
+                    <span> / </span>
+                    {{!-- Max value input --}}
+                    <input type="number" class="resource-input max-value" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number" min="1">
                 </div>
-                {{/unless}}
-                {{/each}}
-                
-                {{!-- BUTTON: Add extra resource --}}
-                {{#if canAddResource}}
-                <div class="cell cell--add-resource">
-                    <button type="button" class="resource-control add-extra-resource">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-                {{/if}}
+                <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
+                    <i class="fas fa-trash"></i>
+                </button>
             </div>
         </div>
+        {{/unless}}
+        {{/each}}
+        
+        {{!-- BUTTON: Add extra resource --}}
+        {{#if canAddResource}}
+        <div class="cell cell--add-resource">
+            <button type="button" class="resource-control add-extra-resource">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        {{/if}}
     </section>
 
     {{#each moveCategories as |category|}}
