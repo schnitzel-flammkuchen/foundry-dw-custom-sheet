@@ -263,7 +263,7 @@ export function defineCharacterCustomClass(baseClass) {
     activateListeners(html) {
       super.activateListeners(html);
 
-      /* --- EQUIPMENT --- */
+      /* --- EQUIPMENT TAB --- */
 
       // Item filter listener
       html.find('input[name="itemFilter"]').change(ev => {
@@ -296,6 +296,30 @@ export function defineCharacterCustomClass(baseClass) {
           });
       });
 
+      /* --- MOVES TAB --- */
+
+      // Dropdown toggle for moves categories
+      html.find(".moves-header").on("click", ev => {
+        if (ev.target.closest(".item-controls")) return; // So it won't close when clicking the "+" button
+        ev.preventDefault();
+        const header = $(ev.currentTarget);
+        const content = header.next(".items-list");
+        content.slideToggle(150); // Smooth expand/collapse
+        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-up fa-chevron-down");
+      });
+
+      /* --- SPELLS TAB --- */
+
+      // Dropdown toggle for spells categories
+      html.find(".spells-header").on("click", ev => {
+        if (ev.target.closest(".item-controls")) return;
+        ev.preventDefault();
+        const header = $(ev.currentTarget);
+        const content = header.next(".items-list");
+        content.slideToggle(150);
+        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-up fa-chevron-down");
+      });
+
       /* --- CUSTOM RESOURCE --- */
 
       // Ensure base custom resource exists and is normalized
@@ -305,7 +329,7 @@ export function defineCharacterCustomClass(baseClass) {
       html.find(".custom-resources-toggle").click(ev => {
         ev.preventDefault();
         const content = $(ev.currentTarget).siblings(".custom-resources-content");
-        content.slideToggle(150); // Smooth expand/collapse
+        content.slideToggle(150);
         $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-down fa-chevron-up");
       });
 

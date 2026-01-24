@@ -11,9 +11,11 @@
 
         {{#each spells as |spellsPerLevel spellLevel|}}
         <section class="spell-level spell-level-{{spellLevel}}">
-            <h2 class="cell__title">
+            <h2 class="cell__title spells-header">
                 <label>
                     {{localize (concat "DW.Spells" spellLevel)}}
+                    {{!-- For dropdown (initially all open) --}}
+                    <i class="fas fa-chevron-up"></i> 
                 </label>
                 <div class="item-controls">
                 <button type="button" class="item-control item-create" data-type="spell" data-level="{{spellLevel}}">

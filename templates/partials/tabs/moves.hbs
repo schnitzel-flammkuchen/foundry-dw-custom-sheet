@@ -66,9 +66,11 @@
 
     {{#each moveCategories as |category|}}
     <div class="cell cell--{{category.name}}">
-        <h2>
+        <h2 class="cell__title moves-header">
             <label>
                 {{localize category.title}}
+                {{!-- For dropdown (initially all open) --}}
+                <i class="fas fa-chevron-up"></i> 
             </label>
             <div class="item-controls">
                 <button type="button" class="item-control item-create" title="{{localize "DW.MoveCreate"}}" data-type="move" data-moveType="{{category.moveType}}">
