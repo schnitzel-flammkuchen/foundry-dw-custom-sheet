@@ -10,13 +10,13 @@
 /* --- MAGICAL ITEMS IN THE EQUIPMENT TAB OF THE CHARACTER SHEET --- */
 
 /* Coloring of magical items */
-.dw-custom-sheet .tab.equipment .magic-item .item-avatar {
+.dw-custom-sheet .tab.equipment .item.magic .item-avatar {
   position: relative;
   display: inline-flex;
   align-items: center;
 }
 
-.dw-custom-sheet .tab.equipment .magic-item .item-avatar::after {
+.dw-custom-sheet .tab.equipment .item.magic .item-avatar::after {
   content: "";
   position: absolute;
   inset: 0;
