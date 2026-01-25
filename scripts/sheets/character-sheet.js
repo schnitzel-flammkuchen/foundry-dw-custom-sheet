@@ -157,7 +157,7 @@ export function defineCharacterCustomClass(baseClass) {
         const attr = this.actor.system.attributes[k];
         if (attr) {
           attr.value = Number(attr.value ?? 0);
-          attr.max = Number(attr.max   ?? 0);
+          attr.max = Number(attr.max ?? 0);
         }
       });
 
