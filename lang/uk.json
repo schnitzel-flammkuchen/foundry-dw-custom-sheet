@@ -1,0 +1,30 @@
+{
+    "DW": {
+        "Equipment": "Інвентар",
+        "Placeholder": {
+            "Name": "Назва",
+            "Class": "Клас"
+        }
+    },
+    "DWCS": {
+        "InventoryTotalWorth": "Загальна вартість інвентарю",
+        "FilteredEquipment": {
+            "AllItems": "Усі предмети",
+            "Weapon": "Зброя",
+            "Armor": "Броня",
+            "DungeonGear": "Спорядження",
+            "Poison": "Отрута",
+            "Meal": "Продукти",
+            "Service": "Послуга",
+            "Transport": "Транспорт",
+            "Bribe": "Хабарі",
+            "GiftsFinery": "Подарунки і Розкіш",
+            "Hoard": "Здобич",
+            "LandBuildings": "Нерухомість"
+        },
+        "Custom": {
+            "DefaultResource": "Користувацький ресурс",
+            "SearchItems": "Пошук предметів..."
+        }
+    }
+}

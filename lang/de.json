@@ -1,0 +1,30 @@
+{
+    "DW": {
+        "Equipment": "Inventar",
+        "Placeholder": {
+            "Name": "Name",
+            "Class": "Klasse"
+        }
+    },
+    "DWCS": {
+        "InventoryTotalWorth": "Wert des Inventars",
+        "FilteredEquipment": {
+            "AllItems": "Alle",
+            "Weapon": "Waffe",
+            "Armor": "Rüstung",
+            "DungeonGear": "Ausrüstung",
+            "Poison": "Gift",
+            "Service": "Service",
+            "Meal": "Mehl",
+            "Transport": "Transport",
+            "LandBuildings": "Land und Gebäude",
+            "Bribe": "Bestechungen",
+            "GiftsFinery": "Schmuck und Geschenke",
+            "Hoard": "Horte"
+        },
+        "Custom": {
+            "DefaultResource": "Ressource Anpassbare",
+            "SearchItems": "Suchbegriffe..."
+        }
+    }   
+}

@@ -1,0 +1,30 @@
+{
+    "DW": {
+        "Equipment": "Inventario",
+        "Placeholder": {
+            "Name": "Nome",
+            "Class": "Classe"
+        }
+    },
+    "DWCS": {
+        "InventoryTotalWorth": "Valore dell'inventario",
+        "FilteredEquipment": {
+            "AllItems": "Tutti gli oggetti",
+            "Weapon": "Arma",
+            "Armor": "Armatura",
+            "DungeonGear": "Equipaggiamento",
+            "Poison": "Veleno",
+            "Meal": "Provvista",
+            "Service": "Servizio",
+            "Transport": "Mezzo di trasporto",
+            "Bribe": "Bustarella",
+            "GiftsFinery": "Regali e Ornamenti",
+            "Hoard": "Tesoro",
+            "LandBuildings": "Terreni ed Edifici"
+        },
+        "Custom": {
+            "DefaultResource": "Risorsa Personalizzata",
+            "SearchItems": "Cerca oggetti..."
+        }
+    }
+}

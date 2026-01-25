@@ -1,0 +1,30 @@
+{
+    "DW": {
+        "Equipment": "Inventarium",
+        "Placeholder": {
+            "Name": "Namn",
+            "Class": "Klass"
+        }
+    },
+    "DWCS": {
+        "InventoryTotalWorth": "Inventariets värde",
+        "FilteredEquipment": {
+            "AllItems": "Alla föremål",
+            "Weapon": "Vapen",
+            "Armor": "Rustning",
+            "DungeonGear": "Utrustning",
+            "Poison": "Gift",
+            "Meal": "Måltid",
+            "Service": "Tjänst",
+            "Transport": "Transport",
+            "Bribe": "Mutor",
+            "GiftsFinery": "Gåvor och Grannlåt",
+            "Hoard": "Förråd",
+            "LandBuildings": "Mark och Byggnader"
+        },
+        "Custom": {
+            "DefaultResource": "Anpassad resurs",
+            "SearchItems": "Sök föremål..."
+        }
+    }
+}
