@@ -441,10 +441,10 @@
         "Service": "Serviços",
         "Meal": "Suprimentos",
         "Transport": "Transportes",
-        "LandBuildings": "Terras e Construções",
         "Bribe": "Subornos",
         "GiftsFinery": "Presentes e Luxos",
-        "Hoard": "Tesouros"
+        "Hoard": "Tesouros",
+        "LandBuildings": "Terras e Construções"
     },
     "Custom": {
         "DefaultResource": "Recurso Qualquer",
