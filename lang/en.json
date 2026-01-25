@@ -13,13 +13,13 @@
             "Weapon": "Weapons",
             "Armor": "Armor",
             "DungeonGear": "Gear",
-            "Poison": "Poison",
-            "Meal": "Meal",
-            "Service": "Service",
+            "Poison": "Poisons",
+            "Meal": "Meals",
+            "Service": "Services",
             "Transport": "Transport",
-            "Bribe": "Bribe",
+            "Bribe": "Bribes",
             "GiftsFinery": "Gifts & Finery",
-            "Hoard": "Hoard",
+            "Hoard": "Hoards",
             "LandBuildings": "Land & Buildings"
         },
         "Custom": {
