@@ -18,6 +18,7 @@
   ],
   "styles": [
     "styles/styles.css",
+    "styles/custom-resources.css",
     "styles/equipment.css",
     "styles/items.css",
     "styles/sheet.css"
