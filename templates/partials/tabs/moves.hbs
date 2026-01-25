@@ -19,25 +19,25 @@
         {{#each customResources}}
         {{#unless (eq this.key "resource1")}}
         <div class="cell cell--{{this.key}}">
+            {{!-- Delete button --}}
+            <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
+                <i class="fas fa-trash"></i>
+            </button>
             <label class="cell__title">
             <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
             </label>
             <div class="cell__counter">
                 <div class="cell__wrapper">
                     {{!-- Current value input --}}
-                    <input type="number" class="resource-input current-value" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" min="0" max="{{this.max}}">
+                    <input type="number" class="resource-input current-value" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" min="0" max="{{this.max}}" readonly="readonly">
                     <span> / </span>
                     {{!-- Max value input --}}
                     <input type="number" class="resource-input max-value" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number" min="1">
                 </div>
-                <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
-                    <i class="fas fa-trash"></i>
-                </button>
             </div>
         </div>
         {{/unless}}
         {{/each}}
-        
         {{!-- BUTTON: Add extra resource --}}
         {{#if canAddResource}}
         <div class="cell cell--add-resource">
