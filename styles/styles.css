@@ -5,6 +5,7 @@
   --accent-color: #65a3e1;
   --border-color: #4d4d4d;
   --background-color: #292c31;
+  --background-lighter-color: #e0e0e0;
   --background-darker-color: #23272b;
   --text-color: #111111;
 
@@ -34,7 +35,8 @@ body.theme-light {
   --accent-color: #398de0;
   --border-color: #727c88;
   --background-color: #4976c3;
-  --background-darker-color: #164574;
+  --background-lighter-color: #e0e0e0;
+  --background-darker-color: #0b3866;
   --text-color: #00243f;
 
   /* Buttons */
@@ -63,6 +65,7 @@ body.theme-dark {
   --accent-color: #65a3e1;
   --border-color: #4d4d4d;
   --background-color: #292c31;
+  --background-lighter-color: #757575;
   --background-darker-color: #23272b;
   --text-color: #f1f1f1;
 
