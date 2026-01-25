@@ -2,32 +2,6 @@
 <div class="tab description" data-group="primary" data-tab="description">
     <div class="sheet-tab">
         <div class="cell cell--aesthetics">
-            {{!-- Appearance --}}
-            <div class="cell cell--look">
-                <label class="cell__title">
-                    {{localize "DW.Look"}}
-                </label>
-                {{editor system.details.lookEnriched target="system.details.look" button=true owner=owner editable=editable}}
-            </div>
-
-            {{!-- Alignment --}}
-            <div class="cell cell--alignment">
-                <label class="cell__title">
-                    {{localizeOverride "DW.Alignment" "alignmentSingle"}}
-                </label>
-                <input type="text" class="input input--title" name="system.details.alignment.value" value="{{system.details.alignment.value}}" data-dtype="String">
-                {{editor system.details.alignment.enriched target="system.details.alignment.description" button=true owner=owner editable=editable}}
-            </div>
-
-            {{!-- Race --}}
-            <div class="cell cell--race">
-                <label class="cell__title">
-                    {{localizeOverride "DW.Race" "raceSingle"}}
-                </label>
-                <input type="text" class="input input--title" name="system.details.race.value" value="{{system.details.race.value}}" data-dtype="String">
-                {{editor system.details.race.enriched target="system.details.race.description" button=true owner=owner editable=editable}}
-            </div>
-
             {{!-- Bonds --}}
             <div class="cell cell--bonds">
                 <div class="cell__title">
@@ -57,6 +31,32 @@
                     </li>
                     {{/each}}
                 </ol>
+            </div>
+
+            {{!-- Alignment --}}
+            <div class="cell cell--alignment">
+                <label class="cell__title">
+                    {{localizeOverride "DW.Alignment" "alignmentSingle"}}
+                </label>
+                <input type="text" class="input input--title" name="system.details.alignment.value" value="{{system.details.alignment.value}}" data-dtype="String">
+                {{editor system.details.alignment.enriched target="system.details.alignment.description" button=true owner=owner editable=editable}}
+            </div>
+
+            {{!-- Race --}}
+            <div class="cell cell--race">
+                <label class="cell__title">
+                    {{localizeOverride "DW.Race" "raceSingle"}}
+                </label>
+                <input type="text" class="input input--title" name="system.details.race.value" value="{{system.details.race.value}}" data-dtype="String">
+                {{editor system.details.race.enriched target="system.details.race.description" button=true owner=owner editable=editable}}
+            </div>
+
+            {{!-- Appearance --}}
+            <div class="cell cell--look">
+                <label class="cell__title">
+                    {{localize "DW.Look"}}
+                </label>
+                {{editor system.details.lookEnriched target="system.details.look" button=true owner=owner editable=editable}}
             </div>
         </div>
 
