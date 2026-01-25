@@ -149,12 +149,12 @@
 
 /* --- EQUIPMENT TAB INDICATORS (ONLY WHEN IT'S NOT ACTIVE) --- */
 /* If the equipment tab is NOT active and there is an overload (encumbered), it turns orange */
-.dw-custom-sheet nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.encumbered:not(.overencumbered)) a.item[data-tab="equipment"]:not(.active) {
+.dw-custom-sheet nav.sheet-tabs:has(+ section.tabs-section .tab.equipment .cell--weight.encumbered:not(.overencumbered)) a.item[data-tab="equipment"]:not(.active) {
   background-color: var(--encumbered-color);
   color: var(--text-color);
 }
 /* If the equipment tab is not active and there is extreme overload (encumbered), it turns red instead */
-.dw-custom-sheet .tab.equipment nav.sheet-tabs:has(+ section.sheet-body .tab.equipment .cell--weight.overencumbered) a.item[data-tab="equipment"]:not(.active) {
+.dw-custom-sheet nav.sheet-tabs:has(+ section.tabs-section .tab.equipment .cell--weight.overencumbered) a.item[data-tab="equipment"]:not(.active) {
   background-color: var(--overencumbered-color);
   color: var(--text-color);
 }
@@ -189,18 +189,21 @@
 
 /* --- EQUIPMENT WORTH VALUE --- */
 
+/* Aligns header content horizontally and distributes space between left and right sections */
 .dw-custom-sheet .tab.equipment .equipment-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Groups title and worth value on the left side of the header */
 .dw-custom-sheet .tab.equipment .equipment-header__left {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
 }
 
+/* Stylizes the equipment worth value and prepares it for tooltip interaction */
 .dw-custom-sheet .tab.equipment .equipment-worth {
   font-size: 0.64em;
   opacity: 0.75;
@@ -210,10 +213,12 @@
   cursor: help;
 }
 
+/* Adds spacing between the worth text and its icon */
 .dw-custom-sheet .tab.equipment .equipment-worth i {
   margin-left: 0.25rem;
 }
 
+/* Tooltip container (hidden by default) */
 .dw-custom-sheet .tab.equipment .equipment-worth .tooltip {
   visibility: hidden;
   opacity: 0;
@@ -234,6 +239,7 @@
   z-index: 1000;
 }
 
+/* Tooltip arrow pointing to the worth value */
 .dw-custom-sheet .tab.equipment .equipment-worth .tooltip::after {
   content: '';
   position: absolute;
@@ -245,6 +251,8 @@
   border-color: #222 transparent transparent transparent;
 }
 
+
+/* Shows the tooltip on hover */
 .dw-custom-sheet .tab.equipment .equipment-worth:hover .tooltip {
   visibility: visible;
   opacity: 1;
