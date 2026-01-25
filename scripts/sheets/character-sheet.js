@@ -33,16 +33,15 @@ export function defineCharacterCustomClass(baseClass) {
       return "modules/dw-custom-sheet/templates/character-sheet.hbs";
     }
 
+    // Save filter selection (survives re-render)
+    itemFilter = "all";
+
     /**
      * Prepare the data for the Handlebars template.
      * Returns all system data, items, and flags for rendering.
      * @param {*} options - Options passed from Foundry VTT
      * @returns {Object} Context object for the template
      */
-    // Save filter selection (survives re-render)
-    itemFilter = "all";
-
-    // Get Data
     async getData(options) {
       const context = await super.getData(options);
       
