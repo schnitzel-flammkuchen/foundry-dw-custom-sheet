@@ -1,0 +1,454 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Personagem",
+      "npc": "NPC"
+    },
+    "Item": {
+      "move": "Movimento",
+      "npcMove": "Movimento de NPC",
+      "equipment": "Item",
+      "spell": "Magia",
+      "bond": "Vínculo",
+      "tag": "Rótulo",
+      "class": "Classe"
+    }
+  },
+
+
+
+  "Dungeon World": "Dungeon World",
+
+  "DW": {
+    "title": "Dungeon World",
+    "description": "Jogue partidas de Dungeon World no Foundry VTT!",
+
+
+
+    "Placeholder": {
+        "Name": "Nome",
+        "Class": "Classe"
+    },
+
+
+
+    "DefaultLook": "Descreva sua aparência...",
+
+    "Cancel": "Cancelar",
+    "Confirm": "Confirmar",
+
+    "Prepared": "Preparado",
+    "Unprepared": "Não Preparado",
+
+    "DamageRoll": "Causar Dano",
+
+    "character": "Personagem",
+    "characters": "Personagens",
+
+    "npc": "NPC",
+    "npcs": "NPCs",
+    
+    "Forward": "Adiante",
+    "Ongoing": "Constante",
+    "Hold": "Domínio",
+
+    "RollMode": "Modo de Rolagem",
+    "Normal": "Normal",
+    "Advantage": "Vantagem",
+    "Disadvantage": "Desvantagem",
+
+    "failure": "Complicações",
+    "partial": "Sucesso Parcial",
+    "success": "Sucesso",
+
+    "ChooseResult": "Escolha o Resultado",
+    "Choices": "Escolhas",
+    
+    "MarkXp": "Marque XP",
+    "XpMarked": "XP marcado",
+
+
+
+    "AbilityStr": "Força",
+    "AbilityDex": "Destreza",
+    "AbilityCon": "Constituição",
+    "AbilityInt": "Inteligência",
+    "AbilityWis": "Sabedoria",
+    "AbilityCha": "Carisma",
+
+    "STR": "FOR",
+    "DEX": "DES",
+    "CON": "CON",
+    "INT": "INT",
+    "WIS": "SAB",
+    "CHA": "CAR",
+    "ASK": "Solicita",
+    "BOND": "Mod.",
+    "FORMULA": "Fórumula Personalizada",
+
+    "DebilityStr": "Fraco",
+    "DebilityDex": "Trêmulo",
+    "DebilityCon": "Doente",
+    "DebilityInt": "Abalado",
+    "DebilityWis": "Confuso",
+    "DebilityCha": "Marcado",
+
+
+
+    "Level": "Nível",
+    "XP": "Experiência",
+    "Damage": "Dano",
+    "Dmg": "Dano",
+    "Armor": "Armadura",
+    "HP": "PV",
+    "Misc": "ex. d4+2",
+    "Look": "Aparência",
+    "Alignment": "Impulso",
+    "Alignments": "Impulsos",
+    "Class": "Classe",
+    "ClassViewer": "Visualizador de Classe",
+    "Race": "Raça",
+    "Races": "Raças",
+    "Bond": "Vínculo",
+    "Bonds": "Vínculos",
+    "Tags": "Rótulos",
+    "Add": "Adicionar",
+
+
+
+    "BondDefault": "_____ tem um vínculo comigo.",
+    "BondHelp": "________ texto do vínculo vem aqui.",
+
+    "the-barbarian": {
+        "Bond1": "_______________ is puny and foolish, but amusing to me.",
+        "Bond2": "_______________ 's ways are strange and confusing.",
+        "Bond3": "_______________ is always getting into trouble - I must protect them from themselves.",
+        "Bond4": "_______________ shares my hunger for glory; the earth will tremble at our passing!"
+    },
+    "the-bard": {
+        "Bond1": "This is not my first adventure with _______________.",
+        "Bond2": "I sang stories of _______________ long before I ever met them in person.",
+        "Bond3": "_______________ is often the butt of my jokes.",
+        "Bond4": "I am writing a ballad about the adventures of _______________.",
+        "Bond5": "_______________ trusted me with a secret.",
+        "Bond6": "_______________ does not trust me, and for good reason."
+    },
+    "the-cleric": {
+        "Bond1": "_______________ has insulted my deity; I do not trust them.",
+        "Bond2": "_______________ is a good and faithful person; I trust them implicitly.",
+        "Bond3": "_______________ is in constant danger, I will keep them safe.",
+        "Bond4": "I am working on converting _______________ to my faith."
+    },
+    "the-druid": {
+        "Bond1": "____________________ smells more like prey than a hunter.",
+        "Bond2": "The spirits spoke to me of a great danger that follows ______________.",
+        "Bond3": "I have showed ________________ a secret rite of the Land.",
+        "Bond4": "___________ has tasted my blood and I theirs. We are bound by it."
+    },
+    "the-fighter": {
+        "Bond1": "_______________ owes me their life, whether they admit it or not.",
+        "Bond2": "I have sworn to protect _______________.",
+        "Bond3": "I worry about the ability of _______________ to survive in the dungeon.",
+        "Bond4": "_______________ is soft, but I will make them hard like me."
+    },
+    "the-immolator": {
+        "Bond1": "____________________ has felt the hellish touch of fire, now they know my strength.",
+        "Bond2": "I will teach ______________ the true meaning of sacrifice.",
+        "Bond3": "I cast something into the fire for ________________ and still owe them their due."
+    },
+    "the-paladin": {
+        "Bond1": "_______________’s misguided behavior endangers their very soul!",
+        "Bond2": "_______________ has stood by me in battle and can be trusted completely.",
+        "Bond3": "I respect the beliefs of _______________ but hope they will someday see the true way.",
+        "Bond4": "_______________ is a brave soul, I have much to learn from them."
+    },
+    "the-thief": {
+        "Bond1": "I stole something from _______________.",
+        "Bond2": "_______________ has my back when things go wrong.",
+        "Bond3": "_______________ knows incriminating details about me.",
+        "Bond4": "_______________ and I have a con running."
+    },
+    "the-wizard": {
+        "Bond1": "_______________ will play an important role in the events to come. I have foreseen it!",
+        "Bond2": "_______________ is keeping an important secret from me.",
+        "Bond3": "_______________ is woefully misinformed about the world; I will teach them all that I can."
+    },
+    "the-ranger": {
+        "Bond1": "I have guided _______________ before and they owe me for it.",
+        "Bond2": "_______________ is a friend of nature, so I will be their friend as well.",
+        "Bond3": "_______________ has no respect for nature, so I have no respect for them.",
+        "Bond4": "_______________ does not understand life in the wild, so I will teach them."
+    },
+
+
+
+    "Description": "Descrição",
+    "Biography": "Biografia",
+
+
+
+    "Moves": "Movimentos",
+
+    "MoveCreate": "Criar Movimento",
+    "AddBasicMove": "Adicionar Movimento Básico",
+    "AddStartingMove": "Adicionar Movimento Inicial",
+    "AddAdvancedMove": "Adicionar Movimento Avançado",
+    "AddMove": "Adicionar Movimento",
+
+    "MovesBasic": "Movimentos Básicos",
+    "MovesStarting": "Movimentos Iniciais",
+    "MovesAdvanced": "Movimentos Avançados",
+    "MovesSpecial": "Movimentos Especiais",
+    "MovesOther": "Outros Movimentos",
+
+    "MoveBasic": "Movimento Básico",
+    "MoveStarting": "Movimento Inicial",
+    "MoveAdvanced": "Movimento Avançado",
+    "MoveSpecial": "Movimento Especial",
+
+    "MoveGroup": "Grupo de Movimento",
+    "MoveGroupHelp": "Multiple moves with the same move-group will be either/or selections when creating a new character using the character builder.",
+    "MoveType": "Tipo do Movimento",
+
+    "RequiresMove": "Movimento Requerido",
+    "RequiresLevel": "Nível Requerido",
+
+
+
+    "Spells": "Magias",
+
+    "AddSpell": "Adicionar Magia",
+    "SpellLevel": "Nível da Magia",
+
+    "Spells0": "Sem Nível",
+    "Spells1": "Magias de Nível 1",
+    "Spells2": "Magias de Nível 2",
+    "Spells3": "Magias de Nível 3",
+    "Spells4": "Magias de Nível 4",
+    "Spells5": "Magias de Nível 5",
+    "Spells6": "Magias de Nível 6",
+    "Spells7": "Magias de Nível 7",
+    "Spells8": "Magias de Nível 8",
+    "Spells9": "Magias de Nível 9",
+
+    "SpellPrepared": "Preparado",
+    "SpellRollFormula": "Fórmula de Rolagem",
+    "RollFormula": "Fórmula de Rolagem",
+
+
+
+    "Equipment": "Inventário",
+
+    "AddEquipment": "Adicionar Item",
+
+    "Equipped": "Equipado",
+    "Quantity": "Quantidade",
+    "Qty": "Qtd.",
+    "Weight": "Peso",
+    "Price": "Valor",
+    "DamageOverride": "Dano Sobrescrito",
+    "Wt": "Ps.",
+    "Uses": "Usos",
+    "MagicItem": "Item Mágico",
+    "ItemType": "Tipo do Item",
+
+    "Coin": "Moedas",
+    "Weapon": "Arma",
+    "DungeonGear": "Equipamento",
+    "Poison": "Consumível",
+    "Service": "Serviço",
+    "Meal": "Suprimentos",
+    "Transport": "Transporte",
+    "LandBuildings": "Terras e Construções",
+    "Bribe": "Subornos",
+    "GiftsFinery": "Presentes e Ornamentos",
+    "Hoard": "Tesouro",
+
+
+
+    "Common": {
+      "Name": "Nome",
+      "Description": "Descrição",
+      "Details": "Detalhes"
+    },
+
+
+
+    "Roll": "Rolar",
+    "Modifier": "Modificador",
+
+    "Dialog.askTitle": "Escolha um atributo",
+    "Dialog.askContent": "Escolha um atributo para este <strong>{name}</strong> movimento.",
+    "Dialog.bondTitle": "Disponha um modificador",
+    "Dialog.bondContent": "Disponha um modificador para este <strong>{name}</strong> movimento.",
+
+
+
+    "Notifications.noClassWarning": "Você deve escolher uma classe válida para que possa aumentar o nível.",
+
+
+
+    "TagsHelp": "(Use TAB p/ autocompletar; vírgulas para criar; clique duplo para editar)",
+
+    "SpecialQualities": "Qualidades Especiais",
+
+    "ClassSettings": "Características da Classe",
+
+    "ClassBaseHp": "PV Base",
+    "ClassBaseHpHelp": "Constituição será adicionada a este número automaticamente.",
+
+    "ClassBaseLoad": "Carga máx. Base",
+    "ClassBaseLoadHelp": "Força será adicionada a este número automaticamente.",
+
+    "ClassDamage": "Dado de Dano",
+    "ClassDamageHelp": "Dado de dano usado para calcular o dano da classe.",
+
+    "ClassAddEquipmentGroup": "Adicionar Grupo de Equipamento",
+    "ClassEquipmentGroupHelp": "Você pode definir grupos de escolhas de equipamentos para esta classe abaixo. Cada grupo pode ter qualquer número de itens de equipamento dentro dele, e seu modo de escolha pode ser definido para escolher um dos itens ou escolher todos. Quando um personagem é criado usando o construtor de personagens, ele será solicitado a fazer as seleções apropriadas para cada grupo de equipamentos definido aqui.",
+    "ClassEquipmentDropText": "Drop items here",
+
+    "ChooseOne": "Escolha um",
+    "ChooseAny": "Escolha qualquer um",
+    "ChooseRace": "Escolha uma raça",
+    "ChooseAlignment": "Escolha um impulso",
+    "ChooseAbilityScores": "Escolha os atributos",
+    "ChooseAbilityScoresIncrease": "Escolha um atributo para aumentar em 1.",
+    "ChooseStartingMoves": "Escolha os movimentos iniciais",
+    "ChooseStartingOne": "Escolha um destes para começar:",
+    "ChooseStartingAll": "Você também começa com todos estes:",
+    "ChooseAdvancedMoves": "Escolha os movimentos avançados",
+    "ChooseAdvanced2": "Quando você subir de nível entre 2 e 5, escolha entre estes movimentos.",
+    "ChooseAdvanced6": "Quando você subir de nível entre 6 e 10, escolha entre esses movimentos ou os movimentos dos níveis 2 a 5",
+    "ChooseSpells": "Escolha suas magias",
+
+
+
+    "Scrolling.armorReduced": "({reduced}) Armadura aplicada",
+    "Scrolling.armorPiercing": "({piercing}) Armadura ignorada",
+
+
+
+    "Settings": {
+        "itemIcons": {
+            "name": "Enable Item Icons",
+            "hint": "Enable visual icons for moves, spells, and equipment in character sheets (requires browser reload)."
+        },
+        "enableDamageButtons": {
+            "name": "Enable Damage Buttons",
+            "hint": "Enable damage buttons on chat cards for GM users. Damage will be applied to selected tokens (not targeted tokens) and will be reduced by armor and piercing values per the core rules. Requires reloading the browser to take effect."
+        },
+        "xpFormula": {
+            "name": "XP Formula",
+            "hint": "Enter the XP formula used for leveling up. Available attributes are those that would work in rolls sent to chat, such as (2 * @attributes.level.value) + 10. Default is (@attributes.level.value + 7). To use a fixed XP amount for level up, just enter a number."
+        },
+        "advForward": {
+            "name": "Clear ADV/DIS After Rolls",
+            "hint": "If enabled, advantage and disadvantage choices on the character sheet will be reset to normal after each roll (similar to Forward)."
+        },
+        "disDebility": {
+            "name": "Debilities Impose Disadvantage",
+            "hint": "If enabled, debilities will apply disadvantage on rolls rather than a change to the ability modifier."
+        },
+        "coinWeight": {
+            "name": "Coin weight",
+            "hint": "Number of coins corresponding to one unit of weight, 0 makes coins weightless"
+        },
+        "alignmentSingle": {
+            "name": "Override \"Alignment\" label (single).",
+            "hint": "Override \"Alignment\", such as by using \"Drive\" instead."
+        },
+        "alignmentPlural": {
+            "name": "Override \"Alignments\" label (plural).",
+            "hint": "Override \"Alignments\", such as by using \"Drives\" instead."
+        },
+        "raceSingle": {
+            "name": "Override \"Race\" label (single).",
+            "hint": "Override \"Race\", such as by using \"Background\" instead."
+        },
+        "racePlural": {
+            "name": "Override \"Races\" label (plural).",
+            "hint": "Override \"Races\", such as by using \"Backgrounds\" instead."
+        },
+        "bondSingle": {
+            "name": "Override \"Bond\" label (single).",
+            "hint": "Override \"Bond\", such as by using \"Flag\" instead."
+        },
+        "bondPlural": {
+            "name": "Override \"Bonds\" label (plural).",
+            "hint": "Override \"Bonds\", such as by using \"Flags\" instead."
+        },
+        "noCompendiumAutoData": {
+            "name": "Exclude Dungeon World Compendim Data",
+            "hint": "Exclude moves and classes from the items in the default Dungeon World compendia, for DW hacks like Homebrew World that re-use the same class names"
+        },
+        "compendiumPrefix": {
+            "name": "Compendium Prefix",
+            "hint": "Auto-select moves and classes from compendiums with this prefix on their name, for DW hacks like Homebrew World. For example if the setting is set to \"HBW\", the classes will be selected from a compendium named \"HBW Classes\" and moves for The Fighter will be selected from a compendium named \"HBW The Fighter Moves\". Leave blank to disable."
+        },
+        "noAbilityScores": {
+            "name": "No Ability Scores",
+            "hint": "Only use ability modifiers, for DW hacks like Homebrew World"
+        },
+        "noAbilityIncrease": {
+            "name": "No Ability Increase",
+            "hint": "No abiltiy score increase on level up, for DW hacks like Homebrew World"
+        },
+        "noConstitutionToHP": {
+            "name": "Don't Add Constitution Score to HP",
+            "hint": "Used for DW hacks like Homebrew World"
+        },
+        "noSTRToMaxLoad": {
+            "name": "Don't Add STR mod to Max Load",
+            "hint": "Used for DW hacks like Homebrew World"
+        },
+        "debilityLabelSTR": {
+            "name": "Override \"STR Debility Name\" label.",
+            "hint": "Override \"STR Debility Name\", such as by using \"Weak\" instead."
+        },
+        "debilityLabelDEX": {
+            "name": "Override \"DEX Debility Name\" label.",
+            "hint": "Override \"DEX Debility Name\", such as by using \"Shaky\" instead."
+        },
+        "debilityLabelCON": {
+            "name": "Override \"CON Debility Name\" label.",
+            "hint": "Override \"CON Debility Name\", such as by using \"Sick\" instead."
+        },
+        "debilityLabelINT": {
+            "name": "Override \"INT Debility Name\" label.",
+            "hint": "Override \"INT Debility Name\", such as by using \"Shaken\" instead."
+        },
+        "debilityLabelWIS": {
+            "name": "Override \"WIS Debility Name\" label.",
+            "hint": "Override \"WIS Debility Name\", such as by using \"Confused\" instead."
+        },
+        "debilityLabelCHA": {
+            "name": "Override \"CHA Debility Name\" label.",
+            "hint": "Override \"CHA Debility Name\", such as by using \"Marked\" instead."
+        }
+    }
+  },
+
+
+
+  "DWCS": {
+    "InventoryTotalWorth": "Valor do inventáiro",
+    "FilteredEquipment": {
+        "AllItems": "Todos os Itens",
+        "Weapon": "Armas",
+        "Armor": "Armaduras",
+        "DungeonGear": "Equipamentos",
+        "Poison": "Consumíveis",
+        "Service": "Serviços",
+        "Meal": "Suprimentos",
+        "Transport": "Transportes",
+        "LandBuildings": "Terras e Construções",
+        "Bribe": "Subornos",
+        "GiftsFinery": "Presentes e Luxos",
+        "Hoard": "Tesouros"
+    },
+    "Custom": {
+        "DefaultResource": "Recurso Qualquer",
+        "SearchItems": "Procurar..."
+    }
+  }
+}
