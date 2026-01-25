@@ -350,6 +350,86 @@ export function defineCharacterCustomClass(baseClass) {
         this.render();
       });
 
+      // Handle left/right click on resource input
+      html.find(".resource-input.current-value").on("mousedown", ev => {
+        const input = ev.currentTarget;
+        const wrapper = $(input).closest(".cell__wrapper");
+        const maxInput = wrapper.find(".max-value")[0]; // Get current max input
+        const maxValue = parseInt(maxInput?.value) || 0;
+
+        // Ctrl or Cmd - allows manual typing
+        if (ev.ctrlKey || ev.metaKey) {
+          input.removeAttribute("readonly");
+          return;
+        }
+        ev.preventDefault(); // Prevent selection or context menu
+
+        input.setAttribute("readonly", true); // Make input readonly for normal clicks
+        let value = parseInt(input.value) || 0;
+
+        if (ev.button === 0) value = Math.max(value - 1, 0); // Left click -> decrease
+        else if (ev.button === 2 && maxValue > 0) {
+          value = Math.min(value + 1, maxValue); // Right click -> increase (but not above max value)
+        }
+
+        // Ensure value stays within bounds
+        if (maxValue > 0) {
+          if (value > maxValue) value = maxValue; // Clamp to max
+          if (value < 0) value = 0; // Clamp to min
+          input.value = value;
+        } else input.value = 0; // If no max, reset to 0
+
+        // Trigger input event to update temporarily
+        // so it won't give visual desync when clicking fast
+        // (it'll update to actor in the end - out of focus or 'Enter')
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+
+      // Prevent default right-click menu
+      html.find(".resource-input.current-value").on("contextmenu", ev => ev.preventDefault());
+
+      // Handle keyboard (arrow keys) for current value - on focus
+      html.find(".resource-input.current-value").on("keydown", ev => {
+        const input = ev.currentTarget;
+        const wrapper = $(input).closest(".cell__wrapper");
+        const maxInput = wrapper.find(".max-value")[0];
+        const maxValue = parseInt(maxInput?.value) || 0;
+        let value = parseInt(input.value) || 0;
+
+        if (ev.ctrlKey || ev.metaKey) return;
+
+        if (ev.key === "ArrowUp") {
+          ev.preventDefault();
+          input.value = Math.min(value + 1, maxValue > 0 ? maxValue : value + 1);
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        } else if (ev.key === "ArrowDown") {
+          ev.preventDefault();
+          input.value = Math.max(value - 1, 0);
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      });
+
+      // Adjust value on blur or 'Enter' key press to enforce bounds
+      html.find(".resource-input.current-value").on("blur keydown", ev => {
+        const input = ev.currentTarget;
+        if (ev.type === "keydown" && ev.key !== "Enter") return;
+
+        const wrapper = $(input).closest(".cell__wrapper");
+        const maxInput = wrapper.find(".max-value")[0];
+        const maxValue = parseInt(maxInput?.value) || 0;
+
+        let value = parseInt(input.value) || 0;
+
+        // Resets to value - no valid max; exceeds max; or below 0
+        if (maxValue <= 0) value = 0;
+        else if (value > maxValue) value = 0;
+        else if (value < 0) value = 0;
+
+        input.value = value;
+        // Trigger change event to update to the actor
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+
       /* --- INPUT IN GENERAL --- */
 
       // Normalize every input number
