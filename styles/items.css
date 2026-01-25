@@ -2,7 +2,7 @@
 
 /* Effect when hovering over the item */
 .dw-custom-sheet .item-name:hover {
-  margin-left: 36px;
+  margin-left: 25px;
   transform: scale(1.1);
   transition: all 0.2s ease;
 }
