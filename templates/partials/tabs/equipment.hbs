@@ -11,15 +11,15 @@
         <div class="equipment-info">
             {{!-- Equipment filters --}}
             <div class="item-filters flexrow">
-                <label class="{{#if (eq activeFilter 'all')}} selected {{/if}}">
-                    <input type="radio" name="itemFilter" value="all" {{#if (eq activeFilter 'all')}} checked {{/if}}>
+                <label class="{{#if (eq activeFilter 'all')}}selected{{/if}}">
+                    <input type="radio" name="itemFilter" value="all" {{#if (eq activeFilter 'all')}}checked{{/if}}>
                     <span>
                         {{localizeFallback "All Items"}}
                     </span>
                 </label>
                 {{#each filterTypes as |ftype|}}
-                <label class="{{#if (eq ../activeFilter ftype)}} selected {{/if}}">
-                    <input type="radio" name="itemFilter" value="{{ftype}}"{{#if (eq ../activeFilter ftype)}} checked {{/if}}>
+                <label class="{{#if (eq ../activeFilter ftype)}}selected{{/if}}">
+                    <input type="radio" name="itemFilter" value="{{ftype}}"{{#if (eq ../activeFilter ftype)}}checked{{/if}}>
                     <span>
                         <i class="fas {{lookup ../typeIcons ftype}}" aria-hidden="true"></i>
                         {{localizeFallback (lookup ../typeLabels ftype)}}
