@@ -29,12 +29,6 @@
   scrollbar-color: #c0c0c0 #f0f0f000;
 }
 
-/* --- SHEET WRAPPER --- */
-/* Fix sidebar on side */
-.dw-custom-sheet {
-  overflow: hidden;
-}
-
 /* --- SIDEBAR --- */
 .dw-custom-sheet .sheet-sidebar {
   width: 25%;
