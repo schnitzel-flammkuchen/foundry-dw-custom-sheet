@@ -223,13 +223,7 @@ export function defineCharacterCustomClass(baseClass) {
      */
     async _addExtraResource() {
       const attrs = this.actor.system.attributes;
-      const localizedLabel = game.i18n.localize("DWCS.CustomResource");
-
-      // Hard stop: never allow more than MAX_CUSTOM_RESOURCES
-      if (this._countCustomResources() >= MAX_CUSTOM_RESOURCES) {
-        ui.notifications.warn(game.i18n.localize("DWCS.MaxCustomResourcesReached"));
-        return;
-      }
+      const localizedLabel = game.i18n.localize("DWCS.Custom.DefaultResource");
 
       // Find first available resource slot (excluding resource1)
       const nextKey = RESOURCE_KEYS.slice(1).find(k => !attrs[k]);
