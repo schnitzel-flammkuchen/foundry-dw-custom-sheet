@@ -120,64 +120,64 @@
     "BondHelp": "________ texto do vínculo vem aqui.",
 
     "the-barbarian": {
-        "Bond1": "_______________ is puny and foolish, but amusing to me.",
-        "Bond2": "_______________ 's ways are strange and confusing.",
-        "Bond3": "_______________ is always getting into trouble - I must protect them from themselves.",
-        "Bond4": "_______________ shares my hunger for glory; the earth will tremble at our passing!"
+        "Bond1": "_______________ é insignificante e tolo(a), mas me diverte.",
+        "Bond2": "_______________ tem maneiras estranhas e confusas.",
+        "Bond3": "_______________ está sempre se metendo em encrenca — devo protegê-lo(a) de si mesmo(a).",
+        "Bond4": "_______________ compartilha minha fome por glória; a terra tremerá à nossa passagem!"
     },
     "the-bard": {
-        "Bond1": "This is not my first adventure with _______________.",
-        "Bond2": "I sang stories of _______________ long before I ever met them in person.",
-        "Bond3": "_______________ is often the butt of my jokes.",
-        "Bond4": "I am writing a ballad about the adventures of _______________.",
-        "Bond5": "_______________ trusted me with a secret.",
-        "Bond6": "_______________ does not trust me, and for good reason."
+        "Bond1": "Esta não é minha primeira aventura com _______________.",
+        "Bond2": "Cantei histórias sobre _______________ muito antes de conhecê-lo(a) pessoalmente.",
+        "Bond3": "_______________ é frequentemente o alvo das minhas piadas.",
+        "Bond4": "Estou escrevendo uma balada sobre as aventuras de _______________.",
+        "Bond5": "_______________ confiou um segredo a mim.",
+        "Bond6": "_______________ não confia em mim, e com razão."
     },
     "the-cleric": {
-        "Bond1": "_______________ has insulted my deity; I do not trust them.",
-        "Bond2": "_______________ is a good and faithful person; I trust them implicitly.",
-        "Bond3": "_______________ is in constant danger, I will keep them safe.",
-        "Bond4": "I am working on converting _______________ to my faith."
+        "Bond1": "_______________ profanou minha divindade; não confio nele(a).",
+        "Bond2": "_______________ é uma pessoa boa e fiel; confio nele(a) implicitamente.",
+        "Bond3": "_______________ está em perigo constante, eu o(a) manterei seguro(a).",
+        "Bond4": "Estou trabalhando para converter _______________ à minha fé."
     },
     "the-druid": {
-        "Bond1": "____________________ smells more like prey than a hunter.",
-        "Bond2": "The spirits spoke to me of a great danger that follows ______________.",
-        "Bond3": "I have showed ________________ a secret rite of the Land.",
-        "Bond4": "___________ has tasted my blood and I theirs. We are bound by it."
+        "Bond1": "____________________ cheira mais a presa do que a caçador.",
+        "Bond2": "Os espíritos me falaram de um grande perigo que segue ______________.",
+        "Bond3": "Eu mostrei a ________________ um rito secreto da Terra.",
+        "Bond4": "___________ provou meu sangue e eu o dele(a). Estamos ligados por isso."
     },
     "the-fighter": {
-        "Bond1": "_______________ owes me their life, whether they admit it or not.",
-        "Bond2": "I have sworn to protect _______________.",
-        "Bond3": "I worry about the ability of _______________ to survive in the dungeon.",
-        "Bond4": "_______________ is soft, but I will make them hard like me."
+        "Bond1": "_______________ me deve a vida, quer admita ou não.",
+        "Bond2": "Jurei proteger _______________.",
+        "Bond3": "Preocupo-me com a capacidade de _______________ de sobreviver na masmorra.",
+        "Bond4": "_______________ é mole, mas eu o(a) tornarei firme como eu."
     },
     "the-immolator": {
-        "Bond1": "____________________ has felt the hellish touch of fire, now they know my strength.",
-        "Bond2": "I will teach ______________ the true meaning of sacrifice.",
-        "Bond3": "I cast something into the fire for ________________ and still owe them their due."
+        "Bond1": "____________________ sentiu o toque infernal do fogo; agora ele(a) conhece a minha força.",
+        "Bond2": "Eu ensinarei a ______________ o verdadeiro significado do sacrifício.",
+        "Bond3": "Joguei algo no fogo por ________________ e ainda lhes devo o que é devido."
     },
     "the-paladin": {
-        "Bond1": "_______________’s misguided behavior endangers their very soul!",
-        "Bond2": "_______________ has stood by me in battle and can be trusted completely.",
-        "Bond3": "I respect the beliefs of _______________ but hope they will someday see the true way.",
-        "Bond4": "_______________ is a brave soul, I have much to learn from them."
+        "Bond1": "O comportamento equivocado de _______________ coloca em perigo sua própria alma!",
+        "Bond2": "_______________ esteve ao meu lado em batalha e pode ser totalmente confiável.",
+        "Bond3": "Respeito as crenças de _______________, mas espero que um dia vejam o verdadeiro caminho.",
+        "Bond4": "_______________ é uma alma corajosa, tenho muito a aprender com ele(a)."
     },
     "the-thief": {
-        "Bond1": "I stole something from _______________.",
-        "Bond2": "_______________ has my back when things go wrong.",
-        "Bond3": "_______________ knows incriminating details about me.",
-        "Bond4": "_______________ and I have a con running."
+        "Bond1": "Eu roubei algo de _______________.",
+        "Bond2": "_______________ me cobre quando as coisas dão errado.",
+        "Bond3": "_______________ conhece detalhes comprometedores sobre mim.",
+        "Bond4": "_______________ e eu temos um golpe em andamento."
     },
     "the-wizard": {
-        "Bond1": "_______________ will play an important role in the events to come. I have foreseen it!",
-        "Bond2": "_______________ is keeping an important secret from me.",
-        "Bond3": "_______________ is woefully misinformed about the world; I will teach them all that I can."
+        "Bond1": "_______________ terá um papel importante nos eventos que estão por vir. Eu o(a) previ!",
+        "Bond2": "_______________ está escondendo um segredo importante de mim.",
+        "Bond3": "_______________ está terrivelmente mal informado(a) sobre o mundo; eu lhes ensinarei tudo o que puder."
     },
     "the-ranger": {
-        "Bond1": "I have guided _______________ before and they owe me for it.",
-        "Bond2": "_______________ is a friend of nature, so I will be their friend as well.",
-        "Bond3": "_______________ has no respect for nature, so I have no respect for them.",
-        "Bond4": "_______________ does not understand life in the wild, so I will teach them."
+        "Bond1": "Já guiei _______________ antes e ele(a) me deve por isso.",
+        "Bond2": "_______________ é um(a) amigo(a) da natureza, então eu também serei amigo dele(a).",
+        "Bond3": "_______________ não tem respeito pela natureza, então eu não tenho respeito por ele(a).",
+        "Bond4": "_______________ não entende a vida selvagem, então eu o(a) ensinarei."
     },
 
 
@@ -207,7 +207,7 @@
     "MoveSpecial": "Movimento Especial",
 
     "MoveGroup": "Grupo de Movimento",
-    "MoveGroupHelp": "Multiple moves with the same move-group will be either/or selections when creating a new character using the character builder.",
+    "MoveGroupHelp": "Múltiplos movimentos de um mesmo grupo de movimento serão seleções de um ou outro ao criar um novo personagem usando o construtor de personagens.",
     "MoveType": "Tipo do Movimento",
 
     "RequiresMove": "Movimento Requerido",
@@ -330,100 +330,100 @@
 
     "Settings": {
         "itemIcons": {
-            "name": "Enable Item Icons",
-            "hint": "Enable visual icons for moves, spells, and equipment in character sheets (requires browser reload)."
+            "name": "Habilita Ícones de Itens",
+            "hint": "Habilita ícones visuais para movimentos, magias e equipamentos nas fichas de personagens (requer recarregamento do navegador)."
         },
         "enableDamageButtons": {
-            "name": "Enable Damage Buttons",
-            "hint": "Enable damage buttons on chat cards for GM users. Damage will be applied to selected tokens (not targeted tokens) and will be reduced by armor and piercing values per the core rules. Requires reloading the browser to take effect."
+            "name": "Habilita Botões de Dano",
+            "hint": "Habilita botões de dano nos cartões de chat para usuários mestre de jogo (GM) que podem aplicar dano diretamente aos tokens selecionados no mapa. O dano será aplicado aos tokens selecionados (e não aos tokens mirados) e será reduzido pelos valores de armadura e perfuração conforme as regras básicas. Requer recarregamento do navegador para entrar em vigor."
         },
         "xpFormula": {
-            "name": "XP Formula",
-            "hint": "Enter the XP formula used for leveling up. Available attributes are those that would work in rolls sent to chat, such as (2 * @attributes.level.value) + 10. Default is (@attributes.level.value + 7). To use a fixed XP amount for level up, just enter a number."
+            "name": "Fórmula de XP",
+            "hint": "Insira a fórmula de XP usada para subir de nível. Os atributos disponíveis são aqueles que funcionariam em rolagens enviadas ao chat, como (2 * @attributes.level.value) + 10. O padrão é (@attributes.level.value + 7). Para usar uma quantidade fixa de XP para subir de nível, basta inserir um número."
         },
         "advForward": {
-            "name": "Clear ADV/DIS After Rolls",
-            "hint": "If enabled, advantage and disadvantage choices on the character sheet will be reset to normal after each roll (similar to Forward)."
+            "name": "Limpa VAN/DES Após Rolagens",
+            "hint": "Se habilitado, as escolhas de vantagem e desvantagem na ficha do personagem serão redefinidas para normal após cada rolagem (semelhante ao Adiante)."
         },
         "disDebility": {
-            "name": "Debilities Impose Disadvantage",
-            "hint": "If enabled, debilities will apply disadvantage on rolls rather than a change to the ability modifier."
+            "name": "Debilidades Impõem Desvantagem",
+            "hint": "Se habilitado, debilidades aplicarão desvantagem nas rolagens em vez de uma mudança no modificador de atributo."
         },
         "coinWeight": {
-            "name": "Coin weight",
-            "hint": "Number of coins corresponding to one unit of weight, 0 makes coins weightless"
+            "name": "Peso das Moedas",
+            "hint": "Número de moedas correspondentes a uma unidade de peso, 0 torna as moedas sem peso"
         },
         "alignmentSingle": {
-            "name": "Override \"Alignment\" label (single).",
-            "hint": "Override \"Alignment\", such as by using \"Drive\" instead."
+            "name": "Sobrescrever o rótulo \"Alinhamento\" (singular).",
+            "hint": "Sobrescreve \"Alinhamento\", como usando \"Impulso\" no lugar."
         },
         "alignmentPlural": {
-            "name": "Override \"Alignments\" label (plural).",
-            "hint": "Override \"Alignments\", such as by using \"Drives\" instead."
+            "name": "Sobrescrever o rótulo \"Alinhamentos\" (singular).",
+            "hint": "Sobrescreve \"Alinhamentos\", como usando \"Impulsos\" no lugar."
         },
         "raceSingle": {
-            "name": "Override \"Race\" label (single).",
-            "hint": "Override \"Race\", such as by using \"Background\" instead."
+            "name": "Sobrescrever o rótulo \"Raça\" (singular).",
+            "hint": "Sobrescreve \"Raça\", como usando \"Antecedente\" no lugar."
         },
         "racePlural": {
-            "name": "Override \"Races\" label (plural).",
-            "hint": "Override \"Races\", such as by using \"Backgrounds\" instead."
+            "name": "Sobrescrever o rótulo \"Raças\" (plural).",
+            "hint": "Sobrescreve \"Raças\", como usando \"Antecedentes\" no lugar."
         },
         "bondSingle": {
-            "name": "Override \"Bond\" label (single).",
-            "hint": "Override \"Bond\", such as by using \"Flag\" instead."
+            "name": "Sobrescrever o rótulo \"Vínculo\" (singular).",
+            "hint": "Sobrescreve \"Vínculo\", como usando \"Mod.\" no lugar."
         },
         "bondPlural": {
-            "name": "Override \"Bonds\" label (plural).",
-            "hint": "Override \"Bonds\", such as by using \"Flags\" instead."
+            "name": "Sobrescrever o rótulo \"Vínculos\" (plural).",
+            "hint": "Sobrescreve \"Vínculos\", como usando \"Mods.\" no lugar."
         },
         "noCompendiumAutoData": {
-            "name": "Exclude Dungeon World Compendim Data",
-            "hint": "Exclude moves and classes from the items in the default Dungeon World compendia, for DW hacks like Homebrew World that re-use the same class names"
+            "name": "Desabilitar Dados Automáticos do Compêndio",
+            "hint": "Desabilita a seleção automática de movimentos e classes dos compêndios padrão do Dungeon World. Próprio para modificações de DW — como Homebrew World — que reutilizam os mesmos nomes de classes."
         },
         "compendiumPrefix": {
-            "name": "Compendium Prefix",
-            "hint": "Auto-select moves and classes from compendiums with this prefix on their name, for DW hacks like Homebrew World. For example if the setting is set to \"HBW\", the classes will be selected from a compendium named \"HBW Classes\" and moves for The Fighter will be selected from a compendium named \"HBW The Fighter Moves\". Leave blank to disable."
+            "name": "Prefixo do Compêndio",
+            "hint": "Seleciona automaticamente movimentos e classes de compêndios com este prefixo em seus nomes, para modificações de DW como Homebrew World. Por exemplo, se a configuração estiver definida como \"HBW\", as classes serão selecionadas de um compêndio chamado \"HBW Classes\" e os movimentos do Guerreiro serão selecionados de um compêndio chamado \"HBW The Fighter Moves\". Deixe em branco para desabilitar."
         },
         "noAbilityScores": {
-            "name": "No Ability Scores",
-            "hint": "Only use ability modifiers, for DW hacks like Homebrew World"
+            "name": "Retirar Pontuações de Atributos",
+            "hint": "Sem pontuações de atributos, apenas modificadores de atributos; próprio para modificações de DW — como Homebrew World."
         },
         "noAbilityIncrease": {
-            "name": "No Ability Increase",
-            "hint": "No abiltiy score increase on level up, for DW hacks like Homebrew World"
+            "name": "Retirar Aumento de Atributos",
+            "hint": "Sem aumento de pontuação de atributos ao subir de nível; próprio para modificações de DW — como Homebrew World."
         },
         "noConstitutionToHP": {
-            "name": "Don't Add Constitution Score to HP",
-            "hint": "Used for DW hacks like Homebrew World"
+            "name": "Não Adicionar Mod. de CON aos PV",
+            "hint": "Usado para modificações de DW — como Homebrew World."
         },
         "noSTRToMaxLoad": {
-            "name": "Don't Add STR mod to Max Load",
-            "hint": "Used for DW hacks like Homebrew World"
+            "name": "Não Adicionar Mod. de FOR à Carga Máx.",
+            "hint": "Usado para modificações de DW — como Homebrew World."
         },
         "debilityLabelSTR": {
-            "name": "Override \"STR Debility Name\" label.",
-            "hint": "Override \"STR Debility Name\", such as by using \"Weak\" instead."
+            "name": "Sobrescrever o rótulo \"Fraco\".",
+            "hint": "Sobrescreve debilidade de força \"Fraco\", como usando \"Enfraquecido\" no lugar."
         },
         "debilityLabelDEX": {
-            "name": "Override \"DEX Debility Name\" label.",
-            "hint": "Override \"DEX Debility Name\", such as by using \"Shaky\" instead."
+            "name": "Sobrescrever o rótulo \"Trêmulo\".",
+            "hint": "Sobrescreve debilidade de destreza \"Trêmulo\", como usando \"Tremendo\" no lugar."
         },
         "debilityLabelCON": {
-            "name": "Override \"CON Debility Name\" label.",
-            "hint": "Override \"CON Debility Name\", such as by using \"Sick\" instead."
+            "name": "Sobrescrever o rótulo \"Doente\".",
+            "hint": "Sobrescreve debilidade de constituição \"Doente\", como usando \"Enfermo\" no lugar."
         },
         "debilityLabelINT": {
-            "name": "Override \"INT Debility Name\" label.",
-            "hint": "Override \"INT Debility Name\", such as by using \"Shaken\" instead."
+            "name": "Sobrescrever o rótulo \"Abalado\".",
+            "hint": "Sobrescreve debilidade de inteligência \"Abalado\", como usando \"Atordoado\" no lugar."
         },
         "debilityLabelWIS": {
-            "name": "Override \"WIS Debility Name\" label.",
-            "hint": "Override \"WIS Debility Name\", such as by using \"Confused\" instead."
+            "name": "Sobrescrever o rótulo \"Confuso\".",
+            "hint": "Sobrescreve debilidade de sabedoria \"Confuso\", como usando \"Desorientado\" no lugar."
         },
         "debilityLabelCHA": {
-            "name": "Override \"CHA Debility Name\" label.",
-            "hint": "Override \"CHA Debility Name\", such as by using \"Marked\" instead."
+            "name": "Sobrescrever o rótulo \"Marcado\".",
+            "hint": "Sobrescreve debilidade de carisma \"Marcado\", como usando \"Estigmatizado\" no lugar."
         }
     }
   },
