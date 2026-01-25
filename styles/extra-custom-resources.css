@@ -1,0 +1,164 @@
+/* --- EXTRA CUSTOM RESOURCES GRID --- */
+.dw-custom-sheet .extra-custom-resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
+  gap: 0.5em;
+  margin-top: 1em;
+}
+
+/* Toggle button */
+.dw-custom-sheet .extra-custom-resources .custom-resources-toggle {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #e0e0e0;
+  color: #141935;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dw-custom-sheet .extra-custom-resources
+.custom-resources-toggle:hover {
+  background-color: #d0d0d0;
+}
+
+/* Each resource cell (exclude add-resource button) */
+.dw-custom-sheet .extra-custom-resources .cell:not(.cell--add-resource) {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.25em;
+  padding: 0.25em 1.5em;
+  border-radius: 6px;
+  background-color: #e1e1e1b8;
+  border: 1px solid var(--border-color);
+  /* Make the cell position relative so the delete icon is positioned correctly */
+  position: relative;
+}
+
+/* Resource title */
+.dw-custom-sheet .extra-custom-resources .cell__title {
+  width: 100%;
+  flex: 100%;
+  background: #344055;
+  color: #e5e5e5;
+  padding: 5px;
+  height: 34px;
+}
+
+.dw-custom-sheet .extra-custom-resources .cell__title input[type="text"] {
+  width: 100%;
+  padding: 0.2em 0.4em;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.dw-custom-sheet .extra-custom-resources .cell__title input[type="text"]:focus {
+  border-color: var(--border-color);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* Counter (current / max) wrapper */
+.dw-custom-sheet .extra-custom-resources .cell__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+}
+
+/* --- INPUTS --- */
+
+.dw-custom-sheet .extra-custom-resources .cell__wrapper input {
+  width: 100%;
+  height: var(--input-height);
+  line-height: var(--input-height);
+  padding: 0 0.5rem;
+  background: var(--background-lighter-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  box-shadow: var(--input-box-shadow);
+  outline: 1px solid transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--input-text-color);
+  user-select: text;
+  transition: outline-color 0.5s;
+  cursor: var(--cursor-text);
+}
+
+.dw-custom-sheet .extra-custom-resources .resource-input {
+  width: 44%;
+  min-width: 2.2em;
+  padding: 0.25em 0.4em;
+  text-align: center;
+  font-size: 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.dw-custom-sheet .extra-custom-resources .resource-input:focus {
+  border-color: var(--border-color);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+/* --- BUTTONS --- */
+
+/* Remove button */
+.dw-custom-sheet .extra-custom-resources .resource-control.remove-extra-resource {
+  position: absolute;
+  top: 0.5em;
+  right: 0.1em;
+  width: 1.1em;
+  height: 1.8em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--remove-btn-color);
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.dw-custom-sheet .extra-custom-resources .resource-control.remove-extra-resource:hover {
+  box-shadow: none !important;
+  color: var(--accent-color);
+}
+
+/* Add resource button */
+.dw-custom-sheet .extra-custom-resources .cell--add-resource {
+  display: flex;
+  justify-content: flex-start;
+  grid-column: span 1;
+}
+
+.dw-custom-sheet .extra-custom-resources .cell--add-resource .add-extra-resource {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--accent-color);
+  color: white;
+  cursor: pointer;
+}
+
+/* Readonly inputs */
+.dw-custom-sheet .extra-custom-resources .cell__counter .cell__wrapper input[readonly] {
+  cursor: pointer;
+}
