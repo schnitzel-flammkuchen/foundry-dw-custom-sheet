@@ -1,0 +1,72 @@
+/* --- CHARACTER DESCRIPTION LAYOUT --- */
+/* Alignment and race fields */
+.tab.description .cell--alignment,
+.tab.description .cell--race {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.tab.description .cell--alignment input,
+.tab.description .cell--race input {
+  width: 100%;
+}
+
+.cell--alignment,
+.cell--race {
+  padding: 4px 0;
+}
+
+/* Text sizing */
+
+.cell--alignment .editor {
+  font-size: 1.4em;
+}
+
+.cell--race,
+.cell--look .editor {
+  font-size: 1.1em;
+}
+
+/* --- BONDS --- */
+
+/* Bonds list layout */
+
+.cell--bonds .items-list {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Bond item */
+.cell--bonds .items-list .item {
+  display: flex;
+  flex: 45%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+/* Bond description */
+.cell--bonds .item-description {
+  flex: 100%;
+}
+
+/* Remove button */
+.cell--bonds .item-controls a {
+  color: var(--remove-btn-color);
+  cursor: pointer;
+}
+
+/* --- BIOGRAPHY --- */
+
+/* Spacing between sections */
+.tab.description .cell--aesthetics {
+  margin-bottom: 10px;
+}
