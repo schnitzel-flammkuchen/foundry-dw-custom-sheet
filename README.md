@@ -83,7 +83,16 @@ Many thanks for the inspiration and groundwork provided by that module.
 
 Feel free to submit a pull request or an issue containing translations for the entries in the `*.json` file inside `lang` folder.
 
-  🇬🇧 English
+  🇧🇷 Brazilian Portuguese 
+  🇬🇧 English  
+  🇫🇷 French 
+  🇩🇪 German 
+  🇮🇹 Italian  
+  🇪🇸 Spanish  
+  🇸🇪 Swedish  
+  🇺🇦 Ukrainian
+
+> Currently, the translations were created with the help of online translation tools and may require review by native speakers.
 
 ---
 
