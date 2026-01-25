@@ -49,7 +49,7 @@
 
 /* --- FILTER + GOLD/WEIGHT CONTAINER --- */
 
-/* Flexbox para garantir que ouro/peso e filtro fiquem ao lado */
+/* Flexbox to guarantee gold/weight and filter stays on the side */
 .dw-custom-sheet .tab.equipment .equipment-info {
   display: flex;
   justify-content: space-between;

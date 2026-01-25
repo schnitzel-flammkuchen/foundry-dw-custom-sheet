@@ -50,14 +50,6 @@
   height: 100%;
 }
 
-/* Main content */
-.dw-custom-sheet .sheet-main {
-  padding-right: 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-gutter: stable;
-}
-
 /* --- CELL BASE --- */
 
 /* Generic cell */
