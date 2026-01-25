@@ -1,0 +1,108 @@
+/* --- SHEET STYLIZATION --- */
+
+/* --- CUSTOM SCROLLBARS --- */
+/* Webkit browsers */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0ab;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 10px;
+  border: 4px solid #f0f0f0ab;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c0c0c0 #f0f0f000;
+}
+
+/* --- SHEET WRAPPER --- */
+/* Fix sidebar on side */
+.dw-custom-sheet {
+  overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+.dw-custom-sheet .sheet-sidebar {
+  width: 25%;
+  flex: 0 0 auto;
+  padding-right: 8px;
+}
+
+/* Profile image */
+.dw-custom-sheet .sheet-sidebar .sheet-portrait .profile-img {
+  border-radius: 8px;
+}
+
+/* --- BODY (HEADER + MAIN) --- */
+
+.dw-custom-sheet .sheet-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+/* Main content */
+.dw-custom-sheet .sheet-main {
+  padding-right: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
+/* --- CELL BASE --- */
+
+/* Generic cell */
+.dw-custom-sheet .sheet-sidebar .cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 4px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Title row */
+.dw-custom-sheet .cell__title {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+/* Overview cells */
+.dw-custom-sheet .overview .cell:not(.cell--roll-mode) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Counter row */
+.dw-custom-sheet .cell__counter {
+  gap: 4px;
+}
+
+/* Counter numbers */
+.dw-custom-sheet .cell__counter span {
+  font-size: 24px;
+  font-weight: 600;
+}
