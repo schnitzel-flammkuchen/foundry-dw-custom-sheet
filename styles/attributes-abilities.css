@@ -1,0 +1,122 @@
+/* --- ATTRIBUTES CONTAINER --- */
+.dw-custom-sheet .sheet-attributes {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* --- AC AND HP CONTAINER --- */
+.dw-custom-sheet .abilities-list .cell__title {
+  display: flex;
+  justify-content: center;
+}
+
+/* AC and HP wrapper */
+.dw-custom-sheet .cell--attributes-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+/* AC CONTAINER */
+
+/* AC cell */
+.dw-custom-sheet .cell.cell--ac {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* AC input */
+.dw-custom-sheet .cell.cell--ac input {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+}
+
+/* HP CONTAINER */
+
+/* HP cell */
+.dw-custom-sheet .cell.cell--hp {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* HP counter */
+.dw-custom-sheet .cell.cell--hp > .cell__counter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* HP inner wrapper */
+.dw-custom-sheet .cell--hp .cell__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 2 1 auto;
+  min-width: 0;
+  justify-content: center;
+}
+
+/* HP inputs */
+.dw-custom-sheet .cell--hp .cell__wrapper input,
+.dw-custom-sheet .cell--hp .hp--max {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+}
+
+/* HP separator */
+.dw-custom-sheet .cell--hp .cell__counter > span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* --- ABILITIES --- */
+
+.dw-custom-sheet .abilities-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* Ability item */
+.dw-custom-sheet .ability-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+/* Ability top row */
+.dw-custom-sheet .ability-top {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ability bottom row */
+.dw-custom-sheet .ability-bottom {
+  margin-bottom: 4px;
+}
+
+/* Ability value */
+.dw-custom-sheet .ability-value {
+  width: 20%;
+  text-align: center;
+  flex-shrink: 0;
+}
