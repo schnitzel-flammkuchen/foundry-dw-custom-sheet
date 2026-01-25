@@ -83,11 +83,11 @@ Many thanks for the inspiration and groundwork provided by that module.
 
 Feel free to submit a pull request or an issue containing translations for the entries in the `*.json` file inside `lang` folder.
 
-  🇧🇷 Brazilian Portuguese 
+  🇧🇷 Brazilian Portuguese  
   🇬🇧 English  
-  🇫🇷 French 
-  🇩🇪 German 
-  🇮🇹 Italian  
+  🇫🇷 French  
+  🇩🇪 German  
+  🇮🇹 Italian   
   🇪🇸 Spanish  
   🇸🇪 Swedish  
   🇺🇦 Ukrainian
