@@ -354,12 +354,12 @@
             "hint": "Número de moedas correspondentes a uma unidade de peso, 0 torna as moedas sem peso"
         },
         "alignmentSingle": {
-            "name": "Sobrescrever o rótulo \"Alinhamento\" (singular).",
-            "hint": "Sobrescreve \"Alinhamento\", como usando \"Impulso\" no lugar."
+            "name": "Sobrescrever o rótulo \"Impulso\" (singular).",
+            "hint": "Sobrescreve \"Impulso\", como usando \"Alinhamento\" no lugar."
         },
         "alignmentPlural": {
-            "name": "Sobrescrever o rótulo \"Alinhamentos\" (singular).",
-            "hint": "Sobrescreve \"Alinhamentos\", como usando \"Impulsos\" no lugar."
+            "name": "Sobrescrever o rótulo \"Impulsos\" (singular).",
+            "hint": "Sobrescreve \"Impulsos\", como usando \"Alinhamentos\" no lugar."
         },
         "raceSingle": {
             "name": "Sobrescrever o rótulo \"Raça\" (singular).",
