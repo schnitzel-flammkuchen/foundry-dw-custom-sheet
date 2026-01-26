@@ -116,68 +116,68 @@
 
 
 
-    "BondDefault": "_____ tem um vínculo comigo.",
-    "BondHelp": "________ texto do vínculo vem aqui.",
+    "BondDefault": "_______________ tem um vínculo comigo.",
+    "BondHelp": "_______________ texto do vínculo vem aqui.",
 
     "the-barbarian": {
-        "Bond1": "_______________ é insignificante e tolo(a), mas me diverte.",
+        "Bond1": "_______________ é insignificante e abundante em tolices; ainda assim, me diverte.",
         "Bond2": "_______________ tem maneiras estranhas e confusas.",
-        "Bond3": "_______________ está sempre se metendo em encrenca — devo protegê-lo(a) de si mesmo(a).",
+        "Bond3": "Devo proteger _______________ até mesmo da própria imprudência. Está sempre se metendo em encrenca!",
         "Bond4": "_______________ compartilha minha fome por glória; a terra tremerá à nossa passagem!"
     },
     "the-bard": {
         "Bond1": "Esta não é minha primeira aventura com _______________.",
-        "Bond2": "Cantei histórias sobre _______________ muito antes de conhecê-lo(a) pessoalmente.",
+        "Bond2": "Cantei histórias sobre _______________ muito antes de nos conhecermos pessoalmente.",
         "Bond3": "_______________ é frequentemente o alvo das minhas piadas.",
         "Bond4": "Estou escrevendo uma balada sobre as aventuras de _______________.",
         "Bond5": "_______________ confiou um segredo a mim.",
         "Bond6": "_______________ não confia em mim, e com razão."
     },
     "the-cleric": {
-        "Bond1": "_______________ profanou minha divindade; não confio nele(a).",
-        "Bond2": "_______________ é uma pessoa boa e fiel; confio nele(a) implicitamente.",
-        "Bond3": "_______________ está em perigo constante, eu o(a) manterei seguro(a).",
+        "Bond1": "_______________ profanou minha divindade; não tem minha confiança.",
+        "Bond2": "_______________ é uma pessoa boa e fiel; tem minha confiança por isso.",
+        "Bond3": "_______________ está em perigo constante. Farei questão de manter sua segurança.",
         "Bond4": "Estou trabalhando para converter _______________ à minha fé."
     },
     "the-druid": {
         "Bond1": "____________________ cheira mais a presa do que a caçador.",
-        "Bond2": "Os espíritos me falaram de um grande perigo que segue ______________.",
-        "Bond3": "Eu mostrei a ________________ um rito secreto da Terra.",
-        "Bond4": "___________ provou meu sangue e eu o dele(a). Estamos ligados por isso."
+        "Bond2": "Os espíritos me falaram de um grande perigo que segue _______________.",
+        "Bond3": "Compartilhei com ________________ um rito secreto da Terra.",
+        "Bond4": "___________ e eu provamos o sangue um do outro. Estamos ligados por isso."
     },
     "the-fighter": {
-        "Bond1": "_______________ me deve a vida, quer admita ou não.",
+        "Bond1": "_______________ me deve a vida, queira admitir ou não.",
         "Bond2": "Jurei proteger _______________.",
-        "Bond3": "Preocupo-me com a capacidade de _______________ de sobreviver na masmorra.",
-        "Bond4": "_______________ é mole, mas eu o(a) tornarei firme como eu."
+        "Bond3": "Preocupo-me com a capacidade de sobrevivência de _______________ na masmorra.",
+        "Bond4": "_______________ é mole demais, farei com que tenha pulso firme. Assim como eu."
     },
     "the-immolator": {
-        "Bond1": "____________________ sentiu o toque infernal do fogo; agora ele(a) conhece a minha força.",
-        "Bond2": "Eu ensinarei a ______________ o verdadeiro significado do sacrifício.",
+        "Bond1": "____________________ sentiu o toque infernal do fogo, agora conhece minha força!",
+        "Bond2": "Eu ensinarei a _______________ o verdadeiro significado do sacrifício.",
         "Bond3": "Joguei algo no fogo por ________________ e ainda lhes devo o que é devido."
     },
     "the-paladin": {
-        "Bond1": "O comportamento equivocado de _______________ coloca em perigo sua própria alma!",
-        "Bond2": "_______________ esteve ao meu lado em batalha e pode ser totalmente confiável.",
-        "Bond3": "Respeito as crenças de _______________, mas espero que um dia vejam o verdadeiro caminho.",
-        "Bond4": "_______________ é uma alma corajosa, tenho muito a aprender com ele(a)."
+        "Bond1": "O comportamento equivocado de _______________ coloca a própria alma em perigo!",
+        "Bond2": "_______________ esteve ao meu lado em batalha e é plenamente confiável.",
+        "Bond3": "Respeito as crenças de _______________, mas espero que encontre o verdadeiro caminho um dia.",
+        "Bond4": "Tenho muito o que a aprender com alguém tão audaz quanto _______________!"
     },
     "the-thief": {
         "Bond1": "Eu roubei algo de _______________.",
         "Bond2": "_______________ me cobre quando as coisas dão errado.",
         "Bond3": "_______________ conhece detalhes comprometedores sobre mim.",
-        "Bond4": "_______________ e eu temos um golpe em andamento."
+        "Bond4": "_______________ e eu estamos juntos num golpe."
     },
     "the-wizard": {
-        "Bond1": "_______________ terá um papel importante nos eventos que estão por vir. Eu o(a) previ!",
+        "Bond1": "_______________ terá um papel importante nos eventos que estão por vir. Eu previ!",
         "Bond2": "_______________ está escondendo um segredo importante de mim.",
-        "Bond3": "_______________ está terrivelmente mal informado(a) sobre o mundo; eu lhes ensinarei tudo o que puder."
+        "Bond3": "_______________ sabe muito pouco de como o mundo realmente funciona; vou lhes ensinar tudo o que eu puder."
     },
     "the-ranger": {
-        "Bond1": "Já guiei _______________ antes e ele(a) me deve por isso.",
-        "Bond2": "_______________ é um(a) amigo(a) da natureza, então eu também serei amigo dele(a).",
-        "Bond3": "_______________ não tem respeito pela natureza, então eu não tenho respeito por ele(a).",
-        "Bond4": "_______________ não entende a vida selvagem, então eu o(a) ensinarei."
+        "Bond1": "Já guiei _______________ antes e está em dívida comigo por isso.",
+        "Bond2": "_______________ fez amizade com a natureza, então também terá a minha amizade.",
+        "Bond3": "_______________ não tem respeito pela natureza, então não terá o meu.",
+        "Bond4": "_______________ não entende a vida selvagem, então vou ensinar."
     },
 
 
