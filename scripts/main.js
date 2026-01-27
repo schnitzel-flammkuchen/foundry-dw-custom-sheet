@@ -48,7 +48,6 @@ Hooks.once("init", async () => {
     if (dwValue !== compareKey) return dwValue;
     
     // If the translation doesn't exist, tries mine (DWCS.*)
-
     let fallbackKey = category ? `DWCS.${category}.${baseKey}` : `DWCS.${baseKey}`;
     let fallbackValue = game.i18n.localize(fallbackKey);
     if (fallbackValue !== fallbackKey) return fallbackValue;

@@ -20,7 +20,7 @@
             "LandBuildings": "Terrains et Bâtiments",
             "Bribe": "Pots-de-vin",
             "GiftsFinery": "Cadeaux et Parures",
-            "Hoard": "Trèsors",
+            "Hoard": "Trèsors"
         },
         "Custom": {
             "DefaultResource": "Ressource Personnalisée",
