@@ -97,27 +97,38 @@
 
         "Level": "Nível",
         "XP": "Experiência",
+
         "Damage": "Dano",
         "Dmg": "Dano",
+
         "Armor": "Armadura",
         "HP": "PV",
+
         "Misc": "ex. d4+2",
+
         "Look": "Aparência",
+
         "Alignment": "Impulso",
         "Alignments": "Impulsos",
+
         "Class": "Classe",
         "ClassViewer": "Visualizador de Classe",
+
         "Race": "Raça",
         "Races": "Raças",
+
         "Bond": "Vínculo",
         "Bonds": "Vínculos",
+
         "Tags": "Rótulos",
+
         "Add": "Adicionar",
+        "Del": "Remover",
 
 
-
+        
         "BondDefault": "_______________ tem um vínculo comigo.",
-        "BondHelp": "_______________ texto do vínculo vem aqui.",
+        "BondHelp": "_______________ texto do vínculo aqui.",
 
         "the-barbarian": {
             "Bond1": "_______________ é insignificante e abundante em tolices; ainda assim, me diverte.",
@@ -126,7 +137,7 @@
             "Bond4": "_______________ compartilha minha fome por glória; a terra tremerá à nossa passagem!"
         },
         "the-bard": {
-            "Bond1": "Esta não é minha primeira aventura com _______________.",
+            "Bond1": "Esta não é a minha primeira aventura com _______________.",
             "Bond2": "Cantei histórias sobre _______________ muito antes de nos conhecermos pessoalmente.",
             "Bond3": "_______________ é frequentemente o alvo das minhas piadas.",
             "Bond4": "Estou escrevendo uma balada sobre as aventuras de _______________.",
@@ -146,15 +157,15 @@
             "Bond4": "___________ e eu provamos o sangue um do outro. Estamos ligados por isso."
         },
         "the-fighter": {
-            "Bond1": "_______________ me deve a vida, queira admitir ou não.",
+            "Bond1": "_______________ me deve a vida, quer admita ou não.",
             "Bond2": "Jurei proteger _______________.",
             "Bond3": "Preocupo-me com a capacidade de sobrevivência de _______________ na masmorra.",
             "Bond4": "_______________ é mole demais, farei com que tenha pulso firme. Assim como eu."
         },
         "the-immolator": {
-            "Bond1": "____________________ sentiu o toque infernal do fogo, agora conhece minha força!",
+            "Bond1": "____________________ sentiu o toque infernal do fogo, agora conhece a minha força!",
             "Bond2": "Eu ensinarei a _______________ o verdadeiro significado do sacrifício.",
-            "Bond3": "Joguei algo no fogo por ________________ e ainda lhes devo o que é devido."
+            "Bond3": "Joguei algo no fogo por ________________ e ainda lhes devo."
         },
         "the-paladin": {
             "Bond1": "O comportamento equivocado de _______________ coloca a própria alma em perigo!",
@@ -170,13 +181,13 @@
         },
         "the-wizard": {
             "Bond1": "_______________ terá um papel importante nos eventos que estão por vir. Eu previ!",
-            "Bond2": "_______________ está escondendo um segredo importante de mim.",
-            "Bond3": "_______________ não sabe nada de como o mundo realmente funciona; vou lhes ensinar tudo o que eu puder."
+            "Bond2": "_______________ está escondendo um segredo muito importante de mim.",
+            "Bond3": "_______________ não sabe nada de como o mundo realmente funciona; ensinarei tudo o que eu puder."
         },
         "the-ranger": {
             "Bond1": "Já guiei _______________ antes e está em dívida comigo por isso.",
             "Bond2": "_______________ fez amizade com a natureza, então também terá a minha amizade.",
-            "Bond3": "_______________ não tem respeito pela natureza, então não terá o meu.",
+            "Bond3": "_______________ não tem respeito pela natureza, então não terá o meu respeito.",
             "Bond4": "_______________ não entende a vida selvagem, então vou ensinar."
         },
 
