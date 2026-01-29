@@ -2,6 +2,7 @@
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
+import { enableDropdowns, enableSteppers } from "../utils/ui.js";
 
 /**
  * Defines the custom character sheet class.
@@ -289,44 +290,10 @@ export function defineCharacterCustomClass(baseClass) {
           });
       });
 
-      /* --- MOVES TAB --- */
-
-      // Dropdown toggle for moves categories
-      html.find(".moves-header").on("click", ev => {
-        if (ev.target.closest(".item-controls")) return; // So it won't close when clicking the "+" button
-        ev.preventDefault();
-        const header = $(ev.currentTarget);
-        const content = header.next(".items-list");
-        content.slideToggle(150); // Smooth expand/collapse
-        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-up fa-chevron-down");
-      });
-
-      /* --- SPELLS TAB --- */
-
-      // Dropdown toggle for spells categories
-      html.find(".spells-header").on("click", ev => {
-        if (ev.target.closest(".item-controls")) return;
-        ev.preventDefault();
-        const header = $(ev.currentTarget);
-        const content = header.next(".items-list");
-        content.slideToggle(150);
-        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-up fa-chevron-down");
-      });
-
       /* --- CUSTOM RESOURCE --- */
 
       // Ensure base custom resource exists and is normalized
       this._ensureResource1();
-
-      // Dropdown toggle for custom resources
-      html.find(".custom-resources-toggle").click(ev => {
-        ev.preventDefault();
-        const button = $(ev.currentTarget);
-        const section = button.closest(".extra-custom-resources");
-        const content = section.children().not(button); // Everything except buttons
-        content.slideToggle(150);
-        $(ev.currentTarget).find("i.fas").toggleClass("fa-chevron-down fa-chevron-up");
-      });
 
       // Add custom resource
       html.find(".add-extra-resource").click(async ev => {
@@ -343,90 +310,17 @@ export function defineCharacterCustomClass(baseClass) {
         this.render();
       });
 
-      // Handle left/right click on resource input
-      html.find(".resource-input.current-value").on("mousedown", ev => {
-        const input = ev.currentTarget;
-        const wrapper = $(input).closest(".cell__wrapper");
-        const maxInput = wrapper.find(".max-value")[0]; // Get current max input
-        const maxValue = parseInt(maxInput?.value) || 0;
-
-        // Ctrl or Cmd - allows manual typing
-        if (ev.ctrlKey || ev.metaKey) {
-          input.removeAttribute("readonly");
-          return;
-        }
-        ev.preventDefault(); // Prevent selection or context menu
-
-        input.setAttribute("readonly", true); // Make input readonly for normal clicks
-        let value = parseInt(input.value) || 0;
-
-        if (ev.button === 0) value = Math.max(value - 1, 0); // Left click -> decrease
-        else if (ev.button === 2 && maxValue > 0) {
-          value = Math.min(value + 1, maxValue); // Right click -> increase (but not above max value)
-        }
-
-        // Ensure value stays within bounds
-        if (maxValue > 0) {
-          if (value > maxValue) value = maxValue; // Clamp to max
-          if (value < 0) value = 0; // Clamp to min
-          input.value = value;
-        } else input.value = 0; // If no max, reset to 0
-
-        // Trigger input event to update temporarily
-        // so it won't give visual desync when clicking fast
-        // (it'll update to actor in the end - out of focus or 'Enter')
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-      });
-
-      // Prevent default right-click menu
-      html.find(".resource-input.current-value").on("contextmenu", ev => ev.preventDefault());
-
-      // Handle keyboard (arrow keys) for current value - on focus
-      html.find(".resource-input.current-value").on("keydown", ev => {
-        const input = ev.currentTarget;
-        const wrapper = $(input).closest(".cell__wrapper");
-        const maxInput = wrapper.find(".max-value")[0];
-        const maxValue = parseInt(maxInput?.value) || 0;
-        let value = parseInt(input.value) || 0;
-
-        if (ev.ctrlKey || ev.metaKey) return;
-
-        if (ev.key === "ArrowUp") {
-          ev.preventDefault();
-          input.value = Math.min(value + 1, maxValue > 0 ? maxValue : value + 1);
-          input.dispatchEvent(new Event("input", { bubbles: true }));
-        } else if (ev.key === "ArrowDown") {
-          ev.preventDefault();
-          input.value = Math.max(value - 1, 0);
-          input.dispatchEvent(new Event("input", { bubbles: true }));
-        }
-      });
-
-      // Adjust value on blur or 'Enter' key press to enforce bounds
-      html.find(".resource-input.current-value").on("blur keydown", ev => {
-        const input = ev.currentTarget;
-        if (ev.type === "keydown" && ev.key !== "Enter") return;
-
-        const wrapper = $(input).closest(".cell__wrapper");
-        const maxInput = wrapper.find(".max-value")[0];
-        const maxValue = parseInt(maxInput?.value) || 0;
-
-        let value = parseInt(input.value) || 0;
-
-        // Resets to value - no valid max; exceeds max; or below 0
-        if (maxValue <= 0) value = 0;
-        else if (value > maxValue) value = 0;
-        else if (value < 0) value = 0;
-
-        input.value = value;
-        // Trigger change event to update to the actor
-        input.dispatchEvent(new Event("change", { bubbles: true }));
-      });
+      /* --- DROPDOWNS TOGGLE --- */
+      enableDropdowns(html);
+      
+      /* --- DYNAMIC STEPPERS --- */
+      // Handle left/right click on generic steppers and clamp its value according to attributes settings
+      enableSteppers(html);
 
       /* --- INPUT IN GENERAL --- */
 
       // Normalize every input number
-      html.find('input[type="number"]').each((i, el) => {
+      html.find('input[type="number"]').each((_, el) => {
         const $el = $(el);
 
         // Losting focus, if empty, it's 0
