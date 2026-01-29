@@ -1,43 +1,18 @@
 /* --- GENERAL STYLES --- */
 
-:root {
-  /* General colors */
-  --accent-color: #65a3e1;
-  --border-color: #4d4d4d;
-  --background-color: #292c31;
-  --background-lighter-color: #e0e0e0;
-  --background-darker-color: #23272b;
-  --text-color: #111111;
-
-  /* Buttons */
-  --remove-btn-color: #dc3545;
-  
-  /* Indicators */
-  --encumbered-color: rgba(240, 120, 12, 0.854);
-  --overencumbered-color: rgba(250, 57, 70, 0.854);
-
-  --effect-init: rgba(12, 117, 167, 1);
-  --effect-end: rgba(11, 210, 255, 0.5);
-  
-  /* Titles */
-  --label-color: #fff;
-  
-  /* Icons */
-  --icon-color: #222;
-  --icon-glow-1: rgba(255, 255, 255, 0.6);
-  --icon-glow-2: rgba(255, 255, 255, 0.35);
-}
-
 /* Light mode */
 /* [data-theme="light"] */
-body.theme-light {
+body.theme-light .dw-custom-sheet {
   /* General colors */
   --accent-color: #398de0;
   --border-color: #727c88;
   --background-color: #4976c3;
-  --background-lighter-color: #e0e0e0;
-  --background-darker-color: #0b3866;
-  --text-color: #00243f;
+  --background-darker-color: #164574;
+  --text-color: #23272b;
+
+  /* Filter (EQUIPMENT TAB) */
+  --filter-color: #23272b;
+  --filter-background-color: #bcc8de;
 
   /* Buttons */
   --remove-btn-color: #dc3545;
@@ -60,14 +35,17 @@ body.theme-light {
 
 /* Dark mode */
 /* [data-theme="dark"] */
-body.theme-dark {
+body.theme-dark .dw-custom-sheet {
   /* General colors */
   --accent-color: #65a3e1;
   --border-color: #4d4d4d;
   --background-color: #292c31;
-  --background-lighter-color: #757575;
   --background-darker-color: #23272b;
-  --text-color: #f1f1f1;
+  --text-color: #fff;
+
+  /* Filter (EQUIPMENT TAB) */
+  --filter-color: #63a0e1;
+  --filter-background-color: #23272b;
 
   /* Buttons */
   --remove-btn-color: #dc3545;
