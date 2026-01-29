@@ -14,6 +14,7 @@
   "esmodules": [
     "scripts/main.js",
     "scripts/utils/equipment.js",
+    "scripts/utils/ui.js",
     "scripts/sheets/character-sheet.js"
   ],
   "styles": [
