@@ -17,13 +17,16 @@ export function defineCharacterCustomClass(baseClass) {
      * Merges the base class options with the custom module settings.
      */
     static get defaultOptions() {
-      return foundry.utils.mergeObject(super.defaultOptions, {
+      const options = foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["dungeonworld", "sheet", "actor", "dw-custom-sheet"], // CSS classes for styling
         template: "modules/dw-custom-sheet/templates/character-sheet.hbs", // Custom Handlebars template
         width: 800, // Sheet width
         height: 600, // Sheet height
         tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
       });
+      const isDark = document.body.classList.contains("theme-dark");
+      if (isDark) options.classes.push("nightmode");
+      return options;
     }
 
     /**
