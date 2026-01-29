@@ -10,21 +10,21 @@
         </section>
 
         {{#each spells as |spellsPerLevel spellLevel|}}
-        <section class="spell-level spell-level-{{spellLevel}}">
-            <h2 class="cell__title spells-header">
+        <section class="spell-level spell-level-{{spellLevel}}" data-dropdown>
+            <h2 class="cell__title spells-header" data-header>
                 <label>
                     {{localize (concat "DW.Spells" spellLevel)}}
                     {{!-- For dropdown (initially all open) --}}
                     <i class="fas fa-chevron-up"></i> 
                 </label>
-                <div class="item-controls">
+                <div class="item-controls" data-ignore>
                 <button type="button" class="item-control item-create" data-type="spell" data-level="{{spellLevel}}">
                     <i class="fas fa-plus"></i>
                 </button>
                 </div>
             </h2>
 
-            <ol class="items-list">
+            <ol class="items-list" data-content>
                 {{#each spellsPerLevel as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
                     <h4 class="item-name">

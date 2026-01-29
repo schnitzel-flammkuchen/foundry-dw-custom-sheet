@@ -10,65 +10,75 @@
     </section>
 
     {{!-- More custom resources (dropdown) --}}
-    <section class="extra-custom-resources">
+    <section class="extra-custom-resources" data-dropdown>
         {{!-- Toggle button --}}
-        <button type="button" class="custom-resources-toggle">
+        <button type="button" class="custom-resources-toggle" data-header>
             <i class="fas fa-chevron-down"></i>
         </button>
         {{!-- Extra custom resources --}}
-        {{#each customResources}}
-        {{#unless (eq this.key "resource1")}}
-        <div class="cell cell--{{this.key}}">
-            {{!-- Delete button --}}
-            <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
-                <i class="fas fa-trash"></i>
-            </button>
-            <label class="cell__title">
-            <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
-            </label>
-            <div class="cell__counter">
-                <div class="cell__wrapper">
-                    {{!-- Current value input --}}
-                    <input type="number" class="resource-input current-value" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" min="0" max="{{this.max}}" readonly="readonly">
+        <div data-content>
+            {{#each customResources}}
+            {{#unless (eq this.key "resource1")}}
+            <div class="cell cell--{{this.key}}">
+                
+                {{!-- Delete button --}}
+                <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
+                    <i class="fas fa-trash"></i>
+                </button>
+
+                <label class="cell__title">
+                    <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
+                </label>
+
+                <div class="cell__counter">
+                    
+                    {{!-- Current value --}}
+                    <input type="number" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" data-stepper data-min="0" data-wrapper=".cell__counter" data-max=".{{this.key}}-max">
+
                     <span> / </span>
-                    {{!-- Max value input --}}
-                    <input type="number" class="resource-input max-value" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number" min="1">
+
+                    {{!-- Max value --}}
+                    <input type="number" class="{{this.key}}-max" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number" data-stepper data-min="0">
                 </div>
             </div>
+            {{/unless}}
+            {{/each}}
+            {{!-- BUTTON: Add extra resource --}}
+            {{#if canAddResource}}
+            <div class="cell cell--add-resource">
+                <button type="button" class="resource-control add-extra-resource">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            {{/if}}
         </div>
-        {{/unless}}
-        {{/each}}
-        {{!-- BUTTON: Add extra resource --}}
-        {{#if canAddResource}}
-        <div class="cell cell--add-resource">
-            <button type="button" class="resource-control add-extra-resource">
-                <i class="fas fa-plus"></i>
-            </button>
-        </div>
-        {{/if}}
     </section>
 
     {{#each moveCategories as |category|}}
-    <div class="cell cell--{{category.name}}">
-        <h2 class="cell__title moves-header">
+    <div class="cell cell--{{category.name}}" data-dropdown>
+        {{!-- Header (clickable) --}}
+        <h2 class="cell__title" data-header>
             <label>
                 {{localize category.title}}
-                {{!-- For dropdown (initially all open) --}}
-                <i class="fas fa-chevron-up"></i> 
+                <i class="fas fa-chevron-up"></i>
             </label>
-            <div class="item-controls">
+
+            <div class="item-controls" data-ignore>
                 <button type="button" class="item-control item-create" title="{{localize "DW.MoveCreate"}}" data-type="move" data-moveType="{{category.moveType}}">
-                <i class="fas fa-plus"></i>
+                    <i class="fas fa-plus"></i>
                 </button>
             </div>
         </h2>
-        <ol class="items-list">
-        {{#each category.moves as |item|}}
-        <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-            {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../rollData statSettings=../../system.statSettings}}
-        </li>
-        {{/each}}
+
+        {{!-- Dropdown content --}}
+        <ol class="items-list" data-content>
+            {{#each category.moves as |item|}}
+            <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+                {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../rollData statSettings=../../system.statSettings}}
+            </li>
+            {{/each}}
         </ol>
+
     </div>
     {{/each}}
 

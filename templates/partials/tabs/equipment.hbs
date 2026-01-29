@@ -34,9 +34,11 @@
                         <i class="fas fa-weight-hanging attribute-icon"></i>
                     </label>
                     <div class="cell__counter">
+                        {{!-- Current Weight (AUTOMATED - READONLY) --}}
                         <input class="disabled" type="text" name="system.attributes.weight.value" value="{{system.attributes.weight.value}}" data-dtype="Number" readonly="">
                         <span> / </span>
-                        <input type="text" name="system.attributes.weight.max" value="{{system.attributes.weight.max}}" data-dtype="Number">
+                        {{!-- Max Weight (USER'S INPUT) --}}
+                        <input type="text" name="system.attributes.weight.max" value="{{system.attributes.weight.max}}" data-dtype="Number" data-stepper data-min="0">
                     </div>
                 </div>
                 <div class="cell cell--coin">
@@ -44,15 +46,7 @@
                         {{localize "DW.Coin"}}
                         <i class="fas fa-coins attribute-icon"></i>
                     </label>
-                    <div class="cell__wrapper">
-                        <button type="button" class="resource-control resource-decrease" data-action="decrease" data-attr="attributes.coin.value">
-                            -
-                        </button>
-                            <input type="text" name="system.attributes.coin.value" value="{{system.attributes.coin.value}}" data-dtype="Number">
-                        <button type="button" class="resource-control resource-increase" data-action="increase" data-attr="attributes.coin.value">
-                            +
-                        </button>
-                    </div>
+                    <input type="number" name="system.attributes.coin.value" value="{{system.attributes.coin.value}}" data-dtype="Number" data-stepper data-min="0">
                 </div>
             </div>
         </div>

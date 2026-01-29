@@ -30,27 +30,33 @@
 
         <div class="character-xp">
             <div class="flex-item flex-item--level">
-                <label for="system.attributes.level">
-                    {{localize "DW.Level"}}
-                </label>
-                <input type="text" name="system.attributes.level.value" value="{{system.attributes.level.value}}" placeholder="LvL" data-dtype="Number">
-            </div>
-
-            <div class="flex-item flex-item--xp">
                 <label for="system.attributes.level.value">
                     {{localize "DW.Level"}}
                 </label>
-                <input type="text" name="system.attributes.xp.value" value="{{system.attributes.xp.value}}" placeholder="XP">
-                {{!-- {{{progressCircle system.xpSvg}}}> --}}
+                <input
+                    type="text"
+                    name="system.attributes.level.value"
+                    value="{{system.attributes.level.value}}"
+                    placeholder="LvL"
+                    data-dtype="Number"
+                    class="level--value"
+                />
             </div>
 
-            <div class="flex-item flex-item--xp-button">
-                <button type="button" class="resource-control resource-decrease" data-attr="attributes.xp.value" data-action="decrease">
-                    -
-                </button>
-                <button type="button" class="resource-control resource-increase" data-attr="attributes.xp.value" data-action="increase">
-                    +
-                </button>
+            <div class="flex-item flex-item--xp">
+                <label for="system.attributes.xp.value">
+                    {{localize "DW.XP"}}
+                </label>
+                <input
+                    type="text"
+                    name="system.attributes.xp.value"
+                    value="{{system.attributes.xp.value}}"
+                    placeholder="XP"
+                    data-dtype="Number"
+                    data-stepper
+                    class="xp--value"
+                />
+                {{!-- {{{progressCircle system.xpSvg}}}> --}}
             </div>
 
             <div class="flex-item flex-item--level-up">
