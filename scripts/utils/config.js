@@ -54,17 +54,17 @@ export const ITEM_TYPE_LABELS = {
  * @type {Record<string, string>}
  */
 export const ITEM_TYPE_ICONS = {
-  weapon: "fa-sword",
-  armor: "fa-shield-alt",
+  weapon: "fas fa-sword",
+  armor: "fas fa-shield-alt",
   dungeongear: "fa-tools",
-  poison: "fa-flask",
-  meal: "fa-drumstick-bite",
-  service: "fa-hands-helping",
-  transport: "fa-horse-head",
-  bribe: "fa-coins",
-  giftsfinery: "fa-gem",
-  hoard: "fa-treasure-chest",
-  landbuilding: "fa-home"
+  poison: "fas fa-flask",
+  meal: "fas fa-drumstick-bite",
+  service: "fas fa-hands-helping",
+  transport: "fas fa-horse-head",
+  bribe: "fas fa-coins",
+  giftsfinery: "fas fa-gem",
+  hoard: "fas fa-treasure-chest",
+  landbuilding: "fas fa-home"
 };
 
 /**
