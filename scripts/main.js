@@ -35,22 +35,14 @@ Hooks.once("init", async () => {
     if (!key) return key;
     let compareKey = key.replace(/\s+/g, ''); // Normalize key
     
-    // Extract the category if it exists, e.g.: "Placeholder.Name" -> ["Placeholder", "Name"] to be utilize to check if it exists on the module
-    // Because Dungeon World natively doesn't have them
-    let parts = compareKey.split('.');
-    let baseKey = parts[parts.length - 1]; // Last part
-    let category = parts.length > 1 ? parts[0] : null; // Category for (DWCS.*)
-    
     // Supports native Dungeon World localize
-    compareKey = key.startsWith("DW.") ? key : "DW." + key;
+    let dwKey = key.startsWith("DW.") ? key : "DW." + key;
     // Tries Dungeon World lang/*.json localize first (DW.*)
-    let dwValue = game.i18n.localize(compareKey);
-    if (dwValue !== compareKey) return dwValue;
+    if (game.i18n.has(dwKey)) return game.i18n.localize(dwKey);
     
     // If the translation doesn't exist, tries mine (DWCS.*)
-    let fallbackKey = category ? `DWCS.${category}.${baseKey}` : `DWCS.${baseKey}`;
-    let fallbackValue = game.i18n.localize(fallbackKey);
-    if (fallbackValue !== fallbackKey) return fallbackValue;
+    let dwcsKey = `DWCS.${key}`;
+    if (game.i18n.has(dwcsKey)) return game.i18n.localize(dwcsKey);
 
     // If none of them exist, returns the original key (maintain the way it is)
     return key;
