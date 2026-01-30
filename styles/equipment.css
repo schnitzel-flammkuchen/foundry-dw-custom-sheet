@@ -295,7 +295,3 @@
 .dw-custom-sheet .tab.equipment .tag.equipped {
   display: none;
 }
-/* The icon will change color instead */
-.dw-custom-sheet .tab.equipment li.item:has(.item-meta.tags > .tag.equipped) .item-control.item-equip {
-  color: var(--accent-color);
-}
