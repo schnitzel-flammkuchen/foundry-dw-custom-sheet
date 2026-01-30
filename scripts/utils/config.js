@@ -35,17 +35,17 @@ export const RESOURCE_KEYS = ["resource1", "resource2", "resource3", "resource4"
  * @type {Record<string, string>}
  */
 export const ITEM_TYPE_LABELS = {
-  weapon: "Weapon",
-  armor: "Armor",
-  dungeongear: "DungeonGear",
-  poison: "Poison",
-  meal: "Meal",
-  service: "Service",
-  transport: "Transport",
-  bribe: "Bribe",
-  giftsfinery: "GiftsFinery",
-  hoard: "Hoard",
-  landbuilding: "LandBuildings"
+  weapon: "FilteredEquipment.Weapon",
+  armor: "FilteredEquipment.Armor",
+  dungeongear: "FilteredEquipment.DungeonGear",
+  poison: "FilteredEquipment.Poison",
+  meal: "FilteredEquipment.Meal",
+  service: "FilteredEquipment.Service",
+  transport: "FilteredEquipment.Transport",
+  bribe: "FilteredEquipment.Bribe",
+  giftsfinery: "FilteredEquipment.GiftsFinery",
+  hoard: "FilteredEquipment.Hoard",
+  landbuilding: "FilteredEquipment.LandBuildings"
 };
 
 /**
