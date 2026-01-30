@@ -5,14 +5,7 @@
         <div class="cell cell--forward">
             <label class="cell__title">{{localize "DW.Forward"}}</label>
             <div class="cell__wrapper">
-                <input
-                type="number"
-                name="system.attributes.forward.value"
-                value="{{system.attributes.forward.value}}"
-                data-dtype="Number"
-                data-stepper
-                data-min="0"
-                >
+                <input type="number" name="system.attributes.forward.value" value="{{system.attributes.forward.value}}" data-dtype="Number" data-stepper data-min="0">
             </div>
         </div>
 
@@ -21,14 +14,7 @@
         <div class="cell cell--ongoing">
             <label class="cell__title">{{localize "DW.Ongoing"}}</label>
             <div class="cell__wrapper">
-                <input
-                type="number"
-                name="system.attributes.ongoing.value"
-                value="{{system.attributes.ongoing.value}}"
-                data-dtype="Number"
-                data-stepper
-                data-min="0"
-                >
+                <input type="number" name="system.attributes.ongoing.value" value="{{system.attributes.ongoing.value}}" data-dtype="Number" data-stepper data-min="0">
             </div>
         </div>
 
@@ -37,14 +23,7 @@
         <div class="cell cell--hold">
             <label class="cell__title">{{localize "DW.Hold"}}</label>
             <div class="cell__wrapper">
-                <input
-                type="number"
-                name="system.attributes.hold.value"
-                value="{{system.attributes.hold.value}}"
-                data-dtype="Number"
-                data-stepper
-                data-min="0"
-                >
+                <input type="number" name="system.attributes.hold.value" value="{{system.attributes.hold.value}}" data-dtype="Number" data-stepper data-min="0">
             </div>
         </div>
 
@@ -52,39 +31,15 @@
         {{!-- Most important resource --}}
         <div class="cell cell--resource1">
             <label class="cell__title">
-                <input
-                type="text"
-                name="system.attributes.resource1.label"
-                value="{{system.attributes.resource1.label}}"
-                data-dtype="String"
-                >
+                <input type="text" name="system.attributes.resource1.label" value="{{system.attributes.resource1.label}}" data-dtype="String" data-required="true">
             </label>
 
             <div class="cell__counter">
                 {{!-- Current value --}}
-                <input
-                    type="number"
-                    name="system.attributes.resource1.value"
-                    value="{{system.attributes.resource1.value}}"
-                    data-dtype="Number"
-                    data-stepper
-                    data-min="0"
-                    data-wrapper=".cell__counter"
-                    data-max=".resource1-max"
-                >
-
+                <input type="number" name="system.attributes.resource1.value" value="{{system.attributes.resource1.value}}" data-dtype="Number" data-stepper data-min="0" data-wrapper=".cell__counter" data-max=".resource1-max">
                 <span> / </span>
-
                 {{!-- Max value --}}
-                <input
-                    type="number"
-                    class="resource1-max"
-                    name="system.attributes.resource1.max"
-                    value="{{system.attributes.resource1.max}}"
-                    data-dtype="Number"
-                    data-stepper
-                    data-min="0"
-                >
+                <input type="number" class="resource1-max" name="system.attributes.resource1.max" value="{{system.attributes.resource1.max}}" data-dtype="Number" data-stepper data-min="0">
             </div>
         </div>
 

@@ -462,6 +462,10 @@
         "Custom": {
             "DefaultResource": "Recurso Qualquer",
             "SearchItems": "Procurar..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" não pode sofrer rearranjos enquanto o token não esteja ligado a um ator.",
+            "EmptyField": "O campo \"{field}\" não pode ser indefinido!"
         }
     }
 }

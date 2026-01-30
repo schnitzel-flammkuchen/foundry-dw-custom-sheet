@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Ressource Anpassbare",
             "SearchItems": "Suchbegriffe..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" kann nicht verschoben werden, solange dieser Token nicht mit einem Schauspieler verknüpft ist.",
+            "EmptyField": "Das Feld \"{field}\" darf nicht leer sein!"
         }
     }   
 }

@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Ressource Personnalisée",
             "SearchItems": "Rechercher des objets..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" ne peut pas être réarrangé tant que ce jeton n'est pas lié à un acteur.",
+            "EmptyField": "Le champ \"{field}\" ne peut pas être vide !"
         }
     }   
 }

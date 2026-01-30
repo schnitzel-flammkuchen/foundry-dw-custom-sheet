@@ -4,7 +4,7 @@
     <section class="notifications">
         {{#if system.isToken}}
         <div class="cell__title warning small-text">
-            Moves cannot be rearranged while this token is not linked to an actor.
+            {{localize "DWCS.Notifications.NotLinkedToken" item=(localize "DW.Moves")}}
         </div>
         {{/if}}
     </section>
@@ -27,7 +27,7 @@
                 </button>
 
                 <label class="cell__title">
-                    <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}">
+                    <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}" data-required="true">
                 </label>
 
                 <div class="cell__counter">

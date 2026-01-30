@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Recurso Personalizado",
             "SearchItems": "Buscar objetos..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" no se puede reorganizar mientras este token no esté vinculado a un actor.",
+            "EmptyField": "¡El campo \"{field}\" no puede estar vacío!"
         }
     }
 }

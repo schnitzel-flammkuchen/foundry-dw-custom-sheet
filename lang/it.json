@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Risorsa Personalizzata",
             "SearchItems": "Cerca oggetti..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" non può essere riorganizzato finché questo token non è collegato a un attore.",
+            "EmptyField": "Il campo \"{field}\" non può essere vuoto!"
         }
     }
 }

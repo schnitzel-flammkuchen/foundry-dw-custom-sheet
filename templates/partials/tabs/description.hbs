@@ -20,11 +20,11 @@
                 <ol class="items-list">
                     {{#each bonds as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
-                        <div class="item-description item-edit">
+                        <div class="item-description item-edit" title="{{localizeFallback "Edit"}}">
                             {{{item.nameEnriched}}}
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-delete" title="Delete Item">
+                            <a class="item-control item-delete" title="{{localizeFallback "Del"}}">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </div>

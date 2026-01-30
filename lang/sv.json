@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Anpassad resurs",
             "SearchItems": "Sök föremål..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" kan inte omplaceras medan denna token inte är kopplad till en aktör.",
+            "EmptyField": "Fältet \"{field}\" får inte vara tomt!"
         }
     }
 }

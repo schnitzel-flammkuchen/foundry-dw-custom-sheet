@@ -4,7 +4,7 @@
         <section class="sheet-notifications">
             {{#if system.isToken}}
             <div class="cell__title warning small-text">
-                Equipment cannot be rearranged while this token is not linked to an actor.
+                {{localize "DWCS.Notifications.NotLinkedToken" item=(localize "DW.Equipment")}}
             </div>
             {{/if}}
         </section>
@@ -78,7 +78,7 @@
                 {{/if}}
             </div>
             <div class="item-controls">
-                <button  type="button" class="item-control item-create" title="{{localize "DW.Equipment"}}" data-type="equipment">
+                <button  type="button" class="item-control item-create" title="{{localize "DW.AddEquipment"}}" data-type="equipment" title="{{localize "AddEquipment"}}">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>

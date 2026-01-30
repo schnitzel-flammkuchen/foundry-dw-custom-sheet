@@ -28,6 +28,10 @@
         "Custom": {
             "DefaultResource": "Custom Resource",
             "SearchItems": "Search items..."
+        },
+        "Notifications": {
+            "NotLinkedToken": "\"{item}\" cannot be rearranged while this token is not linked to an actor.",
+            "EmptyField": "The \"{field}\" field cannot be empty!"
         }
     }   
 }
