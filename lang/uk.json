@@ -9,7 +9,7 @@
     "DWCS": {
         "InventoryTotalWorth": "Загальна вартість інвентарю",
         "FilteredEquipment": {
-            "AllItems": "Усі предмети",
+            "AllItems": "Все",
             "Weapon": "Зброя",
             "Armor": "Броня",
             "DungeonGear": "Спорядження",

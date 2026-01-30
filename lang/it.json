@@ -9,7 +9,7 @@
     "DWCS": {
         "InventoryTotalWorth": "Valore dell'inventario",
         "FilteredEquipment": {
-            "AllItems": "Tutti gli oggetti",
+            "AllItems": "Tutto",
             "Weapon": "Arma",
             "Armor": "Armatura",
             "DungeonGear": "Equipaggiamento",
