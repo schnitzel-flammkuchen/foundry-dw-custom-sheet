@@ -4,7 +4,10 @@
         "Placeholder": {
             "Name": "Namn",
             "Class": "Klass"
-        }
+        },
+        "Equip": "Utrusta",
+        "Edit": "Redigera",
+        "Del": "Radera"
     },
     "DWCS": {
         "InventoryTotalWorth": "Inventariets värde",

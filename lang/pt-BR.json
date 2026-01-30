@@ -123,6 +123,7 @@
         "Tags": "Rótulos",
 
         "Add": "Adicionar",
+        "Edit": "Editar",
         "Del": "Remover",
 
 
@@ -251,15 +252,16 @@
         "Equipment": "Inventário",
 
         "AddEquipment": "Adicionar Item",
-
+        
+        "Equip": "Equipar",
         "Equipped": "Equipado",
         "Quantity": "Quantidade",
         "Qty": "Qtd.",
         "Weight": "Peso",
-        "Price": "Valor",
-        "DamageOverride": "Dano Sobrescrito",
         "Wt": "Ps.",
+        "Price": "Valor",
         "Uses": "Usos",
+        "DamageOverride": "Dano Sobrescrito",
         "MagicItem": "Item Mágico",
         "ItemType": "Tipo do Item",
 

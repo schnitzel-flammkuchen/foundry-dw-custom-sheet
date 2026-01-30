@@ -4,7 +4,10 @@
         "Placeholder": {
             "Name": "Назва",
             "Class": "Клас"
-        }
+        },
+        "Equip": "Обладнати",
+        "Edit": "Редагувати",
+        "Del": "Видалити"
     },
     "DWCS": {
         "InventoryTotalWorth": "Загальна вартість інвентарю",

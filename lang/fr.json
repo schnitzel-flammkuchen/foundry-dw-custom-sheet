@@ -4,7 +4,10 @@
         "Placeholder": {
             "Name": "Nom",
             "Class": "Classe"
-        }
+        },
+        "Equip": "Équiper",
+        "Edit": "Modifier",
+        "Del": "Supprimer"
     },
     "DWCS": {
         "InventoryTotalWorth": "Valeur de l'inventaire",

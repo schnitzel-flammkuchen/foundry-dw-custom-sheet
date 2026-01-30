@@ -4,7 +4,10 @@
         "Placeholder": {
             "Name": "Name",
             "Class": "Class"
-        }
+        },
+        "Equip": "Equip Item",
+        "Edit": "Edit Item",
+        "Del": "Delete Item"
     },
     "DWCS": {
         "InventoryTotalWorth": "Inventory's worth value",
