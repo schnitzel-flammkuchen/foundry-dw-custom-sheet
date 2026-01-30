@@ -10,38 +10,29 @@
     </section>
 
     {{!-- More custom resources (dropdown) --}}
-    <section class="extra-custom-resources" data-dropdown>
-        {{!-- Toggle button --}}
-        <button type="button" class="custom-resources-toggle" data-header>
-            <i class="fas fa-chevron-down"></i>
-        </button>
+    <section class="extra-custom-resources" data-dropdown data-collapsed>
+        {{!-- Toggle button on NAVIGATION TABS --}}
         {{!-- Extra custom resources --}}
         <div data-content>
             {{#each customResources}}
-            {{#unless (eq this.key "resource1")}}
             <div class="cell cell--{{this.key}}">
-                
+                {{#if this.removable}}
                 {{!-- Delete button --}}
                 <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
                     <i class="fas fa-trash"></i>
                 </button>
-
+                {{/if}}
                 <label class="cell__title">
                     <input type="text" name="system.attributes.{{this.key}}.label" value="{{this.label}}" data-dtype="String" placeholder="{{localize "DWCS.Custom.DefaultResource"}}" data-required="true">
                 </label>
-
                 <div class="cell__counter">
-                    
                     {{!-- Current value --}}
                     <input type="number" name="system.attributes.{{this.key}}.value" value="{{this.value}}" data-dtype="Number" data-stepper data-min="0" data-wrapper=".cell__counter" data-max=".{{this.key}}-max">
-
                     <span> / </span>
-
                     {{!-- Max value --}}
                     <input type="number" class="{{this.key}}-max" name="system.attributes.{{this.key}}.max" value="{{this.max}}" data-dtype="Number" data-stepper data-min="0">
                 </div>
             </div>
-            {{/unless}}
             {{/each}}
             {{!-- BUTTON: Add extra resource --}}
             {{#if canAddResource}}

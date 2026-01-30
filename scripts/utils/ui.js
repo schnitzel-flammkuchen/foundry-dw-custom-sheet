@@ -49,12 +49,17 @@ export function normalizeInputs(html) {
  */
 export function enableDropdowns(html) {
 
-  // For each container marked as dropdown
-  html.find("[data-dropdown]").each((_, dropdownEl) => {
-    const dropdown = dropdownEl;
+  // For each clickable dropdown header
+  // (internal headers using [data-header] or external ones using [data-target])
+  html.find("[data-header], [data-target]").each((_, headerEl) => {
+    // If the header is external, find the container via data-target
+    const header = headerEl;
+    let dropdown;
 
-    // Find header and content within the dropdown container
-    const header  = dropdown.querySelector("[data-header]");
+    // For external header it finds dropdown container via data-target selector
+    if (header.hasAttribute("data-target")) dropdown = html[0].querySelector(header.dataset.target);
+    // For internal header it finds the nearest dropdown container
+    else dropdown = header.closest("[data-dropdown]");
     const content = dropdown.querySelector("[data-content]");
 
     // Abort if required elements are missing
