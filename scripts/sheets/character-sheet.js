@@ -78,9 +78,34 @@ export function defineCharacterCustomClass(baseClass) {
       let itemsToShow;
       if (this.itemFilter === "all") {
         itemsToShow = allItems;
-      } else {
-        itemsToShow = allItems.filter(i => i.system?.itemType === this.itemFilter);
-      }
+
+        // Orders by TYPE OF ITEM only when filter's 'all'
+        // (so items without type comes first)
+        itemsToShow.sort((a, b) => {
+          // If an item has no type, 'a' or 'b' becomes ""
+          const typeA = a.system?.itemType || "";
+          const typeB = b.system?.itemType || "";
+
+          // Items without type will come first
+
+          // 'a' has no type, 'b' has so 'a' should come before 'b'
+          if (!typeA && typeB) return -1;
+          // 'a' has, 'b' hasn't so 'b' should come before 'a'
+          if (typeA && !typeB) return 1;
+          // Neither have a type so maintain their current relative order
+          if (!typeA && !typeB) return 0;
+
+          // Both have a type so compare their positions in ITEM_TYPE_ORDER
+          const indexA = ITEM_TYPE_ORDER.indexOf(typeA);
+          const indexB = ITEM_TYPE_ORDER.indexOf(typeB);
+
+          // Types not in ITEM_TYPE_ORDER go to the end
+          const safeIndexA = indexA === -1 ? ITEM_TYPE_ORDER.length : indexA;
+          const safeIndexB = indexB === -1 ? ITEM_TYPE_ORDER.length : indexB;
+
+          return safeIndexA - safeIndexB;
+        });
+      } else itemsToShow = allItems.filter(i => i.system?.itemType === this.itemFilter);
       context.equipment = itemsToShow;
       context.activeFilter = this.itemFilter;
 
