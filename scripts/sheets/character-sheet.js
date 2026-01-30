@@ -2,7 +2,7 @@
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
-import { normalizeInputs, enableDropdowns, enableSteppers } from "../utils/ui.js";
+import { enableDropdowns, enableSteppers } from "../utils/ui.js";
 
 /**
  * Defines the custom character sheet class.
