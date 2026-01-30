@@ -120,8 +120,9 @@ export function enableSteppers(html) {
       input.focus(); // Required so blur will fire later
 
       // Left click decreases, right click increases
-      if (ev.button === 0) updateValue(-step); 
-      if (ev.button === 2) updateValue(+step);
+      // Contraintuitive (left click increases; right click decreases) due to Dungeon World own increment/decrement (on equipment tags like 'Uses')
+      if (ev.button === 0) updateValue(+step); 
+      if (ev.button === 2) updateValue(-step);
     });
 
     // Prevent right-click context
