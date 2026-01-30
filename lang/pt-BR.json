@@ -444,7 +444,7 @@
 
 
     "DWCS": {
-        "InventoryTotalWorth": "Valor do inventáiro",
+        "InventoryTotalWorth": "Valor do inventário",
         "FilteredEquipment": {
             "AllItems": "Tudo",
             "Weapon": "Armas",
