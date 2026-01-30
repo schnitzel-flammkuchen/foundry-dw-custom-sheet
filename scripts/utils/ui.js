@@ -1,4 +1,47 @@
 /**
+ * Normalizes input values.
+ * 
+ * Numeric inputs default to 0 if left empty, and required text inputs
+ * (data-required="true") revert to the last valid value if left empty.
+ * Warnings are localized using game.i18n.format with field names.
+ */
+export function normalizeInputs(html) {
+  const $html = $(html);
+
+  /**
+   * Adds validation to a single input.
+   * @param {HTMLInputElement} input
+   * @param {boolean} isNumeric
+   */
+  function addValidation(input, isNumeric = false) {
+    // Determine the field name for notifications
+    // Preferable dataset.label if set, otherwise fallback to input name
+    const fieldName = input.dataset.label || input.name;
+    // Store the current value as the last valid value
+    input.dataset.previous = input.value;
+
+    const validate = () => {
+      const val = input.value.trim();
+      if (isNumeric ? val === "" || isNaN(Number(val)) : val === "") {
+        // Notify the user that this field cannot be empty/invalid
+        ui.notifications.warn(game.i18n.format("DWCS.Notifications.EmptyField", { field: fieldName }));
+        // Revert input to the last valid value (or 0 for numeric fields if no previous value exists)
+        input.value = isNumeric ? (input.dataset.previous || 0) : input.dataset.previous;
+      } else input.dataset.previous = input.value; // Update the last valid value
+    };
+
+    $(input).on("change", validate); // Listen for changes and validate it
+    $(input).on("keypress", ev => { if (ev.key === "Enter") validate(); }); // Listen for 'Enter' to validate it immediately
+  }
+
+  // Numeric inputs
+  $html.find('input[type="number"]').each((_, el) => addValidation(el, true));
+
+  // Required text inputs
+  $html.find('input[type="text"][data-required="true"]').each((_, el) => addValidation(el, false));
+}
+
+/**
  * Enables generic dropdown behavior based on data attributes.
  * 
  * A container element maked with 'data-dropdown'; a clickable header inside it as 'data-header' and its collapsible content as 'data-content'.

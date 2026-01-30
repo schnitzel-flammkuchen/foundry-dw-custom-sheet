@@ -2,7 +2,7 @@
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
-import { enableDropdowns, enableSteppers } from "../utils/ui.js";
+import { normalizeInputs, enableDropdowns, enableSteppers } from "../utils/ui.js";
 
 /**
  * Defines the custom character sheet class.
@@ -344,29 +344,6 @@ export function defineCharacterCustomClass(baseClass) {
       /* --- DYNAMIC STEPPERS --- */
       // Handle left/right click on generic steppers and clamp its value according to attributes settings
       enableSteppers(html);
-
-      /* --- INPUT IN GENERAL --- */
-
-      // Normalize every input number
-      html.find('input[type="number"]').each((_, el) => {
-        const $el = $(el);
-
-        // Losting focus, if empty, it's 0
-        $el.on("blur", ev => {
-          if (ev.currentTarget.value === "" || isNaN(ev.currentTarget.value)) {
-            ev.currentTarget.value = 0;
-          }
-        });
-
-        // If press 'Enter', guarantee it's 0
-        $el.on("keypress", ev => {
-          if (ev.key === "Enter") {
-            if (ev.currentTarget.value === "" || isNaN(ev.currentTarget.value)) {
-              ev.currentTarget.value = 0;
-            }
-          }
-        });
-      });
 
       // NOTE: Add custom click handlers or interactive features here
     }

@@ -1,6 +1,7 @@
 // scripts/main.js
 
 import { defineCharacterCustomClass } from "./sheets/character-sheet.js";
+import { normalizeInputs } from "./utils/ui.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -81,4 +82,12 @@ Hooks.once("ready", async () => {
         label: "Customized Character Sheet"
     });
     console.log("✅ DW Custom Sheet | Ready");
+});
+
+/**
+ * Hook that runs whenever an Actor sheet is rendered.
+ * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
+ */
+Hooks.on("renderActorSheet", (_sheet, html, _data) => {
+  normalizeInputs(html);
 });
