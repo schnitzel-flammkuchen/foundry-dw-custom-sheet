@@ -92,22 +92,36 @@ export function enableSteppers(html) {
           ? Number.NEGATIVE_INFINITY
           : 0;
 
+    /* --- Value Update Helper --- */
+    const updateValue = delta => {
+      const max = getMax(input);
+      const current = Number(input.value) || 0;
+      input.value = clamp(current + delta, min, max);
+
+      // Notify reactive systems without committing
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    };
+
+    /* --- Commit Helper --- */
+    const commitValue = () => {
+      const max = getMax(input);
+      const value = Number(input.value) || 0;
+      input.value = clamp(value, min, max);
+
+      // Commit value
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    };
+
     /* --- Mouse Controls --- */
     input.addEventListener("mousedown", ev => {
       if (ev.ctrlKey || ev.metaKey) return; // Allow ctrl/meta for normal behavior
-      ev.preventDefault();
-      let value = Number(input.value) || 0; // Current value of (default) 0
-      const max = getMax(input);
+
+      ev.preventDefault(); // Prevent native spinner/selection
+      input.focus(); // Required so blur will fire later
 
       // Left click decreases, right click increases
-      if (ev.button === 0) value -= step; 
-      if (ev.button === 2) value += step;
-
-      // Clamp value to min/max.
-      input.value = clamp(value, min, max);
-
-      // Dispatch 'change' ev for reactive systems
-      input.dispatchEvent(new Event("input", { bubbles: true }));
+      if (ev.button === 0) updateValue(-step); 
+      if (ev.button === 2) updateValue(+step);
     });
 
     // Prevent right-click context
@@ -117,35 +131,23 @@ export function enableSteppers(html) {
     input.addEventListener("keydown", ev => {
       if (ev.ctrlKey || ev.metaKey) return;
 
-      let value = Number(input.value) || 0;
-      const max = getMax(input);
-
       // ArrowUp increases, ArrowDown decreases
-      if (ev.key === "ArrowUp") value += step;
-      else if (ev.key === "ArrowDown") value -= step;
-      else if (ev.key === "Enter") {
+      // Enter confirms
+      if (ev.key === "ArrowUp") {
         ev.preventDefault();
-        // Forces blur so it'll call normalization and save
-        input.blur();
-        return;
-      } else return;
-
-      ev.preventDefault();
-      input.value = clamp(value, min, max);
-      input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.focus();
+        updateValue(step);
+      } else if (ev.key === "ArrowDown") {
+        ev.preventDefault();
+        input.focus();
+        updateValue(-step);
+      } else if (ev.key === "Enter") {
+        ev.preventDefault();
+        commitValue();
+      }
     });
 
-    /* --- Normalization --- */
-
-    const normalize = () => {
-      // Ensure value is clamped
-      const max = getMax(input);
-      let value = Number(input.value) || 0;
-      input.value = clamp(value, min, max);
-      input.dispatchEvent(new Event("change", { bubbles: true }));
-    };
-
-    // When user leaves the input (through focus)
-    input.addEventListener("blur", normalize);
+    // Commit on loss of focus
+    input.addEventListener("blur", commitValue);
   });
 }
