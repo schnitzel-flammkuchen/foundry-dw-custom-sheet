@@ -268,11 +268,11 @@
         "DungeonGear": "Equipamento",
         "Poison": "Consumível",
         "Service": "Serviço",
-        "Meal": "Suprimentos",
+        "Meal": "Suprimento",
         "Transport": "Transporte",
-        "LandBuildings": "Terras e Construções",
-        "Bribe": "Subornos",
-        "GiftsFinery": "Presentes e Ornamentos",
+        "LandBuildings": "Terra ou Construção",
+        "Bribe": "Suborno",
+        "GiftsFinery": "Presente ou Ornamento",
         "Hoard": "Tesouro",
 
 
@@ -453,7 +453,7 @@
             "Meal": "Suprimentos",
             "Transport": "Transportes",
             "Bribe": "Subornos",
-            "GiftsFinery": "Presentes e Luxos",
+            "GiftsFinery": "Presentes e Ornamentos",
             "Hoard": "Tesouros",
             "LandBuildings": "Terras e Construções"
         },
