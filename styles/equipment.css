@@ -295,3 +295,10 @@
 .dw-custom-sheet .tab.equipment .tag.equipped {
   display: none;
 }
+
+/* For new icons to be aligned normally in horizontal */
+.dw-custom-sheet .tab.equipment .item-controls {
+  display: flex;
+  padding: 4px 0 0 4px;
+  gap: 4px;
+}

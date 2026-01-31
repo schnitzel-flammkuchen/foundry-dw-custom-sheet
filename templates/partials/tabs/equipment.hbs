@@ -132,7 +132,7 @@
             </div>
             <div class="item-controls">
                 <a class="item-control item-equip" title="{{localizeFallback "Equip"}}">
-                    <i class="{{#if item.system.equipped}}fas{{else}}fat{{/if}} fa-hand"></i>
+                    <i class="{{#if item.system.equipped}}fas{{else}}fat{{/if}} {{#if item.system.magic}}fa-hand-sparkles{{else}}fa-hand{{/if}}"></i>
                 </a>
                 <a class="item-control item-edit" title="{{localizeFallback "Edit"}}">
                     <i class="fas fa-edit"></i>
