@@ -20,8 +20,8 @@ export function defineCharacterCustomClass(baseClass) {
       const options = foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["dungeonworld", "sheet", "actor", "dw-custom-sheet"], // CSS classes for styling
         template: "modules/dw-custom-sheet/templates/character-sheet.hbs", // Custom Handlebars template
-        width: 780, // Sheet width
-        height: 800, // Sheet height
+        width: 800, // Sheet width
+        height: 900, // Sheet height
         tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
       });
       const isDark = document.body.classList.contains("theme-dark");
@@ -198,7 +198,6 @@ export function defineCharacterCustomClass(baseClass) {
         removable: k !== "resource1"
       }));
 
-
       // Controls UI visibility for the add button
       context.canAddResource = this._countCustomResources() < MAX_CUSTOM_RESOURCES;
     
@@ -344,6 +343,39 @@ export function defineCharacterCustomClass(baseClass) {
       /* --- DYNAMIC STEPPERS --- */
       // Handle left/right click on generic steppers and clamp its value according to attributes settings
       enableSteppers(html);
+      
+      /* --- CIRCULAR XP --- */
+      // (like an arch around character's portrait)
+      document.querySelectorAll('.xp-circle').forEach(circle => {
+        const xp = Number(circle.dataset.xp);
+        const xpMax = Number(circle.dataset.xpMax);
+        const progressCircle = circle.querySelector('.xp-progress');
+
+        const percent = Math.min(xp / xpMax, 1);
+        const circumference = 2 * Math.PI * 50;
+        const offset = circumference * (1 - percent);
+
+        progressCircle.style.strokeDasharray = circumference;
+        progressCircle.style.strokeDashoffset = offset;
+
+        // If it can level up
+        if (circle.dataset.levelup === "true") {
+          progressCircle.style.stroke = "#ffd700"; // Golden color
+          circle.querySelector('.level-input').classList.add('level-up-ready');
+        }
+      });
+
+      // Toggle XP input visibility
+      html.find('.edit-xp-icon').on('click', function (ev) {
+        ev.preventDefault();
+
+        const wrapper = $(this).closest('.xp-circle').find('.xp-input-wrapper');
+        wrapper.toggleClass('active');
+
+        if (wrapper.hasClass('active')) {
+          wrapper.find('input.xp-input').focus();
+        }
+      });
 
       // NOTE: Add custom click handlers or interactive features here
     }
