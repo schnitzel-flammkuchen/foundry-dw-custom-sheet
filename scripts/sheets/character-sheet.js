@@ -352,7 +352,7 @@ export function defineCharacterCustomClass(baseClass) {
         const progressCircle = circle.querySelector('.xp-progress');
 
         const percent = Math.min(xp / xpMax, 1);
-        const circumference = 2 * Math.PI * 50;
+        const circumference = 2 * Math.PI * 54; // r = 54 specifically in this case - due to SVG r
         const offset = circumference * (1 - percent);
 
         progressCircle.style.strokeDasharray = circumference;
@@ -360,7 +360,7 @@ export function defineCharacterCustomClass(baseClass) {
 
         // If it can level up
         if (circle.dataset.levelup === "true") {
-          progressCircle.style.stroke = "#ffd700"; // Golden color
+          progressCircle.style.stroke = "var(--accent-color)"; // Accent color
           circle.querySelector('.level-input').classList.add('level-up-ready');
         }
       });
