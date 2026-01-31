@@ -4,8 +4,8 @@
         <div class="character-xp-wrapper">
             <div class="xp-circle" name="system.attributes.xp.value" data-xp="{{system.attributes.xp.value}}" data-xp-max="{{system.attributes.xp.max}}" data-levelup="{{system.levelup}}">
                 <span class="xp-input-wrapper">
-                    <i class="fas fa-plus edit-xp-icon"></i>
-                    <input type="number" name="system.attributes.xp.value" class="xp-input" value="{{system.attributes.xp.value}}">
+                    <i class="fat fa-shuffle edit-xp-icon"></i>
+                    <input type="number" name="system.attributes.xp.value" class="xp-input" value="{{system.attributes.xp.value}}" title="XP">
                 </span>
                 {{!-- Level Input --}}
                 {{#if system.levelup}}
@@ -21,7 +21,7 @@
                 <div class="progress-container">
                     <svg viewBox="0 0 120 120">
                         <circle cx="60" cy="60" r="54" stroke="#555" stroke-width="6" fill="none"></circle>
-                        <circle class="xp-progress" cx="60" cy="60" r="54" stroke="#4caf50" stroke-width="6" fill="none" stroke-dasharray="339.292" stroke-dashoffset="104.72"></circle>
+                        <circle class="xp-progress" cx="60" cy="60" r="54" stroke="#fff" stroke-width="6" fill="none" stroke-dasharray="339.292" stroke-dashoffset="104.72"></circle>
                     </svg>
                 </div>
             </div>
