@@ -207,7 +207,7 @@ export function defineCharacterCustomClass(baseClass) {
           moves
         };
       }));
-      
+
       /* --- CUSTOM RESOURCES --- */
 
       // Dungeon World's 'template.json' gives an actor:
@@ -240,7 +240,7 @@ export function defineCharacterCustomClass(baseClass) {
 
       // Controls UI visibility for the add button
       context.canAddResource = this._countCustomResources() < MAX_CUSTOM_RESOURCES;
-    
+
       return context;
     }
 
@@ -385,36 +385,35 @@ export function defineCharacterCustomClass(baseClass) {
       enableSteppers(html);
       
       /* --- CIRCULAR XP --- */
-      // (like an arch around character's portrait)
-      document.querySelectorAll('.xp-circle').forEach(circle => {
-        const xp = Number(circle.dataset.xp);
-        const xpMax = Number(circle.dataset.xpMax);
-        const progressCircle = circle.querySelector('.xp-progress');
+      html.find('.xp-circle').each((i, circle) => {
+        circle = $(circle);
+        const xp = Number(circle.data('xp'));
+        const xpMax = Number(circle.data('xp-max'));
+        const progressCircle = circle.find('.xp-progress')[0];
 
+        const radius = 54;
+        const circumference = 2 * Math.PI * radius;
         const percent = Math.min(xp / xpMax, 1);
-        const circumference = 2 * Math.PI * 54; // r = 54 specifically in this case - due to SVG r
         const offset = circumference * (1 - percent);
 
         progressCircle.style.strokeDasharray = circumference;
         progressCircle.style.strokeDashoffset = offset;
 
-        // If it can level up
-        if (circle.dataset.levelup === "true") {
-          progressCircle.style.stroke = "var(--accent-color)"; // Accent color
-          circle.querySelector('.level-input').classList.add('level-up-ready');
+        // Level up indicator
+        if (circle.data('levelup') === true || circle.data('levelup') === "true") {
+          progressCircle.style.stroke = "var(--accent-color)";
+          circle.find('.level-input').addClass('level-up-ready');
+        } else {
+          progressCircle.style.stroke = "#fff";
         }
       });
 
       // Toggle XP input visibility
-      html.find('.edit-xp-icon').on('click', function (ev) {
+      html.find('.edit-xp-icon').on('click', ev => {
         ev.preventDefault();
-
-        const wrapper = $(this).closest('.xp-circle').find('.xp-input-wrapper');
+        const wrapper = $(ev.currentTarget).closest('.xp-circle').find('.xp-input-wrapper');
         wrapper.toggleClass('active');
-
-        if (wrapper.hasClass('active')) {
-          wrapper.find('input.xp-input').focus();
-        }
+        if (wrapper.hasClass('active')) wrapper.find('input.xp-input').focus();
       });
 
       // NOTE: Add custom click handlers or interactive features here
