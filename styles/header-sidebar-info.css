@@ -7,24 +7,32 @@
 
 /* Container for XP circle and portrait */
 .dw-custom-sheet .character-xp-wrapper {
-  width: 100%;        
-  max-width: 200px;   
-  aspect-ratio: 1/1;  
-  margin: 0 auto;     
-  position: relative; 
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  position: relative;
 }
 
 /* Outer XP circle wrapper */
 .dw-custom-sheet .xp-circle {
-  width: 100%;        
-  height: 100%;       
-  position: relative; 
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 /* XP input */
 /* (initially hidden) */
 .dw-custom-sheet .xp-input {
   display: none;
+  width: 20%;
+  font-size: 1em;
+  text-align: center;
+  margin-left: 20%;
+  z-index: 4;
+  position: absolute;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
 }
 /* (appears when active) */
 .dw-custom-sheet .xp-input-wrapper.active .xp-input {
@@ -33,61 +41,90 @@
 
 /* Icon that makes XP input visible */
 .dw-custom-sheet .edit-xp-icon {
-    position: absolute;
+  position: absolute;
+  z-index: 4;
+  top: 5%;
+  left: -2%;
+  cursor: pointer;
 }
 
 /* Container for SVG progress ring */
 .dw-custom-sheet .progress-container {
-  width: 100%;        
-  height: 100%;       
-  position: relative; 
-  z-index: 0;         
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 0;
 }
 
 /* SVG itself */
 .dw-custom-sheet .progress-container svg {
-  width: 100%;        
-  height: 100%;       
-  display: block;     
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 /* XP progress circle (the filling arc) */
 .dw-custom-sheet .xp-progress {
-  transform: rotate(-90deg);  
-  transform-origin: 50% 50%; 
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
 }
 
 /* Portrait wrapper, centered in XP circle */
 .dw-custom-sheet .portrait-wrapper {
-  position: absolute;    
-  top: 50%;              
-  left: 50%;             
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%); 
-  width: 92%;            
-  height: 92%;           
-  border-radius: 50%;    
-  overflow: hidden;      
-  z-index: 2;            
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
 }
 
 /* Character image inside the portrait */
 .dw-custom-sheet .character-portrait {
-  width: 100%;           
-  height: 100%;          
-  object-fit: cover;     
-  border-radius: 50%;    
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Level input or level-up arrow, above portrait */
 .dw-custom-sheet .level-input, .dw-custom-sheet .clickable-level-up {
-  position: absolute;    
-  top: 15%;              
-  left: 12%;             
-  border-radius: 50%;    
-  transform: translate(-50%, -50%); 
-  font-size: 1.2em;      
-  text-align: center;    
-  width: 25%;            
-  height: 25%;           
-  z-index: 3;            
+  position: absolute;
+  top: 15%;
+  left: 12%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  text-align: center;
+
+  width: 25%;
+  height: 25%;
+  z-index: 3;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-color);
+
+  background: radial-gradient(circle, #81c6ff 0%, #5280ff 70%);
+  border: 2px solid var(--accent-color);
+
+  box-shadow:
+    0 0 6px rgba(0, 38, 255, 0.7),
+    0 0 14px rgba(0, 132, 255, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;  
+}
+
+/* Hover feedback */
+.dw-custom-sheet .clickable-level-up:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow:
+    0 0 10px rgba(0, 38, 255, 0.9),
+    0 0 20px rgba(0, 132, 255, 0.6);
 }
