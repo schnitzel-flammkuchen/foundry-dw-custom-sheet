@@ -1,53 +1,36 @@
 /* --- EXTRA CUSTOM RESOURCES GRID --- */
-.dw-custom-sheet .extra-custom-resources {
+.dw-custom-sheet .extra-custom-resources > div[data-content] {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14em, 1fr));
-  gap: 0.5em;
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  gap: 0.75em;
   margin-top: 1em;
-}
-
-/* Toggle button */
-.dw-custom-sheet .extra-custom-resources .custom-resources-toggle {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2em;
-  height: 2em;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: #e0e0e0;
-  color: #141935;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.dw-custom-sheet .extra-custom-resources
-.custom-resources-toggle:hover {
-  background-color: #d0d0d0;
+  align-items: stretch;
 }
 
 /* Each resource cell (exclude add-resource button) */
 .dw-custom-sheet .extra-custom-resources .cell:not(.cell--add-resource) {
-  display: grid;
-  grid-template-rows: auto auto;
-  gap: 0.25em;
-  padding: 0.25em 1.5em;
-  border-radius: 6px;
-  background-color: #e1e1e1b8;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding: 0.4em 0.5em 0.5em;
+  background-color: #74747424;
   border: 1px solid var(--border-color);
+  border-radius: 6px;
   /* Make the cell position relative so the delete icon is positioned correctly */
   position: relative;
 }
 
 /* Resource title */
 .dw-custom-sheet .extra-custom-resources .cell__title {
-  width: 100%;
   flex: 100%;
   background: #344055;
   color: #e5e5e5;
   padding: 5px;
   height: 34px;
+}
+/* Every custom resource except resource1 has space for remove button */
+.dw-custom-sheet .extra-custom-resources .cell:not(.cell--resource1) .cell__title {
+  width: 90%;
 }
 
 .dw-custom-sheet .extra-custom-resources .cell__title input[type="text"] {
@@ -67,32 +50,26 @@
   outline: none;
 }
 
-/* Counter (current / max) wrapper */
-.dw-custom-sheet .extra-custom-resources .cell__wrapper {
-  display: flex;
+/* --- COUNTER --- */
+.dw-custom-sheet .extra-custom-resources .cell__counter {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
   gap: 0.25em;
+}
+.dw-custom-sheet .extra-custom-resources .cell__counter span {
+  opacity: 0.6;
 }
 
 /* --- INPUTS --- */
 
-.dw-custom-sheet .extra-custom-resources .cell__wrapper input {
+.dw-custom-sheet .extra-custom-resources .cell__counter input {
   width: 100%;
-  height: var(--input-height);
-  line-height: var(--input-height);
-  padding: 0 0.5rem;
-  background: var(--background-lighter-color);
-  border: 1px solid var(--input-border-color);
+  text-align: center;
+  padding: 0.25em 0.3em;
+  font-size: 0.9em;
   border-radius: 4px;
-  box-shadow: var(--input-box-shadow);
-  outline: 1px solid transparent;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--input-text-color);
-  user-select: text;
-  transition: outline-color 0.5s;
-  cursor: var(--cursor-text);
+  border: 1px solid var(--border-color);
 }
 
 .dw-custom-sheet .extra-custom-resources .resource-input {
@@ -116,14 +93,14 @@
 /* Remove button */
 .dw-custom-sheet .extra-custom-resources .resource-control.remove-extra-resource {
   position: absolute;
-  top: 0.5em;
+  top: 11%;
   right: 0.1em;
-  width: 1.1em;
+  width: 1.8em;
   height: 1.8em;
   padding: 0;
   border: none;
-  background: transparent;
-  color: var(--remove-btn-color);
+  /* background: transparent !important; */
+  /* color: var(--remove-btn-color) !important; */
   font-weight: bold;
   font-size: 1em;
   line-height: 1;
@@ -141,24 +118,20 @@
 /* Add resource button */
 .dw-custom-sheet .extra-custom-resources .cell--add-resource {
   display: flex;
-  justify-content: flex-start;
-  grid-column: span 1;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0.4em;
 }
-
 .dw-custom-sheet .extra-custom-resources .cell--add-resource .add-extra-resource {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2em;
-  height: 2em;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--accent-color);
-  color: white;
+  width: 2.2em;
+  height: 100%;
+  right: 92%;
+  position: relative;
+  font-size: 0.85em;
   cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
 }
-
-/* Readonly inputs */
-.dw-custom-sheet .extra-custom-resources .cell__counter .cell__wrapper input[readonly] {
-  cursor: pointer;
+.dw-custom-sheet .extra-custom-resources .add-extra-resource:hover {
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.05);
 }
