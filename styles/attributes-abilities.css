@@ -115,7 +115,42 @@
 
 /* Ability value */
 .dw-custom-sheet .ability-value {
-  width: 20%;
+  width: 30%;
+  border-radius: 12px;
+  
+  display: flex;
+  justify-items: center;
+  
+  border: 2px solid var(--accent-color);
+}
+
+/* Ability mod as span */
+.dw-custom-sheet span.ability-mod {
   text-align: center;
-  flex-shrink: 0;
+  font-size: 1em;
+  color: var(--text-color);
+
+  text-shadow:
+    0 0 4px rgb(255 255 255 / 20%),
+    0 0 8px rgb(120 170 255 / 20%);
+}
+
+/* Ability mod as input */
+.dw-custom-sheet input.ability-mod {
+  width: 54px;
+  height: 38px;
+
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  border-radius: 50%;
+  outline: none;
+
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--text-color);
+
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(120, 170, 255, 0.6);
 }
