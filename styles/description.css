@@ -1,4 +1,12 @@
 /* --- CHARACTER DESCRIPTION LAYOUT --- */
+/* Grid 2 columns of content */
+.dw-custom-sheet .tab.description .sheet-tab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
 /* Spacing between sections */
 .dw-custom-sheet .tab.description .cell--aesthetics {
   margin-bottom: 10px;
