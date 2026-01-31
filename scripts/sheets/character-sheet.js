@@ -176,7 +176,7 @@ export function defineCharacterCustomClass(baseClass) {
       //   "value": 0,
       //   "max": 0
       // }
-      // But will change its label and add up 4 resources
+      // But will change its label and add up more resources (defined in utils/config.js)
 
       const attrs = context.actor.system.attributes;
       // Starts with value and max. being 0
