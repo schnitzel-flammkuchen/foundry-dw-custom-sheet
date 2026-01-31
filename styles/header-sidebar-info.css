@@ -1,7 +1,68 @@
 /* HEADER CUSTOM STYLES */
 
+/* Header container */
+.sheet-header {
+  padding: 1rem 1.5rem;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+}
 
+/* Fields container inside header */
+.sheet-header__fields {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
 
+/* Name input styling */
+.character-name input.input--title {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-width: 180px;
+  transition: all 0.2s ease;
+}
+
+.character-name input.input--title:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 4px var(--accent-color);
+}
+
+/* Class selector styling */
+.character-class select.input--title {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-width: 140px;
+  min-height: 38px;
+  transition: all 0.2s ease;
+}
+
+.character-class select.input--title:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 4px var(--accent-color);
+}
+
+/* Class viewer icon */
+.character-class .clickable-class-viewer {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.character-class .clickable-class-viewer:hover {
+  color: var(--accent-color);
+}
 
 /* --- SIDEBAR XP AND PORTRAIT CUSTOM STYLES --- */
 
