@@ -69,12 +69,14 @@
 }
 
 /* Overview cells */
-.dw-custom-sheet .sheet-resources  {
+.dw-custom-sheet .sheet-resources {
   grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
 }
 
 .dw-custom-sheet .overview .cell--roll-mode {
   grid-column: span 8;
+  border-radius: 4px;
+  border-color: #a7a7a752;
 }
 
 /* Counter row */
@@ -86,14 +88,4 @@
 .dw-custom-sheet .cell__counter span {
   font-size: 24px;
   font-weight: 600;
-}
-
-/* --- CUSTOM RESOURCES TOGGLE (ONLY WHEN MOVES TAB IS ACTIVE) --- */
-/* Show the extra custom resources toggle only when the Moves tab is active */
-.dw-custom-sheet nav.sheet-tabs:has(+ section.tabs-section .tab.moves.active) a.custom-resources-toggle {
-  display: block;
-}
-/* Hide the extra custom resources toggle when the Moves tab is NOT active */
-.dw-custom-sheet nav.sheet-tabs:not(:has(section.tabs-section .tab.moves)) a.custom-resources-toggle {
-  display: none;
 }

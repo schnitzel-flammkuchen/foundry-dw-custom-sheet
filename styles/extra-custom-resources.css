@@ -1,10 +1,26 @@
 /* --- EXTRA CUSTOM RESOURCES GRID --- */
+
+/* Grid for the container - to fit sheet-resources correctly */
+.dw-custom-sheet .extra-custom-resources {
+  grid-column: 1 / -1;
+  margin: 0.5em 0 1em;
+}
+.dw-custom-sheet .extra-custom-resources .cell--resource1 {
+  grid-column: span 1;
+}
 .dw-custom-sheet .extra-custom-resources > div[data-content] {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+  margin: 4px 0;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75em;
-  margin-top: 1em;
-  align-items: stretch;
+  align-items: start;
+}
+
+/* Dropdown Toggle */
+.dw-custom-sheet .custom-resources-toggle {
+    position: absolute;
+    top: 11.4em;
+    z-index: 2;
 }
 
 /* Each resource cell (exclude add-resource button) */
@@ -16,21 +32,26 @@
   background-color: #74747424;
   border: 1px solid var(--border-color);
   border-radius: 6px;
+  min-width: 0;
   /* Make the cell position relative so the delete icon is positioned correctly */
   position: relative;
 }
 
 /* Resource title */
 .dw-custom-sheet .extra-custom-resources .cell__title {
-  flex: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2em 0.4em;
+  height: 34px;
   background: #344055;
   color: #e5e5e5;
-  padding: 5px;
-  height: 34px;
+  font-size: 0.85rem;
+  border-radius: 4px;
 }
 /* Every custom resource except resource1 has space for remove button */
 .dw-custom-sheet .extra-custom-resources .cell:not(.cell--resource1) .cell__title {
-  width: 90%;
+  width: 95%;
 }
 
 .dw-custom-sheet .extra-custom-resources .cell__title input[type="text"] {
@@ -93,21 +114,16 @@
 /* Remove button */
 .dw-custom-sheet .extra-custom-resources .resource-control.remove-extra-resource {
   position: absolute;
-  top: 13%;
-  right: -3px;
-  width: 1.8em;
-  height: 1.8em;
-  padding: 0;
-  border: none;
+  top: 5px;
+  right: 0;
+  width: 1.5em;
+  height: 1.5em;
   /* background: transparent !important; */
   /* color: var(--remove-btn-color) !important; */
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 1;
-  text-align: center;
+  border: none;
   cursor: pointer;
-  z-index: 1;
-  transition: color 0.2s;
+  font-size: 0.9em;
+  z-index: 2;
 }
 
 .dw-custom-sheet .extra-custom-resources .resource-control.remove-extra-resource:hover {
