@@ -2,6 +2,8 @@
 
 /* Header container */
 .dw-custom-sheet .sheet-header {
+  display: flex;
+  justify-content: center;
   padding: 1rem 1.5rem;
   background-color: var(--background-color);
   border-radius: 12px;
@@ -24,6 +26,7 @@
   border: 1px solid #555;
   background-color: var(--background-color);
   color: var(--text-color);
+  width: 100%;
   min-width: 180px;
   transition: all 0.2s ease;
 }
@@ -37,6 +40,7 @@
 .dw-custom-sheet .character-class {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Class selector styling */
