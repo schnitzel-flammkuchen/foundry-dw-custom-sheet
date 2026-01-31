@@ -20,7 +20,7 @@ export const MOVE_META = [
  * Maximum number of custom resources allowed per character.
  * @type {number}
  */
-export const MAX_CUSTOM_RESOURCES = 4;
+export const MAX_CUSTOM_RESOURCES = 3;
 
 /**
  * Resource keys used in the actor data.
