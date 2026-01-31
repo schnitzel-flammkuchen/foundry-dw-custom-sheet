@@ -1,10 +1,32 @@
 {{!-- Sidebar --}}
 <aside class="sheet-sidebar">
     <div class="cell cell--aesthetics">
-        {{!-- Portrait --}}
-        <div class="sheet-portrait">
-            <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" class="profile-img">
+        <div class="character-xp-wrapper">
+            <div class="xp-circle" name="system.attributes.xp.value" data-xp="{{system.attributes.xp.value}}" data-xp-max="{{system.attributes.xp.max}}" data-levelup="{{system.levelup}}">
+                <span class="xp-input-wrapper">
+                    <i class="fas fa-plus edit-xp-icon"></i>
+                    <input type="number" name="system.attributes.xp.value" class="xp-input" value="{{system.attributes.xp.value}}">
+                </span>
+                {{!-- Level Input --}}
+                {{#if system.levelup}}
+                <i class="fas fa-arrow-up level-input clickable-level-up"></i>
+                {{else}}
+                <input type="text" class="level-input" name="system.attributes.level.value" value="{{system.attributes.level.value}}" data-dtype="Number" placeholder="LvL" title="{{localize "DW.Level"}}">
+                {{/if}}
+                {{!-- Portrait --}}
+                <div class="portrait-wrapper">
+                    <img src="{{actor.img}}" alt="{{actor.name}}" class="character-portrait">
+                </div>
+                {{!-- SVG Circular Progress --}}
+                <div class="progress-container">
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" stroke="#555" stroke-width="6" fill="none"></circle>
+                        <circle class="xp-progress" cx="60" cy="60" r="54" stroke="#4caf50" stroke-width="6" fill="none" stroke-dasharray="339.292" stroke-dashoffset="104.72"></circle>
+                    </svg>
+                </div>
+            </div>
         </div>
+
         {{!-- Attributes --}}
         <div class="sheet-attributes">
 
