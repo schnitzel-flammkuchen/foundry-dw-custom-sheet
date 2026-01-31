@@ -36,19 +36,19 @@
             </div>
         </div>
 
+        {{!-- Custom Resources' Dropdown Toggle --}}
+        <a class="custom-resources-toggle" data-dropdown data-header data-collapsed data-target=".extra-custom-resources">
+            <i class="fas fa-chevron-up"></i>
+        </a>
         {{!-- More custom resources (dropdown) --}}
-        <section class="extra-custom-resources" data-dropdown data-collapsed>
-            {{!-- Toggle button --}}
-            <a class="custom-resources-toggle" data-header>
-                <i class="fas fa-chevron-up"></i>
-            </a>
+        <section class="extra-custom-resources">
             {{!-- Extra custom resources --}}
             <div data-content>
                 {{#each customResources}}
-                <div class="cell cell--{{this.key}}" data-ignore>
+                <div class="cell cell--{{this.key}}">
                     {{#if this.removable}}
                     {{!-- Delete button --}}
-                    <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}" style="background: transparent !important;">
+                    <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}" style="background: transparent !important;" data-ignore>
                         <i class="fas fa-trash" style="color: var(--remove-btn-color) !important;"></i>
                     </button>
                     {{/if}}
@@ -67,7 +67,7 @@
                 {{!-- BUTTON: Add extra resource --}}
                 {{#if canAddResource}}
                 <div class="cell cell--add-resource" data-ignore>
-                    <button type="button" class="resource-control add-extra-resource">
+                    <button type="button" class="resource-control add-extra-resource" data-ignore>
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>

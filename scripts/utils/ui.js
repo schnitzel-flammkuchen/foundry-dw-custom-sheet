@@ -60,6 +60,7 @@ export function enableDropdowns(html) {
     if (header.hasAttribute("data-target")) dropdown = html[0].querySelector(header.dataset.target);
     // For internal header it finds the nearest dropdown container
     else dropdown = header.closest("[data-dropdown]");
+
     const content = dropdown.querySelector("[data-content]");
 
     // Abort if required elements are missing

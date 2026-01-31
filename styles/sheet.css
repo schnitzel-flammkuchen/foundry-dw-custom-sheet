@@ -75,6 +75,8 @@
 
 .dw-custom-sheet .overview .cell--roll-mode {
   grid-column: span 8;
+  /* Some space between it and custom resources' dropdown toggle */
+  margin-top: -1.2em;
   border-radius: 4px;
   border-color: #a7a7a752;
 }
