@@ -19,6 +19,7 @@
   ],
   "styles": [
     "styles/styles.css",
+    "styles/header-sidebar-info.css",
     "styles/attributes-abilities.css",
     "styles/extra-custom-resources.css",
     "styles/equipment.css",
