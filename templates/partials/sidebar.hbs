@@ -94,6 +94,12 @@
                             <input type="checkbox" name="system.abilities.{{key}}.debility"
                                 {{checked ability.debility}}>
                                 {{ability.debilityLabel}}
+                                {{#if ability.mod}}
+                                <span class="ability-mod">
+                                    {{!-- Between parentesis after label --}}
+                                    ({{numberFormat ability.mod decimals=0 sign=true}})
+                                </span>
+                                {{/if}}
                         </label>
                     </div>
                 </li>
