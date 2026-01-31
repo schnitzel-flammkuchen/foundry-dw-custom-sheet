@@ -154,20 +154,60 @@ export function defineCharacterCustomClass(baseClass) {
       context.moveMeta = MOVE_META;
 
       // Filters the full move list by each category's type to be used on the template
-      context.moveCategories = context.moveMeta.map(cat => {
-        const moves = context.moves.filter(m => {
-          if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
-          // Otherwise, include moves matching this category's type
-          return m.system.moveType === cat.moveType;
-        });
+      context.moveCategories = await Promise.all(context.moveMeta.map(async cat => {
+        const moves = await Promise.all(context.moves.filter(m => {
+            // If the category has no moveType, include all moves that are not basic/starting/advanced/special
+            if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
+            // Otherwise, include only moves matching this category's type
+            return m.system.moveType === cat.moveType;
+          }).map(async m => {
+            // Create a copy of the item to avoid modifying the original
+            const moveObj = m.toObject();
 
-        // Return a new category object containing the metadata plus the filtered moves
+            /* --- MOVE RESULTS --- */
+            moveObj.system.moveResults = moveObj.system.moveResults || {};
+
+            for (const key of ["success", "partial", "failure"]) {
+              const rawValue = moveObj.system.moveResults?.[key]?.value
+                ?? moveObj.system.results?.[key === "failure" ? "fail" : key]
+                ?? "";
+
+              moveObj.system.moveResults[key] = {
+                value: !!rawValue ? 1 : 0,
+                enriched: rawValue
+                  ? await TextEditor.enrichHTML(rawValue, {
+                      async: true,
+                      documents: true,
+                      secrets: this.actor.isOwner,
+                      relativeTo: m,
+                      rollData: m.getRollData()
+                    })
+                  : ""
+              };
+            }
+
+            /* --- MOVE CHOICES --- */
+            if (!Array.isArray(moveObj.system.choices)) {
+              moveObj.system.choices = moveObj.system.choices
+                ? [moveObj.system.choices] 
+                : (moveObj.system.results?.choices || []);
+            }
+            moveObj.system.choicesEnriched = moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
+
+            /* --- DESCRIPTION --- */
+            moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
+
+            return moveObj;
+          })
+        );
+
+        // Return the category object with the filtered + processed moves
         return {
           ...cat,
           moves
         };
-      });
-
+      }));
+      
       /* --- CUSTOM RESOURCES --- */
 
       // Dungeon World's 'template.json' gives an actor:
