@@ -6,13 +6,6 @@
             <input type="text" class="input--title" name="name" value="{{actor.name}}" placeholder="{{localizeFallback "Placeholder.Name"}}" data-required="true">
         </div>
 
-        {{!-- Race --}}
-        <div class="character-race">
-            <label class="cell__title">
-                {{localizeOverride "DW.Race" "raceSingle"}}
-            </label>
-        </div>
-
         {{!-- Class --}}
         <div class="character-class">
             <select class="input--title charclass" name="system.details.class" aria-placeholder="{{localizeFallback "Placeholder.Class"}}">
@@ -26,44 +19,6 @@
             <a class="clickable-class-viewer" title="{{localize "DW.ClassViewer"}}">
                 <i class="fas fa-book"></i>
             </a>
-        </div>
-
-        <div class="character-xp">
-            <div class="flex-item flex-item--level">
-                <label for="system.attributes.level.value">
-                    {{localize "DW.Level"}}
-                </label>
-                <input
-                    type="text"
-                    name="system.attributes.level.value"
-                    value="{{system.attributes.level.value}}"
-                    placeholder="LvL"
-                    data-dtype="Number"
-                    class="level--value"
-                />
-            </div>
-
-            <div class="flex-item flex-item--xp">
-                <label for="system.attributes.xp.value">
-                    {{localize "DW.XP"}}
-                </label>
-                <input
-                    type="text"
-                    name="system.attributes.xp.value"
-                    value="{{system.attributes.xp.value}}"
-                    placeholder="XP"
-                    data-dtype="Number"
-                    data-stepper
-                    class="xp--value"
-                />
-                {{!-- {{{progressCircle system.xpSvg}}}> --}}
-            </div>
-
-            <div class="flex-item flex-item--level-up">
-                <a class="{{#if system.levelup}} clickable-level-up {{else}} disabled-level-up {{/if}}">
-                    <i class="fas fa-user-plus"></i>
-                </a>
-            </div>
         </div>
     </div>
 </header>
