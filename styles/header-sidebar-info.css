@@ -1,0 +1,93 @@
+/* HEADER CUSTOM STYLES */
+
+
+
+
+/* --- SIDEBAR XP AND PORTRAIT CUSTOM STYLES --- */
+
+/* Container for XP circle and portrait */
+.dw-custom-sheet .character-xp-wrapper {
+  width: 100%;        
+  max-width: 200px;   
+  aspect-ratio: 1/1;  
+  margin: 0 auto;     
+  position: relative; 
+}
+
+/* Outer XP circle wrapper */
+.dw-custom-sheet .xp-circle {
+  width: 100%;        
+  height: 100%;       
+  position: relative; 
+}
+
+/* XP input */
+/* (initially hidden) */
+.dw-custom-sheet .xp-input {
+  display: none;
+}
+/* (appears when active) */
+.dw-custom-sheet .xp-input-wrapper.active .xp-input {
+  display: block;
+}
+
+/* Icon that makes XP input visible */
+.dw-custom-sheet .edit-xp-icon {
+    position: absolute;
+}
+
+/* Container for SVG progress ring */
+.dw-custom-sheet .progress-container {
+  width: 100%;        
+  height: 100%;       
+  position: relative; 
+  z-index: 0;         
+}
+
+/* SVG itself */
+.dw-custom-sheet .progress-container svg {
+  width: 100%;        
+  height: 100%;       
+  display: block;     
+}
+
+/* XP progress circle (the filling arc) */
+.dw-custom-sheet .xp-progress {
+  transform: rotate(-90deg);  
+  transform-origin: 50% 50%; 
+}
+
+/* Portrait wrapper, centered in XP circle */
+.dw-custom-sheet .portrait-wrapper {
+  position: absolute;    
+  top: 50%;              
+  left: 50%;             
+  transform: translate(-50%, -50%); 
+  width: 92%;            
+  height: 92%;           
+  border-radius: 50%;    
+  overflow: hidden;      
+  z-index: 2;            
+}
+
+/* Character image inside the portrait */
+.dw-custom-sheet .character-portrait {
+  width: 100%;           
+  height: 100%;          
+  object-fit: cover;     
+  border-radius: 50%;    
+}
+
+/* Level input or level-up arrow, above portrait */
+.dw-custom-sheet .level-input, .dw-custom-sheet .clickable-level-up {
+  position: absolute;    
+  top: 15%;              
+  left: 12%;             
+  border-radius: 50%;    
+  transform: translate(-50%, -50%); 
+  font-size: 1.2em;      
+  text-align: center;    
+  width: 25%;            
+  height: 25%;           
+  z-index: 3;            
+}
