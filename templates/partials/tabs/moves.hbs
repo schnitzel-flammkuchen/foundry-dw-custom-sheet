@@ -18,8 +18,8 @@
             <div class="cell cell--{{this.key}}">
                 {{#if this.removable}}
                 {{!-- Delete button --}}
-                <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}">
-                    <i class="fas fa-trash"></i>
+                <button type="button" class="resource-control remove-extra-resource" data-resource="{{this.key}}" style="background: transparent !important;">
+                    <i class="fas fa-trash" style="color: var(--remove-btn-color) !important;"></i>
                 </button>
                 {{/if}}
                 <label class="cell__title">
