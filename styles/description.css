@@ -1,38 +1,39 @@
 /* --- CHARACTER DESCRIPTION LAYOUT --- */
+/* Spacing between sections */
+.dw-custom-sheet .tab.description .cell--aesthetics {
+  margin-bottom: 10px;
+}
+
 /* Alignment and race fields */
-.tab.description .cell--alignment,
-.tab.description .cell--race {
+.dw-custom-sheet .tab.description .cell--alignment,
+.dw-custom-sheet .tab.description .cell--race {
   display: flex;
   flex-direction: column;
   gap: 0.25em;
 }
-
-.tab.description .cell--alignment input,
-.tab.description .cell--race input {
+.dw-custom-sheet .tab.description .cell--alignment input,
+.dw-custom-sheet .tab.description .cell--race input {
   width: 100%;
 }
-
-.cell--alignment,
-.cell--race {
+.dw-custom-sheet .tab.description .cell--alignment,
+.dw-custom-sheet .tab.description .cell--race {
   padding: 4px 0;
 }
 
 /* Text sizing */
 
-.cell--alignment .editor {
+.dw-custom-sheet .tab.description .cell--alignment .editor {
   font-size: 1.4em;
 }
-
-.cell--race,
-.cell--look .editor {
+.dw-custom-sheet .tab.description .cell--race,
+.dw-custom-sheet .tab.description .cell--look .editor {
   font-size: 1.1em;
 }
 
 /* --- BONDS --- */
 
 /* Bonds list layout */
-
-.cell--bonds .items-list {
+.dw-custom-sheet .tab.description .cell--bonds .items-list {
   display: flex;
   list-style: none;
   padding-left: 0;
@@ -44,7 +45,7 @@
 }
 
 /* Bond item */
-.cell--bonds .items-list .item {
+.dw-custom-sheet .tab.description .cell--bonds .items-list .item {
   display: flex;
   flex: 45%;
   padding: 0.5rem;
@@ -54,19 +55,67 @@
 }
 
 /* Bond description */
-.cell--bonds .item-description {
+.dw-custom-sheet .tab.description .cell--bonds .item-description {
   flex: 100%;
 }
 
 /* Remove button */
-.cell--bonds .item-controls a {
-  color: var(--remove-btn-color);
+.dw-custom-sheet .tab.description .cell--bonds .item-controls a {
+  color: var(--remove-btn-color) !important;
   cursor: pointer;
 }
 
 /* --- BIOGRAPHY --- */
+/* Container */
+.dw-custom-sheet .tab.description .cell--bio {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  position: relative;
+}
 
-/* Spacing between sections */
-.tab.description .cell--aesthetics {
-  margin-bottom: 10px;
+/* Editor container */
+.dw-custom-sheet .tab.description .cell--bio .editor {
+  min-height: unset;
+  height: auto;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* Editor content (where the text actually is) */
+.dw-custom-sheet .tab.description .cell--bio .editor-content {
+  position: relative;
+  padding: 1rem 1.25rem;
+  font-family: "Signika", serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Pseudo-element for background effect behind the text */
+.dw-custom-sheet .tab.description .cell--bio .editor-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: 4px solid var(--accent-color);
+  border-radius: 6px;
+  z-index: -1;
+}
+
+/* Focus effect on the pseudo-background when editing */
+.sheet .cell--bio .editor:focus-within .editor-content::before {
+  box-shadow: 0 0 0 2px rgba(123, 94, 43, 0.35);
+}
+
+/* Drop cap for first paragraph */
+.dw-custom-sheet .tab.description .cell--bio .editor-content p:first-child::first-letter {
+  font-size: 2.6em;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  margin-right: 0.15em;
+  color: var(--accent-color);
 }

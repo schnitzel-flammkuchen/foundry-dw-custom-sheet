@@ -48,7 +48,6 @@ export function normalizeInputs(html) {
  * Elements marked with 'data-ignore' inside the header do not trigger the dropdown.
  */
 export function enableDropdowns(html) {
-
   // For each clickable dropdown header
   // (internal headers using [data-header] or external ones using [data-target])
   html.find("[data-header], [data-target]").each((_, headerEl) => {
