@@ -74,6 +74,7 @@
 }
 
 /* --- BIOGRAPHY --- */
+
 /* Container */
 .dw-custom-sheet .tab.description .cell--bio {
   background: none;
@@ -86,10 +87,16 @@
 /* Editor container */
 .dw-custom-sheet .tab.description .cell--bio .editor {
   min-height: unset;
+  max-height: 51.8em;
   height: auto;
   border: none;
   background: none;
   padding: 0;
+}
+
+/* Editor icon - clickable */
+.dw-custom-sheet .tab.description .cell--bio a {
+  z-index: 2;
 }
 
 /* Editor content (where the text actually is) */
@@ -100,7 +107,15 @@
   font-size: 0.95rem;
   line-height: 1.55;
   z-index: 1;
-  pointer-events: none;
+
+  /* Scrollbar - firefox */
+  scrollbar-width: thin !important;
+  scrollbar-color: #ffffff09 transparent !important;
+}
+/* Scrollbar - other browsers */
+.dw-custom-sheet .tab.description .cell--bio .editor-content::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Pseudo-element for background effect behind the text */
