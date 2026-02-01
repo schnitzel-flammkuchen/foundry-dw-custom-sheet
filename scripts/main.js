@@ -1,7 +1,7 @@
 // scripts/main.js
 
 import { defineCharacterCustomClass } from "./sheets/character-sheet.js";
-import { normalizeInputs } from "./utils/ui.js";
+import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -84,6 +84,7 @@ Hooks.once("ready", async () => {
     console.log("✅ DW Custom Sheet | Ready");
 });
 
+
 /**
  * Hook that runs RIGHT AFTER an Actor is created.
  * This works directly on the raw actor data, before any sheet or UI exists.
@@ -113,7 +114,9 @@ Hooks.on("createActor", (actor, data, _options, _userId) => {
 /**
  * Hook that runs whenever an Actor sheet is rendered.
  * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
+ * Calls 'enablePersistentDropdowns' to ensure local flags for dropdowns that have been opened/closed so to avoid its "blinking" effect when rendering a sheet.
  */
 Hooks.on("renderActorSheet", (_sheet, html, _data) => {
   normalizeInputs(html);
+  enablePersistentDropdowns(html);
 });

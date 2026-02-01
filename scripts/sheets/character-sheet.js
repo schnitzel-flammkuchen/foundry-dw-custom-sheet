@@ -2,7 +2,7 @@
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
-import { enableDropdowns, enableSteppers } from "../utils/ui.js";
+import { enableSteppers } from "../utils/ui.js";
 
 /**
  * Defines the custom character sheet class.
@@ -376,9 +376,6 @@ export function defineCharacterCustomClass(baseClass) {
         await this._removeExtraResource(key);
         this.render();
       });
-
-      /* --- DROPDOWNS TOGGLE --- */
-      enableDropdowns(html);
       
       /* --- DYNAMIC STEPPERS --- */
       // Handle left/right click on generic steppers and clamp its value according to attributes settings

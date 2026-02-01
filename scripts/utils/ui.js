@@ -42,43 +42,81 @@ export function normalizeInputs(html) {
 }
 
 /**
- * Enables generic dropdown behavior based on data attributes.
+ * Persistent dropdown manager for tabs like moves and spells.
+ * Restores open/closed state per dropdown per tab using localStorage.
+ * Works even if the tab is not active at render.
+ * Ignores clicks on interactive elements or [data-ignore].
  * 
- * A container element maked with 'data-dropdown'; a clickable header inside it as 'data-header' and its collapsible content as 'data-content'.
- * Elements marked with 'data-ignore' inside the header do not trigger the dropdown.
+ * enablePersistentDropdowns($('.sheet-main'));
  */
-export function enableDropdowns(html) {
-  // For each clickable dropdown header
-  // (internal headers using [data-header] or external ones using [data-target])
-  html.find("[data-header], [data-target]").each((_, headerEl) => {
-    // If the header is external, find the container via data-target
-    const header = headerEl;
-    let dropdown;
+const DROPDOWN_FLAG_NAMESPACE = "dw-dropdown";
 
-    // For external header it finds dropdown container via data-target selector
-    if (header.hasAttribute("data-target")) dropdown = html[0].querySelector(header.dataset.target);
-    // For internal header it finds the nearest dropdown container
-    else dropdown = header.closest("[data-dropdown]");
+function getDropdownKey(id) {
+  return `${DROPDOWN_FLAG_NAMESPACE}-${id}`;
+}
 
+function saveDropdownState(id, isOpen) {
+  try { localStorage.setItem(getDropdownKey(id), JSON.stringify(isOpen)); } 
+  catch (err) { console.error(`Failed to save dropdown state for ${id}`, err); }
+}
+
+function loadDropdownState(id, defaultValue = false) {
+  try {
+    const raw = localStorage.getItem(getDropdownKey(id));
+    if (raw === null) return defaultValue;
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error(`Failed to load dropdown state for ${id}`, err);
+    return defaultValue;
+  }
+}
+
+/**
+ * Enables persistent dropdowns inside tabs.
+ */
+export function enablePersistentDropdowns(html) {
+  // Find all dropdowns in all tabs
+  html.find("[data-dropdown]").each((index, dropdownEl) => {
+    const dropdown = dropdownEl;
+    const header = dropdown.querySelector("[data-header]");
     const content = dropdown.querySelector("[data-content]");
-
-    // Abort if required elements are missing
     if (!header || !content) return;
 
-    // Optional initial state: collapsed by default
-    if (dropdown.hasAttribute("data-collapsed")) content.style.display = "none";
+    // Determine the tab name for namespace
+    const tabEl = dropdown.closest(".tab");
+    const tabName = tabEl?.dataset.tab ?? "unknown";
 
+    // Unique ID: tab + dropdown-id or index
+    const dropdownId = dropdown.dataset.dropdownId
+      ? `${tabName}-${dropdown.dataset.dropdownId}`
+      : `${tabName}-dropdown${index}`;
+
+    // Restore state
+    const isOpen = loadDropdownState(dropdownId, !dropdown.hasAttribute("data-collapsed"));
+    content.style.display = isOpen ? "" : "none";
+
+    // Chevron icon
+    const icon = header.querySelector("i[class*=fa-chevron]");
+    if (icon) {
+      icon.classList.toggle("fa-chevron-up", isOpen);
+      icon.classList.toggle("fa-chevron-down", !isOpen);
+    }
+
+    // Click handler
     header.addEventListener("click", ev => {
-      if (ev.target.closest("[data-ignore]")) return;
+      const ignoreTags = ["INPUT", "BUTTON", "SELECT", "TEXTAREA"];
+      if (ev.target.closest("[data-ignore]") || ignoreTags.includes(ev.target.tagName)) return;
+
       ev.preventDefault();
 
-      // Only animate if the content actually has children
-      // (helps with visual 'blinking')
+      const currentlyOpen = content.style.display !== "none";
+      const willOpen = !currentlyOpen;
+
       if (content.children.length > 0) $(content).slideToggle(150);
 
-      // Automatically toggle chevron icons inside the header if they are present
-      const icon = header.querySelector("i[class*=fa-chevron]");
       if (icon) $(icon).toggleClass("fa-chevron-up fa-chevron-down");
+
+      saveDropdownState(dropdownId, willOpen);
     });
   });
 }
