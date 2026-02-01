@@ -23,6 +23,7 @@
     "styles/attributes-abilities.css",
     "styles/extra-custom-resources.css",
     "styles/equipment.css",
+    "styles/description.css",
     "styles/items.css",
     "styles/sheet.css"
   ],

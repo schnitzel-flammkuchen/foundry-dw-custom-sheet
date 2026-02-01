@@ -108,24 +108,17 @@
   line-height: 1.55;
   z-index: 1;
 
+  /* Background effect behind the text */
+  background:
+    linear-gradient(
+      to right,
+      var(--accent-color) 0 4px,
+      transparent 4px
+    );
+
   /* Scrollbar - firefox */
   scrollbar-width: thin !important;
   scrollbar-color: #ffffff09 transparent !important;
-}
-/* Scrollbar - other browsers */
-.dw-custom-sheet .tab.description .cell--bio .editor-content::-webkit-scrollbar {
-  width: 0 !important;
-  height: 0 !important;
-}
-
-/* Pseudo-element for background effect behind the text */
-.dw-custom-sheet .tab.description .cell--bio .editor-content::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-left: 4px solid var(--accent-color);
-  border-radius: 6px;
-  z-index: -1;
 }
 
 /* Focus effect on the pseudo-background when editing */
