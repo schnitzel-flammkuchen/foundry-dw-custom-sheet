@@ -43,7 +43,7 @@ As a result, this module aims to provide tailored UI support and additional func
 
 ### Foundry VTT
 
-1. Install the module using its **[manifest URL]()** <!-- Add manifest raw github url -->
+1. Install the module using its **[manifest URL](https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/refs/heads/main/module.json)**
 
 2. Activate the module in your world under:
    **Settings -> Manage Modules**
