@@ -32,7 +32,7 @@ As a result, this module aims to provide tailored UI support and additional func
 
 ## ⚙️ Compatibility
 
-  ✔️ Foundry VTT version 12 or later
+  ✔️ Foundry VTT version 12 or later  
   ✔️ Fully compatible with the official Dungeon World system
 
 ---
