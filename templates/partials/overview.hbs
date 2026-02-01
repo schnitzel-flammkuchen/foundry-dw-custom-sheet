@@ -36,12 +36,12 @@
             </div>
         </div>
 
-        {{!-- Custom Resources' Dropdown Toggle --}}
-        <a class="custom-resources-toggle" data-dropdown data-header data-collapsed data-target=".extra-custom-resources">
-            <i class="fas fa-chevron-up"></i>
-        </a>
         {{!-- More custom resources (dropdown) --}}
-        <section class="extra-custom-resources">
+        <section class="extra-custom-resources" data-dropdown data-collapsed>
+            {{!-- Custom Resources' Dropdown Toggle --}}
+            <a class="custom-resources-toggle" data-header>
+                <i class="fas fa-chevron-up"></i>
+            </a>
             {{!-- Extra custom resources --}}
             <div data-content>
                 {{#each customResources}}
