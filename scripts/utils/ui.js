@@ -73,9 +73,13 @@ function loadDropdownState(id, defaultValue = false) {
 
 /**
  * Enables persistent dropdowns inside tabs.
+ * Toggles dropdowns on header click.
+ * Restores saved open/closed state per dropdown.
+ * Opens the dropdown automatically if an item-create button is clicked (moves/spells only - if it's currently closed).
+ * And, finally, saves state in localStorage.
  */
 export function enablePersistentDropdowns(html) {
-  // Find all dropdowns in all tabs
+  // Iterate over all dropdowns
   html.find("[data-dropdown]").each((index, dropdownEl) => {
     const dropdown = dropdownEl;
     const header = dropdown.querySelector("[data-header]");
@@ -102,10 +106,12 @@ export function enablePersistentDropdowns(html) {
       icon.classList.toggle("fa-chevron-down", !isOpen);
     }
 
-    // Click handler
+    /**
+     * Click handler.
+     * Header click toggles dropdown normally.
+     */
     header.addEventListener("click", ev => {
-      const ignoreTags = ["INPUT", "BUTTON", "SELECT", "TEXTAREA"];
-      if (ev.target.closest("[data-ignore]") || ignoreTags.includes(ev.target.tagName)) return;
+      if (ev.target.closest("[data-ignore]")) return;
 
       ev.preventDefault();
 
@@ -118,6 +124,30 @@ export function enablePersistentDropdowns(html) {
 
       saveDropdownState(dropdownId, willOpen);
     });
+
+    /**
+     * Handle automatic opening for moves/spells dropdowns when item-create is clicked
+     */
+    const itemControls = dropdown.querySelector(".item-controls");
+    const hasItemsList = dropdown.querySelector(".items-list");
+
+    if (itemControls && hasItemsList) {
+      itemControls.addEventListener("click", ev => {
+        const btn = ev.target.closest(".item-create");
+        if (!btn) return;
+
+        // Only open if currently closed (chevron down)
+        const isClosed = icon && icon.classList.contains("fa-chevron-down");
+        if (!isClosed) return; // Already open, do nothing
+
+        // Open the dropdown and change icon
+        $(content).slideDown(150);
+        if (icon) $(icon).toggleClass("fa-chevron-up fa-chevron-down");
+
+        // Save state
+        saveDropdownState(dropdownId, true);
+      });
+    }
   });
 }
 
