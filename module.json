@@ -1,9 +1,15 @@
 {
   "id": "dw-custom-sheet",
   "title": "Dungeon World Custom Sheet",
+<<<<<<< HEAD
   "version": "1.0.0",
   "manifest": "https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/main/module.json",
   "download": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.zip",
+=======
+  "version": "0.0.1",
+  "manifest": "https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/refs/heads/main/module.json",
+  "download": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.json",
+>>>>>>> 2249bc0ce91870623b565ab4890bc6ebfecd62e1
   "compatibility": {
     "minimum": "12",
     "verified": "13.351"

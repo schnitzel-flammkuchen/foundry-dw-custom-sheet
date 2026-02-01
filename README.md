@@ -26,15 +26,13 @@ As a result, this module aims to provide tailored UI support and additional func
   - Resources (Forward, Ongoing, Hold, etc.)
   - Economy (Coin and Load)
   - Abilities and moves
-- Additional roll functionality (including custom roll modes)
-- Designed for Foundry VTT **v12+**
 - Non-intrusive: does not alter core system data or rules
 
 ---
 
 ## ⚙️ Compatibility
 
-  ✔️ Foundry VTT version 12 or later
+  ✔️ Foundry VTT version 12 or later  
   ✔️ Fully compatible with the official Dungeon World system
 
 ---
@@ -43,7 +41,7 @@ As a result, this module aims to provide tailored UI support and additional func
 
 ### Foundry VTT
 
-1. Install the module using its **[manifest URL]()** <!-- Add manifest raw github url -->
+1. Install the module using its **[manifest URL](https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/refs/heads/main/module.json)**
 
 2. Activate the module in your world under:
    **Settings -> Manage Modules**
