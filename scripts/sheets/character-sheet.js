@@ -349,12 +349,12 @@ export function defineCharacterCustomClass(baseClass) {
       });
 
       // Equipment search bar: filter equipment on input
-      html.find('.equipment-search input').on('input', ev => {
-          const query = ev.currentTarget.value.toLowerCase();
-          html.find('.items-list li').each((i, li) => {
-              const name = $(li).find('.item-label').text().toLowerCase();
-              $(li).toggle(name.includes(query));
-          });
+      html.find('#equipment-search input').on('input', ev => {
+        const query = ev.currentTarget.value.toLowerCase();
+        html.find('.items-list li').each((_, li) => {
+          const name = $(li).find('.item-label').text().toLowerCase();
+          $(li).toggle(name.includes(query));
+        });
       });
 
       /* --- CUSTOM RESOURCE --- */
