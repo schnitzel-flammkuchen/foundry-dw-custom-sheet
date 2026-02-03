@@ -222,7 +222,7 @@ export function defineCharacterCustomClass(baseClass) {
       // Starts with value and max. being 0
       // 0 if undefined
       RESOURCE_KEYS.forEach(k => {
-        const attr = this.actor.system.attributes[k];
+        const attr = attrs[k];
         if (attr) {
           attr.value = Number(attr.value ?? 0);
           attr.max = Number(attr.max ?? 0);
