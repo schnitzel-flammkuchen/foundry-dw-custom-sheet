@@ -23,9 +23,9 @@ As a result, this module aims to provide tailored UI support and additional func
 - Better separation of:
 
   - Core attributes (HP, Armor, Damage, Level, XP)
-  - Resources (Forward, Ongoing, Hold, etc.)
+  - Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)
   - Economy (Coin and Load)
-  - Abilities and moves
+  - Moves and Spells (now on dropdowns)
 - Non-intrusive: does not alter core system data or rules
 
 ---
@@ -41,7 +41,7 @@ As a result, this module aims to provide tailored UI support and additional func
 
 ### Foundry VTT
 
-1. Install the module using its **[manifest URL](https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/refs/heads/main/module.json)**
+1. Install the module using its **[manifest URL](https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.json)**
 
 2. Activate the module in your world under:
    **Settings -> Manage Modules**

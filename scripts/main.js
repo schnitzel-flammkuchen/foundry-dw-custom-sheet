@@ -84,31 +84,24 @@ Hooks.once("ready", async () => {
     console.log("✅ DW Custom Sheet | Ready");
 });
 
-
 /**
  * Hook that runs RIGHT AFTER an Actor is created.
  * This works directly on the raw actor data, before any sheet or UI exists.
- * Specifically, it ensures that the first custom resource (`resource1`) is always defined and has a localized label (from the module) if the language is not English.
- * This completely overrides the Dungeon World default "Custom Resource" label.
+ * Ensures 'resource1' exists with a localized label, value 0, and max 0.
  */
-Hooks.on("createActor", (actor, data, _options, _userId) => {
-  // Only applies to playable character actors
+Hooks.on("createActor", async (actor) => {
   if (actor.type !== "character") return;
 
-  // Ensure the system attributes object exists
-  data.system = data.system || {};
-  const attrs = data.system.attributes = data.system.attributes || {};
+  const localizedLabel = game.i18n.localize("DWCS.Custom.DefaultResource");
 
-  // Create the first custom resource ('resource1') if it doesn't exist or overwrite it completely to use the module's localized label
-  const localizedLabel = game.settings.get("core", "language") !== "en"
-    ? game.i18n.localize("DWCS.Custom.DefaultResource")
-    : "Custom Resource";
-
-  attrs.resource1 = {
-    label: localizedLabel,
-    value: 0,
-    max: 0
-  };
+  // Update actor to change 'resource1' label
+  await actor.update({
+    "system.attributes.resource1": {
+      label: localizedLabel,
+      value: 0,
+      max: 0
+    }
+  });
 });
 
 /**

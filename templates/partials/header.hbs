@@ -11,7 +11,7 @@
             <select class="input--title charclass" name="system.details.class" aria-placeholder="{{localizeFallback "Placeholder.Class"}}">
                 <option value=""></option>
                 {{#each system.classlist as |class|}}
-                <option value="{{class}}" {{#if (eq class ../system.details.class)}} selected {{/if}}>
+                <option value="{{class}}"{{#if (eq class ../system.details.class)}} selected{{/if}}>
                     {{class}}
                 </option>
                 {{/each}}
