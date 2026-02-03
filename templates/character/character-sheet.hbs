@@ -2,17 +2,17 @@
 
     <div class="sheet-wrapper">
         {{!-- Sidebar --}}
-        {{> "modules/dw-custom-sheet/templates/partials/sidebar.hbs"}}
+        {{> "modules/dw-custom-sheet/templates/character/partials/sidebar.hbs"}}
 
         {{!-- Body --}}
         <div class="sheet-body">
             {{!-- Header --}}
-            {{> "modules/dw-custom-sheet/templates/partials/header.hbs"}}
+            {{> "modules/dw-custom-sheet/templates/character/partials/header.hbs"}}
 
             {{!-- Main --}}
             <div class="sheet-main">
                 {{!-- Forward, Ongoing, Hold, Resource and Roll formula & modes --}}
-                {{> "modules/dw-custom-sheet/templates/partials/overview.hbs"}}
+                {{> "modules/dw-custom-sheet/templates/character/partials/overview.hbs"}}
 
                 {{!-- Navigation tabs --}}
                 <nav class="sheet-tabs tabs" data-group="primary">
@@ -25,16 +25,16 @@
                 {{!-- Tabs section --}}
                 <section class="tabs-section">
                     {{!-- Description tab --}}
-                    {{> "modules/dw-custom-sheet/templates/partials/tabs/description.hbs"}}
+                    {{> "modules/dw-custom-sheet/templates/character/partials/tabs/description.hbs"}}
 
                     {{!-- Moves tab --}}
-                    {{> "modules/dw-custom-sheet/templates/partials/tabs/moves.hbs"}}
+                    {{> "modules/dw-custom-sheet/templates/character/partials/tabs/moves.hbs"}}
 
                     {{!-- Spells tab --}}
-                    {{> "modules/dw-custom-sheet/templates/partials/tabs/spells.hbs"}}
+                    {{> "modules/dw-custom-sheet/templates/character/partials/tabs/spells.hbs"}}
 
                     {{!-- Equipment tabs --}}
-                    {{> "modules/dw-custom-sheet/templates/partials/tabs/equipment.hbs"}}
+                    {{> "modules/dw-custom-sheet/templates/character/partials/tabs/equipment.hbs"}}
                 </section>
 
             </div>
