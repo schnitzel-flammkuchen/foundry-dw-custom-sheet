@@ -122,7 +122,7 @@
 }
 
 /* Focus effect on the pseudo-background when editing */
-.sheet .cell--bio .editor:focus-within .editor-content::before {
+.dw-custom-sheet .tab.description .cell--bio .editor:focus-within .editor-content::before {
   box-shadow: 0 0 0 2px rgba(123, 94, 43, 0.35);
 }
 
