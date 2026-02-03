@@ -4,12 +4,15 @@ import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
 import { enableSteppers } from "../utils/ui.js";
 
+// Foundry V12 + V13 compatibility of TextEditor
+const { TextEditor } = foundry.applications.ux ?? foundry.applications.ux.TextEditor.implementation
+
 /**
  * Defines the custom character sheet class.
  * @param {*} baseClass - The base class to extend (usually the system's default ActorSheet)
  * @returns A custom character sheet class
  */
-export function defineCharacterCustomClass(baseClass) {
+export function defineCharacterCustom(baseClass) {
   return class CharacterSheet extends baseClass {
 
     /**
@@ -19,7 +22,7 @@ export function defineCharacterCustomClass(baseClass) {
     static get defaultOptions() {
       const options = foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["dungeonworld", "sheet", "actor", "dw-custom-sheet"], // CSS classes for styling
-        template: "modules/dw-custom-sheet/templates/character-sheet.hbs", // Custom Handlebars template
+        template: "modules/dw-custom-sheet/templates/character/character-sheet.hbs", // Custom Handlebars template
         width: 800, // Sheet width
         height: 900, // Sheet height
         tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
@@ -34,7 +37,7 @@ export function defineCharacterCustomClass(baseClass) {
      * Without this, the system would use the default Dungeon World template.
      */
     get template() {
-      return "modules/dw-custom-sheet/templates/character-sheet.hbs";
+      return "modules/dw-custom-sheet/templates/character/character-sheet.hbs";
     }
 
     // Save filter selection (survives re-render)
