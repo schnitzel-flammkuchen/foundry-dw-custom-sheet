@@ -7,6 +7,16 @@
   padding: 0.75rem;
 }
 
+/* Bigger editor (prosemirror) spacement */
+.editor {
+  min-height: var(--min-height);
+}
+.editor.prosemirror .editor-container {
+  line-height: 1.5em;
+  min-height: var(--min-height);
+  max-height: 100%;
+}
+
 /* Spacing between sections */
 .dw-custom-sheet .tab.description .cell--aesthetics {
   margin-bottom: 10px;
@@ -103,7 +113,6 @@
 .dw-custom-sheet .tab.description .cell--bio .editor-content {
   position: relative;
   padding: 1rem 1.25rem;
-  font-family: "Signika", serif;
   font-size: 0.95rem;
   line-height: 1.55;
   z-index: 1;
@@ -123,7 +132,7 @@
 
 /* Focus effect on the pseudo-background when editing */
 .dw-custom-sheet .tab.description .cell--bio .editor:focus-within .editor-content::before {
-  box-shadow: 0 0 0 2px rgba(123, 94, 43, 0.35);
+  box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.35);
 }
 
 /* Drop cap for first paragraph */

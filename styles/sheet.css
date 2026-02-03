@@ -70,11 +70,13 @@
 
 /* Overview cells */
 .dw-custom-sheet .sheet-resources {
-  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(8, minmax(1fr, 2fr)) !important;
 }
-
+.dw-custom-sheet .overview .cell--roll-formula {
+  grid-column: span 3;
+}
 .dw-custom-sheet .overview .cell--roll-mode {
-  grid-column: span 8;
+  grid-column: 1 / -1;
   /* Some space between it and custom resources' dropdown toggle */
   margin-top: -1.2em;
   border-radius: 4px;
