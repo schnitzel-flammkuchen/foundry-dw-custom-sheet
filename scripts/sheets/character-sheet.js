@@ -398,19 +398,26 @@ export function defineCharacterCustomClass(baseClass) {
 
         // Level up indicator
         if (circle.data('levelup') === true || circle.data('levelup') === "true") {
-          progressCircle.style.stroke = "var(--accent-color)";
+          progressCircle.style.stroke = "var(--accent-color)"; // Changes its color to the accent one variable on CSS
           circle.find('.level-input').addClass('level-up-ready');
-        } else {
-          progressCircle.style.stroke = "#fff";
-        }
+        } else progressCircle.style.stroke = "#fff"; // Otherwise is white
       });
 
       // Toggle XP input visibility
       html.find('.edit-xp-icon').on('click', ev => {
         ev.preventDefault();
+
         const wrapper = $(ev.currentTarget).closest('.xp-circle').find('.xp-input-wrapper');
         wrapper.toggleClass('active');
-        if (wrapper.hasClass('active')) wrapper.find('input.xp-input').focus();
+        if (wrapper.hasClass('active')) {
+          const input = wrapper.find('input.xp-input');
+          input.focus();
+
+          // Leaving focus, it hides again
+          input.one('blur', () => {
+            wrapper.removeClass('active');
+          });
+        }
       });
 
       // NOTE: Add custom click handlers or interactive features here
