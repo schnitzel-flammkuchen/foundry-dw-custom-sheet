@@ -70,7 +70,7 @@ Hooks.once("ready", async () => {
     const dwEntry = playerSheets?.["dungeonworld.DwActorSheet"];
     const DwActorSheet = dwEntry?.cls;
     if (!DwActorSheet) {
-        console.error("❌ Dungeon World NPC sheet class not found");
+        console.error("❌ Dungeon World PC sheet class not found");
         return;
     }
 
