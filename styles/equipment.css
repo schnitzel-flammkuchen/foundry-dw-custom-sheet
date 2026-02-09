@@ -54,7 +54,7 @@
 .dw-custom-sheet .tab.equipment .equipment-info {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  /* gap: 8px; */
   margin: 4px 0;
   align-items: center;
 }
@@ -76,7 +76,7 @@
   justify-content: center;
   gap: 10px;
 
-  width: 14em;
+  width: 16.5em;
   font-size: 1em;
   border: 1px solid var(--accent-color);
   border-radius: 4px;
@@ -91,10 +91,10 @@
   text-align: center;
 }
 .dw-custom-sheet .tab.equipment .gold-weight .cell--coin input {
-  width: 4.8em;
+  width: 6em;
 }
 .dw-custom-sheet .tab.equipment .gold-weight .cell--weight input {
-  width: 1.4em;
+  width: 2.5em;
 }
 
 /* --- GOLD WEIGHT (ALIGN TITLES WITH INPUTS) --- */
@@ -162,12 +162,12 @@
 
 /* --- GOLD --- */
 /* (organizes input and buttons on the same line) */
-.dw-custom-sheet .tab.equipment .gold-weight .cell--coin .cell__wrapper {
+/* .dw-custom-sheet .tab.equipment .gold-weight .cell--coin .cell__wrapper {
   position: relative;
-}
+} */
 
 /* Stylizes resource-control (increase and decrease buttons) */
-.dw-custom-sheet .tab.equipment .gold-weight .cell--coin .resource-control {
+/* .dw-custom-sheet .tab.equipment .gold-weight .cell--coin .resource-control {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -186,7 +186,7 @@
 }
 .dw-custom-sheet .tab.equipment .gold-weight .cell--coin .resource-increase {
   right: 5px;
-}
+} */
 
 /* --- EQUIPMENT WORTH VALUE --- */
 
@@ -224,8 +224,8 @@
   visibility: hidden;
   opacity: 0;
   width: max-content;
-  background-color: #222;
-  color: #fff;
+  background-color: var(--background-darker-color);
+  color: var(--text-color);
   text-align: center;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
@@ -237,7 +237,7 @@
   transform: translateX(-50%);
   white-space: nowrap;
   transition: opacity 0.2s ease-in-out;
-  z-index: 1000;
+  z-index: 10;
 }
 
 /* Tooltip arrow pointing to the worth value */

@@ -2,7 +2,7 @@
 /* Grid 2 columns of content */
 .dw-custom-sheet .tab.description .sheet-tab {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.45fr;
   gap: 1rem;
   padding: 0.75rem;
 }
@@ -97,7 +97,7 @@
 /* Editor container */
 .dw-custom-sheet .tab.description .cell--bio .editor {
   min-height: unset;
-  max-height: 51.8em;
+  max-height: 51.80em;
   height: auto;
   border: none;
   background: none;
@@ -112,9 +112,9 @@
 /* Editor content (where the text actually is) */
 .dw-custom-sheet .tab.description .cell--bio .editor-content {
   position: relative;
-  padding: 1rem 1.25rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  padding: 0.5em 1.25em;
+  font-size: 1em;
+  line-height: 1.45;
   z-index: 1;
 
   /* Background effect behind the text */

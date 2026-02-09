@@ -22,6 +22,22 @@
   font-size: 1rem;
 }
 
+/* Placeholders color (compatibility to every browser) */
+.dw-custom-sheet input::placeholder {
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+.dw-custom-sheet input::-webkit-input-placeholder {
+  color: var(--input-placeholder);
+}
+.dw-custom-sheet input::-moz-placeholder {
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+.dw-custom-sheet input:-ms-input-placeholder {
+  color: var(--input-placeholder);
+}
+
 /* Light mode */
 /* [data-theme="light"] */
 body.theme-light .dw-custom-sheet {
@@ -48,6 +64,9 @@ body.theme-light .dw-custom-sheet {
   
   /* Titles */
   --label-color: #fff;
+
+  /* Inputs */
+  --input-placeholder: #8f8f8fb4;
   
   /* Icons */
   --icon-color: #222;
@@ -81,6 +100,9 @@ body.theme-dark .dw-custom-sheet {
   
   /* Titles */
   --label-color: #fff;
+
+  /* Inputs */
+  --input-placeholder: #8f8f8fb4;
   
   /* Icons */
   --icon-color: #222;
