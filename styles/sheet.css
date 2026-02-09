@@ -148,3 +148,10 @@
   font-size: 1.5em;
   text-align: center;
 }
+
+/* Bonds */
+.dw-custom-sheet.item-form .cell.cell--bond {
+  margin: 2em 0;
+  font-size: 1.75em;
+  height: calc(100% - 20px);
+}
