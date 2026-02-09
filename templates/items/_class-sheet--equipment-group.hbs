@@ -1,0 +1,26 @@
+<div class="cell resource equipment-group" data-index="{{group}}">
+  <div class="cell__title">
+    {{!-- Editable label for the equipment group --}}
+    <input type="text" name="system.equipment.{{group}}.label" placeholder="{{localize "DW.ClassEquipmentGroupPlaceholder"}}" value="">
+
+    {{!-- Mode selection: radio or checkbox --}}
+    <select name="system.equipment.{{group}}.mode">
+      <option value="radio">{{localize "DW.ChooseOne"}}</option>
+      <option value="checkbox">{{localize "DW.ChooseAny"}}</option>
+    </select>
+
+    {{!-- Delete button for the group --}}
+    <div class="class-controls">
+      <a class="class-control" data-action="delete" data-type="equipment-groups" data-index="{{group}}" title="{{localize "Del"}}">
+        <i class="fas fa-trash"></i>
+      </a>
+    </div>
+  </div>
+
+  {{!-- Drop area for items in this group --}}
+  <div class="item-container drop-area" data-group="{{group}}">
+    <span>
+      {{localize "DW.ClassEquipmentDropText"}}
+    </span>
+  </div>
+</div>
