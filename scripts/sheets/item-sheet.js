@@ -95,22 +95,61 @@ export function defineClassItemCustom(classItemClass) {
       return `${path}/${this.item.type}-sheet.hbs`;
     }
 
+    /** @override */
+    async _onClickClassControl(event) {
+      // Intercept only the creation of equipment-groups
+      const a = event.currentTarget;
+      if (a.dataset.action === "create" && a.dataset.type === "equipment-groups") {
+        event.preventDefault();
+
+        const field_values = this.object.system.equipment;
+        const nk = Object.keys(field_values).length + 1;
+
+        // Render the equipment group using the custom module template
+        const path = "modules/dw-custom-sheet/templates/items";
+        const template = `${path}/_class-sheet--equipment-group.hbs`;
+        const templateData = { group: nk };
+        let newKey = document.createElement('div');
+        newKey.innerHTML = await renderTemplate(template, templateData);
+        newKey = newKey.children[0];
+
+        // Prepare the system update
+        let update = { system: foundry.utils.duplicate(this.object.system) };
+        update.system.equipment[nk] = {
+          label: '',
+          mode: 'radio',
+          items: [],
+          objects: []
+        };
+
+        // Apply update and append the new element
+        await this.object.update(update);
+        this.form.appendChild(newKey);
+        await this._onSubmit(event);
+
+        return; // Exit early to avoid calling the original method
+      }
+
+      // Delegate all other clicks to the original implementation
+      return super._onClickClassControl(event);
+    }
+
     /**
      * Prepare the data for the Handlebars template.
      * Returns all system data, items, and flags for rendering.
      * @param {*} options - Options passed from Foundry VTT
      * @returns {Object} Context object for the template
      */
-    async getData(options) {
-      const context = await super.getData(options);
+    // async getData(options) {
+    //   const context = await super.getData(options);
 
-      /* --- USEFUL ALIASES FOR TEMPLATE --- */
+    //   /* --- USEFUL ALIASES FOR TEMPLATE --- */
 
-      context.hasEquipmentGroups = context.system?.equipment
-        && Object.keys(context.system.equipment).length > 0;
+    //   context.hasEquipmentGroups = context.system?.equipment
+    //     && Object.keys(context.system.equipment).length > 0;
 
-      return context;
-    }
+    //   return context;
+    // }
 
     /** @override */
     activateListeners(html) {
