@@ -106,7 +106,7 @@ Hooks.once("ready", async () => {
     ActorsCollection.registerSheet("dungeonworld", CustomCharacterSheet, {
         types: ["character"],
         makeDefault: true,
-        label: game.i18n.localize("TYPES.Actor.Character")
+        label: game.i18n.localize("TYPES.Actor.character")
     });
 
     console.log("✅ DW Custom Character Sheet | Ready");
@@ -137,7 +137,7 @@ Hooks.once("ready", async () => {
     // Register custom item sheet (base – all items)
     ItemsCollection.registerSheet("dungeonworld", CustomItemSheet, {
         makeDefault: true,
-        label: game.i18n.localize("TYPES.Item")
+        label: game.i18n.localize("TYPES.Item.equipment")
     });
     
     // Register custom item sheet (for class - equipment-group)
