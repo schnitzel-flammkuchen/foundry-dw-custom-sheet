@@ -26,7 +26,8 @@ export function defineItemCustom(itemClass) {
     /** @override */
     get template() {
       // One template per item type, same as original system
-      return `modules/dw-custom-sheet/templates/items/${this.item.type}-sheet.hbs`;
+      const path = "modules/dw-custom-sheet/templates/items";
+      return `${path}/${this.item.type}-sheet.hbs`;
     }
 
     /**
@@ -90,7 +91,8 @@ export function defineClassItemCustom(classItemClass) {
 
     /** @override */
     get template() {
-      return "modules/dw-custom-sheet/templates/items/class-sheet--equipment-group.hbs";
+      const path = "modules/dw-custom-sheet/templates/items";
+      return `${path}/${this.item.type}-sheet.hbs`;
     }
 
     /**

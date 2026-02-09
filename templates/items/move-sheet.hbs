@@ -21,21 +21,25 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            <div class="resource">
-              <label>{{localize "DW.Description"}}</label>
+            <div class="resource--desc">
+              <label>
+                {{localize "DW.Description"}}
+              </label>
               {{editor system.descriptionEnriched target="system.description" button=true owner=owner editable=editable engine="prosemirror"}}
             </div>
 
             {{#if system.moveResults}}
               {{#each system.moveResults as |result key|}}
-                <div class="resource">
-                  <label>{{localize (concat 'DW.' key)}}</label>
+                <div class="resource--desc">
+                  <label>
+                    {{localize (concat 'DW.' key)}}
+                  </label>
                   {{editor result.enriched target=result.key button=true owner=../owner editable=../editable engine="prosemirror"}}
                 </div>
               {{/each}}
             {{/if}}
 
-            <div class="resource">
+            <div class="resource--desc">
               <label>{{localize "DW.Choices"}}</label>
               {{editor system.choicesEnriched target="system.choices" button=true owner=owner editable=editable engine="prosemirror"}}
             </div>
@@ -43,55 +47,68 @@
 
         {{!-- Details Tab --}}
         <div class="tab" data-group="primary" data-tab="details">
-          <div class="resource">
-            <label>{{localize "DW.Roll"}}</label>
-            <select name="system.rollType" data-dtype="String">
-              {{selectOptions selects.rollTypes selected=system.rollType blank='—' localize=true}}
-            </select>
-          </div>
+          <div class="grid {{#if (eq system.rollType 'FORMULA')}}grid-3col{{else}}grid-2col{{/if}}">
 
-          {{#if (eq system.rollType 'FORMULA')}}
-            <div class="resource">
-              <label>{{localize "DW.RollFormula"}}</label>
-              <input type="text" name="system.rollFormula" value="{{system.rollFormula}}" placeholder="ex: d6 + d8 + @str.mod" data-dtype="String"/>
+            {{!-- Roll Type --}}
+            <div class="resource--item">
+              <label>{{localize "DW.Roll"}}</label>
+              <select name="system.rollType" data-dtype="String">
+                {{selectOptions selects.rollTypes selected=system.rollType blank='—' localize=true}}
+              </select>
             </div>
-          {{/if}}
 
-          <div class="resource">
-            <label>{{localize "DW.Modifier"}}</label>
-            <input type="text" name="system.rollMod" value="{{system.rollMod}}" data-dtype="Number"/>
+            {{!-- Custom Formula - if selected (rollType) --}}
+            {{#if (eq system.rollType 'FORMULA')}}
+              <div class="resource--item">
+                <label>{{localize "DW.RollFormula"}}</label>
+                <input type="text" name="system.rollFormula" value="{{system.rollFormula}}" placeholder="ex: d6 + d8 + @str.mod" data-dtype="String"/>
+              </div>
+            {{/if}}
+
+            {{!-- Modifier --}}
+            <div class="resource--item">
+              <label>{{localize "DW.Modifier"}}</label>
+              <input type="text" name="system.rollMod" value="{{system.rollMod}}" data-dtype="Number"/>
+            </div>
+
           </div>
+          <div class="grid grid-2col">
+            {{!-- Class --}}
+            <div class="resource--item">
+              <label>{{localize "DW.Class"}}</label>
+              <select name="system.class">
+                {{selectOptions selects.classes selected=system.class blank='—' localize=true}}
+              </select>
+            </div>
 
-          <div class="resource">
-            <label>{{localize "DW.Class"}}</label>
-            <select name="system.class">
-              {{selectOptions selects.classes selected=system.class blank='—' localize=true}}
-            </select>
+            {{!-- Move Type --}}
+            <div class="resource--item">
+              <label>{{localize "DW.MoveType"}}</label>
+              <select name="system.moveType" data-dtype="String">
+                {{selectOptions selects.moveTypes selected=system.moveType blank="—" localize=true}}
+              </select>
+            </div>
           </div>
+          <div class="grid grid-2col">
+            {{!-- Level Required --}}
+            <div class="resource--item">
+              <label>{{localize "DW.RequiresLevel"}}</label>
+              <input type="text" name="system.requiresLevel" value="{{system.requiresLevel}}" data-dtype="Number"/>
+            </div>
 
-          <div class="resource">
-            <label>{{localize "DW.MoveType"}}</label>
-            <select name="system.moveType" data-dtype="String">
-              {{selectOptions selects.moveTypes selected=system.moveType blank="—" localize=true}}
-            </select>
+            {{!-- Move Required --}}
+            <div class="resource--item">
+              <label>{{localize "DW.RequiresMove"}}</label>
+              <input type="text" name="system.requiresMove" value="{{system.requiresMove}}" data-dtype="String"/>
+            </div>
+
           </div>
-
-          <div class="resource">
-            <label>{{localize "DW.RequiresLevel"}}</label>
-            <input type="text" name="system.requiresLevel" value="{{system.requiresLevel}}" data-dtype="Number"/>
-          </div>
-
-          <div class="resource">
-            <label>{{localize "DW.RequiresMove"}}</label>
-            <input type="text" name="system.requiresMove" value="{{system.requiresMove}}" data-dtype="String"/>
-          </div>
-
-          <div class="resource">
+          {{!-- Move Group --}}
+          <div class="resource--item">
             <label>{{localize "DW.MoveGroup"}}</label>
             <input type="text" name="system.moveGroup" value="{{system.moveGroup}}" placeholder="ex: barbarian-armor" data-dtype="String"/>
             <span class="help-text">{{localize "DW.MoveGroupHelp"}}</span>
           </div>
-
         </div>
     </section>
   </div>

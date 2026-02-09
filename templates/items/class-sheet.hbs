@@ -32,7 +32,7 @@
           <div class="cell resource">
             <div class="cell__title">
               <label>{{localizeOverride "DW.Races" "racePlural"}}</label>
-              <a class="class-control" data-action="create" data-type="races" title="{{localizeFallback "Add"}}">
+              <a class="class-control" data-action="create" data-type="races" title="{{localize "Add"}}">
                 <i class="fas fa-plus"></i>
               </a>
             </div>
@@ -41,7 +41,7 @@
               <li class="item race" data-index="{{id}}">
                 <div class="flexrow">
                   <input type="text" class="input input--title" name="system.races.{{id}}.label" value="{{race.label}}" data-dtype="string"/>
-                  <a class="class-control" data-action="delete" data-type="races" title="{{localizeFallback "Del"}}">
+                  <a class="class-control" data-action="delete" data-type="races" title="{{localize "Del"}}">
                     <i class="fas fa-trash"></i>
                   </a>
                 </div>
@@ -128,7 +128,7 @@
                     {{selectOptions ../selects.equipmentGroupModes selected=equipmentGroup.mode localize=true}}
                   </select>
                   <div class="class-controls">
-                    <a class="class-control" data-action="delete" data-type="equipment-groups" data-index="{{groupId}}" title="{{localizeFallback "Del"}}">
+                    <a class="class-control" data-action="delete" data-type="equipment-groups" data-index="{{groupId}}" title="{{localize "Del"}}">
                       <i class="fas fa-trash"></i>
                     </a>
                   </div>
@@ -139,7 +139,7 @@
                     {{#each equipmentGroup.objects as |item key|}}
                       <li class="tag" data-item-id="{{item.id}}">
                         {{item.name}}
-                        <span class="remove-tag delete-equipment" role="button" data-action="delete" title="{{localizeFallback "Del"}}"></span>
+                        <span class="remove-tag delete-equipment" role="button" data-action="delete" title="{{localize "Del"}}"></span>
                       </li>
                     {{/each}}
                     </ul>

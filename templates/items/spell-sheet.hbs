@@ -25,24 +25,24 @@
 
         {{!-- Details Tab --}}
         <div class="tab" data-group="primary" data-tab="details">
-          <div class="resource">
+          <div class="resource--item">
             <label>{{localize "DW.Class"}}</label>
             <select name="system.class">
               {{selectOptions selects.classes selected=system.class blank='—' localize=true}}
             </select>
           </div>
 
-          <div class="resource">
+          <div class="resource--item">
             <label>{{localize "DW.SpellLevel"}}</label>
               <input type="text" name="system.spellLevel" value="{{system.spellLevel}}" data-dtype="Number"/>
           </div>
 
-          <div class="resource">
+          <div class="resource--item">
             <label>{{localize "DW.SpellPrepared"}}</label>
             <input type="checkbox" name="system.prepared" {{checked system.prepared}}/>
           </div>
 
-          <div class="resource">
+          <div class="resource--item">
             <label>{{localize "DW.SpellRollFormula"}}</label>
               <input type="text" name="system.rollFormula" value="{{system.rollFormula}}" placeholder="e.g. 1d4+3" data-dtype="String"/>
           </div>
