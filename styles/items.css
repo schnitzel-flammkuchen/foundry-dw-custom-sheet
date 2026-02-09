@@ -9,23 +9,54 @@
 
 /* --- MAGICAL ITEMS IN THE EQUIPMENT TAB OF THE CHARACTER SHEET --- */
 
-/* Coloring of magical items */
+/* Avatar */
 .dw-custom-sheet .tab.equipment .item.magic .item-avatar {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .dw-custom-sheet .tab.equipment .item.magic .item-avatar::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -2px;
   pointer-events: none;
 
+  /* Base brightness (always visible)  */
   box-shadow:
-    inset 0 0 4px var(--effect-init),
-    inset 0 0 8px var(--effect-end);
+    inset 0 0 6px var(--effect-init),
+    inset 0 0 12px var(--effect-end),
+    0 0 8px var(--effect-init);
 
-  /* Radial white effect */
-  /* mask-image: radial-gradient(white 80%, transparent 100%); */
+  background: linear-gradient(
+    120deg,
+    #00000000 30%,
+    rgb(255 255 255 / 25%),
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  background-position: -100% 0;
+
+  /* Animation already defined, but paused */
+  animation: avatar-shimmer 1s linear infinite;
+  animation-play-state: paused;
+
+  /* Opacity transition control */
+  opacity: 0.5;
+  transition: opacity 1s ease;
+}
+
+/* Label :hover activates animation */
+.dw-custom-sheet .tab.equipment
+.item.magic:has(.item-label:hover)
+.item-avatar::after {
+  animation-play-state: running; /* Activates the continuous cycle  */
+  opacity: 0.8; /* Optional: increases brightness */
+}
+
+/* Continuous animation */
+@keyframes avatar-shimmer {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
 }
