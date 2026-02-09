@@ -3,7 +3,8 @@
         "Equipment": "Inventar",
         "Placeholder": {
             "Name": "Name",
-            "Class": "Klasse"
+            "Class": "Klasse",
+            "Tags": "Schreibe einige Tags..."
         },
         "Equip": "Ausrüsten",
         "Edit": "Bearbeiten",

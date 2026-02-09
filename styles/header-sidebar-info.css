@@ -1,23 +1,5 @@
 /* HEADER CUSTOM STYLES */
 
-/* Header container */
-.dw-custom-sheet .sheet-header {
-  display: flex;
-  justify-content: center;
-  padding: 1rem 1.5rem;
-  background-color: var(--background-color);
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  margin-bottom: 1rem;
-}
-
-/* Fields container inside header */
-.dw-custom-sheet .sheet-header__fields {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
-}
-
 /* Name input styling */
 .dw-custom-sheet .character-name input.input--title {
   padding: 0.5rem 1rem;

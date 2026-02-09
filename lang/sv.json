@@ -3,7 +3,8 @@
         "Equipment": "Inventarium",
         "Placeholder": {
             "Name": "Namn",
-            "Class": "Klass"
+            "Class": "Klass",
+            "Tags": "Skriv några taggar..."
         },
         "Equip": "Utrusta",
         "Edit": "Redigera",

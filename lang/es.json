@@ -3,7 +3,8 @@
         "Equipment": "Inventario",
         "Placeholder": {
             "Name": "Nombre",
-            "Class": "Clase"
+            "Class": "Clase",
+            "Tags": "Escribe algunas etiquetas..."
         },
         "Equip": "Equipar",
         "Edit": "Editar",

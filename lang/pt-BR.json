@@ -27,7 +27,8 @@
 
         "Placeholder": {
             "Name": "Nome",
-            "Class": "Classe"
+            "Class": "Classe",
+            "Tags": "Digite alguns rótulos..."
         },
 
 
@@ -466,6 +467,9 @@
         "Notifications": {
             "NotLinkedToken": "\"{item}\" não pode sofrer rearranjos enquanto o token não esteja ligado a um ator.",
             "EmptyField": "O campo \"{field}\" não pode ser indefinido!"
+        },
+        "Ask": {
+            "ClassGroup": "{aspect} da personagem?"
         }
     }
 }

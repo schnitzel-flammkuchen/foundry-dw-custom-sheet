@@ -3,7 +3,8 @@
         "Equipment": "Inventory",
         "Placeholder": {
             "Name": "Name",
-            "Class": "Class"
+            "Class": "Class",
+            "Tags": "Write some tags..."
         },
         "Equip": "Equip Item",
         "Edit": "Edit Item",
@@ -32,6 +33,9 @@
         "Notifications": {
             "NotLinkedToken": "\"{item}\" cannot be rearranged while this token is not linked to an actor.",
             "EmptyField": "The \"{field}\" field cannot be empty!"
+        },
+        "Ask": {
+            "ClassGroup": "What's your {aspect}?"
         }
     }   
 }
