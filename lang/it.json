@@ -29,6 +29,10 @@
         "Custom": {
             "DefaultResource": "Risorsa Personalizzata",
             "SearchItems": "Cerca oggetti...",
+            "MoveTypes": {
+                "name": "Tipi di mossa personalizzati",
+                "hint": "Aggiungi tipi di movimento personalizzati come JSON. Esempio: {\"adventure\": \"Mosse d'Avventura\"}"
+            },
             "Moves": {
                 "Adventure": "Mosse d'Avventura",
                 "Travel": "Mosse di Viaggio",

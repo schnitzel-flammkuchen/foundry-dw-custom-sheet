@@ -29,6 +29,10 @@
         "Custom": {
             "DefaultResource": "Ressource Anpassbare",
             "SearchItems": "Suchbegriffe...",
+            "MoveTypes": {
+                "name": "Benutzerdefinierte Bewegungsarten",
+                "hint": "Füge benutzerdefinierte bewegungsarten als JSON hinzu. Beispiel: {\"adventure\": \"Abenteuermoves\"}"
+            },
             "Moves": {
                 "Adventure": "Abenteuermoves",
                 "Travel": "Reisemoves",

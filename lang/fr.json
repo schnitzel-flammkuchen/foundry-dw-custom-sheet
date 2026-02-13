@@ -29,6 +29,10 @@
         "Custom": {
             "DefaultResource": "Ressource Personnalisée",
             "SearchItems": "Rechercher des objets...",
+            "MoveTypes": {
+                "name": "Types de mouvements personnalisés",
+                "hint": "Ajoutez des types de mouvements personnalisés au format JSON. Exemple : {\"adventure\": \"Mouvements d'aventure\"}"
+            },
             "Moves": {
                 "Adventure": "Mouvements d’Aventure",
                 "Travel": "Mouvements de Voyage",

@@ -29,6 +29,10 @@
         "Custom": {
             "DefaultResource": "Anpassad resurs",
             "SearchItems": "Sök föremål...",
+            "MoveTypes": {
+                "name": "Anpassade rörelsetyper",
+                "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: {\"adventure\": \"Äventyrsrörelser\"}"
+            },
             "Moves": {
                 "Adventure": "Äventyrsrörelser",
                 "Travel": "Reserörelser",

@@ -5,8 +5,8 @@
 export function registerDWCSSettings() {
 
     game.settings.register("dw-custom-sheet", "customMoveTypes", {
-        name: "Custom Move Types",
-        hint: "Add custom moveTypes as JSON. Example: {\"adventure\": \"Adventure Moves\"}",
+        name: "DWCS.Custom.MoveTypes.name",
+        hint: "DWCS.Custom.MoveTypes.hint",
         scope: "world",
         config: true,
         type: String,
