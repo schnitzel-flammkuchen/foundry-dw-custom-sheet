@@ -462,7 +462,17 @@
         },
         "Custom": {
             "DefaultResource": "Recurso Qualquer",
-            "SearchItems": "Procurar..."
+            "SearchItems": "Procurar...",
+            "Moves": {
+                "Adventure": "Movimentos de Aventura",
+                "Travel": "Movimentos de Viagem",
+                "Session": "Movimentos de Sessão"
+            },
+            "Move": {
+                "Adventure": "Movimento de Aventura",
+                "Travel": "Movimento de Viagem",
+                "Session": "Movimento de Sessão"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" não pode sofrer rearranjos enquanto o token não esteja ligado a um ator.",

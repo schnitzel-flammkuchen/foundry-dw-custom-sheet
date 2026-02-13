@@ -28,7 +28,17 @@
         },
         "Custom": {
             "DefaultResource": "Recurso Personalizado",
-            "SearchItems": "Buscar objetos..."
+            "SearchItems": "Buscar objetos...",
+            "Moves": {
+                "Adventure": "Movimientos de Aventura",
+                "Travel": "Movimientos de Viaje",
+                "Session": "Movimientos de Sesión"
+            },
+            "Move": {
+                "Adventure": "Movimiento de Aventura",
+                "Travel": "Movimiento de Viaje",
+                "Session": "Movimiento de Sesión"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" no se puede reorganizar mientras este token no esté vinculado a un actor.",

@@ -28,7 +28,17 @@
         },
         "Custom": {
             "DefaultResource": "Ressource Personnalisée",
-            "SearchItems": "Rechercher des objets..."
+            "SearchItems": "Rechercher des objets...",
+            "Moves": {
+                "Adventure": "Mouvements d’Aventure",
+                "Travel": "Mouvements de Voyage",
+                "Session": "Mouvements de Session"
+            },
+            "Move": {
+                "Adventure": "Mouvement d’Aventure",
+                "Travel": "Mouvement de Voyage",
+                "Session": "Mouvement de Session"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" ne peut pas être réarrangé tant que ce jeton n'est pas lié à un acteur.",

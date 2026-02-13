@@ -28,7 +28,17 @@
         },
         "Custom": {
             "DefaultResource": "Custom Resource",
-            "SearchItems": "Search items..."
+            "SearchItems": "Search items...",
+            "Moves": {
+                "Adventure": "Adventure Moves",
+                "Travel": "Travel Moves",
+                "Session": "Session Moves"
+            },
+            "Move": {
+                "Adventure": "Adventure Move",
+                "Travel": "Travel Move",
+                "Session": "Session Move"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" cannot be rearranged while this token is not linked to an actor.",

@@ -28,7 +28,17 @@
         },
         "Custom": {
             "DefaultResource": "Ressource Anpassbare",
-            "SearchItems": "Suchbegriffe..."
+            "SearchItems": "Suchbegriffe...",
+            "Moves": {
+                "Adventure": "Abenteuermoves",
+                "Travel": "Reisemoves",
+                "Session": "Sitzungsmoves"
+            },
+            "Move": {
+                "Adventure": "Abenteuermove",
+                "Travel": "Reisemove",
+                "Session": "Sitzungsmove"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" kann nicht verschoben werden, solange dieser Token nicht mit einem Schauspieler verknüpft ist.",

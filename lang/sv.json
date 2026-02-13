@@ -28,7 +28,17 @@
         },
         "Custom": {
             "DefaultResource": "Anpassad resurs",
-            "SearchItems": "Sök föremål..."
+            "SearchItems": "Sök föremål...",
+            "Moves": {
+                "Adventure": "Äventyrsrörelser",
+                "Travel": "Reserörelser",
+                "Session": "Sessionsrörelser"
+            },
+            "Move": {
+                "Adventure": "Äventyrsrörelse",
+                "Travel": "Reserörelse",
+                "Session": "Sessionsrörelse"
+            }
         },
         "Notifications": {
             "NotLinkedToken": "\"{item}\" kan inte omplaceras medan denna token inte är kopplad till en aktör.",
