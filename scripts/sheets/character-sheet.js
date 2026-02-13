@@ -257,46 +257,6 @@ export function defineCharacterCustom(baseClass) {
     }
 
     /**
-     * Organizes the actor's moves into predefined and custom categories.
-     * Extends the original _prepareCharacterItems to include Adventure, Travel, and Session moves.
-     * Does not override the default behavior for basic, starting, advanced, or special moves.
-     * @async
-     * @param {Object} sheetData - The data object prepared for the character sheet.
-     * @returns {Promise<void>}
-     */
-    async _prepareCharacterItems(sheetData) {
-      // Call the base method first to populate standard move categories
-      await super._prepareCharacterItems(sheetData);
-
-      // Collect all moves from the actor
-      const allMoves = sheetData.actor.items.filter(i => i.type === "move");
-
-      // Initialize containers for custom move categories
-      sheetData.adventureMoves = [];
-      sheetData.travelMoves = [];
-      sheetData.sessionMoves = [];
-
-      // Iterate all moves and distribute them into custom categories
-      for (const move of allMoves) {
-        switch (move.system.moveType) {
-          case "adventure":
-            sheetData.adventureMoves.push(move);
-            break;
-
-          case "travel":
-            sheetData.travelMoves.push(move);
-            break;
-
-          case "session":
-            sheetData.sessionMoves.push(move);
-            break;
-
-          // All other move types are handled by the base class
-        }
-      }
-    }
-
-    /**
      * Ensures that resource1 exists and has a proper structure.
      * Does not override label if user has edited it.
      * @async

@@ -146,6 +146,29 @@ Hooks.on("createActor", async (actor) => {
             max: 0
         }
     });
+
+    // Wait for the actor to fully prepare, ensuring DW default moves are loaded
+    await actor.prepareData();
+
+    // Collect the names of all existing moves on the actor to avoid duplicates
+    const existingMoveNames = new Set(
+        actor.items.filter(i => i.type === "move").map(i => i.name)
+    );
+
+    // Get all global campaign moves of the custom categories
+    const worldMoves = game.items.filter(i =>
+        i.type === "move" &&
+        ["adventure", "travel", "session"].includes(i.system.moveType)
+    );
+
+    // Filter moves that are not already on the actor
+    const movesToAdd = worldMoves.filter(m => !existingMoveNames.has(m.name)).map(m => m.toObject());
+
+    // Add the missing custom moves to the actor
+    if (movesToAdd.length > 0) {
+        await actor.createEmbeddedDocuments("Item", movesToAdd);
+        console.log(`Added ${movesToAdd.length} global moves to actor ${actor.name}`);
+    }
 });
 
 /**
