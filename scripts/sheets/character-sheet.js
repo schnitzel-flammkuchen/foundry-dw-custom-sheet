@@ -172,7 +172,7 @@ export function defineCharacterCustom(baseClass) {
 
         return {
           key: `${type}Moves`,
-          title: label,
+          title: label.plural,
           moveType: type,
           name: `${type}-moves`
         };
@@ -258,7 +258,6 @@ export function defineCharacterCustom(baseClass) {
           ...cat,
           moves
         };
-
       }));
 
       /* --- CUSTOM RESOURCES --- */

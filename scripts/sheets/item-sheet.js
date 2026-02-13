@@ -62,9 +62,15 @@ export function defineItemCustom(itemClass) {
 
       // INTERCEPT: add new moveTypes
       if (this.item.type === "move") {
+        const customTypes = getCustomMoveTypes();
+        const singularTypes = Object.fromEntries(
+          Object.entries(customTypes).map(
+            ([type, data]) => [type, data.singular]
+          )
+        );
         context.selects.moveTypes = {
           ...context.selects.moveTypes,
-          ...getCustomMoveTypes()
+          ...singularTypes
         };
       }
 

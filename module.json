@@ -1,7 +1,7 @@
 {
   "id": "dw-custom-sheet",
   "title": "Dungeon World Custom Sheet",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "url": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet",
   "manifest": "https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/main/module.json",
   "download": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.zip",

@@ -31,7 +31,7 @@
             "SearchItems": "Buscar objetos...",
             "MoveTypes": {
                 "name": "Tipos de movimiento personalizados",
-                "hint": "Agrega tipos de movimiento personalizados como JSON. Ejemplo: {\"adventure\": \"Movimientos de Aventura\"}"
+                "hint": "Agrega tipos de movimiento personalizados como JSON. Ejemplo: { \"adventure\": {\"singular\": \"Movimiento de Aventura\", \"plural\": \"Movimientos de Aventura\" }, ... }"
             },
             "Moves": {
                 "Adventure": "Movimientos de Aventura",

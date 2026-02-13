@@ -31,7 +31,7 @@
             "SearchItems": "Suchbegriffe...",
             "MoveTypes": {
                 "name": "Benutzerdefinierte Bewegungsarten",
-                "hint": "Füge benutzerdefinierte bewegungsarten als JSON hinzu. Beispiel: {\"adventure\": \"Abenteuermoves\"}"
+                "hint": "Füge benutzerdefinierte Bewegungsarten als JSON hinzu. Beispiel: { \"adventure\": {\"singular\": \"Abenteuermove\", \"plural\": \"Abenteuermoves\" }, ... }"
             },
             "Moves": {
                 "Adventure": "Abenteuermoves",

@@ -31,7 +31,7 @@
             "SearchItems": "Sök föremål...",
             "MoveTypes": {
                 "name": "Anpassade rörelsetyper",
-                "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: {\"adventure\": \"Äventyrsrörelser\"}"
+                "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: { \"adventure\": {\"singular\": \"Äventyrsrörelse\", \"plural\": \"Äventyrsrörelser\" }, ... }"
             },
             "Moves": {
                 "Adventure": "Äventyrsrörelser",

@@ -31,7 +31,7 @@
             "SearchItems": "Search items...",
             "MoveTypes": {
                 "name": "Custom Move Types",
-                "hint": "Add custom moveTypes as JSON. Example: {\"adventure\": \"Adventure Moves\"}"
+                "hint": "Add custom move types as JSON. Example: { \"adventure\": {\"singular\": \"Adventure Move\", \"plural\": \"Adventure Moves\" }, ... }"
             },
             "Moves": {
                 "Adventure": "Adventure Moves",
