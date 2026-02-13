@@ -159,7 +159,7 @@ export function defineCharacterCustom(baseClass) {
 
       /* --- BUILD MOVE CATEGORIES DYNAMICALLY --- */
       // Base categories (already defined in config.js)
-      const baseCategories = MOVE_META;
+      const baseCategories = MOVE_META.filter(c => c.moveType); // Basic/starting/advanced/special
 
       // Custom move types from settings
       const customTypes = getCustomMoveTypes();
@@ -179,10 +179,14 @@ export function defineCharacterCustom(baseClass) {
 
       }).filter(Boolean);
 
+      // "Other moves" category (fallback)
+      const otherCategory = MOVE_META.find(c => !c.moveType) || { key: "moves", title: "DW.MovesOther", name: "other-moves" };
+
       // Final merged categories
       context.moveMeta = [
         ...baseCategories,
-        ...customCategories
+        ...customCategories,
+        otherCategory
       ];
 
       // Collect all defined moveTypes dynamically
