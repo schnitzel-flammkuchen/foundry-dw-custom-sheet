@@ -3,6 +3,7 @@
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
 import { enableSteppers } from "../utils/ui.js";
+import { getCustomMoveTypes } from "../settings.js";
 
 // Foundry V12 + V13 compatibility of TextEditor
 const { TextEditor } = foundry.applications.ux ?? foundry.applications.ux.TextEditor.implementation
@@ -156,22 +157,56 @@ export function defineCharacterCustom(baseClass) {
       // Keep track of processed move IDs to avoid duplicates
       const processedMoveIds = new Set();
 
-      // Define the categories of moves with metadata for each
-      context.moveMeta = MOVE_META;
+      /* --- BUILD MOVE CATEGORIES DYNAMICALLY --- */
+      // Base categories (already defined in config.js)
+      const baseCategories = MOVE_META;
+
+      // Custom move types from settings
+      const customTypes = getCustomMoveTypes();
+
+      // Build custom categories dynamically (avoid duplicates)
+      const customCategories = Object.entries(customTypes).map(([type, label]) => {
+
+        const alreadyExists = MOVE_META.some(m => m.moveType === type);
+        if (alreadyExists) return null;
+
+        return {
+          key: `${type}Moves`,
+          title: label,
+          moveType: type,
+          name: `${type}-moves`
+        };
+
+      }).filter(Boolean);
+
+      // Final merged categories
+      context.moveMeta = [
+        ...baseCategories,
+        ...customCategories
+      ];
+
+      // Collect all defined moveTypes dynamically
+      const definedMoveTypes = context.moveMeta
+        .map(c => c.moveType)
+        .filter(Boolean);
 
       // Filters the full move list by each category's type to be used on the template
       context.moveCategories = await Promise.all(context.moveMeta.map(async cat => {
+
         const moves = await Promise.all(allMoves.filter(m => {
+
           // Skip moves already processed
           if (processedMoveIds.has(m.id)) return false;
 
-          // If the category has no moveType, include all moves that are not basic/starting/advanced/special
+          // If the category has no moveType, include all moves that are not defined elsewhere
           const belongsToCategory = !cat.moveType
-            ? !["basic", "starting", "advanced", "special"].includes(m.system.moveType)
+            ? !definedMoveTypes.includes(m.system.moveType)
             : m.system.moveType === cat.moveType;
 
           return belongsToCategory;
+
         }).map(async m => {
+
           // Mark move as processed
           processedMoveIds.add(m.id);
 
@@ -205,12 +240,17 @@ export function defineCharacterCustom(baseClass) {
               ? [moveObj.system.choices]
               : (moveObj.system.results?.choices || []);
           }
-          moveObj.system.choicesEnriched = moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
+          moveObj.system.choicesEnriched =
+            moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
 
           /* --- DESCRIPTION --- */
-          moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
+          moveObj.system.descriptionEnriched =
+            moveObj.system.descriptionEnriched ||
+            moveObj.system.description ||
+            "";
 
           return moveObj;
+
         }));
 
         // Return the category object with the filtered + processed moves
@@ -218,6 +258,7 @@ export function defineCharacterCustom(baseClass) {
           ...cat,
           moves
         };
+
       }));
 
       /* --- CUSTOM RESOURCES --- */

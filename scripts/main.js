@@ -4,6 +4,7 @@ import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
 import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
+import { registerDWCSSettings, getCustomMoveTypes } from "./settings.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -50,6 +51,9 @@ Hooks.once("init", async () => {
 
     registerHandlebarsHelpers();
     console.log("✅ DW Custom Sheet | Handlebars helpers registered");
+    
+    registerDWCSSettings();
+    console.log("✅ DW Custom Sheet | Settings registered");
 });
 
 /**
@@ -132,6 +136,9 @@ Hooks.once("ready", async () => {
  * Hook that runs RIGHT AFTER an Actor is created.
  * This works directly on the raw actor data, before any sheet or UI exists.
  * Ensures 'resource1' exists with a localized label, value 0, and max 0.
+ * Additionally, it'll add any "custom" moves
+ * (adventure, travel, session in specific)
+ * to the newly created character.
  */
 Hooks.on("createActor", async (actor) => {
     if (actor.type !== "character") return;
@@ -158,7 +165,7 @@ Hooks.on("createActor", async (actor) => {
     // Get all global campaign moves of the custom categories
     const worldMoves = game.items.filter(i =>
         i.type === "move" &&
-        ["adventure", "travel", "session"].includes(i.system.moveType)
+        Object.keys(getCustomMoveTypes()).includes(i.system.moveType)
     );
 
     // Filter moves that are not already on the actor

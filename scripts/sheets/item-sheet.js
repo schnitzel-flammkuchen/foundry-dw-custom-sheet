@@ -1,5 +1,7 @@
 // scripts/sheets/item-sheet.js
 
+import { getCustomMoveTypes } from "../settings.js";
+
 /**
  * Defines the custom item sheet class.
  * @param {*} itemClass - The base ItemSheet class (DwItemSheet)
@@ -62,9 +64,7 @@ export function defineItemCustom(itemClass) {
       if (this.item.type === "move") {
         context.selects.moveTypes = {
           ...context.selects.moveTypes,
-          adventure: 'DWCS.Custom.Move.Adventure',
-          travel: 'DWCS.Custom.Move.Travel',
-          session: 'DWCS.Custom.Move.Session'
+          ...getCustomMoveTypes()
         };
       }
 

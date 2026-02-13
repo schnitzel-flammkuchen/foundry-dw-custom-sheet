@@ -14,10 +14,10 @@ export const MOVE_META = [
   { key: "advancedMoves", title: "DW.MovesAdvanced", moveType: "advanced", name: "advanced-moves" },
   { key: "specialMoves", title: "DW.MovesSpecial", moveType: "special", name: "special-moves" },
   
-  // Adding more categories
-  { key: "adventureMoves", title: "DWCS.Custom.Moves.Adventure", moveType: "adventure", name: "adventure-moves" },
-  { key: "travelMoves", title: "DWCS.Custom.Moves.Travel", moveType: "travel", name: "travel-moves" },
-  { key: "sessionMoves", title: "DWCS.Custom.Moves.Session", moveType: "session", name: "session-moves" },
+  // // Adding more categories
+  // { key: "adventureMoves", title: "DWCS.Custom.Moves.Adventure", moveType: "adventure", name: "adventure-moves" },
+  // { key: "travelMoves", title: "DWCS.Custom.Moves.Travel", moveType: "travel", name: "travel-moves" },
+  // { key: "sessionMoves", title: "DWCS.Custom.Moves.Session", moveType: "session", name: "session-moves" },
 
   { key: "moves", title: "DW.MovesOther", name: "other-moves" } // Moves that doesn't fit existent ones
 ];
