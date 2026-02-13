@@ -77,6 +77,31 @@ export function defineItemCustom(itemClass) {
       return context;
     }
 
+    /**
+     * Overrides the default ActorSheet header buttons to prevent duplicates.
+     * Quick Send To Chat module adds extra buttons (e.g., "Send to Chat") to the
+     * item header. When using this module, multiple render cycles or hooks may
+     * cause the same button to be injected more than once. This override
+     * filters out duplicate buttons based on either the 'class' or 'action'
+     * property, keeping only the first occurrence.
+     * 
+     * This is a **module-specific workaround** to ensure the header UI remains clean,
+     * while still preserving the standard buttons originally provided.
+     *
+     * @returns {Array<Object>} The filtered array of header button definitions.
+     */
+    _getHeaderButtons() {
+      const buttons = super._getHeaderButtons();
+      const seen = new Set();
+      return buttons.filter(b => {
+        const key = b.class ?? b.action;
+        if (!key) return true;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
     /** @override */
     activateListeners(html) {
       super.activateListeners(html);
