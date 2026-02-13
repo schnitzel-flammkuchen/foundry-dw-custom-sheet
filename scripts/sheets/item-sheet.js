@@ -56,6 +56,18 @@ export function defineItemCustom(itemClass) {
         moveResults: context.system.moveResults
       };
 
+      /* --- NEW MOVE TYPES --- */
+
+      // INTERCEPT: add new moveTypes
+      if (this.item.type === "move") {
+        context.selects.moveTypes = {
+          ...context.selects.moveTypes,
+          adventure: 'DWCS.Custom.Move.Adventure',
+          travel: 'DWCS.Custom.Move.Travel',
+          session: 'DWCS.Custom.Move.Session'
+        };
+      }
+
       return context;
     }
 

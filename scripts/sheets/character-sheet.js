@@ -151,58 +151,67 @@ export function defineCharacterCustom(baseClass) {
       /* --- MOVES --- */
 
       // Filters the actor's items to include only those of type "move"
-      context.moves = this.actor.items.filter(i => i.type === "move");
+      const allMoves = this.actor.items.filter(i => i.type === "move");
+
+      // Keep track of processed move IDs to avoid duplicates
+      const processedMoveIds = new Set();
 
       // Define the categories of moves with metadata for each
       context.moveMeta = MOVE_META;
 
       // Filters the full move list by each category's type to be used on the template
       context.moveCategories = await Promise.all(context.moveMeta.map(async cat => {
-        const moves = await Promise.all(context.moves.filter(m => {
-            // If the category has no moveType, include all moves that are not basic/starting/advanced/special
-            if (!cat.moveType) return !["basic", "starting", "advanced", "special"].includes(m.system.moveType);
-            // Otherwise, include only moves matching this category's type
-            return m.system.moveType === cat.moveType;
-          }).map(async m => {
-            // Create a copy of the item to avoid modifying the original
-            const moveObj = m.toObject();
+        const moves = await Promise.all(allMoves.filter(m => {
+          // Skip moves already processed
+          if (processedMoveIds.has(m.id)) return false;
 
-            /* --- MOVE RESULTS --- */
-            moveObj.system.moveResults = moveObj.system.moveResults || {};
+          // If the category has no moveType, include all moves that are not basic/starting/advanced/special
+          const belongsToCategory = !cat.moveType
+            ? !["basic", "starting", "advanced", "special"].includes(m.system.moveType)
+            : m.system.moveType === cat.moveType;
 
-            for (const key of ["success", "partial", "failure"]) {
-              const rawValue = moveObj.system.moveResults?.[key]?.value
-                ?? moveObj.system.results?.[key === "failure" ? "fail" : key]
-                ?? "";
+          return belongsToCategory;
+        }).map(async m => {
+          // Mark move as processed
+          processedMoveIds.add(m.id);
 
-              moveObj.system.moveResults[key] = {
-                value: !!rawValue ? 1 : 0,
-                enriched: rawValue
-                  ? await TextEditor.enrichHTML(rawValue, {
-                      async: true,
-                      documents: true,
-                      secrets: this.actor.isOwner,
-                      relativeTo: m,
-                      rollData: m.getRollData()
-                    })
-                  : ""
-              };
-            }
+          // Create a copy of the item to avoid modifying the original
+          const moveObj = m.toObject();
 
-            /* --- MOVE CHOICES --- */
-            if (!Array.isArray(moveObj.system.choices)) {
-              moveObj.system.choices = moveObj.system.choices
-                ? [moveObj.system.choices] 
-                : (moveObj.system.results?.choices || []);
-            }
-            moveObj.system.choicesEnriched = moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
+          /* --- MOVE RESULTS --- */
+          moveObj.system.moveResults = moveObj.system.moveResults || {};
+          for (const key of ["success", "partial", "failure"]) {
+            const rawValue = moveObj.system.moveResults?.[key]?.value
+              ?? moveObj.system.results?.[key === "failure" ? "fail" : key]
+              ?? "";
 
-            /* --- DESCRIPTION --- */
-            moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
+            moveObj.system.moveResults[key] = {
+              value: !!rawValue ? 1 : 0,
+              enriched: rawValue
+                ? await TextEditor.enrichHTML(rawValue, {
+                    async: true,
+                    documents: true,
+                    secrets: this.actor.isOwner,
+                    relativeTo: m,
+                    rollData: m.getRollData()
+                  })
+                : ""
+            };
+          }
 
-            return moveObj;
-          })
-        );
+          /* --- MOVE CHOICES --- */
+          if (!Array.isArray(moveObj.system.choices)) {
+            moveObj.system.choices = moveObj.system.choices
+              ? [moveObj.system.choices]
+              : (moveObj.system.results?.choices || []);
+          }
+          moveObj.system.choicesEnriched = moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
+
+          /* --- DESCRIPTION --- */
+          moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
+
+          return moveObj;
+        }));
 
         // Return the category object with the filtered + processed moves
         return {
@@ -245,6 +254,46 @@ export function defineCharacterCustom(baseClass) {
       context.canAddResource = this._countCustomResources() < MAX_CUSTOM_RESOURCES;
 
       return context;
+    }
+
+    /**
+     * Organizes the actor's moves into predefined and custom categories.
+     * Extends the original _prepareCharacterItems to include Adventure, Travel, and Session moves.
+     * Does not override the default behavior for basic, starting, advanced, or special moves.
+     * @async
+     * @param {Object} sheetData - The data object prepared for the character sheet.
+     * @returns {Promise<void>}
+     */
+    async _prepareCharacterItems(sheetData) {
+      // Call the base method first to populate standard move categories
+      await super._prepareCharacterItems(sheetData);
+
+      // Collect all moves from the actor
+      const allMoves = sheetData.actor.items.filter(i => i.type === "move");
+
+      // Initialize containers for custom move categories
+      sheetData.adventureMoves = [];
+      sheetData.travelMoves = [];
+      sheetData.sessionMoves = [];
+
+      // Iterate all moves and distribute them into custom categories
+      for (const move of allMoves) {
+        switch (move.system.moveType) {
+          case "adventure":
+            sheetData.adventureMoves.push(move);
+            break;
+
+          case "travel":
+            sheetData.travelMoves.push(move);
+            break;
+
+          case "session":
+            sheetData.sessionMoves.push(move);
+            break;
+
+          // All other move types are handled by the base class
+        }
+      }
     }
 
     /**
