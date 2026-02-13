@@ -3,7 +3,7 @@
 import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
 import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
-import { registerHandlebarsHelpers } from "./scripts/utils/handlehelpers.js";
+import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
