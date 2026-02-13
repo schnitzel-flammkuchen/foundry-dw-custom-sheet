@@ -9,7 +9,7 @@
     "minimum": "12",
     "verified": "13.351"
   },
-  "description": "<p>Adds a custom player character sheet for Dungeon World.</p><p>This module leverages and builds upon ideas and functionality from <a href=\"https://github.com/GreybeardGM/dw-extra-sheets\">Dungeon World: Extra Sheets</a> by GreybeardGM.</p><hr /><h3>Features</h3><ul dir=\"auto\"><li><p dir=\"auto\">A different UI layout and clearer data organization</p></li><li><p dir=\"auto\">Better separation of:</p><ul dir=\"auto\"><li>Core attributes (HP, Armor, Damage, Level, XP)</li><li>Resources (Forward, Ongoing, Hold, etc.)</li><li>Economy (Coin and Load)</li><li>Abilities and moves</li></ul></li><li><p dir=\"auto\">Additional roll functionality (including custom roll modes)</p></li><li><p dir=\"auto\">Designed for Foundry VTT <strong>v12+</strong></p></li><li><p dir=\"auto\">Non-intrusive: does not alter core system data or rules</p></li></ul>",
+  "description": "<p>Adds a custom player character sheet for Dungeon World.</p><p>This module leverages and builds upon ideas and functionality from <a href=\"https://github.com/GreybeardGM/dw-extra-sheets\">Dungeon World: Extra Sheets</a> by GreybeardGM.</p><hr /><h3>Features</h3><ul dir=\"auto\"><li><p dir=\"auto\">A different UI layout and clearer data organization</p></li><li><p dir=\"auto\">Better separation of:</p><ul dir=\"auto\"><li>Core attributes (HP, Armor, Damage, Level, XP)</li><li>Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)</li><li>Economy (Coin and Load)</li><li>Moves and Spells (now on dropdowns)</li></ul></li><li><p dir=\"auto\">Additional functionalities (now new move types — compendium not included)</p></li><li><p dir=\"auto\">Designed for Foundry VTT <strong>v12+</strong></p></li></ul>",
   "flags": {
     "canUpload": true
   },
@@ -21,55 +21,79 @@
     "scripts/sheets/character-sheet.js"
   ],
   "styles": [
-    "styles/styles.css",
-    "styles/header-sidebar-info.css",
-    "styles/attributes-abilities.css",
-    "styles/extra-custom-resources.css",
-    "styles/equipment.css",
-    "styles/description.css",
-    "styles/items.css",
-    "styles/sheet.css"
+    {
+      "src": "styles/styles.css"
+    },
+    {
+      "src": "styles/header-sidebar-info.css"
+    },
+    {
+      "src": "styles/attributes-abilities.css"
+    },
+    {
+      "src": "styles/extra-custom-resources.css"
+    },
+    {
+      "src": "styles/equipment.css"
+    },
+    {
+      "src": "styles/description.css"
+    },
+    {
+      "src": "styles/items.css"
+    },
+    {
+      "src": "styles/sheet.css"
+    }
   ],
   "languages": [
     {
-        "lang": "pt-BR",
-        "name": "Brazilian Portuguese",
-        "path": "lang/pt-BR.json"
+      "lang": "pt-BR",
+      "name": "Brazilian Portuguese",
+      "path": "lang/pt-BR.json",
+      "flags": {}
     },
     {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
-        "lang": "fr",
-        "name": "French",
-        "path": "lang/fr.json"
+      "lang": "fr",
+      "name": "French",
+      "path": "lang/fr.json",
+      "flags": {}
     },
     {
-        "lang": "de",
-        "name": "German",
-        "path": "lang/de.json"
+      "lang": "de",
+      "name": "German",
+      "path": "lang/de.json",
+      "flags": {}
     },
     {
-        "lang": "it",
-        "name": "Italian",
-        "path": "lang/it.json"
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json",
+      "flags": {}
     },
     {
-        "lang": "es",
-        "name": "Spanish",
-        "path": "lang/es.json"
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json",
+      "flags": {}
     },
     {
-        "lang": "sv",
-        "name": "Swedish",
-        "path": "lang/sv.json"
+      "lang": "sv",
+      "name": "Swedish",
+      "path": "lang/sv.json",
+      "flags": {}
     },
     {
-        "lang": "uk",
-        "name": "Ukrainian",
-        "path": "lang/uk.json"
+      "lang": "uk",
+      "name": "Ukrainian",
+      "path": "lang/uk.json",
+      "flags": {}
     }
   ]
 }

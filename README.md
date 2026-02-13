@@ -26,7 +26,7 @@ As a result, this module aims to provide tailored UI support and additional func
   - Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)
   - Economy (Coin and Load)
   - Moves and Spells (now on dropdowns)
-- Non-intrusive: does not alter core system data or rules
+  - Additional functionalities (now new move types — compendium not included)
 
 ---
 
