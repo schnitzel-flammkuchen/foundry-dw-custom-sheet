@@ -170,84 +170,230 @@
 /* Basically uniting every label specific CSS (that does the same thing) */
 /* Because the module also uses the DW CSS, currently, these are only used on moves tab for the new move types */
 .dw-custom-sheet .cell--item-list .items-list {
-    padding:0
+    padding: 0
 }
 .dw-custom-sheet .cell--item-list .items-list .item+.item,.dungeonworld.sheet .cell--equipment .items-list .item+.item,.dungeonworld.sheet .cell--spells .items-list .item+.item {
-    border-top:2px solid rgba(0,0,0,.05)
+    border-top: 2px solid rgba(0,0,0,.05)
 }
 .dw-custom-sheet .cell--item-list .items-list .item {
-    padding:10px 0
+    padding: 10px 0
 }
 .dw-custom-sheet .cell--item-list .item-controls {
-    text-align:right; -webkit-box-flex:0; -ms-flex:0 0 50px; flex:0 0 50px
+    text-align: right;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50px;
+    flex: 0 0 50px
 }
 .dw-custom-sheet .cell--item-list .item-description {
-    display:none; -webkit-box-flex:0; -ms-flex:none; flex:none; width:100%
+    display: none;
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 100%
 }
 .dw-custom-sheet .cell--item-list .item-description .result-label {
-    margin-right:5px
+    margin-right: 5px
 }
 .dw-custom-sheet .cell--item-list .item-description .result-label+p,.dungeonworld.sheet .cell--item-list .item-description .result-label+div,.dungeonworld.sheet .cell--item-list .item-description .result-label+span {
-    display:inline
+    display: inline
 }
 .dw-custom-sheet .cell--item-list .item-description .result--choices {
-    margin-top:5px
+    margin-top: 5px
 }
 .dw-custom-sheet .cell--item-list .item-description .result--choices ul,.dw-custom-sheet .cell--item-list .item-description .result--choices ol,.dw-custom-sheet .cell--item-list .item-description .result--choices p {
-    margin-top:0
+    margin-top: 0
 }
 .dw-custom-sheet .cell--item-list .item-avatar {
-    -webkit-box-flex:0; -ms-flex:0 0 32px; flex:0 0 32px; display:inline-block; height:32px; position:relative; border-radius:4px; margin-right:4px; overflow:hidden
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 32px;
+    flex: 0 0 32px;
+    display: inline-block;
+    height: 32px;
+    position: relative;
+    border-radius: 4px;
+    margin-right: 4px; overflow: hidden
 }
 .dw-custom-sheet .cell--item-list .item-avatar .rollable {
-    display:-webkit-box; display:-ms-flexbox; display:flex; position:absolute; top:0; left:0; width:100%; height:100%; -webkit-box-align:center; -ms-flex-align:center; align-items:center; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; padding:0; -webkit-transition:all ease-in-out .25s; transition:all ease-in-out .25s; text-align:center; background:#000; color:#fff; opacity:0; font-size:14px
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    opacity: 0; font-size:14px
 }
 .dw-custom-sheet .cell--item-list .item-avatar .rollable:hover {
-    opacity:1; color:#fff
+    opacity: 1; color: #fff
 }
 .dw-custom-sheet .cell--item-list .item-avatar .rollable .fa-dice-d6:last-child {
-    margin-left:2px
+    margin-left: 2px
 }
 .dw-custom-sheet .cell--item-list .item-name {
-    font-size:18px; font-weight:bold; -webkit-box-flex:2; -ms-flex:2; flex:2; margin:0; display:-webkit-box; display:-ms-flexbox; display:flex; -webkit-box-align:stretch; -ms-flex-align:stretch; align-items:stretch; -webkit-box-pack:start; -ms-flex-pack:start; justify-content:flex-start
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-box-flex: 2;
+    -ms-flex: 2; flex: 2; margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start
 }
 .dw-custom-sheet .cell--item-list .item-icon {
-    -webkit-box-flex:1; -ms-flex:1; flex:1; vertical-align:top; border:0; height:32px; width:32px; padding:0; margin:0; border-radius:0; -webkit-box-shadow:0px 1px 4px 0px rgba(0,0,0,.35); 
-    box-shadow:0px 1px 4px 0px rgba(0,0,0,.35); 
-    background-color:rgba(0,0,0,.5)
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    vertical-align: top;
+    border: 0;
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,.35); 
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,.35); 
+    background-color: rgba(0,0,0,.5)
 }
 .dw-custom-sheet .cell--item-list .item-meta {
-    display:-webkit-box; display:-ms-flexbox; display:flex; -webkit-box-orient:horizontal; -webkit-box-direction:normal; -ms-flex-direction:row; flex-direction:row; -webkit-box-pack:end; -ms-flex-pack:end; justify-content:flex-end; -webkit-box-flex:0; -ms-flex:0 auto; flex:0 auto
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row; flex-direction:row;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 auto;
+    flex: 0 auto
 }
 .dw-custom-sheet .cell--item-list .item-label {
-    border-left:2px solid; padding-left:4px
+    border-left: 2px solid; padding-left: 4px
 }
 .dw-custom-sheet .cell--item-list .item-label::after {
-    display:block; content:""; width:0; height:0; margin-top:2px; border-bottom:2px solid; -webkit-transition:all ease-in-out .25s; transition:all ease-in-out .25s
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    margin-top: 2px;
+    border-bottom: 2px solid;
+    -webkit-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s
 }
 .dw-custom-sheet .cell--item-list .item-label:hover::after {
-    width:100%
+    width: 100%
 }
 .dw-custom-sheet .cell--item-list .item-label:hover .item-details-toggle {
-    -webkit-transform:scale(1.2); 
-    -ms-transform:scale(1.2); 
-    transform:scale(1.2)
+    -webkit-transform: scale(1.2); 
+    -ms-transform: scale(1.2); 
+    transform: scale(1.2)
 }
 .dw-custom-sheet .cell--item-list .item-label .fas {
-    -webkit-transition:all ease-in-out .25s; transition:all ease-in-out .25s
+    -webkit-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s
 }
 .dw-custom-sheet .cell--item-list .item-label.open::after {
-    width:100%
+    width: 100%
 }
 .dw-custom-sheet .cell--item-list .item-label.open .fas {
-    -webkit-transform:rotate(180deg); 
-    -ms-transform:rotate(180deg); 
-    transform:rotate(180deg)
+    -webkit-transform: rotate(180deg); 
+    -ms-transform: rotate(180deg); 
+    transform: rotate(180deg)
 }
 .dw-custom-sheet .cell--item-list .item-details-toggle {
-    display:inline-block; width:24px; height:16px; text-align:center; border-radius:5px; -webkit-transition:all ease-in-out .25s; transition:all ease-in-out .25s
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-transition: all ease-in-out .25s;
+    transition: all ease-in-out .25s
 }
 .dw-custom-sheet .cell--item-list .rollable:hover,.dw-custom-sheet .cell--item-list .rollable:focus {
-    color:#5b7094; text-shadow:0 0 5px rgba(91,112,148,.25); 
-    cursor:pointer
+    color: #5b7094;
+    text-shadow: 0 0 5px rgba(91,112,148,.25); 
+    cursor: pointer
+}
+
+/* --- CONTENT LINKS --- */
+
+/* Base styling for links on contents */
+.dw-custom-sheet .content-link {
+  background: transparent;
+  border: none;
+  color: var(--accent-color);
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.1s ease, text-decoration 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em; /* Space between icon and text */
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-decoration: none;
+  position: relative; /* Needed for ::after underline */
+}
+
+/* Icon inside content link */
+.dw-custom-sheet .content-link i {
+  color: var(--accent-color);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.dw-custom-sheet .content-link:hover {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  color: var(--accent-color);
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* Icon animation on hover */
+.dw-custom-sheet .content-link:hover i {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Underline effect for whole link */
+.dw-custom-sheet .content-link::after {
+  content: "";
+  position: absolute;
+  bottom: 2px; /* Slightly above padding */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+/* Trigger underline on hover */
+.dw-custom-sheet .content-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Focus accessibility */
+.dw-custom-sheet .content-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }

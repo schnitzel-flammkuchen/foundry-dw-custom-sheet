@@ -12,7 +12,7 @@
   min-height: var(--min-height);
 }
 .editor.prosemirror .editor-container {
-  line-height: 1.5em;
+  /* line-height: 1.5em; */
   min-height: var(--min-height);
   max-height: 100%;
 }
@@ -36,16 +36,6 @@
 .dw-custom-sheet .tab.description .cell--alignment,
 .dw-custom-sheet .tab.description .cell--race {
   padding: 4px 0;
-}
-
-/* Text sizing */
-
-.dw-custom-sheet .tab.description .cell--alignment .editor {
-  font-size: 1.4em;
-}
-.dw-custom-sheet .tab.description .cell--race,
-.dw-custom-sheet .tab.description .cell--look .editor {
-  font-size: 1.1em;
 }
 
 /* --- BONDS --- */
@@ -113,7 +103,6 @@
 .dw-custom-sheet .tab.description .cell--bio .editor-content {
   position: relative;
   padding: 0.5em 1.25em;
-  font-size: 1em;
   line-height: 1.45;
   z-index: 1;
 
@@ -137,7 +126,7 @@
 
 /* Drop cap for first paragraph */
 .dw-custom-sheet .tab.description .cell--bio .editor-content p:first-child::first-letter {
-  font-size: 2.6em;
+  font-size: 32px;
   font-weight: 700;
   float: left;
   line-height: 1;
