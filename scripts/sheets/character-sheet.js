@@ -252,7 +252,15 @@ export function defineCharacterCustom(baseClass) {
           /* --- DESCRIPTION --- */
 
           // Ensures enriched description exists
-          moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
+          moveObj.system.descriptionEnriched = moveObj.system.description
+            ? await TextEditor.enrichHTML(moveObj.system.description, {
+                async: true,
+                documents: true,
+                secrets: this.actor.isOwner,
+                relativeTo: m,
+                rollData: m.getRollData()
+              })
+            : "";
 
           return moveObj;
         }));
