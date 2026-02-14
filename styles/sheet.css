@@ -334,10 +334,10 @@
     cursor: pointer
 }
 
-/* --- CONTENT LINKS --- */
+/* --- CONTENT LINKS (GENERAL - not only module's sheets) --- */
 
 /* Base styling for links on contents */
-.dw-custom-sheet .content-link {
+.content-link {
   background: transparent;
   border: none;
   color: var(--accent-color);
@@ -355,13 +355,13 @@
 }
 
 /* Icon inside content link */
-.dw-custom-sheet .content-link i {
+.content-link i {
   color: var(--accent-color);
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 /* Hover effect */
-.dw-custom-sheet .content-link:hover {
+.content-link:hover {
   box-shadow: none !important;
   text-shadow: none !important;
   color: var(--accent-color);
@@ -370,13 +370,13 @@
 }
 
 /* Icon animation on hover */
-.dw-custom-sheet .content-link:hover i {
+.content-link:hover i {
   transform: scale(1.1);
   opacity: 0.8;
 }
 
 /* Underline effect for whole link */
-.dw-custom-sheet .content-link::after {
+.content-link::after {
   content: "";
   position: absolute;
   bottom: 2px; /* Slightly above padding */
@@ -390,12 +390,12 @@
 }
 
 /* Trigger underline on hover */
-.dw-custom-sheet .content-link:hover::after {
+.content-link:hover::after {
   transform: scaleX(1);
 }
 
 /* Focus accessibility */
-.dw-custom-sheet .content-link:focus {
+.content-link:focus {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }

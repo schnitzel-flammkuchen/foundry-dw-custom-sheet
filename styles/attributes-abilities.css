@@ -128,7 +128,7 @@
 /* Ability mod as span */
 .dw-custom-sheet span.ability-mod {
   text-align: center;
-  font-size: 20px;
+  font-size: 1em;
   color: var(--text-color);
 
   text-shadow:
