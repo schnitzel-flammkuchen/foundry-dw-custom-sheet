@@ -9,6 +9,7 @@
 /* Except for sidebar move types */
 .dw-custom-sheet .sidebar-moves .item-name:hover {
   margin-left: 0 !important;
+  transform: none !important;
 }
 
 /* --- MAGICAL ITEMS IN THE EQUIPMENT TAB OF THE CHARACTER SHEET --- */

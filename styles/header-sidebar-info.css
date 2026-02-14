@@ -254,11 +254,6 @@
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
-/* Item gap with controls when hovering label */
-.dw-custom-sheet .sidebar-moves .item.flexrow .item-label:hover {
-  margin-right: 10px !important;
-  transition: all 0.25s ease;
-}
 
 /* Description row */
 .dw-custom-sheet .sidebar-moves .item.flexrow > .item-description {
@@ -280,7 +275,7 @@
   gap: 0.2rem;
 }
 
-/* Controls below icon */
+/* Controls below each other */
 .dw-custom-sheet .sidebar-moves .item.flexrow > .item-controls {
   display: flex;
   flex-direction: column;
@@ -293,4 +288,9 @@
 .dw-custom-sheet .sidebar-moves .item.flexrow > .roll-data {
   grid-area: content;
   overflow-wrap: anywhere;
+}
+
+/* Hide toggle icon for better spacement */
+.dw-custom-sheet .sidebar-moves .item.flexrow .item-details-toggle {
+  display: none;
 }
