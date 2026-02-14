@@ -188,7 +188,7 @@ Hooks.on("createActor", async (actor) => {
 Hooks.on("renderActorSheet", (_sheet, html, _data) => {
     normalizeInputs(html);
     enablePersistentDropdowns(html);
-    // Iterate over all content links (items, etc)
+    // Iterate over all content links (items, moves, spells, etc)
     html.find(".content-link").each((_, link) => {
         // Ensure we are working with a native DOM element
         link = link instanceof HTMLElement ? link : link[0];
@@ -201,12 +201,18 @@ Hooks.on("renderActorSheet", (_sheet, html, _data) => {
         const item = fromUuidSync(uuid);
         if (!item || item.documentName !== "Item") return;
 
-        // Determine the item type, fallback to 'equipment' if undefined
-        const type = item.system?.itemType || "equipment";
+        // Determine the type: check moves first, then spells, then fallback to system itemType or equipment
+        let type;
+        if (item.type === "move") type = "move";                  // DW moves
+        else if (item.type === "spell") type = "spell";                 // DW spells
+        else type = item.system?.itemType || "equipment"; // fallback for equipment or custom types
 
         // Select the corresponding icon class from the config
-        // Fallback to 'fa-suitcase' if the type is not defined
-        const iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase";
+        // Special cases for 'move' and 'spell', otherwise fallback to ITEM_TYPE_ICONS or 'fa-suitcase'
+        let iconClass;
+        if (type === "move") iconClass = "fas fa-dice"; // Default move icon
+        else if (type === "spell") iconClass = "fas fa-sparkles"; // Default spell icon
+        else iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase"; // Fallback - none of these
 
         // Update the <i> element inside the link, preserving CSS transitions
         const iElem = link.querySelector("i");
