@@ -1,0 +1,104 @@
+/* --- DIALOG LAYOUT STRUCTURE --- */
+
+/* Stack dialog content and buttons vertically */
+.dw-dialog .window-content {
+  display: flex;
+  flex-direction: column; /* Content on top, buttons below */
+  align-items: stretch;
+  gap: 0.75rem; /* Space between text and buttons */
+}
+
+/* Dialog text container */
+.dw-dialog .window-content .dialog-content {
+  display: flex;
+  flex: 0 0 auto; /* Do not grow, do not shrink, size to content */
+  justify-content: center;
+  text-align: center;
+}
+
+/* --- DIALOG BUTTON GRID LAYOUT --- */
+
+/* Buttons container - max 3 per row */
+.dw-dialog .window-content .dialog-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+  gap: 8px; /* Space between buttons */
+  justify-items: center; /* Center buttons inside grid cells */
+}
+
+/* Individual dialog button */
+.dw-dialog .window-content .dialog-buttons .dialog-button {
+  width: 100%; /* Fill grid column */
+  max-width: 120px; /* Prevent oversized buttons */
+}
+
+/* --- INLINE FORM + SINGLE BUTTON LAYOUT --- */
+
+/*
+  When dialog has:
+  - a form inside dialog-content
+  - only one dialog button
+
+  Layout becomes:
+  Paragraph (full width)
+  Form-group + Button (same row)
+*/
+
+.dw-dialog .window-content:has(.dialog-content form)
+  :has(.dialog-buttons .dialog-button:only-child) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Keep paragraph full width */
+.dw-dialog .window-content:has(.dialog-content form) .dialog-content p {
+  /* margin: 0; */
+  position: relative;
+  right: -2em;
+}
+
+/* Make form content align horizontally */
+.dw-dialog .window-content:has(.dialog-content form):has(.dialog-buttons .dialog-button:only-child) .dialog-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Form-group and button in the same row */
+.dw-dialog .window-content:has(.dialog-buttons .dialog-button:only-child) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+/* Make dialog-content occupy first column */
+.dw-dialog .window-content:has(.dialog-buttons .dialog-button:only-child) .dialog-content {
+  grid-column: 1;
+}
+
+/* Place buttons in second column */
+.dw-dialog .window-content:has(.dialog-buttons .dialog-button:only-child) .dialog-buttons {
+  grid-column: 2;
+  display: flex;
+}
+
+/* Keep them close to the input on content */
+.dw-dialog .window-content:has(.dialog-buttons .dialog-button:only-child) .dialog-button {
+  margin-right: 2em;
+}
+
+/* Gap and align items on dialog form */
+.dw-dialog .dialog-content form {
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+/* Form-group stays horizontal */
+.dw-dialog .dialog-content .form-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
