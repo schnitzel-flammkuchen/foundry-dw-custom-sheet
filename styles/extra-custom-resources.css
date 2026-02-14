@@ -3,7 +3,7 @@
 /* Grid for the container - to fit sheet-resources correctly */
 .dw-custom-sheet .extra-custom-resources {
   grid-column: 1 / -1;
-  margin: 0.5em 0 1em;
+  margin: 0.75em 0 1em;
 }
 .dw-custom-sheet .extra-custom-resources .cell--resource1 {
   grid-column: span 1;
