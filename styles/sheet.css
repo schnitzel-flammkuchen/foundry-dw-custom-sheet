@@ -341,15 +341,17 @@
   background: transparent;
   border: none;
   color: var(--accent-color);
+  text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease, transform 0.1s ease, text-decoration 0.2s ease;
+
   display: inline-flex;
   align-items: center;
   gap: 0.25em; /* Space between icon and text */
+  position: relative; /* Needed for ::after underline */
   padding: 2px 4px;
   border-radius: 4px;
-  text-decoration: none;
-  position: relative; /* Needed for ::after underline */
+  bottom: 2px;
 }
 
 /* Icon inside content link */
