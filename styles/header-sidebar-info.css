@@ -147,11 +147,11 @@
   border-radius: 50%;
 
   display: flex;
-  padding-bottom: 6px;
   font-size: 24px;
   text-align: center;
   width: 40px;
   height: 40px;
+
   z-index: 3;
   border-radius: 50%;
   cursor: pointer;
@@ -164,6 +164,19 @@
     0 0 6px rgba(0, 38, 255, 0.7),
     0 0 14px rgba(0, 132, 255, 0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Normal input - not yet ready for level up */
+.dw-custom-sheet .level-input:not(.clickable-level-up) {
+  padding-bottom: 6px;
+  font-size: 24px;
+}
+
+/* Clickable - when ready for level up */
+.dw-custom-sheet .clickable-level-up {
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Hover feedback */
