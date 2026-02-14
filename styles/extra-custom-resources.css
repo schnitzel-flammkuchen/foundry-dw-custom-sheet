@@ -136,13 +136,18 @@
   padding: 0.4em;
 }
 .dw-custom-sheet .extra-custom-resources .cell--add-resource .add-extra-resource {
-  width: 1.8em;
+  display: flex;
+  width: 1em;
   height: 4em;
-  right: 84%;
+  right: 94%;
   position: relative;
   font-size: 20px;
   cursor: pointer;
   transition: opacity 0.2s, background-color 0.2s;
+}
+.dw-custom-sheet .extra-custom-resources .cell--add-resource .add-extra-resource i {
+  font-size: 16px;
+  margin-left: 4px;
 }
 .dw-custom-sheet .extra-custom-resources .add-extra-resource:hover {
   opacity: 0.8;
