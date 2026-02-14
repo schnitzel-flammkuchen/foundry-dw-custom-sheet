@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Ressource Personnalisée",
             "SearchItems": "Rechercher des objets...",
-            "MoveTypes": {
-                "name": "Types de mouvements personnalisés",
-                "hint": "Ajoutez des types de mouvements personnalisés au format JSON. Exemple : { \"adventure\": {\"singular\": \"Mouvement d'Aventure\", \"plural\": \"Mouvements d'Aventure\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Types de mouvements dans la barre latérale",
-                "hint": "Définissez en JSON quels types de mouvements apparaissent dans la barre latérale: true = barre latérale, false = liste principale. Exemple : { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Mouvements d'Aventure",
                 "Travel": "Mouvements de Voyage",
@@ -46,6 +38,20 @@
                 "Adventure": "Mouvement d'Aventure",
                 "Travel": "Mouvement de Voyage",
                 "Session": "Mouvement de Session"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Types de mouvements personnalisés",
+                "hint": "Ajoutez des types de mouvements personnalisés au format JSON. Exemple : { \"adventure\": {\"singular\": \"Mouvement d'Aventure\", \"plural\": \"Mouvements d'Aventure\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Types de mouvements dans la barre latérale",
+                "hint": "Définissez en JSON quels types de mouvements apparaissent dans la barre latérale : true = barre latérale, false = liste principale. Exemple : { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Types de mouvements ajoutés automatiquement",
+                "hint": "Sélectionnez quels types de mouvements personnalisés (objets avec le type de mouvement correspondant créés dans le monde) doivent être ajoutés automatiquement aux personnages nouvellement créés. Exemple : { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

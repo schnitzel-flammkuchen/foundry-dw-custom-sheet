@@ -463,14 +463,6 @@
         "Custom": {
             "DefaultResource": "Recurso Qualquer",
             "SearchItems": "Procurar...",
-            "MoveTypes": {
-                "name": "Movimentos Personalizados",
-                "hint": "Adicione tipos de movimentos personalizados como JSON. Exemplo: { \"adventure\": {\"singular\": \"Movimento de Aventura\", \"plural\": \"Movimentos de Aventura\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Tipos de Movimentos na Barra Lateral",
-                "hint": "Defina via JSON quais tipos de movimento aparecem na barra lateral: true = barra lateral, false = lista principal. Exemplo: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Movimentos de Aventura",
                 "Travel": "Movimentos de Viagem",
@@ -480,6 +472,20 @@
                 "Adventure": "Movimento de Aventura",
                 "Travel": "Movimento de Viagem",
                 "Session": "Movimento de Sessão"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Movimentos Personalizados",
+                "hint": "Adicione tipos de movimentos personalizados como JSON. Exemplo: { \"adventure\": {\"singular\": \"Movimento de Aventura\", \"plural\": \"Movimentos de Aventura\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Tipos de Movimentos na Barra Lateral",
+                "hint": "Defina via JSON quais tipos de movimento aparecem na barra lateral: true = barra lateral, false = lista principal. Exemplo: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Tipos de Movimentos Adicionados Automaticamente",
+                "hint": "Selecione quais tipos de movimentos personalizados (itens com o tipo de movimento respectivo criados no mundo) devem ser adicionados automaticamente aos personagens recém-criados. Exemplo: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

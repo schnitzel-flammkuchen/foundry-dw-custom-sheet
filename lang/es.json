@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Recurso Personalizado",
             "SearchItems": "Buscar objetos...",
-            "MoveTypes": {
-                "name": "Tipos de movimiento personalizados",
-                "hint": "Agrega tipos de movimiento personalizados como JSON. Ejemplo: { \"adventure\": {\"singular\": \"Movimiento de Aventura\", \"plural\": \"Movimientos de Aventura\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Tipos de movimientos en la barra lateral",
-                "hint": "Define mediante JSON qué tipos de movimiento aparecen en la barra lateral: true = barra lateral, false = lista principal. Ejemplo: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Movimientos de Aventura",
                 "Travel": "Movimientos de Viaje",
@@ -46,6 +38,20 @@
                 "Adventure": "Movimiento de Aventura",
                 "Travel": "Movimiento de Viaje",
                 "Session": "Movimiento de Sesión"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Tipos de movimiento personalizados",
+                "hint": "Agrega tipos de movimiento personalizados como JSON. Ejemplo: { \"adventure\": {\"singular\": \"Movimiento de Aventura\", \"plural\": \"Movimientos de Aventura\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Tipos de movimientos en la barra lateral",
+                "hint": "Define mediante JSON qué tipos de movimiento aparecen en la barra lateral: true = barra lateral, false = lista principal. Ejemplo: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Tipos de Movimiento Añadidos Automáticamente",
+                "hint": "Seleccione qué tipos de movimiento personalizados (objetos con el tipo de movimiento correspondiente creados en el mundo) se agregarán automáticamente a los personajes recién creados. Ejemplo: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

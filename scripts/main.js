@@ -4,7 +4,7 @@ import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
 import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
-import { registerDWCSSettings, getCustomMoveTypes } from "./settings.js";
+import { registerDWCSSettings, getCustomMoveTypes, getAutoAddMoveTypes } from "./settings.js";
 import { ITEM_TYPE_ICONS } from "./utils/config.js";
 
 /**
@@ -163,11 +163,19 @@ Hooks.on("createActor", async (actor) => {
         actor.items.filter(i => i.type === "move").map(i => i.name)
     );
 
+    // Get configuration for auto-added move types
+    const autoAddConfig = getAutoAddMoveTypes();
+
     // Get all global campaign moves of the custom categories
-    const worldMoves = game.items.filter(i =>
-        i.type === "move" &&
-        Object.keys(getCustomMoveTypes()).includes(i.system.moveType)
-    );
+    const worldMoves = game.items.filter(i => {
+        if (i.type !== "move") return false;
+        const moveType = i.system.moveType;
+        // Only consider custom move types
+        if (!Object.keys(getCustomMoveTypes()).includes(moveType)) return false;
+        // If explicitly disabled in setting, skip auto add
+        if (autoAddConfig[moveType] === false) return false;
+        return true;
+    });
 
     // Filter moves that are not already on the actor
     const movesToAdd = worldMoves.filter(m => !existingMoveNames.has(m.name)).map(m => m.toObject());

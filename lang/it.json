@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Risorsa Personalizzata",
             "SearchItems": "Cerca oggetti...",
-            "MoveTypes": {
-                "name": "Tipi di mossa personalizzati",
-                "hint": "Aggiungi tipi di mossa personalizzati come JSON. Esempio: { \"adventure\": {\"singular\": \"Mossa d'Avventura\", \"plural\": \"Mosse d'Avventura\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Tipi di mosse nella barra laterale",
-                "hint": "Definisci tramite JSON quali tipi di mossa appaiono nella barra laterale: true = barra laterale, false = lista principale. Esempio: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Mosse d'Avventura",
                 "Travel": "Mosse di Viaggio",
@@ -46,6 +38,20 @@
                 "Adventure": "Mossa d'Avventura",
                 "Travel": "Mossa di Viaggio",
                 "Session": "Mossa di Sessione"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Tipi di mossa personalizzati",
+                "hint": "Aggiungi tipi di mossa personalizzati come JSON. Esempio: { \"adventure\": {\"singular\": \"Mossa d'Avventura\", \"plural\": \"Mosse d'Avventura\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Tipi di mosse nella barra laterale",
+                "hint": "Definisci tramite JSON quali tipi di mossa appaiono nella barra laterale: true = barra laterale, false = lista principale. Esempio: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Tipi di movimento aggiunti automaticamente",
+                "hint": "Seleziona quali tipi di movimento personalizzati (oggetti con il rispettivo tipo di movimento creati nel mondo) devono essere aggiunti automaticamente ai personaggi appena creati. Esempio: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

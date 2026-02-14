@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Anpassad resurs",
             "SearchItems": "Sök föremål...",
-            "MoveTypes": {
-                "name": "Anpassade rörelsetyper",
-                "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: { \"adventure\": {\"singular\": \"Äventyrsrörelse\", \"plural\": \"Äventyrsrörelser\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Rörelsetyper i sidopanelen",
-                "hint": "Definiera via JSON vilka rörelsetyper som visas i sidopanelen: true = sidopanel, false = huvudlista. Exempel: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Äventyrsrörelser",
                 "Travel": "Reserörelser",
@@ -46,6 +38,20 @@
                 "Adventure": "Äventyrsrörelse",
                 "Travel": "Reserörelse",
                 "Session": "Sessionsrörelse"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Anpassade rörelsetyper",
+                "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: { \"adventure\": {\"singular\": \"Äventyrsrörelse\", \"plural\": \"Äventyrsrörelser\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Rörelsetyper i sidopanelen",
+                "hint": "Definiera via JSON vilka rörelsetyper som visas i sidopanelen: true = sidopanel, false = huvudlista. Exempel: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Automatiskt tillagda rörelsetyper",
+                "hint": "Välj vilka anpassade rörelsetyper (föremål med respektive rörelsetyp skapade i världen) som automatiskt ska läggas till nyss skapade karaktärer. Exempel: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

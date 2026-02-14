@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Ressource Anpassbare",
             "SearchItems": "Suchbegriffe...",
-            "MoveTypes": {
-                "name": "Benutzerdefinierte Bewegungsarten",
-                "hint": "Füge benutzerdefinierte Bewegungsarten als JSON hinzu. Beispiel: { \"adventure\": {\"singular\": \"Abenteuermove\", \"plural\": \"Abenteuermoves\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Zugtypen in der Seitenleiste",
-                "hint": "Definiere per JSON, welche Zugtypen in der Seitenleiste angezeigt werden: true = Seitenleiste, false = Hauptliste. Beispiel: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Abenteuermoves",
                 "Travel": "Reisemoves",
@@ -46,6 +38,20 @@
                 "Adventure": "Abenteuermove",
                 "Travel": "Reisemove",
                 "Session": "Sitzungsmove"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Benutzerdefinierte Bewegungsarten",
+                "hint": "Füge benutzerdefinierte Bewegungsarten als JSON hinzu. Beispiel: { \"adventure\": {\"singular\": \"Abenteuermove\", \"plural\": \"Abenteuermoves\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Zugtypen in der Seitenleiste",
+                "hint": "Definiere per JSON, welche Zugtypen in der Seitenleiste angezeigt werden: true = Seitenleiste, false = Hauptliste. Beispiel: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Automatisch hinzufügen von Bewegungstypen",
+                "hint": "Wählen Sie aus, welche benutzerdefinierten Bewegungstypen (Items mit entsprechendem Bewegungstyp, die in der Welt erstellt wurden) automatisch zu neu erstellten Charakteren hinzugefügt werden sollen. Beispiel: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

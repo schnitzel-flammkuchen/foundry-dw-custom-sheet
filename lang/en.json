@@ -29,14 +29,6 @@
         "Custom": {
             "DefaultResource": "Custom Resource",
             "SearchItems": "Search items...",
-            "MoveTypes": {
-                "name": "Custom Move Types",
-                "hint": "Add custom move types as JSON. Example: { \"adventure\": {\"singular\": \"Adventure Move\", \"plural\": \"Adventure Moves\" }, ... }"
-            },
-            "SidebarMoves": {
-                "name": "Sidebar Move Types",
-                "hint": "Define via JSON which moveTypes appear in the sidebar: true = sidebar, false = main list. Example: { \"adventure\": true }"
-            },
             "Moves": {
                 "Adventure": "Adventure Moves",
                 "Travel": "Travel Moves",
@@ -46,6 +38,20 @@
                 "Adventure": "Adventure Move",
                 "Travel": "Travel Move",
                 "Session": "Session Move"
+            }
+        },
+        "Settings": {
+            "NewMoveTypes": {
+                "name": "Custom Move Types",
+                "hint": "Add custom move types as JSON. Example: { \"adventure\": {\"singular\": \"Adventure Move\", \"plural\": \"Adventure Moves\" }, ... }"
+            },
+            "MovesOnSidebar": {
+                "name": "Sidebar Move Types",
+                "hint": "Define via JSON which moveTypes appear in the sidebar: true = sidebar, false = main list. Example: { \"adventure\": true }"
+            },
+            "MovesAutoAdd": {
+                "name": "Auto-Add Move Types",
+                "hint": "Select which custom moveTypes (items with respective moveType made in the world) should automatically be added to newly created characters. Example: { \"adventure\": true, \"travel\": false }"
             }
         },
         "Notifications": {

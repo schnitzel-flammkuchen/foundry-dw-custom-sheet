@@ -27,8 +27,8 @@ export function registerDWCSSettings() {
   // Key   = moveType
   // Value = { singular, plural }
   game.settings.register("dw-custom-sheet", "customMoveTypes", {
-    name: "DWCS.Custom.MoveTypes.name",
-    hint: "DWCS.Custom.MoveTypes.hint",
+    name: "DWCS.Settings.NewMoveTypes.name",
+    hint: "DWCS.Settings.NewMoveTypes.hint",
     scope: "world",
     config: true,
     type: String,
@@ -48,11 +48,11 @@ export function registerDWCSSettings() {
   /* --- Sidebar Move Types (JSON string setting) --- */
 
   // Stores which moveTypes should be rendered in the sidebar.
-  // Key   = moveType
+  // Key = moveType
   // Value = boolean (true = sidebar, false = main tab)
   game.settings.register("dw-custom-sheet", "sidebarMoveTypes", {
-    name: "DWCS.Custom.SidebarMoves.name",
-    hint: "DWCS.Custom.SidebarMoves.hint",
+    name: "DWCS.Settings.MovesOnSidebar.name",
+    hint: "DWCS.Settings.MovesOnSidebar.hint",
     scope: "world",
     config: true,
     type: String,
@@ -65,6 +65,36 @@ export function registerDWCSSettings() {
       } catch (err) {
         ui.notifications.error("DWCS: Invalid JSON in sidebarMoveTypes setting.");
         console.error("Invalid JSON in \"sidebarMoveTypes\":", err);
+      }
+    }
+  });
+
+  /* --- Auto Add Move Types (JSON string setting) --- */
+
+  // Controls which custom moveTypes should be automatically added to newly
+  // created characters.
+  // Key = moveType
+  // Value = boolean (true = auto add, false = do NOT auto add)
+  const defaultAutoAddTypes = {
+    adventure: true,
+    travel: true,
+    session: true
+  };
+
+  game.settings.register("dw-custom-sheet", "autoAddMoveTypes", {
+    name: "DWCS.Settings.MovesAutoAdd.name",
+    hint: "DWCS.Settings.MovesAutoAdd.hint",
+    scope: "world",
+    config: true,
+    type: String,
+    default: JSON.stringify(defaultAutoAddTypes, null, 2),
+
+    onChange: value => {
+      try {
+        JSON.parse(value);
+      } catch (err) {
+        ui.notifications.error("DWCS: Invalid JSON in autoAddMoveTypes setting.");
+        console.error("Invalid JSON in \"autoAddMoveTypes\":", err);
       }
     }
   });
@@ -97,7 +127,7 @@ export function getCustomMoveTypes() {
 /**
  * Utility function to get sidebar placement configuration.
  * Returns an object where:
- * key   = moveType
+ * key = moveType
  * value = boolean (true = sidebar, false = main tab)
  */
 export function getSidebarMoveTypes() {
@@ -107,6 +137,25 @@ export function getSidebarMoveTypes() {
     return JSON.parse(raw);
   } catch (e) {
     console.error("DWCS: Invalid JSON in \"sidebarMoveTypes\" setting", e);
+    return {};
+  }
+}
+
+/**
+ * Utility function to get auto-add configuration for move types.
+ * Returns an object where:
+ * key = moveType
+ * value = boolean (true = auto add, false = skip)
+ */
+export function getAutoAddMoveTypes() {
+  const raw = game.settings.get("dw-custom-sheet", "autoAddMoveTypes") || "{}";
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed !== "object" || Array.isArray(parsed)) return {}; // Only ensure the parsed value is an object
+    return parsed;
+  } catch (e) {
+    console.error("DWCS: Invalid JSON in \"autoAddMoveTypes\" setting", e);
     return {};
   }
 }
