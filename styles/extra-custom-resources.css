@@ -19,7 +19,7 @@
 /* Dropdown Toggle */
 .dw-custom-sheet .custom-resources-toggle {
     position: absolute;
-    margin: 1px 4px;
+    margin-top: -16px;
     z-index: 2;
 }
 
@@ -46,7 +46,6 @@
   height: 34px;
   background: #344055;
   color: #e5e5e5;
-  font-size: 0.85rem;
   border-radius: 4px;
 }
 /* Every custom resource except resource1 has space for remove button */
@@ -57,7 +56,7 @@
 .dw-custom-sheet .extra-custom-resources .cell__title input[type="text"] {
   width: 100%;
   padding: 0.2em 0.4em;
-  font-size: 0.85rem;
+  font-size: 16px;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   box-sizing: border-box;
@@ -88,7 +87,7 @@
   width: 100%;
   text-align: center;
   padding: 0.25em 0.3em;
-  font-size: 0.9em;
+  font-size: 18px;
   border-radius: 4px;
   border: 1px solid var(--border-color);
 }
@@ -98,7 +97,6 @@
   min-width: 2.2em;
   padding: 0.25em 0.4em;
   text-align: center;
-  font-size: 1em;
   border: 1px solid var(--border-color);
   border-radius: 4px;
 }
@@ -116,13 +114,12 @@
   position: absolute;
   top: 5px;
   right: 0;
-  width: 1.5em;
+  width: 1.35em;
   height: 1.5em;
   /* background: transparent !important; */
   /* color: var(--remove-btn-color) !important; */
   border: none;
   cursor: pointer;
-  font-size: 0.9em;
   z-index: 2;
 }
 
@@ -139,11 +136,11 @@
   padding: 0.4em;
 }
 .dw-custom-sheet .extra-custom-resources .cell--add-resource .add-extra-resource {
-  width: 2.2em;
-  height: 6em;
-  right: 92%;
+  width: 1.8em;
+  height: 4em;
+  right: 84%;
   position: relative;
-  font-size: 0.85em;
+  font-size: 20px;
   cursor: pointer;
   transition: opacity 0.2s, background-color 0.2s;
 }

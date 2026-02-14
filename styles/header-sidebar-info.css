@@ -94,7 +94,6 @@
   position: absolute;
   z-index: 4;
   top: 5%;
-  left: -2%;
   cursor: pointer;
 }
 
@@ -146,29 +145,25 @@
   top: 15%;
   left: 12%;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+
+  display: flex;
+  padding-bottom: 6px;
   font-size: 24px;
   text-align: center;
-
-  width: 25%;
-  height: 25%;
+  width: 40px;
+  height: 40px;
   z-index: 3;
   border-radius: 50%;
   cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  transform: translate(-50%, -50%);
   color: var(--text-color);
-
   background: radial-gradient(circle, #81c6ff 0%, #5280ff 70%);
   border: 2px solid var(--accent-color);
-
   box-shadow:
     0 0 6px rgba(0, 38, 255, 0.7),
     0 0 14px rgba(0, 132, 255, 0.4);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;  
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 /* Hover feedback */

@@ -104,7 +104,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
   gap: 12px;
 }
 
@@ -115,19 +115,20 @@
 
 /* Ability value */
 .dw-custom-sheet .ability-value {
-  width: 30%;
-  border-radius: 12px;
+  height: 32px;
+  width: 50px;
+  border-radius: 25%;
   
   display: flex;
   justify-items: center;
   
-  border: 2px solid var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 
 /* Ability mod as span */
 .dw-custom-sheet span.ability-mod {
   text-align: center;
-  font-size: 1em;
+  font-size: 20px;
   color: var(--text-color);
 
   text-shadow:
