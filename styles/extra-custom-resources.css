@@ -19,7 +19,7 @@
 /* Dropdown Toggle */
 .dw-custom-sheet .custom-resources-toggle {
     position: absolute;
-    top: 11.4em;
+    margin: 1px 4px;
     z-index: 2;
 }
 
