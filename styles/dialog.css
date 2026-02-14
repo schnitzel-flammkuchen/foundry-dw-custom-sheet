@@ -55,7 +55,7 @@
 .dw-dialog .window-content:has(.dialog-content form) .dialog-content p {
   /* margin: 0; */
   position: relative;
-  right: -2em;
+  right: -3em;
 }
 
 /* Make form content align horizontally */
