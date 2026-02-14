@@ -5,6 +5,7 @@ import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
 import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
 import { registerDWCSSettings, getCustomMoveTypes } from "./settings.js";
+import { ITEM_TYPE_ICONS } from "./utils/config.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -182,8 +183,33 @@ Hooks.on("createActor", async (actor) => {
  * Hook that runs whenever an Actor sheet is rendered.
  * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
  * Calls 'enablePersistentDropdowns' to ensure local flags for dropdowns that have been opened/closed so to avoid its "blinking" effect when rendering a sheet.
+ * Updates item icons inside '.content-link' elements based on item type.
  */
 Hooks.on("renderActorSheet", (_sheet, html, _data) => {
     normalizeInputs(html);
     enablePersistentDropdowns(html);
+    // Iterate over all content links (items, etc)
+    html.find(".content-link").each((_, link) => {
+        // Ensure we are working with a native DOM element
+        link = link instanceof HTMLElement ? link : link[0];
+
+        // Get the UUID of the linked item
+        const uuid = link.dataset.uuid;
+        if (!uuid) return;
+
+        // Retrieve the item from Foundry
+        const item = fromUuidSync(uuid);
+        if (!item || item.documentName !== "Item") return;
+
+        // Determine the item type, fallback to 'equipment' if undefined
+        const type = item.system?.itemType || "equipment";
+
+        // Select the corresponding icon class from the config
+        // Fallback to 'fa-suitcase' if the type is not defined
+        const iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase";
+
+        // Update the <i> element inside the link, preserving CSS transitions
+        const iElem = link.querySelector("i");
+        if (iElem) iElem.className = iconClass;
+    });
 });

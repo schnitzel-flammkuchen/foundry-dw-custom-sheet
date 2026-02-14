@@ -62,7 +62,7 @@ export const ITEM_TYPE_LABELS = {
 export const ITEM_TYPE_ICONS = {
   weapon: "fas fa-sword",
   armor: "fas fa-shield-alt",
-  dungeongear: "fa-tools",
+  dungeongear: "fas fa-tools",
   poison: "fas fa-flask",
   meal: "fas fa-drumstick-bite",
   service: "fas fa-hands-helping",
