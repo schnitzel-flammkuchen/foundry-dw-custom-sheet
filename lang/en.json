@@ -33,6 +33,10 @@
                 "name": "Custom Move Types",
                 "hint": "Add custom move types as JSON. Example: { \"adventure\": {\"singular\": \"Adventure Move\", \"plural\": \"Adventure Moves\" }, ... }"
             },
+            "SidebarMoves": {
+                "name": "Sidebar Move Types",
+                "hint": "Define via JSON which moveTypes appear in the sidebar: true = sidebar, false = main list. Example: { \"adventure\": true }"
+            },
             "Moves": {
                 "Adventure": "Adventure Moves",
                 "Travel": "Travel Moves",

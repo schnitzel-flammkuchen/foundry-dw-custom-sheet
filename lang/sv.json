@@ -33,6 +33,10 @@
                 "name": "Anpassade rörelsetyper",
                 "hint": "Lägg till anpassade rörelsetyper som JSON. Exempel: { \"adventure\": {\"singular\": \"Äventyrsrörelse\", \"plural\": \"Äventyrsrörelser\" }, ... }"
             },
+            "SidebarMoves": {
+                "name": "Rörelsetyper i sidopanelen",
+                "hint": "Definiera via JSON vilka rörelsetyper som visas i sidopanelen: true = sidopanel, false = huvudlista. Exempel: { \"adventure\": true }"
+            },
             "Moves": {
                 "Adventure": "Äventyrsrörelser",
                 "Travel": "Reserörelser",

@@ -3,13 +3,13 @@
 /* Name input styling */
 .dw-custom-sheet .character-name input.input--title {
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 20px;
   border-radius: 8px;
   border: 1px solid #555;
   background-color: var(--background-color);
   color: var(--text-color);
   height: 100%;
-  min-width: 180px;
+  min-width: 100%;
   transition: all 0.2s ease;
 }
 .dw-custom-sheet .character-name input.input--title:focus {
@@ -27,13 +27,13 @@
 /* Class selector styling */
 .dw-custom-sheet .character-class select.input--title {
   padding: 0.5rem 0.75rem;
-  font-size: 1rem;
+  font-size: 16px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background-color: var(--background-color);
   color: var(--text-color);
   min-width: 140px;
-  min-height: 38px;
+  min-height: 40px;
   transition: all 0.2s ease;
 }
 .dw-custom-sheet .character-class select.input--title:focus {
@@ -58,7 +58,7 @@
 /* Container for XP circle and portrait */
 .dw-custom-sheet .character-xp-wrapper {
   width: 100%;
-  max-width: 200px;
+  max-width: 220px;
   aspect-ratio: 1/1;
   margin: 0 auto;
   position: relative;
@@ -76,7 +76,7 @@
 .dw-custom-sheet .xp-input {
   display: none;
   width: 20%;
-  font-size: 1em;
+  font-size: 18px;
   text-align: center;
   margin-left: 20%;
   z-index: 4;
@@ -127,7 +127,7 @@
   transform: translate(-50%, -50%); 
   width: 92%;
   height: 92%;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   overflow: hidden;
   z-index: 2;
 }
@@ -147,7 +147,7 @@
   left: 12%;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.2em;
+  font-size: 24px;
   text-align: center;
 
   width: 25%;
@@ -177,4 +177,121 @@
   box-shadow:
     0 0 10px rgba(0, 38, 255, 0.9),
     0 0 20px rgba(0, 132, 255, 0.6);
+}
+
+/* --- SIDEBAR CUSTOM MOVES (DESCRIPTION + ICON + CONTROLS) --- */
+
+/* Wrapper for all sidebar custom moves */
+.dw-custom-sheet .sidebar-moves {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  /* width: 105%; */
+  left: 0;
+}
+
+/* Each move category in the sidebar */
+.dw-custom-sheet .sidebar-moves .cell--item-list {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+/* Category header: title + create button */
+.dw-custom-sheet .sidebar-moves .cell__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.dw-custom-sheet .sidebar-moves .cell__title .item-create {
+  height: 30px;
+  width: 30px;
+}
+
+.dw-custom-sheet .sidebar-moves .cell__title label {
+  flex: 1;
+}
+
+.dw-custom-sheet .sidebar-moves .item-controls {
+  flex-shrink: 0;
+}
+
+/* Items list in a category */
+.dw-custom-sheet .sidebar-moves .items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each move item (title, description, icon+controls) */
+.dw-custom-sheet .sidebar-moves .item.flexrow {
+  display: grid;
+  grid-template-columns: auto 1fr; /* left = icon/controls, right = content */
+  grid-template-rows: auto auto auto; /* title, description, icon/controls */
+  grid-template-areas:
+    "title title"
+    "desc desc"
+    "icon content";
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* Title row */
+.dw-custom-sheet .sidebar-moves .item.flexrow > .item-label {
+  grid-area: title;
+}
+.dw-custom-sheet .sidebar-moves .items-list .item .item-label {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem); 
+  /* min 0.8rem, prefer 1.5% of viewport width, max 1.2rem */
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+/* Item gap with controls when hovering label */
+.dw-custom-sheet .sidebar-moves .item.flexrow .item-label:hover {
+  margin-right: 10px !important;
+  transition: all 0.25s ease;
+}
+
+/* Description row */
+.dw-custom-sheet .sidebar-moves .item.flexrow > .item-description {
+  grid-area: desc;
+  font-size: 0.8rem;
+  white-space: normal;
+  overflow-wrap: break-word;
+  margin-bottom: 0.2rem;
+  text-align: justify;
+}
+
+/* Icon column */
+.dw-custom-sheet .sidebar-moves .item.flexrow > .item-avatar {
+  grid-area: icon;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.2rem;
+}
+
+/* Controls below icon */
+.dw-custom-sheet .sidebar-moves .item.flexrow > .item-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: end-start;
+  gap: 0.15rem;
+}
+
+/* Content / label column */
+.dw-custom-sheet .sidebar-moves .item.flexrow > .label,
+.dw-custom-sheet .sidebar-moves .item.flexrow > .roll-data {
+  grid-area: content;
+  overflow-wrap: anywhere;
 }

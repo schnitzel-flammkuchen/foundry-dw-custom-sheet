@@ -467,6 +467,10 @@
                 "name": "Movimentos Personalizados",
                 "hint": "Adicione tipos de movimentos personalizados como JSON. Exemplo: { \"adventure\": {\"singular\": \"Movimento de Aventura\", \"plural\": \"Movimentos de Aventura\" }, ... }"
             },
+            "SidebarMoves": {
+                "name": "Tipos de Movimentos na Barra Lateral",
+                "hint": "Defina via JSON quais tipos de movimento aparecem na barra lateral: true = barra lateral, false = lista principal. Exemplo: { \"adventure\": true }"
+            },
             "Moves": {
                 "Adventure": "Movimentos de Aventura",
                 "Travel": "Movimentos de Viagem",

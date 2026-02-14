@@ -33,6 +33,10 @@
                 "name": "Benutzerdefinierte Bewegungsarten",
                 "hint": "Füge benutzerdefinierte Bewegungsarten als JSON hinzu. Beispiel: { \"adventure\": {\"singular\": \"Abenteuermove\", \"plural\": \"Abenteuermoves\" }, ... }"
             },
+            "SidebarMoves": {
+                "name": "Zugtypen in der Seitenleiste",
+                "hint": "Definiere per JSON, welche Zugtypen in der Seitenleiste angezeigt werden: true = Seitenleiste, false = Hauptliste. Beispiel: { \"adventure\": true }"
+            },
             "Moves": {
                 "Adventure": "Abenteuermoves",
                 "Travel": "Reisemoves",

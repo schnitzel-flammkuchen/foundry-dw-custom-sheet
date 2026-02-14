@@ -107,6 +107,36 @@
                 {{/each}}
                 </ol>
             </div>
+
+            {{!-- Sidebar Custom Moves --}}
+            {{#if moveCategoriesSidebar.length}}
+            <div class="sidebar-moves">
+                {{#each moveCategoriesSidebar as |category|}}
+                <div class="cell cell--{{category.name}} cell--item-list" data-dropdown>
+                    <h4 class="cell__title" data-header>
+                        <label>
+                            {{localize category.title}}
+                            <i class="fas fa-chevron-up"></i>
+                        </label>
+
+                        <div class="item-controls" data-ignore>
+                            <button type="button" class="item-control item-create" title="{{localize "DW.MoveCreate"}}" data-type="move" data-moveType="{{category.moveType}}">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </h4>
+
+                    <ol class="items-list" data-content>
+                        {{#each category.moves as |item|}}
+                        <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+                            {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../rollData statSettings=../../system.statSettings}}
+                        </li>
+                        {{/each}}
+                    </ol>
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
         </div>
     </div>
 </aside>

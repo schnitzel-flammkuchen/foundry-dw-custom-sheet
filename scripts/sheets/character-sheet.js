@@ -3,7 +3,7 @@
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
 import { enableSteppers } from "../utils/ui.js";
-import { getCustomMoveTypes } from "../settings.js";
+import { getSidebarMoveTypes, getCustomMoveTypes } from "../settings.js";
 
 // Foundry V12 + V13 compatibility of TextEditor
 const { TextEditor } = foundry.applications.ux ?? foundry.applications.ux.TextEditor.implementation
@@ -153,20 +153,19 @@ export function defineCharacterCustom(baseClass) {
 
       // Filters the actor's items to include only those of type "move"
       const allMoves = this.actor.items.filter(i => i.type === "move");
-
+      
       // Keep track of processed move IDs to avoid duplicates
       const processedMoveIds = new Set();
 
-      /* --- BUILD MOVE CATEGORIES DYNAMICALLY --- */
-      // Base categories (already defined in config.js)
-      const baseCategories = MOVE_META.filter(c => c.moveType); // Basic/starting/advanced/special
+      // Base categories (basic/starting/advanced/special)
+      const baseCategories = MOVE_META.filter(c => c.moveType);
 
-      // Custom move types from settings
+      // Custom move types and sidebar configuration from settings
       const customTypes = getCustomMoveTypes();
+      const sidebarTypes = getSidebarMoveTypes();
 
-      // Build custom categories dynamically (avoid duplicates)
+      // Builds dynamic categories from custom settings (avoids duplicates with system ones)
       const customCategories = Object.entries(customTypes).map(([type, label]) => {
-
         const alreadyExists = MOVE_META.some(m => m.moveType === type);
         if (alreadyExists) return null;
 
@@ -176,93 +175,99 @@ export function defineCharacterCustom(baseClass) {
           moveType: type,
           name: `${type}-moves`
         };
-
       }).filter(Boolean);
 
-      // "Other moves" category (fallback)
-      const otherCategory = MOVE_META.find(c => !c.moveType) || { key: "moves", title: "DW.MovesOther", name: "other-moves" };
+      // Fallback "other moves" category (moves without a defined type)
+      const otherCategory = MOVE_META.find(c => !c.moveType)
+        ||
+        {
+          key: "moves",
+          title: "DW.MovesOther",
+          name: "other-moves"
+        };
 
-      // Final merged categories
-      context.moveMeta = [
+      // Merge categories (system + custom + fallback; that order)
+      const allCategories = [
         ...baseCategories,
         ...customCategories,
         otherCategory
       ];
 
-      // Collect all defined moveTypes dynamically
-      const definedMoveTypes = context.moveMeta
-        .map(c => c.moveType)
-        .filter(Boolean);
+      // Collects all defined moveTypes to determine fallback
+      const definedMoveTypes = allCategories.map(c => c.moveType).filter(Boolean);
 
-      // Filters the full move list by each category's type to be used on the template
-      context.moveCategories = await Promise.all(context.moveMeta.map(async cat => {
+      // Split moves used by template: main vs sidebar
+      const moveMainList = [];
+      const moveSideList = [];
 
-        const moves = await Promise.all(allMoves.filter(m => {
-
-          // Skip moves already processed
+      for (const cat of allCategories) {
+        // Filters moves belonging to the current category
+        const movesInCat = allMoves.filter(m => {
+          // Prevents duplicates
           if (processedMoveIds.has(m.id)) return false;
 
-          // If the category has no moveType, include all moves that are not defined elsewhere
-          const belongsToCategory = !cat.moveType
+          const belongs = !cat.moveType
             ? !definedMoveTypes.includes(m.system.moveType)
             : m.system.moveType === cat.moveType;
 
-          return belongsToCategory;
+          if (belongs) processedMoveIds.add(m.id);
+          return belongs;
+        });
 
-        }).map(async m => {
-
-          // Mark move as processed
-          processedMoveIds.add(m.id);
-
-          // Create a copy of the item to avoid modifying the original
+        // Processes and enriches each move before sending to template
+        const processedMoves = await Promise.all(movesInCat.map(async m => {
           const moveObj = m.toObject();
 
           /* --- MOVE RESULTS --- */
+
+          // Ensures moveResults structure exists
           moveObj.system.moveResults = moveObj.system.moveResults || {};
           for (const key of ["success", "partial", "failure"]) {
-            const rawValue = moveObj.system.moveResults?.[key]?.value
+            const raw = moveObj.system.moveResults?.[key]?.value
               ?? moveObj.system.results?.[key === "failure" ? "fail" : key]
               ?? "";
 
             moveObj.system.moveResults[key] = {
-              value: !!rawValue ? 1 : 0,
-              enriched: rawValue
-                ? await TextEditor.enrichHTML(rawValue, {
-                    async: true,
-                    documents: true,
-                    secrets: this.actor.isOwner,
-                    relativeTo: m,
-                    rollData: m.getRollData()
-                  })
-                : ""
+              value: !!raw ? 1 : 0,
+              enriched: raw ? await TextEditor.enrichHTML(raw, {
+                async: true,
+                documents: true,
+                secrets: this.actor.isOwner,
+                relativeTo: m,
+                rollData: m.getRollData()
+              }) : ""
             };
           }
 
           /* --- MOVE CHOICES --- */
+
+          // Normalizes choices to always be an array
           if (!Array.isArray(moveObj.system.choices)) {
             moveObj.system.choices = moveObj.system.choices
               ? [moveObj.system.choices]
               : (moveObj.system.results?.choices || []);
           }
-          moveObj.system.choicesEnriched =
-            moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
+          moveObj.system.choicesEnriched = moveObj.system.choicesEnriched || moveObj.system.choices.join(", ");
 
           /* --- DESCRIPTION --- */
-          moveObj.system.descriptionEnriched =
-            moveObj.system.descriptionEnriched ||
-            moveObj.system.description ||
-            "";
+
+          // Ensures enriched description exists
+          moveObj.system.descriptionEnriched = moveObj.system.descriptionEnriched || moveObj.system.description || "";
 
           return moveObj;
-
         }));
 
-        // Return the category object with the filtered + processed moves
-        return {
-          ...cat,
-          moves
-        };
-      }));
+        // Assigns category to sidebar or main tab based on setting
+        if (cat.moveType && sidebarTypes[cat.moveType]) {
+          moveSideList.push({ ...cat, moves: processedMoves });
+        } else {
+          moveMainList.push({ ...cat, moves: processedMoves });
+        }
+      }
+
+      // Set context for template (separated lists to template)
+      context.moveCategories = moveMainList;
+      context.moveCategoriesSidebar = moveSideList;
 
       /* --- CUSTOM RESOURCES --- */
 

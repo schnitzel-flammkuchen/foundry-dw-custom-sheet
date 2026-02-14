@@ -2,9 +2,13 @@
 
 /* Effect when hovering over the item */
 .dw-custom-sheet .item-name:hover {
-  margin-left: 25px;
+  margin-left: 18px !important;
   transform: scale(1.1);
   transition: all 0.2s ease;
+}
+/* Except for sidebar move types */
+.dw-custom-sheet .sidebar-moves .item-name:hover {
+  margin-left: 0 !important;
 }
 
 /* --- MAGICAL ITEMS IN THE EQUIPMENT TAB OF THE CHARACTER SHEET --- */

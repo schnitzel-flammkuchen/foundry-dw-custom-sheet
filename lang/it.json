@@ -33,6 +33,10 @@
                 "name": "Tipi di mossa personalizzati",
                 "hint": "Aggiungi tipi di mossa personalizzati come JSON. Esempio: { \"adventure\": {\"singular\": \"Mossa d'Avventura\", \"plural\": \"Mosse d'Avventura\" }, ... }"
             },
+            "SidebarMoves": {
+                "name": "Tipi di mosse nella barra laterale",
+                "hint": "Definisci tramite JSON quali tipi di mossa appaiono nella barra laterale: true = barra laterale, false = lista principale. Esempio: { \"adventure\": true }"
+            },
             "Moves": {
                 "Adventure": "Mosse d'Avventura",
                 "Travel": "Mosse di Viaggio",

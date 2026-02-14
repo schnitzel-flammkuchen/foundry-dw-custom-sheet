@@ -21,27 +21,29 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            <div class="resource--desc">
-              <label>
-                {{localize "DW.Description"}}
-              </label>
-              {{editor system.descriptionEnriched target="system.description" button=true owner=owner editable=editable engine="prosemirror"}}
-            </div>
+            <div class="resources-wrapper">
+              <div class="resource--desc">
+                <label>
+                  {{localize "DW.Description"}}
+                </label>
+                {{editor system.descriptionEnriched target="system.description" button=true owner=owner editable=editable engine="prosemirror"}}
+              </div>
 
-            {{#if system.moveResults}}
-              {{#each system.moveResults as |result key|}}
-                <div class="resource--desc">
-                  <label>
-                    {{localize (concat 'DW.' key)}}
-                  </label>
-                  {{editor result.enriched target=result.key button=true owner=../owner editable=../editable engine="prosemirror"}}
-                </div>
-              {{/each}}
-            {{/if}}
+              {{#if system.moveResults}}
+                {{#each system.moveResults as |result key|}}
+                  <div class="resource--desc">
+                    <label>
+                      {{localize (concat 'DW.' key)}}
+                    </label>
+                    {{editor result.enriched target=result.key button=true owner=../owner editable=../editable engine="prosemirror"}}
+                  </div>
+                {{/each}}
+              {{/if}}
 
-            <div class="resource--desc">
-              <label>{{localize "DW.Choices"}}</label>
-              {{editor system.choicesEnriched target="system.choices" button=true owner=owner editable=editable engine="prosemirror"}}
+              <div class="resource--desc">
+                <label>{{localize "DW.Choices"}}</label>
+                {{editor system.choicesEnriched target="system.choices" button=true owner=owner editable=editable engine="prosemirror"}}
+              </div>
             </div>
         </div>
 

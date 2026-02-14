@@ -31,9 +31,9 @@
 
 /* --- SIDEBAR --- */
 .dw-custom-sheet .sheet-sidebar {
-  width: 25%;
+  width: 27%;
   flex: 0 0 auto;
-  padding-right: 8px;
+  padding-right: 10px;
 }
 
 /* Profile image */
@@ -150,6 +150,9 @@
   text-align: center;
 }
 
+.dw-custom-sheet.item-form .resources-wrapper {
+  row-gap: 12px;
+}
 .dw-custom-sheet.item-form .resource--desc .editor {
   width: 100%;
   min-height: 1.5em;
