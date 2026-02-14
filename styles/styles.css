@@ -9,17 +9,14 @@
 .dw-custom-sheet [class$="--title"],
 .dw-custom-sheet a.item {
   font-family: 'Alegreya SC', serif;
-  /* font-size: 1.3em; */
 }
 .dw-custom-sheet [class$="-label"],
 .dw-custom-sheet .item-label.open {
   font-family: 'Alegreya SC', serif;
-  /* font-size: 1.2em; */
 }
 /* For descriptions */
 .dw-custom-sheet [class$="-description"] {
   font-family: 'Alegreya', serif;
-  /* font-size: 1rem; */
 }
 
 /* Placeholders color (compatibility to every browser) */

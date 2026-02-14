@@ -205,7 +205,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 16px;
   margin-bottom: 0.4rem;
 }
 .dw-custom-sheet .sidebar-moves .cell__title .item-create {
@@ -250,7 +250,7 @@
   grid-area: title;
 }
 .dw-custom-sheet .sidebar-moves .items-list .item .item-label {
-  font-size: clamp(0.8rem, 1.5vw, 1.2rem); 
+  font-size: clamp(0.8em, 1.5vw, 1em); 
   /* min 0.8rem, prefer 1.5% of viewport width, max 1.2rem */
   line-height: 1.2;
   overflow-wrap: anywhere;

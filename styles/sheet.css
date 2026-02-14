@@ -31,8 +31,7 @@
 
 /* --- SIDEBAR --- */
 .dw-custom-sheet .sheet-sidebar {
-  width: 27%;
-  flex: 0 0 auto;
+  flex: 0 0 218px;
   padding-right: 10px;
 }
 
@@ -146,7 +145,7 @@
 }
 .dw-custom-sheet.item-form .resource--item input {
   width: 100%;
-  font-size: 1.25em;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -156,13 +155,13 @@
 .dw-custom-sheet.item-form .resource--desc .editor {
   width: 100%;
   min-height: 1.5em;
-  font-size: 1.25em;
+  font-size: 14px;
 }
 
 /* Bonds */
 .dw-custom-sheet.item-form .cell.cell--bond {
   margin: 2em 0;
-  font-size: 1.75em;
+  font-size: 18px;
   height: calc(100% - 20px);
 }
 
