@@ -2,10 +2,10 @@
 
 import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
-import { normalizeInputs, enablePersistentDropdowns } from "./utils/ui.js";
+import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
 import { registerDWCSSettings, getCustomMoveTypes, getAutoAddMoveTypes } from "./settings.js";
-import { ITEM_TYPE_ICONS } from "./utils/config.js";
+
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -191,39 +191,10 @@ Hooks.on("createActor", async (actor) => {
  * Hook that runs whenever an Actor sheet is rendered.
  * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
  * Calls 'enablePersistentDropdowns' to ensure local flags for dropdowns that have been opened/closed so to avoid its "blinking" effect when rendering a sheet.
- * Updates item icons inside '.content-link' elements based on item type.
+ * Calls 'updateContentLinkIcons' to update item icons inside '.content-link' elements based on item type.
  */
 Hooks.on("renderActorSheet", (_sheet, html, _data) => {
     normalizeInputs(html);
     enablePersistentDropdowns(html);
-    // Iterate over all content links (items, moves, spells, etc)
-    html.find(".content-link").each((_, link) => {
-        // Ensure we are working with a native DOM element
-        link = link instanceof HTMLElement ? link : link[0];
-
-        // Get the UUID of the linked item
-        const uuid = link.dataset.uuid;
-        if (!uuid) return;
-
-        // Retrieve the item from Foundry
-        const item = fromUuidSync(uuid);
-        if (!item || item.documentName !== "Item") return;
-
-        // Determine the type: check moves first, then spells, then fallback to system itemType or equipment
-        let type;
-        if (item.type === "move") type = "move";                  // DW moves
-        else if (item.type === "spell") type = "spell";                 // DW spells
-        else type = item.system?.itemType || "equipment"; // fallback for equipment or custom types
-
-        // Select the corresponding icon class from the config
-        // Special cases for 'move' and 'spell', otherwise fallback to ITEM_TYPE_ICONS or 'fa-suitcase'
-        let iconClass;
-        if (type === "move") iconClass = "fas fa-dice"; // Default move icon
-        else if (type === "spell") iconClass = "fas fa-sparkles"; // Default spell icon
-        else iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase"; // Fallback - none of these
-
-        // Update the <i> element inside the link, preserving CSS transitions
-        const iElem = link.querySelector("i");
-        if (iElem) iElem.className = iconClass;
-    });
+    updateContentLinkIcons(html);
 });

@@ -268,3 +268,47 @@ export function enableSteppers(html) {
     input.addEventListener("blur", commitValue);
   });
 }
+
+// Import the item type icons mapping from the config for subsequent use in the 'updateContentLinkIcons' function
+import { ITEM_TYPE_ICONS } from "./config.js";
+
+/**
+ * Updates icons for content links (items, moves, spells, etc.).
+ * 
+ * Each link with class 'content-link' is inspected for its UUID. If a valid
+ * item is found, the icon inside the link is updated based on the item's type.
+ * Special handling exists for moves and spells, with fallback for equipment
+ * or custom types. Preserves CSS transitions by replacing the class.
+ */
+export function updateContentLinkIcons(html) {
+// Iterate over all content links (items, moves, spells, etc)
+  html.find(".content-link").each((_, link) => {
+    // Ensure working with a native DOM element
+    link = link instanceof HTMLElement ? link : link[0];
+
+    // Get the UUID of the linked item
+    const uuid = link.dataset.uuid;
+    if (!uuid) return;
+
+    // Retrieve the item from Foundry
+    const item = fromUuidSync(uuid);
+    if (!item || item.documentName !== "Item") return;
+
+    // Determine the type: check moves first, then spells, then fallback to system itemType or equipment
+    let type;
+    if (item.type === "move") type = "move"; // DW moves
+    else if (item.type === "spell") type = "spell"; // DW spells
+    else type = item.system?.itemType || "equipment"; // fallback for equipment or custom types
+
+    // Select the corresponding icon class from the config
+    // Special cases for 'move' and 'spell', otherwise fallback to ITEM_TYPE_ICONS or 'fa-suitcase'
+    let iconClass;
+    if (type === "move") iconClass = "fas fa-dice"; // Default move icon
+    else if (type === "spell") iconClass = "fas fa-sparkles"; // Default spell icon
+    else iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase"; // Fallback - none of these
+
+    // Update the <i> element inside the link, preserving CSS transitions
+    const iElem = link.querySelector("i");
+    if (iElem) iElem.className = iconClass;
+  });
+}
