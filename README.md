@@ -20,13 +20,16 @@ As a result, this module aims to provide tailored UI support and additional func
 
 - Custom **player character sheet** for Dungeon World
 - A different UI layout and clearer data organization
+- Stylization for secrets (Journals)
 - Better separation of:
 
   - Core attributes (HP, Armor, Damage, Level, XP)
   - Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)
   - Economy (Coin and Load)
   - Moves and Spells (now on dropdowns)
-  - Additional functionalities (now new move types — compendium not included)
+
+- Additional functionalities (now new move types — compendium not included) 
+- Designed for FoundryVTT **v12+**
 
 ---
 
