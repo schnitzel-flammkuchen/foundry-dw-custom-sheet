@@ -399,3 +399,14 @@
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
+
+/* --- JOURNAL ENTRIES --- */
+
+/* If it's unauthorized user, the secret that had been revealed will have its button hidden */
+.unauthorized .secret.revealed button.reveal {
+  display: none;
+}
+/* Otherwise, it'll show the control button */
+.authorized .secret.revealed button.reveal {
+  display: block;
+}

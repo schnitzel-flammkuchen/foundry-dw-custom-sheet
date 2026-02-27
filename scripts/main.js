@@ -198,3 +198,34 @@ Hooks.on("renderActorSheet", (_sheet, html, _data) => {
     enablePersistentDropdowns(html);
     updateContentLinkIcons(html);
 });
+
+/**
+ * Hook executed whenever a Journal Entry Page (Text) sheet is rendered.
+ * Users with OWNER permission on the parent JournalEntry are considered authorized (add class 'authorized').
+ * All other users are unauthorized (add class 'unauthorized').
+ * The visibility's controlled via CSS.
+ */
+Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
+    // Get the main content section of the journal page
+    const content = html.querySelector('section.journal-page-content');
+    if (!content) return;
+
+    // Current JournalEntryPage
+    const page = sheet.document;
+
+    // Parent JournalEntry document
+    const journal = page.parent;
+    if (!journal) return;
+
+    // Check real permission level on this JournalEntry
+    const isAuthorized = journal.testUserPermission(game.user, "OWNER");
+
+    // Apply CSS state class based on permission
+    if (isAuthorized) content.classList.add('authorized');
+    else content.classList.add('unauthorized');
+
+    // // Mostly for debug purposes:
+    // console.log("Journal:", journal.name);
+    // console.log("Ownership:", journal.ownership);
+    // console.log("User level:", journal.getUserLevel(game.user));
+});
