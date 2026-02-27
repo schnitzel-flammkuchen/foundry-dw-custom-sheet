@@ -402,11 +402,52 @@
 
 /* --- JOURNAL ENTRIES --- */
 
-/* If it's unauthorized user, the secret that had been revealed will have its button hidden */
-.unauthorized .secret.revealed button.reveal {
+/* Change stylization colors for secrets (both authorized or not) */
+.secret {
+  background-color: var(--journal-secret-bg);
+  color: var(--journal-secret-text);
+  border-radius: 4px;
+  border-left: 2px solid var(--journal-secret-border);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+/* Container for secret blocks; reserve space for the button on the left */
+.authorized .secret {
+  position: relative;
+  padding: 0.2em 0 0.2em 1.8em;
+}
+/* Except for read-only users */
+.unauthorized .secret {
+  padding: 0.2em 0.4em;
+}
+
+/* Absolute positioned reveal button */
+.secret button.reveal {
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Paragraph inside secret block */
+.authorized .secret p {
+  margin: 4px;
+  padding: 0;
+}
+
+/* Permission-based visibility control */
+/* Hide reveal button/icon for unauthorized users */
+.unauthorized .secret.revealed button.reveal,
+.unauthorized .secret.revealed .reveal-icon {
   display: none;
 }
-/* Otherwise, it'll show the control button */
-.authorized .secret.revealed button.reveal {
-  display: block;
+/* Show reveal button/icon for authorized users */
+.authorized .secret.revealed button.reveal,
+.authorized .secret.revealed .reveal-icon {
+  display: inline-flex;
 }

@@ -2,7 +2,7 @@
 
 import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
-import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons } from "./utils/ui.js";
+import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons, convertSecretButtonsToIcons } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
 import { registerDWCSSettings, getCustomMoveTypes, getAutoAddMoveTypes } from "./settings.js";
 
@@ -204,6 +204,9 @@ Hooks.on("renderActorSheet", (_sheet, html, _data) => {
  * Users with OWNER permission on the parent JournalEntry are considered authorized (add class 'authorized').
  * All other users are unauthorized (add class 'unauthorized').
  * The visibility's controlled via CSS.
+ * Using a MutationObserver instead of running 'convertSecretButtonsToIcons' because it seems that the JournalEntryPage
+ * content is rendered asynchronously by ProseMirror, so buttons may not exist yet when the sheet hook fires. The
+ * observer ensures that any reveal buttons added later are immediately converted to icons without any delay.
  */
 Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     // Get the main content section of the journal page
@@ -228,4 +231,13 @@ Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     // console.log("Journal:", journal.name);
     // console.log("Ownership:", journal.ownership);
     // console.log("User level:", journal.getUserLevel(game.user));
+
+    // Use MutationObserver to ensure we modify buttons as soon as they exist
+    const observer = new MutationObserver(() => {
+        convertSecretButtonsToIcons(content);
+    });
+    observer.observe(content, { childList: true, subtree: true });
+
+    // Run for any buttons already present
+    convertSecretButtonsToIcons(content);
 });

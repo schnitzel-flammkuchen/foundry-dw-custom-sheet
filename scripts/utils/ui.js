@@ -312,3 +312,47 @@ export function updateContentLinkIcons(html) {
     if (iElem) iElem.className = iconClass;
   });
 }
+
+/**
+ * Converts secret reveal buttons into icon-based buttons.
+ * Changes the button on secret sections (for journals) to be replaced with an
+ * icon that visually represents the revealed state ('fa-eye' for revealed,
+ * 'fa-eye-slash' for hidden).
+ */
+export function convertSecretButtonsToIcons(root) {
+    root.querySelectorAll('section.secret button.reveal').forEach(btn => {
+        // If there's an icon already, skip (prevents adding multiple icons if re-rendered)
+        if (btn.querySelector('i.reveal-icon')) return;
+
+        const secret = btn.closest('section.secret');
+        if (!secret) return;
+
+        // Create an icon element
+        const icon = document.createElement('i');
+        icon.classList.add('reveal-icon', 'fas');
+
+        // Add the correct FontAwesome icon based on revealed state
+        if (secret.classList.contains('revealed')) icon.classList.add('fa-eye');
+        else icon.classList.add('fa-eye-slash');
+
+        // Clean the button text and add the icon
+        btn.textContent = '';
+        btn.appendChild(icon);
+
+        // Style the button inline so it looks inline with the paragraph
+        btn.style.background = 'none';
+        btn.style.border = 'none';
+        btn.style.padding = '0';
+        btn.style.marginLeft = '0.5em';
+        btn.style.cursor = 'pointer';
+        btn.style.display = 'inline-block';
+        btn.style.verticalAlign = 'middle';
+
+        // Update icon when the button is clicked
+        btn.addEventListener('click', () => {
+            const revealed = secret.classList.contains('revealed');
+            icon.classList.toggle('fa-eye', !revealed);
+            icon.classList.toggle('fa-eye-slash', revealed);
+        });
+    });
+}

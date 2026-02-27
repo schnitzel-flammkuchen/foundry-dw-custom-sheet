@@ -41,6 +41,8 @@
   color: var(--input-placeholder);
 }
 
+
+
 /* Light mode */
 /* [data-theme="light"] */
 body.theme-light .dw-custom-sheet {
@@ -111,4 +113,22 @@ body.theme-dark .dw-custom-sheet {
   --icon-color: #222;
   --icon-glow-1: rgba(255, 255, 255, 0.6);
   --icon-glow-2: rgba(255, 255, 255, 0.35);
+}
+
+/* Journal */
+
+/* Light mode */
+/* [data-theme="light"] */
+body.theme-light .journal-entry-content {
+  --journal-secret-bg: #ebc18979;
+  --journal-secret-border: #d48472;
+  --journal-secret-text: #302d2d;
+}
+
+/* Dark mode */
+/* [data-theme="dark"] */
+body.theme-dark .journal-entry-content {
+  --journal-secret-bg: #d1bca10a;
+  --journal-secret-border: #c9593f;
+  --journal-secret-text: #cecbc5;
 }
