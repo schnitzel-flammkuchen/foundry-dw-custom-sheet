@@ -352,23 +352,12 @@ export function applyOwnershipClasses(sheet, html) {
     // ---------------------------
     const actor = game.actors.getName(doc.name);
     isAuthorized = (actor && hasPermission(actor)) || gm;
-  } else if (sheet?.constructor.name === "ItemSheet") {
+  } else if (sheet?.constructor.name === "ItemSheet" || doc.constructor.name === "JournalEntryPage") {
     // ---------------------------
-    // ItemSheet
+    // ItemSheet & JournalEntryPage
     // ---------------------------
     const parent = doc.parent;
     isAuthorized = (parent && hasPermission(parent)) || gm;
-  } else if (doc.constructor.name === "JournalEntryPage") {
-    // ---------------------------
-    // JournalEntryPage
-    // ---------------------------
-    const parent = doc.parent;
-    if (parent && typeof parent.testUserPermission === "function") {
-      const hasOwner = parent.testUserPermission(game.user, "OWNER");
-      if (hasOwner || game.user.isGM) isAuthorized = true;
-    } else if (game.user.isGM) {
-      isAuthorized = true;
-    }
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
     // ChatMessage
@@ -381,7 +370,7 @@ export function applyOwnershipClasses(sheet, html) {
   }
 
   // ---------------------------
-  // Apply CSS to ALL secret blocks
+  // Apply CSS to ALL secret blocks AND editors
   // ---------------------------
   const applyAuthClasses = (target) => {
     target.querySelectorAll("section.secret").forEach(secret => {

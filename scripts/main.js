@@ -223,7 +223,7 @@ Hooks.on("renderItemSheet", (sheet, html, _data) => {
  */
 Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     // Get the main content section of the journal page
-    const content = html.querySelector('section.journal-page-content');
+    const content = html.querySelector('.journal-page-content');
     if (!content) return;
 
     // Current JournalEntryPage
