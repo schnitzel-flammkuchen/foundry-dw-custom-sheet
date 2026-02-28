@@ -45,7 +45,8 @@
 
 /* Light mode */
 /* [data-theme="light"] */
-body.theme-light .dw-custom-sheet {
+body.theme-light .dw-custom-sheet,
+body.theme-light .editor-content {
   /* General colors */
   --accent-color: #398de0;
   --border-color: #727c88;
@@ -77,11 +78,25 @@ body.theme-light .dw-custom-sheet {
   --icon-color: #222;
   --icon-glow-1: rgba(255, 255, 255, 0.6);
   --icon-glow-2: rgba(255, 255, 255, 0.35);
+
+  /* Secrets */
+  --secret-bg: #b4ceff54;
+  --secret-border: #4d79ca;
+  --secret-text: #222222e8;
+}
+
+/* For journals only */
+body.theme-dark .journal-entry-content {
+  /* Secrets */
+  --secret-bg: #ebc18979;
+  --secret-border: #d48472;
+  --secret-text: #302d2d;
 }
 
 /* Dark mode */
 /* [data-theme="dark"] */
-body.theme-dark .dw-custom-sheet {
+body.theme-dark .dw-custom-sheet,
+body.theme-dark .editor-content {
   /* General colors */
   --accent-color: #65a3e1;
   --border-color: #4d4d4d;
@@ -113,22 +128,17 @@ body.theme-dark .dw-custom-sheet {
   --icon-color: #222;
   --icon-glow-1: rgba(255, 255, 255, 0.6);
   --icon-glow-2: rgba(255, 255, 255, 0.35);
+
+  /* Secrets */
+  --secret-bg: #72a4ff2b;
+  --secret-border: #335ba6;
+  --secret-text: #e3e3e3;
 }
 
-/* Journal */
-
-/* Light mode */
-/* [data-theme="light"] */
-body.theme-light .journal-entry-content {
-  --journal-secret-bg: #ebc18979;
-  --journal-secret-border: #d48472;
-  --journal-secret-text: #302d2d;
-}
-
-/* Dark mode */
-/* [data-theme="dark"] */
+/* For journals only */
 body.theme-dark .journal-entry-content {
-  --journal-secret-bg: #d1bca10a;
-  --journal-secret-border: #c9593f;
-  --journal-secret-text: #cecbc5;
+  /* Secrets */
+  --secret-bg: #d1bca10a;
+  --secret-border: #c9593f;
+  --secret-text: #cecbc5;
 }

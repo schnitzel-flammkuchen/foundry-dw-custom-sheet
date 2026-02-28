@@ -2,7 +2,7 @@
 
 import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
-import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons, convertSecretButtonsToIcons } from "./utils/ui.js";
+import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons, convertSecretButtonsToIcons, applyOwnershipClasses } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
 import { registerDWCSSettings, getCustomMoveTypes, getAutoAddMoveTypes } from "./settings.js";
 
@@ -192,11 +192,23 @@ Hooks.on("createActor", async (actor) => {
  * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
  * Calls 'enablePersistentDropdowns' to ensure local flags for dropdowns that have been opened/closed so to avoid its "blinking" effect when rendering a sheet.
  * Calls 'updateContentLinkIcons' to update item icons inside '.content-link' elements based on item type.
+ * Calls 'convertSecretButtonsToIcons' to convert any "reveal secret" buttons in journal entries to icons, ensuring that secrets are visually distinct and easily identifiable.
  */
-Hooks.on("renderActorSheet", (_sheet, html, _data) => {
+Hooks.on("renderActorSheet", (sheet, html, _data) => {
     normalizeInputs(html);
     enablePersistentDropdowns(html);
     updateContentLinkIcons(html);
+    applyOwnershipClasses(sheet, html);
+    convertSecretButtonsToIcons(html);
+});
+
+/**
+ * Hook that runs whenever an Item sheet is rendered.
+ * Calls 'convertSecretButtonsToIcons' to convert any "reveal secret" buttons in journal entries to icons, ensuring that secrets are visually distinct and easily identifiable.
+ */
+Hooks.on("renderItemSheet", (sheet, html, _data) => {
+    applyOwnershipClasses(sheet, html);
+    convertSecretButtonsToIcons(html);
 });
 
 /**
@@ -220,12 +232,8 @@ Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     const journal = page.parent;
     if (!journal) return;
 
-    // Check real permission level on this JournalEntry
-    const isAuthorized = journal.testUserPermission(game.user, "OWNER");
-
-    // Apply CSS state class based on permission
-    if (isAuthorized) content.classList.add('authorized');
-    else content.classList.add('unauthorized');
+    // Apply ownership classes dynamically using the generic function
+    applyOwnershipClasses(sheet, content);
 
     // // Mostly for debug purposes:
     // console.log("Journal:", journal.name);

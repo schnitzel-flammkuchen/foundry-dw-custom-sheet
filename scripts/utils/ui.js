@@ -314,45 +314,141 @@ export function updateContentLinkIcons(html) {
 }
 
 /**
+ * Dynamically applies permission-based CSS classes to all secret blocks in a sheet.
+ * Works for ActorSheets, ItemSheets, and JournalEntryPage sheets.
+ * Adds 'authorized' class if the current user is:
+ * - OWNER of the Actor
+ * - ASSISTANT GM of the Actor (permission 2)
+ * - GM (game.user.isGM)
+ * Else adds 'unauthorized'.
+ * Handles 'default' fallback in the ownership object.
+ * @param {Application} sheet - The sheet being rendered
+ * @param {HTMLElement|jQuery} html - The root HTML of the sheet
+ */
+export function applyOwnershipClasses(sheet, html) {
+  // Normalize jQuery -> HTMLElement
+  let root = html;
+  if (typeof html?.jquery !== "undefined") root = html[0];
+  if (!root || !(root instanceof HTMLElement)) return;
+
+  const doc = sheet.document;
+  if (!doc) return;
+
+  let isAuthorized = false;
+
+  // ---------------------------
+  // ActorSheet
+  // ---------------------------
+  if (doc.type === "character") {
+    const actor = game.actors.getName(doc.name);
+    if (actor) {
+      const perm = actor.ownership?.[game.user.id] ?? actor.ownership?.["default"] ?? 0;
+      if (perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER ||
+          perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT ||
+          game.user.isGM) isAuthorized = true;
+    } else if (game.user.isGM) {
+      isAuthorized = true;
+    }
+
+  // ---------------------------
+  // ItemSheet
+  // ---------------------------
+  } else if (sheet.constructor.name === "ItemSheet") {
+    const parent = doc.parent; // parent actor
+    if (parent) {
+      const perm = parent.ownership?.[game.user.id] ?? parent.ownership?.["default"] ?? 0;
+      if (perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER ||
+          perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT ||
+          game.user.isGM) isAuthorized = true;
+    } else if (game.user.isGM) {
+      isAuthorized = true;
+    }
+
+  // ---------------------------
+  // JournalEntryPage
+  // ---------------------------
+  } else if (doc.constructor.name === "JournalEntryPage") {
+    const parent = doc.parent;
+    if (parent && typeof parent.testUserPermission === "function") {
+      const hasOwner = parent.testUserPermission(game.user, "OWNER");
+      if (hasOwner || game.user.isGM) isAuthorized = true;
+    } else if (game.user.isGM) {
+      isAuthorized = true;
+    }
+  }
+
+  // ---------------------------
+  // Apply CSS to ALL secret blocks
+  // ---------------------------
+  root.querySelectorAll("section.secret").forEach(secret_block => {
+    if (isAuthorized) {
+      secret_block.classList.add("authorized");
+      secret_block.classList.remove("unauthorized");
+    } else {
+      secret_block.classList.add("unauthorized");
+      secret_block.classList.remove("authorized");
+    }
+  });
+}
+
+/**
  * Converts secret reveal buttons into icon-based buttons.
- * Changes the button on secret sections (for journals) to be replaced with an
- * icon that visually represents the revealed state ('fa-eye' for revealed,
- * 'fa-eye-slash' for hidden).
+ * Changes the button on secret sections to be replaced with an icon that
+ * visually represents the revealed state ('fa-eye' for revealed, 'fa-eye-slash'
+ * for hidden). Observes the root for dynamically added buttons.
+ * @param {HTMLElement|jQuery} root - The root element to search for secret buttons
  */
 export function convertSecretButtonsToIcons(root) {
-    root.querySelectorAll('section.secret button.reveal').forEach(btn => {
-        // If there's an icon already, skip (prevents adding multiple icons if re-rendered)
-        if (btn.querySelector('i.reveal-icon')) return;
+  // Normalize jQuery -> HTMLElement
+  if (!root) return;
+  if (typeof root.jquery !== "undefined") root = root[0];
+  if (!(root instanceof HTMLElement)) return;
 
-        const secret = btn.closest('section.secret');
-        if (!secret) return;
+  // Convert all buttons already present in the root
+  root.querySelectorAll('section.secret button.reveal').forEach(btn => {
+    if (btn.querySelector('i.reveal-icon')) return; // Skip if already converted
 
-        // Create an icon element
-        const icon = document.createElement('i');
-        icon.classList.add('reveal-icon', 'fas');
+    const secret = btn.closest('section.secret');
+    if (!secret) return;
 
-        // Add the correct FontAwesome icon based on revealed state
-        if (secret.classList.contains('revealed')) icon.classList.add('fa-eye');
-        else icon.classList.add('fa-eye-slash');
+    const icon = document.createElement('i');
+    icon.classList.add('reveal-icon', 'fas');
+    if (secret.classList.contains('revealed')) icon.classList.add('fa-eye');
+    else icon.classList.add('fa-eye-slash');
 
-        // Clean the button text and add the icon
-        btn.textContent = '';
-        btn.appendChild(icon);
+    btn.textContent = '';
+    btn.appendChild(icon);
 
-        // Style the button inline so it looks inline with the paragraph
-        btn.style.background = 'none';
-        btn.style.border = 'none';
-        btn.style.padding = '0';
-        btn.style.marginLeft = '0.5em';
-        btn.style.cursor = 'pointer';
-        btn.style.display = 'inline-block';
-        btn.style.verticalAlign = 'middle';
-
-        // Update icon when the button is clicked
-        btn.addEventListener('click', () => {
-            const revealed = secret.classList.contains('revealed');
-            icon.classList.toggle('fa-eye', !revealed);
-            icon.classList.toggle('fa-eye-slash', revealed);
-        });
+    btn.addEventListener('click', () => {
+      const revealed = secret.classList.contains('revealed');
+      icon.classList.toggle('fa-eye', !revealed);
+      icon.classList.toggle('fa-eye-slash', revealed);
     });
+  });
+
+  // Observe dynamically added buttons
+  const observer = new MutationObserver(() => {
+    root.querySelectorAll('section.secret button.reveal').forEach(btn => {
+      if (btn.querySelector('i.reveal-icon')) return;
+
+      const secret = btn.closest('section.secret');
+      if (!secret) return;
+
+      const icon = document.createElement('i');
+      icon.classList.add('reveal-icon', 'fas');
+      if (secret.classList.contains('revealed')) icon.classList.add('fa-eye');
+      else icon.classList.add('fa-eye-slash');
+
+      btn.textContent = '';
+      btn.appendChild(icon);
+
+      btn.addEventListener('click', () => {
+        const revealed = secret.classList.contains('revealed');
+        icon.classList.toggle('fa-eye', !revealed);
+        icon.classList.toggle('fa-eye-slash', revealed);
+      });
+    });
+  });
+
+  observer.observe(root, { childList: true, subtree: true });
 }
