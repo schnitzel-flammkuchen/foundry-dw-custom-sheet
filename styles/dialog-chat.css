@@ -103,3 +103,18 @@
   width: 92%;
 }
 
+/* --- CHAT MESSAGE STYLIZATION --- */
+
+.chat-scroll.overflowed.scrolled {
+  filter: grayscale(1); /* Apply grayscale to all messages when scrolled */
+}
+.chat-scroll.overflowed.scrolled:has(.chat-message:hover) {
+  mask-image: none !important; /* Remove fade effect on hover to ensure full visibility of hovered message */
+  filter: none !important;
+}
+
+/* Roll */
+/* Not considering row result because it already gives space between */
+.cell--chat:not(:has(.row.result)) .dice-roll {
+  margin-top: 0.8em; /* Space between description and roll */
+}

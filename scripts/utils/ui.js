@@ -304,7 +304,7 @@ export function updateContentLinkIcons(html) {
     // Select the corresponding icon class from the config
     // Special cases for 'move' and 'spell', otherwise fallback to ITEM_TYPE_ICONS or 'fa-suitcase'
     let iconClass;
-    if (type === "move") iconClass = "fas fa-dice-d20"; // Default move icon
+    if (type === "move") iconClass = "fal fa-dice-d20"; // Default move icon
     else if (type === "spell") iconClass = "fas fa-sparkles"; // Default spell icon
     else iconClass = ITEM_TYPE_ICONS[type] || "fas fa-suitcase"; // Fallback - none of these
 
@@ -318,7 +318,6 @@ export function updateContentLinkIcons(html) {
  * Dynamically applies permission-based CSS classes to all secret blocks in a sheet.
  * Works for ActorSheets, ItemSheets, JournalEntryPage and ChatMessages sheets.
  * Adds 'authorized' class if the current user is:
- * - OWNER of the Actor
  * - ASSISTANT GM of the Actor (permission 2)
  * - GM (game.user.isGM)
  * Else adds 'unauthorized'.
@@ -336,57 +335,40 @@ export function applyOwnershipClasses(sheet, html) {
   if (!doc) return;
 
   let isAuthorized = false;
+  const gm = game.user.isGM;
+
+  // Helper to check ownership
+  const hasPermission = (entity) => {
+    const perm = entity?.ownership?.[game.user.id] ?? entity?.ownership?.["default"] ?? 0;
+    return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
+  };
 
   if (doc.type === "character") {
     // ---------------------------
     // ActorSheet
     // ---------------------------
     const actor = game.actors.getName(doc.name);
-    if (actor) {
-      const perm = actor.ownership?.[game.user.id] ?? actor.ownership?.["default"] ?? 0;
-      if (perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-        || perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT
-        || game.user.isGM) isAuthorized = true;
-    } else if (game.user.isGM) {
-      isAuthorized = true;
-    }
-  } else if (sheet.constructor.name === "ItemSheet") {
+    isAuthorized = (actor && hasPermission(actor)) || gm;
+  } else if (sheet?.constructor.name === "ItemSheet") {
     // ---------------------------
     // ItemSheet
     // ---------------------------
-    const parent = doc.parent; // Parent actor
-    if (parent) {
-      const perm = parent.ownership?.[game.user.id] ?? parent.ownership?.["default"] ?? 0;
-      if (perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-        || perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT
-        || game.user.isGM) isAuthorized = true;
-    } else if (game.user.isGM) {
-      isAuthorized = true;
-    }
+    const parent = doc.parent;
+    isAuthorized = (parent && hasPermission(parent)) || gm;
   } else if (doc.constructor.name === "JournalEntryPage") {
     // ---------------------------
     // JournalEntryPage
     // ---------------------------
     const parent = doc.parent;
-    if (parent && typeof parent.testUserPermission === "function") {
-      const hasOwner = parent.testUserPermission(game.user, "OWNER");
-      if (hasOwner || game.user.isGM) isAuthorized = true;
-    } else if (game.user.isGM) {
-      isAuthorized = true;
-    }
+    isAuthorized = (parent && typeof parent.testUserPermission === "function") || gm;
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
     // ChatMessage
     // ---------------------------
-    if (game.user.isGM) isAuthorized = true;
-    else if (doc.user?.id === game.user.id) isAuthorized = true;
+    if (gm || doc.user?.id === game.user.id) isAuthorized = true;
     else if (doc.speaker?.actor) {
       const actor = game.actors.get(doc.speaker.actor);
-      if (actor) {
-        const perm = actor.ownership?.[game.user.id] ?? actor.ownership?.["default"] ?? 0;
-        if (perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
-          || perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT) isAuthorized = true;
-      }
+      isAuthorized = actor && hasPermission(actor);
     }
   }
 

@@ -29,7 +29,7 @@
       "src": "styles/header-sidebar-info.css"
     },
     {
-      "src": "styles/dialog.css"
+      "src": "styles/dialog-chat.css"
     },
     {
       "src": "styles/attributes-abilities.css"
