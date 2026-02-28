@@ -86,7 +86,7 @@ body.theme-light .editor-content {
 }
 
 /* For journals only */
-body.theme-dark .journal-entry-content {
+body.theme-light .journal-entry-content {
   /* Secrets */
   --secret-bg: #ebc18979;
   --secret-border: #d48472;
@@ -94,6 +94,7 @@ body.theme-dark .journal-entry-content {
 }
 
 /* Dark mode */
+/* Also consider all dark but interface light */
 /* [data-theme="dark"] */
 body.theme-dark .dw-custom-sheet,
 body.theme-dark .editor-content {
