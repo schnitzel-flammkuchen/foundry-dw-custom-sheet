@@ -282,10 +282,13 @@ import { ITEM_TYPE_ICONS } from "./config.js";
  * @param {HTMLElement|jQuery} html - The root HTML of the sheet
  */
 export function updateContentLinkIcons(html) {
-// Iterate over all content links (items, moves, spells, etc)
-  html.find(".content-link").each((_, link) => {
-    // Ensure working with a native DOM element
-    link = link instanceof HTMLElement ? link : link[0];
+  // Normalize jQuery -> HTMLElement
+  let root = html;
+  if (typeof html?.jquery !== "undefined") root = html[0];
+  if (!root || !(root instanceof HTMLElement)) return;
+
+  // Iterate over all content links
+  root.querySelectorAll(".content-link").forEach(link => {
 
     // Get the UUID of the linked item
     const uuid = link.dataset.uuid;
