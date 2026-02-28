@@ -20,7 +20,7 @@ As a result, this module aims to provide tailored UI support and additional func
 
 - Custom **player character sheet** for Dungeon World
 - A different UI layout and clearer data organization
-- Stylization for secrets (Journals)
+- Stylization for secret-blocks
 - Better separation of:
 
   - Core attributes (HP, Armor, Damage, Level, XP)

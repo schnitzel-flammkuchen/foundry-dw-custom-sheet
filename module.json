@@ -1,7 +1,7 @@
 {
   "id": "dw-custom-sheet",
   "title": "Dungeon World Custom Sheet",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "url": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet",
   "manifest": "https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/main/module.json",
   "download": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.zip",
@@ -9,7 +9,7 @@
     "minimum": "12",
     "verified": "13.351"
   },
-  "description": "<p>Adds a custom player character sheet for Dungeon World.</p><p>This module leverages and builds upon ideas and functionality from <a href=\"https://github.com/GreybeardGM/dw-extra-sheets\">Dungeon World: Extra Sheets</a> by GreybeardGM.</p><hr /><h3>Features</h3><ul dir=\"auto\"><li><p dir=\"auto\">A different UI layout and clearer data organization</p></li><li><p dir=\"auto\">Stylization for secrets (Journals)</p></li><li><p dir=\"auto\">Better separation of:</p><ul dir=\"auto\"><li>Core attributes (HP, Armor, Damage, Level, XP)</li><li>Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)</li><li>Economy (Coin and Load)</li><li>Moves and Spells (now on dropdowns)</li></ul></li><li><p dir=\"auto\">Additional functionalities (now new move types — compendium not included)</p></li><li><p dir=\"auto\">Designed for Foundry VTT <strong>v12+</strong></p></li></ul>",
+  "description": "<p>Adds a custom player character sheet for Dungeon World.</p><p>This module leverages and builds upon ideas and functionality from <a href=\"https://github.com/GreybeardGM/dw-extra-sheets\">Dungeon World: Extra Sheets</a> by GreybeardGM.</p><hr /><h3>Features</h3><ul dir=\"auto\"><li><p dir=\"auto\">A different UI layout and clearer data organization</p></li><li><p dir=\"auto\">Stylization for secret-blocks</p></li><li><p dir=\"auto\">Better separation of:</p><ul dir=\"auto\"><li>Core attributes (HP, Armor, Damage, Level, XP)</li><li>Resources (Forward, Ongoing, Hold — up to more custom resources as dropdown)</li><li>Economy (Coin and Load)</li><li>Moves and Spells (now on dropdowns)</li></ul></li><li><p dir=\"auto\">Additional functionalities (now new move types — compendium not included)</p></li><li><p dir=\"auto\">Designed for Foundry VTT <strong>v12+</strong></p></li></ul>",
   "flags": {
     "canUpload": true
   },
