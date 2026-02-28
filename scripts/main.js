@@ -220,6 +220,8 @@ Hooks.on("renderItemSheet", (sheet, html, _data) => {
  * Users with OWNER permission on the parent JournalEntry are considered authorized (add class 'authorized').
  * All other users are unauthorized (add class 'unauthorized').
  * The visibility's controlled via CSS.
+ * 
+ * SPECIFIC FOR DEFAULT FOUNDRY VTT JOURNAL ENTRY PAGES (TEXT SHEET)
  */
 Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     // Get the main content section of the journal page
@@ -244,6 +246,52 @@ Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     applyOwnershipClasses(sheet, content);
     // Convert secret buttons to icons
     convertSecretButtonsToIcons(content);
+});
+
+/**
+ * Global hook for any JournalSheet rendering.
+ * Works for core JournalSheets or ImprovedJournalSheet (module).
+ * Applies ownership-based classes.
+ */
+Hooks.on("renderApplication", (app, html, _data) => {
+    // Only act on journal sheets
+    if (!(app instanceof JournalSheet)) return;
+
+    const sheet = app;
+    const journal = sheet.document;
+    if (!journal) return;
+
+    //   // Debug: Journal info
+    //   console.log("JOURNAL RENDERED:", journal.name);
+    //   console.log("Journal Ownership:", journal.ownership);
+    //   console.log("User level:", journal.getUserLevel(game.user));
+
+    // -----------------------------
+    // Iterate all pages
+    // -----------------------------
+    if (journal.pages?.length) {
+        for (const page of journal.pages) {
+            console.log("Page:", page.name, "Ownership:", page.ownership, "User level:", page.getUserLevel(game.user));
+
+            // --------------------------------------------
+            // Inspect secret blocks if this is a text page
+            // --------------------------------------------
+            if (page.type === "text" && page.text?.content) {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(page.text.content, "text/html");
+                doc.querySelectorAll("section.secret").forEach(sec => {
+                    console.log("Secret block:", sec.id, sec.textContent.trim());
+                });
+            }
+        }
+    }
+
+    // Update content link icons
+    updateContentLinkIcons(html);
+    // Apply ownership classes dynamically using the generic function
+    applyOwnershipClasses(sheet, html);
+    // Convert secret buttons to icons
+    convertSecretButtonsToIcons(html);
 });
 
 /**

@@ -333,14 +333,14 @@ export function applyOwnershipClasses(sheet, html) {
   let root = html;
   if (typeof html?.jquery !== "undefined") root = html[0];
   if (!root || !(root instanceof HTMLElement)) return;
-
+  
   const doc = sheet.document;
   if (!doc) return;
-
+  
   let isAuthorized = false;
   const gm = game.user.isGM;
 
-  // Helper to check ownership
+  // Helper to check ownership (ASSISTANT)
   const hasPermission = (entity) => {
     const perm = entity?.ownership?.[game.user.id] ?? entity?.ownership?.["default"] ?? 0;
     return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
@@ -352,12 +352,14 @@ export function applyOwnershipClasses(sheet, html) {
     // ---------------------------
     const actor = game.actors.getName(doc.name);
     isAuthorized = (actor && hasPermission(actor)) || gm;
-  } else if (sheet?.constructor.name === "ItemSheet" || doc.constructor.name === "JournalEntryPage") {
+    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
+  } else if (sheet instanceof ItemSheet || doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
     // ---------------------------
-    // ItemSheet & JournalEntryPage
+    // ItemSheet & any JournalEntry
     // ---------------------------
     const parent = doc.parent;
-    isAuthorized = (parent && hasPermission(parent)) || gm;
+    isAuthorized = gm || (parent && hasPermission(parent));
+    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
     // ChatMessage
@@ -367,34 +369,46 @@ export function applyOwnershipClasses(sheet, html) {
       const actor = game.actors.get(doc.speaker.actor);
       isAuthorized = actor && hasPermission(actor);
     }
+    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
   }
 
-  // ---------------------------
+  // ------------------------------------------
   // Apply CSS to ALL secret blocks AND editors
-  // ---------------------------
-  const applyAuthClasses = (target) => {
-    target.querySelectorAll("section.secret").forEach(secret => {
-      const authorized = Boolean(isAuthorized);
+  // ------------------------------------------
+  const applyToSecret = (secret) => {
+    const parent = secret.parentElement;
+    if (parent) {
+      parent.classList.toggle("authorized", isAuthorized);
+      parent.classList.toggle("unauthorized", !isAuthorized);
+    }
 
-      // Applies classes to the parent (of the secret will be the 'secret-block')
-      const parent = secret.parentElement;
-      if (parent) {
-        parent.classList.toggle("authorized", authorized);
-        parent.classList.toggle("unauthorized", !authorized);
-      }
-
-      //Applies to editor, that way the entire editor can reflect the permission state, ensuring that even authorized
-      // users (exception being GM) can't see the content of secrets in edit mode
-      const editor = secret.closest(".editor");
-      if (editor) {
-        editor.classList.toggle("authorized", authorized);
-        editor.classList.toggle("unauthorized", !authorized);
-      }
-    });
+    const editor = secret.closest(".editor");
+    if (editor) {
+      editor.classList.toggle("authorized", isAuthorized);
+      editor.classList.toggle("unauthorized", !isAuthorized);
+    }
   };
 
-  // Apply to the main root of the sheet
-  applyAuthClasses(root);
+  // -----------------------------------
+  // Apply to all existing secret blocks
+  // -----------------------------------
+  root.querySelectorAll("section.secret").forEach(applyToSecret);
+
+  // ---------------------------------------------------
+  // Observe the DOM for dynamically added secret blocks
+  // ---------------------------------------------------
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        // If the node itself is a secret block
+        if (node.matches && node.matches("section.secret")) applyToSecret(node);
+        // If secret blocks exist inside the subtree
+        node.querySelectorAll?.("section.secret").forEach(applyToSecret);
+      });
+    }
+  });
+  observer.observe(root, { childList: true, subtree: true });
 }
 
 /**
