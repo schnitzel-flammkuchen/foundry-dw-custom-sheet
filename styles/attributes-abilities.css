@@ -120,7 +120,7 @@
   border-radius: 25%;
   
   display: flex;
-  justify-items: center;
+  text-align: center;
   
   border: 1px solid var(--accent-color);
 }
