@@ -363,7 +363,12 @@ export function applyOwnershipClasses(sheet, html) {
     // JournalEntryPage
     // ---------------------------
     const parent = doc.parent;
-    isAuthorized = (parent && typeof parent.testUserPermission === "function") || gm;
+    if (parent && typeof parent.testUserPermission === "function") {
+      const hasOwner = parent.testUserPermission(game.user, "OWNER");
+      if (hasOwner || game.user.isGM) isAuthorized = true;
+    } else if (game.user.isGM) {
+      isAuthorized = true;
+    }
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
     // ChatMessage
@@ -378,15 +383,29 @@ export function applyOwnershipClasses(sheet, html) {
   // ---------------------------
   // Apply CSS to ALL secret blocks
   // ---------------------------
-  root.querySelectorAll("section.secret").forEach(secret_block => {
-    if (isAuthorized) {
-      secret_block.classList.add("authorized");
-      secret_block.classList.remove("unauthorized");
-    } else {
-      secret_block.classList.add("unauthorized");
-      secret_block.classList.remove("authorized");
-    }
-  });
+  const applyAuthClasses = (target) => {
+    target.querySelectorAll("section.secret").forEach(secret => {
+      const authorized = Boolean(isAuthorized);
+
+      // Applies classes to the parent (of the secret will be the 'secret-block')
+      const parent = secret.parentElement;
+      if (parent) {
+        parent.classList.toggle("authorized", authorized);
+        parent.classList.toggle("unauthorized", !authorized);
+      }
+
+      //Applies to editor, that way the entire editor can reflect the permission state, ensuring that even authorized
+      // users (exception being GM) can't see the content of secrets in edit mode
+      const editor = secret.closest(".editor");
+      if (editor) {
+        editor.classList.toggle("authorized", authorized);
+        editor.classList.toggle("unauthorized", !authorized);
+      }
+    });
+  };
+
+  // Apply to the main root of the sheet
+  applyAuthClasses(root);
 }
 
 /**
