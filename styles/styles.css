@@ -44,9 +44,12 @@
 
 
 /* Light mode */
+/* Also consider light-dark mix */
 /* [data-theme="light"] */
 body.theme-light .dw-custom-sheet,
-body.theme-light .editor-content {
+body.theme-light .editor-content,
+body.theme-light .theme-light,
+body.theme-dark .theme-light {
   /* General colors */
   --accent-color: #398de0;
   --border-color: #727c88;
@@ -85,7 +88,7 @@ body.theme-light .editor-content {
   --secret-text: #222222e8;
 }
 
-/* For journals only */
+/* Journals */
 body.theme-light .journal-entry-content,
 body.theme-dark .theme-light .journal-entry-content {
   /* Secrets */
@@ -95,10 +98,12 @@ body.theme-dark .theme-light .journal-entry-content {
 }
 
 /* Dark mode */
-/* Also consider all dark but interface light */
+/* Also consider dark-light mix */
 /* [data-theme="dark"] */
 body.theme-dark .dw-custom-sheet,
-body.theme-dark .editor-content {
+body.theme-dark .editor-content,
+body.theme-dark .theme-dark,
+body.theme-light .theme-dark {
   /* General colors */
   --accent-color: #65a3e1;
   --border-color: #4d4d4d;
@@ -137,7 +142,7 @@ body.theme-dark .editor-content {
   --secret-text: #e3e3e3;
 }
 
-/* For journals only */
+/* Journals */
 body.theme-dark .journal-entry-content,
 body.theme-light .theme-dark .journal-entry-content {
   /* Secrets */

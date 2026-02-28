@@ -192,6 +192,7 @@ Hooks.on("createActor", async (actor) => {
  * Calls 'normalizeInputs' to ensure that numeric inputs default to 0 if left empty and required text inputs (data-required="true") revert to the last valid value if left empty.
  * Calls 'enablePersistentDropdowns' to ensure local flags for dropdowns that have been opened/closed so to avoid its "blinking" effect when rendering a sheet.
  * Calls 'updateContentLinkIcons' to update item icons inside '.content-link' elements based on item type.
+ * Calls 'applyOwnershipClasses' to apply secret ownership logic to Actor sheets, adding 'authorized' or 'unauthorized' classes based on the user's permissions.
  * Calls 'convertSecretButtonsToIcons' to convert any "reveal secret" buttons in journal entries to icons, ensuring that secrets are visually distinct and easily identifiable.
  */
 Hooks.on("renderActorSheet", (sheet, html, _data) => {
@@ -204,9 +205,12 @@ Hooks.on("renderActorSheet", (sheet, html, _data) => {
 
 /**
  * Hook that runs whenever an Item sheet is rendered.
+ * Calls 'updateContentLinkIcons' to update item icons inside '.content-link' elements based on item type.
+ * Calls 'applyOwnershipClasses' to apply secret ownership logic to Item sheets, adding 'authorized' or 'unauthorized' classes based on the user's permissions.
  * Calls 'convertSecretButtonsToIcons' to convert any "reveal secret" buttons in journal entries to icons, ensuring that secrets are visually distinct and easily identifiable.
  */
 Hooks.on("renderItemSheet", (sheet, html, _data) => {
+    updateContentLinkIcons(html);
     applyOwnershipClasses(sheet, html);
     convertSecretButtonsToIcons(html);
 });
@@ -216,9 +220,6 @@ Hooks.on("renderItemSheet", (sheet, html, _data) => {
  * Users with OWNER permission on the parent JournalEntry are considered authorized (add class 'authorized').
  * All other users are unauthorized (add class 'unauthorized').
  * The visibility's controlled via CSS.
- * Using a MutationObserver instead of running 'convertSecretButtonsToIcons' because it seems that the JournalEntryPage
- * content is rendered asynchronously by ProseMirror, so buttons may not exist yet when the sheet hook fires. The
- * observer ensures that any reveal buttons added later are immediately converted to icons without any delay.
  */
 Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     // Get the main content section of the journal page
@@ -232,20 +233,29 @@ Hooks.on("renderJournalEntryPageTextSheet", (sheet, html, _data) => {
     const journal = page.parent;
     if (!journal) return;
 
-    // Apply ownership classes dynamically using the generic function
-    applyOwnershipClasses(sheet, content);
-
     // // Mostly for debug purposes:
     // console.log("Journal:", journal.name);
     // console.log("Ownership:", journal.ownership);
     // console.log("User level:", journal.getUserLevel(game.user));
-
-    // Use MutationObserver to ensure we modify buttons as soon as they exist
-    const observer = new MutationObserver(() => {
-        convertSecretButtonsToIcons(content);
-    });
-    observer.observe(content, { childList: true, subtree: true });
-
-    // Run for any buttons already present
+    
+    // Update content link icons
+    updateContentLinkIcons(content);
+    // Apply ownership classes dynamically using the generic function
+    applyOwnershipClasses(sheet, content);
+    // Convert secret buttons to icons
     convertSecretButtonsToIcons(content);
+});
+
+/**
+ * Applies secret ownership logic to ChatMessages.
+ * Wraps ChatMessage inside a sheet-like structure so that 'applyOwnershipClasses' can reuse the same logic used for
+ * ActorSheet, ItemSheet, and JournalEntryPage.
+ * Additionally, it also converts any 'reveal secret' buttons in chat messages to icons, ensuring that secrets are visually distinct and easily identifiable.
+ * Updates item icons inside '.content-link' elements based on item type, ensuring that links to items in chat messages display the correct icons.
+ */
+Hooks.on("renderChatMessage", (message, html) => {
+    const chatSheet = { document: message };
+    updateContentLinkIcons(html);
+    applyOwnershipClasses(chatSheet, html);
+    convertSecretButtonsToIcons(html);
 });

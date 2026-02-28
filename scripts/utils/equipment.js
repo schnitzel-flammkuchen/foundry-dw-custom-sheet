@@ -40,9 +40,7 @@ export async function prepareEquipmentItems(context, actor) {
     } catch {
       context.system.tagsString = String(context.system.tags);
     }
-  } else {
-    context.system.tagsString ??= "";
-  }
+  } else context.system.tagsString ??= "";
 
   // Foundry V12/V13 compatibility for TextEditor
   const RichText =
@@ -64,8 +62,7 @@ export async function prepareEquipmentItems(context, actor) {
     // Enrich description with proper roll context
     if (itemData.system?.description && RichText?.enrichHTML) {
       enrichmentOptions.relativeTo = item ?? null;
-      enrichmentOptions.rollData =
-        item?.getRollData?.() ?? actor.getRollData();
+      enrichmentOptions.rollData = item?.getRollData?.() ?? actor.getRollData();
 
       itemData.system.descriptionEnriched =
         await RichText.enrichHTML(
@@ -76,14 +73,10 @@ export async function prepareEquipmentItems(context, actor) {
 
     // Safe fallback icon
     itemData.img ??=
-      CONFIG?.Token?.defaults?.texture?.src
-      ?? "icons/svg/item-bag.svg";
+      CONFIG?.Token?.defaults?.texture?.src ?? "icons/svg/item-bag.svg";
 
     // Collect only equipment items
-    if (itemData.type === "equipment") {
-      equipment.push(itemData);
-    }
+    if (itemData.type === "equipment") equipment.push(itemData);
   }
-
   context.equipment = equipment;
 }
