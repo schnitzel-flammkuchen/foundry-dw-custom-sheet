@@ -1,9 +1,14 @@
 /**
  * DWCS Settings Registration
  * Allows dynamic creation of new move types and control over
- * which types appear in the sidebar.
+ * which types appear in the sidebar / have auto add of existent moves;
+ * Also config to allow players (if owners/assistant) to edit secrets.
  */
 export function registerDWCSSettings() {
+
+  // -------------------------------
+  // Default values
+  // -------------------------------
 
   // Default custom move types (used when resetting or first installing)
   const defaultMoveTypes = {
@@ -20,6 +25,29 @@ export function registerDWCSSettings() {
     travel: false,
     session: false
   };
+
+  // -------------------------------
+  // Helper validation functions
+  // -------------------------------
+  const validateObjectWithStrings = (obj, keys) => {
+    if (typeof obj !== "object" || Array.isArray(obj)) return false;
+    return Object.values(obj).every(v =>
+      keys.every(k => typeof v[k] === "string")
+    );
+  };
+
+  const validateObjectWithBooleans = (obj) => {
+    if (typeof obj !== "object" || Array.isArray(obj)) return false;
+    return Object.values(obj).every(v => typeof v === "boolean");
+  };
+
+  const validateArrayOfStrings = (arr) => {
+    return Array.isArray(arr) && arr.every(el => typeof el === "string");
+  };
+
+  // -------------------------------
+  // SETTINGS
+  // -------------------------------
 
   /* --- Custom Move Types (JSON string setting) --- */
 
@@ -38,10 +66,11 @@ export function registerDWCSSettings() {
     // Validate JSON whenever the setting changes
     onChange: value => {
       try {
-        JSON.parse(value);
+        const parsed = JSON.parse(value);
+        if (!validateObjectWithStrings(parsed, ["singular", "plural"])) throw new Error("Each move must have singular and plural strings.");
       } catch (err) {
-        ui.notifications.error("DWCS: Invalid JSON in customMoveTypes setting.");
-        console.error("Invalid JSON in \"customMoveTypes\":", err);
+        ui.notifications.error("DWCS: Invalid JSON in \"customMoveTypes\" setting. PLEASE, VERIFY!");
+        console.error(err);
       }
     }
   });
@@ -63,10 +92,11 @@ export function registerDWCSSettings() {
     // Validate JSON whenever the setting changes
     onChange: value => {
       try {
-        JSON.parse(value);
+        const parsed = JSON.parse(value);
+        if (!validateObjectWithBooleans(parsed)) throw new Error("All values must be boolean.");
       } catch (err) {
-        ui.notifications.error("DWCS: Invalid JSON in sidebarMoveTypes setting.");
-        console.error("Invalid JSON in \"sidebarMoveTypes\":", err);
+        ui.notifications.error("DWCS: Invalid JSON in \"sidebarMoveTypes\" setting. PLEASE, VERIFY!");
+        console.error(err);
       }
     }
   });
@@ -94,10 +124,11 @@ export function registerDWCSSettings() {
 
     onChange: value => {
       try {
-        JSON.parse(value);
+        const parsed = JSON.parse(value);
+        if (!validateObjectWithBooleans(parsed)) throw new Error("All values must be boolean.");
       } catch (err) {
-        ui.notifications.error("DWCS: Invalid JSON in autoAddMoveTypes setting.");
-        console.error("Invalid JSON in \"autoAddMoveTypes\":", err);
+        ui.notifications.error("DWCS: Invalid JSON in \"autoAddMoveTypes\" setting. PLEASE, VERIFY!");
+        console.error(err);
       }
     }
   });
@@ -119,18 +150,17 @@ export function registerDWCSSettings() {
     scope: "world",
     config: true,
     restricted: true, // Only GMs can change this setting
-    type: Array,
-    choices: () => {
-      const users = {};
-      for (const u of game.users) {
-        if (!u.isGM) users[u.id] = u.name;
-      }
-      return users;
-    },
-    default: [],
-    
+    type: String,
+    default: JSON.stringify([]),
+
     onChange: value => {
-      console.log("DWCS: Players access for secrets updated:", value);
+      try {
+        const parsed = JSON.parse(value);
+        if (!validateArrayOfStrings(parsed)) throw new Error("Must be an array of strings.");
+      } catch (err) {
+        ui.notifications.error("DWCS: Invalid JSON in \"SecretAccessPlayers\" setting. PLEASE, VERIFY!");
+        console.error(err);
+      }
     }
   });
 }
@@ -149,9 +179,7 @@ export function getCustomMoveTypes() {
   try {
     const parsed = JSON.parse(raw);
     // Only ensure the parsed value is an object
-    if (typeof parsed !== "object" || Array.isArray(parsed)) {
-      return {};
-    }
+    if (typeof parsed !== "object" || Array.isArray(parsed)) return {};
     return parsed;
   } catch (e) {
     console.error("DWCS: Invalid JSON in \"customMoveTypes\" setting", e);
@@ -192,5 +220,18 @@ export function getAutoAddMoveTypes() {
   } catch (e) {
     console.error("DWCS: Invalid JSON in \"autoAddMoveTypes\" setting", e);
     return {};
+  }
+}
+
+/**
+ * Utility function to get the list of players with GM-like access.
+ * Returns an array of player names (strings) who are allowed to view/edit secret blocks.
+ */
+export function getSecretAccessPlayers() {
+  try {
+    return JSON.parse(game.settings.get("dw-custom-sheet", "SecretAccessPlayers") || "[]");
+  } catch (e) {
+    console.error("DWCS: Invalid JSON in \"SecretAccessPlayers\" setting", e);
+    return [];
   }
 }

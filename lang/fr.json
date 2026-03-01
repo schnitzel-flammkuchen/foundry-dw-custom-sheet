@@ -55,7 +55,7 @@
             },
             "SecretAccessPlayers": {
                 "name": "Autorisations de l'éditeur des blocs secrets",
-                "hint": "Sélectionnez les joueurs autorisés à voir ET modifier le contenu des blocs secrets dans l'éditeur (s'ils sont propriétaire/assistant du maître)."
+                "hint": "Sélectionnez les joueurs autorisés à voir ET modifier le contenu des blocs secrets dans l'éditeur (s'ils sont propriétaire/assistant du maître). Exemple: [\"Player1\", \"Player2\"]"
             }
         },
         "Notifications": {

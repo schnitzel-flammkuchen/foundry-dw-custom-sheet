@@ -488,8 +488,8 @@
                 "hint": "Selecione quais tipos de movimentos personalizados (itens com o tipo de movimento respectivo criados no mundo) devem ser adicionados automaticamente aos personagens recém-criados. Exemplo: { \"adventure\": true, \"travel\": false }"
             },
             "SecretAccessPlayers": {
-                "name": "Permissão no Editor de Segredos",
-                "hint": "Selecione os jogadores que podem ver E editar o conteúdo dos segredos dentro do editor (caso sejam dono/mestre-assistente)."
+                "name": "Permissão na Edição de Segredos",
+                "hint": "Selecione os jogadores que podem ver E editar o conteúdo dos segredos dentro do editor (caso sejam dono/mestre-assistente). Exemplo: [\"Player1\", \"Player2\"]"
             }
         },
         "Notifications": {

@@ -55,7 +55,7 @@
             },
             "SecretAccessPlayers": {
                 "name": "Secret-blocks Editor Permissions",
-                "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant)."
+                "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant). Example: [\"Player1\", \"Player2\"]"
             }
         },
         "Notifications": {

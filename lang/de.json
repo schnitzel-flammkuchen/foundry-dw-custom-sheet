@@ -55,7 +55,7 @@
             },
             "SecretAccessPlayers": {
                 "name": "Berechtigungen für Secret-Block-Editor",
-                "hint": "Wähle Spieler aus, die Inhalte von Secret-Blöcken im Editor sehen UND bearbeiten dürfen (wenn sie Besitzer/Meisters Assistent)."
+                "hint": "Wähle Spieler aus, die Inhalte von Secret-Blöcken im Editor sehen UND bearbeiten dürfen (wenn sie Besitzer/Meisters Assistent). Beispiel: [\"Player1\", \"Player2\"]"
             }
         },
         "Notifications": {

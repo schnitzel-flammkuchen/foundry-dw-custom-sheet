@@ -55,7 +55,7 @@
             },
             "SecretAccessPlayers": {
                 "name": "Behörigheter för redigering av hemliga block",
-                "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent)."
+                "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent). Exempel: [\"Player1\", \"Player2\"]"
             }
         },
         "Notifications": {

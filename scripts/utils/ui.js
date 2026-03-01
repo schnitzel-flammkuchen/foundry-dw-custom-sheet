@@ -345,8 +345,8 @@ export function applyOwnershipClasses(sheet, html) {
   // Get authorized players from settings
   const authorizedPlayers = game.settings.get("dw-custom-sheet", "SecretAccessPlayers") || [];
 
-  // Authorized if GM or if current user is in the 'SecretAccessPlayers' array
-  const isAuthorized = gm || authorizedPlayers.includes(game.user.id);
+  // Authorized if GM or if current user is in the 'SecretAccessPlayers' array (currently by name)
+  const isAuthorized = gm || authorizedPlayers.includes(game.user.name);
 
   // ------------------------------
   // Apply CSS to all secret blocks
