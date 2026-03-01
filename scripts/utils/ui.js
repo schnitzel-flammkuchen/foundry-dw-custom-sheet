@@ -346,20 +346,14 @@ export function applyOwnershipClasses(sheet, html) {
     return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
   };
 
-  if (doc.type === "character") {
-    // ---------------------------
-    // ActorSheet
-    // ---------------------------
-    const actor = game.actors.getName(doc.name);
-    isAuthorized = (actor && hasPermission(actor)) || gm;
-    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
-  } else if (sheet instanceof ItemSheet || doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
-    // ---------------------------
-    // ItemSheet & any JournalEntry
-    // ---------------------------
+  if (doc instanceof Actor || doc instanceof Item || doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
+    // -----------------------------------------
+    // ActorSheet & ItemSheet & any JournalEntry
+    // -----------------------------------------
     const parent = doc.parent;
     isAuthorized = gm || (parent && hasPermission(parent));
     // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
+    // Example in FoundryVTT console: game.actors.getName("CHARACTER NAME").sheet.document.ownership.{USERID}
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
     // ChatMessage
@@ -393,22 +387,6 @@ export function applyOwnershipClasses(sheet, html) {
   // Apply to all existing secret blocks
   // -----------------------------------
   root.querySelectorAll("section.secret").forEach(applyToSecret);
-
-  // ---------------------------------------------------
-  // Observe the DOM for dynamically added secret blocks
-  // ---------------------------------------------------
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      mutation.addedNodes.forEach((node) => {
-        if (!(node instanceof HTMLElement)) return;
-        // If the node itself is a secret block
-        if (node.matches && node.matches("section.secret")) applyToSecret(node);
-        // If secret blocks exist inside the subtree
-        node.querySelectorAll?.("section.secret").forEach(applyToSecret);
-      });
-    }
-  });
-  observer.observe(root, { childList: true, subtree: true });
 }
 
 /**
