@@ -340,57 +340,49 @@ export function applyOwnershipClasses(sheet, html) {
   let isAuthorized = false;
   const gm = game.user.isGM;
 
-  // Helper to check ownership (ASSISTANT)
-  const hasPermission = (entity) => {
-    const perm = entity?.ownership?.[game.user.id] ?? entity?.ownership?.["default"] ?? 0;
-    return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
+  // // Helper to check ownership (ASSISTANT)
+  // const hasPermission = (entity) => {
+  //   const perm = entity?.ownership?.[game.user.id] ?? entity?.ownership?.["default"] ?? 0;
+  //   return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
+  // };
+  // isAuthorized = gm || hasPermission(doc);
+  isAuthorized = gm; // Only GM has access to see all secrets and edit them. Assistants can edit but not see secrets, so they are treated as unauthorized for CSS purposes
+  // // Debug document info:
+  // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
+
+  // ---------------------------
+  // Apply CSS to ALL secret blocks
+  // ---------------------------
+  const applyAuthClasses = (target) => {
+    if (doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
+      // For Journals, applies on the root of the sheet, that way it can affect the entire content of the page, including secrets inside the rich text editor
+      target.classList.toggle("authorized", isAuthorized);
+      target.classList.toggle("unauthorized", !isAuthorized);
+    }
+    target.querySelectorAll("section.secret").forEach(secret => {
+      const authorized = Boolean(isAuthorized);
+
+      // Applies classes to the parent (of the secret will be the 'secret-block')
+      const parent = secret.parentElement;
+      console.log("Parent element for secret block:", parent);
+      if (parent) {
+        parent.classList.toggle("authorized", authorized);
+        parent.classList.toggle("unauthorized", !authorized);
+      }
+
+      // Applies to editor, that way the entire editor can reflect the permission state, ensuring that even authorized
+      // users (exception being GM) can't see the content of secrets in edit mode
+      const editor = secret.closest(".editor");
+      console.log("Editor element for secret block:", editor);
+      if (editor) {
+        editor.classList.toggle("authorized", authorized);
+        editor.classList.toggle("unauthorized", !authorized);
+      }
+    });
   };
 
-  if (doc instanceof Actor || doc instanceof Item || doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
-    // -----------------------------------------
-    // ActorSheet & ItemSheet & any JournalEntry
-    // -----------------------------------------
-    // TODO: ADD SETTING TO ALLOW ASSISTANTS TO SEE UNREVEALED SECRETS, BUT NOT EDIT THEM. CURRENTLY, ONLY GMS CAN SEE SECRETS AND EDIT THEM.
-    // TODO: ADD SETTINGS TO ALLOW ASSISTANTS TO SEE SECRETS BUT NOT EDIT THEM.
-    // TODO: ADD SETTINGS TO ALLOW ASSISTANTS TO EDIT SECRETS BUT NOT SEE UNREVEALED ONES. ADD SETTING TO LET GM DECIDE WHO CAN SEE SECRETS AND WHO CAN EDIT THEM.
-    // isAuthorized = gm || (parent && hasPermission(parent));
-    isAuthorized = gm; // Only the GM will be authorized to see secrets and edit them. Assistants will not be able to see secrets not revealed, but they will be able to edit the sheet.
-    // // Debug doc info:
-    // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
-    // Example in FoundryVTT console: game.actors.getName("CHARACTER NAME").sheet.document.ownership.{USERID}
-  } else if (doc instanceof ChatMessage) {
-    // ---------------------------
-    // ChatMessage
-    // ---------------------------
-    if (gm || doc.user?.id === game.user.id) isAuthorized = true;
-    else if (doc.speaker?.actor) {
-      const actor = game.actors.get(doc.speaker.actor);
-      isAuthorized = actor && hasPermission(actor);
-    }
-    // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
-  }
-
-  // ------------------------------------------
-  // Apply CSS to ALL secret blocks AND editors
-  // ------------------------------------------
-  const applyToSecret = (secret) => {
-    const parent = secret.parentElement;
-    if (parent) {
-      parent.classList.toggle("authorized", isAuthorized);
-      parent.classList.toggle("unauthorized", !isAuthorized);
-    }
-
-    const editor = secret.closest(".editor");
-    if (editor) {
-      editor.classList.toggle("authorized", isAuthorized);
-      editor.classList.toggle("unauthorized", !isAuthorized);
-    }
-  };
-
-  // -----------------------------------
-  // Apply to all existing secret blocks
-  // -----------------------------------
-  root.querySelectorAll("section.secret").forEach(applyToSecret);
+  // Apply to the main root of the sheet
+  applyAuthClasses(root);
 }
 
 /**

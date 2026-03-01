@@ -454,7 +454,8 @@
 /* --- Unauthorized --- */
 
 /* The user can see there's a secret, if revealed; however, if they're not authorized (not GM), they can't see the content of the secret when inside an editor - that way, they can't change it: only the GM can */
-/* There's no '.editor-container' in the normal view, so unauthorized users can still see the secret content if it's revealed, but if they're inside an editor, they won't see the secret content at all, even if it's revealed (that way they can't edit it) */
+.unauthorized .editor-container .secret:not(:has(.revealed)),
+.unauthorized .editor-container .secret,
 .editor.unauthorized .editor-container .secret:not(:has(.revealed)),
 .editor.unauthorized .editor-container .secret {
   display: none;
