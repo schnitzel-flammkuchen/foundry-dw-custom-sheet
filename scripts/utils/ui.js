@@ -319,9 +319,10 @@ export function updateContentLinkIcons(html) {
 
 /**
  * Dynamically applies permission-based CSS classes to all secret blocks in a sheet.
- * Works for ActorSheets, ItemSheets, JournalEntryPage and ChatMessages sheets.
+ * Works for ActorSheets, ItemSheets, JournalEntryPage, and ChatMessages sheets.
  * Adds 'authorized' class if the current user is:
  * - GM (game.user.isGM)
+ * - Selected in the 'SecretAccessPlayers' setting for secret access
  * Else adds 'unauthorized'.
  * Handles 'default' fallback in the ownership object.
  * @param {Application} sheet - The sheet being rendered
@@ -335,44 +336,41 @@ export function applyOwnershipClasses(sheet, html) {
   
   const doc = sheet.document;
   if (!doc) return;
-  
-  let isAuthorized = false;
-  const gm = game.user.isGM;
 
-  // // Helper to check ownership (ASSISTANT)
-  // const hasPermission = (entity) => {
-  //   const perm = entity?.ownership?.[game.user.id] ?? entity?.ownership?.["default"] ?? 0;
-  //   return perm === CONST.DOCUMENT_OWNERSHIP_LEVELS.ASSISTANT;
-  // };
-  // isAuthorized = gm || hasPermission(doc);
-  isAuthorized = gm; // Only GM has access to see all secrets and edit them. Assistants can edit but not see secrets, so they are treated as unauthorized for CSS purposes
-  // // Debug document info:
-  // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
+  // -----------------------
+  // Determine authorization
+  // -----------------------
+  const gm = game.user.isGM; // GM's always authorized
 
-  // ---------------------------
-  // Apply CSS to ALL secret blocks
-  // ---------------------------
+  // Get authorized players from settings
+  const authorizedPlayers = game.settings.get("dw-custom-sheet", "SecretAccessPlayers") || [];
+
+  // Authorized if GM or if current user is in the 'SecretAccessPlayers' array
+  const isAuthorized = gm || authorizedPlayers.includes(game.user.id);
+
+  // ------------------------------
+  // Apply CSS to all secret blocks
+  // ------------------------------
   const applyAuthClasses = (target) => {
+    // Apply classes to root for Journal pages - mainly due to Journal Improvements module because the default accepts the other way of only searching for a specific section and going from there
     if (doc instanceof JournalEntry || doc instanceof JournalEntryPage) {
-      // For Journals, applies on the root of the sheet, that way it can affect the entire content of the page, including secrets inside the rich text editor
       target.classList.toggle("authorized", isAuthorized);
       target.classList.toggle("unauthorized", !isAuthorized);
     }
-    target.querySelectorAll("section.secret").forEach(secret => {
-      const authorized = Boolean(isAuthorized);
 
-      // Applies classes to the parent (of the secret will be the 'secret-block')
+    // Apply to each secret block in the sheet
+    target.querySelectorAll("section.secret").forEach(secret => {
+      const authorized = Boolean(isAuthorized); // Boolean flag to ensure it's either true or false
+
+      // Apply to parent of the secret block
       const parent = secret.parentElement;
-      console.log("Parent element for secret block:", parent);
       if (parent) {
         parent.classList.toggle("authorized", authorized);
         parent.classList.toggle("unauthorized", !authorized);
       }
 
-      // Applies to editor, that way the entire editor can reflect the permission state, ensuring that even authorized
-      // users (exception being GM) can't see the content of secrets in edit mode
+      // Apply to editor, so the entire editor reflects the permission state
       const editor = secret.closest(".editor");
-      console.log("Editor element for secret block:", editor);
       if (editor) {
         editor.classList.toggle("authorized", authorized);
         editor.classList.toggle("unauthorized", !authorized);

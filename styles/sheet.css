@@ -454,28 +454,26 @@
 /* --- Unauthorized --- */
 
 /* The user can see there's a secret, if revealed; however, if they're not authorized (not GM), they can't see the content of the secret when inside an editor - that way, they can't change it: only the GM can */
-.unauthorized .editor-container .secret:not(:has(.revealed)),
-.unauthorized .editor-container .secret,
-.editor.unauthorized .editor-container .secret:not(:has(.revealed)),
-.editor.unauthorized .editor-container .secret {
+:has(.unauthorized) .editor-container .secret:not(:has(.revealed)),
+:has(.unauthorized) .editor-container .secret {
   display: none;
 }
 
 /* The user can't see anything if it's revealed but they're not authorized */
-.unauthorized .secret.revealed button.reveal,
-.unauthorized .secret.revealed .reveal-icon {
+:has(.unauthorized) .secret.revealed button.reveal,
+:has(.unauthorized) .secret.revealed .reveal-icon {
   display: none;
 }
 /* The user can't see anything if it's not revealed */
-.unauthorized .secret:not(.revealed) {
+:has(.unauthorized) .secret:not(.revealed) {
   display: none;
 }
 
-/* --- Authorized --- */
+/* Authorized */
 
-/* The user can see the secret content if it's revealed, and the reveal button/icon if it's not revealed */
-.authorized .secret.revealed button.reveal,
-.authorized .secret.revealed .reveal-icon {
-  display: block;
+/* If user is allowed to see secrets (only owner/assistant due to edit access) */
+:has(.authorized) .secret {
+  display: grid;
   margin: 4px 0;
+  gap: 5px;
 }

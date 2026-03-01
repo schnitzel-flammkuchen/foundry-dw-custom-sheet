@@ -52,6 +52,10 @@
             "MovesAutoAdd": {
                 "name": "Tipi di movimento aggiunti automaticamente",
                 "hint": "Seleziona quali tipi di movimento personalizzati (oggetti con il rispettivo tipo di movimento creati nel mondo) devono essere aggiunti automaticamente ai personaggi appena creati. Esempio: { \"adventure\": true, \"travel\": false }"
+            },
+            "SecretAccessPlayers": {
+                "name": "Permessi dell'editor dei blocchi segreti",
+                "hint": "Seleziona i giocatori autorizzati a vedere E modificare il contenuto dei blocchi segreti nell'editor (se sono proprietario/assistente del maestro)."
             }
         },
         "Notifications": {

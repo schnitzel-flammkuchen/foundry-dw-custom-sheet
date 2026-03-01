@@ -52,6 +52,10 @@
             "MovesAutoAdd": {
                 "name": "Automatisch hinzufügen von Bewegungstypen",
                 "hint": "Wählen Sie aus, welche benutzerdefinierten Bewegungstypen (Items mit entsprechendem Bewegungstyp, die in der Welt erstellt wurden) automatisch zu neu erstellten Charakteren hinzugefügt werden sollen. Beispiel: { \"adventure\": true, \"travel\": false }"
+            },
+            "SecretAccessPlayers": {
+                "name": "Berechtigungen für Secret-Block-Editor",
+                "hint": "Wähle Spieler aus, die Inhalte von Secret-Blöcken im Editor sehen UND bearbeiten dürfen (wenn sie Besitzer/Meisters Assistent)."
             }
         },
         "Notifications": {

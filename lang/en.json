@@ -52,6 +52,10 @@
             "MovesAutoAdd": {
                 "name": "Auto-Add Move Types",
                 "hint": "Select which custom moveTypes (items with respective moveType made in the world) should automatically be added to newly created characters. Example: { \"adventure\": true, \"travel\": false }"
+            },
+            "SecretAccessPlayers": {
+                "name": "Secret-blocks Editor Permissions",
+                "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant)."
             }
         },
         "Notifications": {

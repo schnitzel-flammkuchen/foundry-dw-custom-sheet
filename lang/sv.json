@@ -52,6 +52,10 @@
             "MovesAutoAdd": {
                 "name": "Automatiskt tillagda rörelsetyper",
                 "hint": "Välj vilka anpassade rörelsetyper (föremål med respektive rörelsetyp skapade i världen) som automatiskt ska läggas till nyss skapade karaktärer. Exempel: { \"adventure\": true, \"travel\": false }"
+            },
+            "SecretAccessPlayers": {
+                "name": "Behörigheter för redigering av hemliga block",
+                "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent)."
             }
         },
         "Notifications": {

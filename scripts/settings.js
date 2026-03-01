@@ -31,6 +31,7 @@ export function registerDWCSSettings() {
     hint: "DWCS.Settings.NewMoveTypes.hint",
     scope: "world",
     config: true,
+    restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultMoveTypes, null, 2),
 
@@ -55,6 +56,7 @@ export function registerDWCSSettings() {
     hint: "DWCS.Settings.MovesOnSidebar.hint",
     scope: "world",
     config: true,
+    restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultSidebarTypes, null, 2),
 
@@ -86,6 +88,7 @@ export function registerDWCSSettings() {
     hint: "DWCS.Settings.MovesAutoAdd.hint",
     scope: "world",
     config: true,
+    restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultAutoAddTypes, null, 2),
 
@@ -96,6 +99,38 @@ export function registerDWCSSettings() {
         ui.notifications.error("DWCS: Invalid JSON in autoAddMoveTypes setting.");
         console.error("Invalid JSON in \"autoAddMoveTypes\":", err);
       }
+    }
+  });
+
+  /* --- Players with GM-Like Access for Secrets --- */
+
+  /**
+   * This setting allows the GM to select which players have GM-like permissions
+   * specifically for secret blocks in Journals, Actors, and Items.
+   * Players selected here will:
+   * - See the full content of secret blocks
+   * - Edit secrets if they are owner or assistant
+   *
+   * Only non-GM users are listed for selection.
+   */
+  game.settings.register("dw-custom-sheet", "SecretAccessPlayers", {
+    name: "DWCS.Settings.SecretAccessPlayers.name",
+    hint: "DWCS.Settings.SecretAccessPlayers.hint",
+    scope: "world",
+    config: true,
+    restricted: true, // Only GMs can change this setting
+    type: Array,
+    choices: () => {
+      const users = {};
+      for (const u of game.users) {
+        if (!u.isGM) users[u.id] = u.name;
+      }
+      return users;
+    },
+    default: [],
+    
+    onChange: value => {
+      console.log("DWCS: Players access for secrets updated:", value);
     }
   });
 }
