@@ -321,7 +321,6 @@ export function updateContentLinkIcons(html) {
  * Dynamically applies permission-based CSS classes to all secret blocks in a sheet.
  * Works for ActorSheets, ItemSheets, JournalEntryPage and ChatMessages sheets.
  * Adds 'authorized' class if the current user is:
- * - ASSISTANT GM of the Actor (permission 2)
  * - GM (game.user.isGM)
  * Else adds 'unauthorized'.
  * Handles 'default' fallback in the ownership object.
