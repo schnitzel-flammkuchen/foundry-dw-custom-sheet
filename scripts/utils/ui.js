@@ -350,9 +350,13 @@ export function applyOwnershipClasses(sheet, html) {
     // -----------------------------------------
     // ActorSheet & ItemSheet & any JournalEntry
     // -----------------------------------------
-    const parent = doc.parent;
-    isAuthorized = gm || (parent && hasPermission(parent));
-    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
+    // TODO: ADD SETTING TO ALLOW ASSISTANTS TO SEE UNREVEALED SECRETS, BUT NOT EDIT THEM. CURRENTLY, ONLY GMS CAN SEE SECRETS AND EDIT THEM.
+    // TODO: ADD SETTINGS TO ALLOW ASSISTANTS TO SEE SECRETS BUT NOT EDIT THEM.
+    // TODO: ADD SETTINGS TO ALLOW ASSISTANTS TO EDIT SECRETS BUT NOT SEE UNREVEALED ONES. ADD SETTING TO LET GM DECIDE WHO CAN SEE SECRETS AND WHO CAN EDIT THEM.
+    // isAuthorized = gm || (parent && hasPermission(parent));
+    isAuthorized = gm; // Only the GM will be authorized to see secrets and edit them. Assistants will not be able to see secrets not revealed, but they will be able to edit the sheet.
+    // // Debug doc info:
+    // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
     // Example in FoundryVTT console: game.actors.getName("CHARACTER NAME").sheet.document.ownership.{USERID}
   } else if (doc instanceof ChatMessage) {
     // ---------------------------
@@ -363,7 +367,7 @@ export function applyOwnershipClasses(sheet, html) {
       const actor = game.actors.get(doc.speaker.actor);
       isAuthorized = actor && hasPermission(actor);
     }
-    // console.log("Parent:", parent?.name, "Ownership:", parent?.ownership, "User level:", parent?.getUserLevel(game.user), "Authorized:", isAuthorized);
+    // console.log("Doc:", doc?.name, "\nOwnership:", doc?.ownership, "\nUser level:", doc?.getUserLevel(game.user), "\nAuthorized:", isAuthorized);
   }
 
   // ------------------------------------------

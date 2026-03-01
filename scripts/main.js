@@ -266,26 +266,6 @@ Hooks.on("renderApplication", (app, html, _data) => {
     //   console.log("Journal Ownership:", journal.ownership);
     //   console.log("User level:", journal.getUserLevel(game.user));
 
-    // -----------------------------
-    // Iterate all pages
-    // -----------------------------
-    if (journal.pages?.length) {
-        for (const page of journal.pages) {
-            console.log("Page:", page.name, "Ownership:", page.ownership, "User level:", page.getUserLevel(game.user));
-
-            // --------------------------------------------
-            // Inspect secret blocks if this is a text page
-            // --------------------------------------------
-            if (page.type === "text" && page.text?.content) {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(page.text.content, "text/html");
-                doc.querySelectorAll("section.secret").forEach(sec => {
-                    console.log("Secret block:", sec.id, sec.textContent.trim());
-                });
-            }
-        }
-    }
-
     // Update content link icons
     updateContentLinkIcons(html);
     // Apply ownership classes dynamically using the generic function
