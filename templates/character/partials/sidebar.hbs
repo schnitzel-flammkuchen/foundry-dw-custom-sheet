@@ -30,6 +30,13 @@
         {{!-- Attributes --}}
         <div class="sheet-attributes">
 
+            {{!-- Health Estimative --}}
+            {{#if healthEstimateStatus}}
+            <div class="hp-estimate" style="color: {{healthEstimateStatus.color}};">
+                {{healthEstimateStatus.label}}
+            </div>
+            {{/if}}
+
             {{!-- Damage --}}
             <div class="cell cell--damage">
                 <label class="cell__title damage-rollable rollable"

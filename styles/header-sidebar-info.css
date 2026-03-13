@@ -187,6 +187,30 @@
     0 0 20px rgba(0, 132, 255, 0.6);
 }
 
+/* --- SIDEBAR HEALTH ESTIMATE --- */
+
+/* Container for health estimate display */
+.dw-custom-sheet .hp-estimate {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Icon visually representing health */
+.dw-custom-sheet .hp-estimate i {
+  font-size: 18px;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
 /* --- SIDEBAR CUSTOM MOVES (DESCRIPTION + ICON + CONTROLS) --- */
 
 /* Wrapper for all sidebar custom moves */

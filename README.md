@@ -21,6 +21,7 @@ As a result, this module aims to provide tailored UI support and additional func
 - Custom **player character sheet** for Dungeon World
 - A different UI layout and clearer data organization
 - Stylization for secret-blocks
+-
 - Better separation of:
 
   - Core attributes (HP, Armor, Damage, Level, XP)
@@ -29,6 +30,7 @@ As a result, this module aims to provide tailored UI support and additional func
   - Moves and Spells (now on dropdowns)
 
 - Additional functionalities (now new move types — compendium not included) 
+- [Health Estimate](https://github.com/Shylight/healthEstimate) replicated from the official Health Estimate module, showing status label and color dynamically based on module settings 
 - Designed for FoundryVTT **v12+**
 
 ---

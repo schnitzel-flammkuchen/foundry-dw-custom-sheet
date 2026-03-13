@@ -2,7 +2,7 @@
 
 import { prepareEquipmentItems } from "../utils/equipment.js";
 import { MOVE_META, MAX_CUSTOM_RESOURCES, RESOURCE_KEYS, ITEM_TYPE_LABELS, ITEM_TYPE_ICONS, ITEM_TYPE_ORDER } from "../utils/config.js";
-import { enableSteppers } from "../utils/ui.js";
+import { enableSteppers, calculateHealthEstimate } from "../utils/ui.js";
 import { getSidebarMoveTypes, getCustomMoveTypes } from "../settings.js";
 
 // Foundry V12 + V13 compatibility of TextEditor
@@ -55,6 +55,10 @@ export function defineCharacterCustom(baseClass) {
       
       /* --- SHEET VIEWER --- */
       /* Define aliases to simplify the custom template or add new functionalities */
+
+      /* --- Health Estimate Status Calculation --- */
+      /* Based on the Health Estimate's module */
+      context.healthEstimateStatus = calculateHealthEstimate(this.actor);
       
       /* --- INVENTORY FILTER --- */
 

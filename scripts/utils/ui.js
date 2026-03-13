@@ -443,3 +443,72 @@ export function convertSecretButtonsToIcons(root) {
 
   observer.observe(root, { childList: true, subtree: true });
 }
+
+/**
+ * Calculates Health Estimate description for a Dungeon World actor.
+ *
+ * Sheet-only version: uses world settings to get DW descriptions.
+ * Replicates the logic of the Health Estimate module (original author: Health
+ * Estimate module: https://github.com/Shylight/healthEstimate), directly
+ * inside the actor sheet, without relying on token flags, HUDs, or hovering.
+ *
+ * @param {Actor} actor - The actor whose health to estimate
+ * @returns {{label: string, color: string}|null} Health description and color, or null if unavailable
+ */
+export function calculateHealthEstimate(actor) {
+  const HEActive = game.modules.get("healthEstimate")?.active;
+  if (!actor || !HEActive) return null;
+
+  // // Retrieve Health Estimate DW array from module settings (default)
+  // const defaultSettings = game.settings.settings.get("healthEstimate.core.estimations")?.default ?? [];
+  // const dwEstimation = defaultSettings[0]?.estimates ?? [];
+  // if (!dwEstimation.length) return null;
+
+  // Get the world settings storage (for GM's changed estimates settings)
+  const worldStorage = game.settings.storage.get("world");
+
+  // Find the setting for 'healthEstimate.core.estimations'
+  const settingEntry = worldStorage.getSetting("healthEstimate.core.estimations");
+  // // Or use UNIQUE ID
+  // const settingId = "n4G61MY29cZyjpUS"; // Unique setting ID
+  // const settingEntry = worldStorage.get(settingId);  
+
+  let dwEstimation = [];
+  if (settingEntry?.value) {
+    try {
+      let parsed;
+      if (typeof settingEntry.value === "string") parsed = JSON.parse(settingEntry.value); // Parse the JSON string
+      else parsed = settingEntry.value; // Already object
+      dwEstimation = parsed[0]?.estimates ?? []; // Grab the estimates array
+    } catch (err) {
+      console.error("Failed to parse Health Estimate storage settings:", err, settingEntry.value);
+    }
+  }
+
+  // Actor HP (Dungeon World)
+  const hp = actor.system?.attributes?.hp;
+  if (!hp) return null;
+
+  // Dungeon World fraction on original module's example
+  const fraction = hp.max ? Math.min(hp.value / hp.max, 1) : 1;
+
+  // Find the closest estimate by value (0–100 scale)
+  let stageLabel = dwEstimation[0]?.label || "Dead"; // Fallback to 'dead'
+  for (let i = 0; i < dwEstimation.length; i++) {
+    const est = dwEstimation[i];
+    if (fraction * 100 <= est.value) {
+      stageLabel = est.label;
+      break;
+    }
+  }
+
+  // Get the dynamic color from Health Estimate's module
+  const colorArray = game.settings.settings.get("healthEstimate.core.variables.colors")?.default ?? [];
+  const colorIndex = Math.floor(fraction * (colorArray.length - 1)); // 0-based index
+  const color = colorArray[colorIndex] || "#888"; // Fallback to gray
+
+  return {
+    label: stageLabel || "Unknown",
+    color
+  };
+}
