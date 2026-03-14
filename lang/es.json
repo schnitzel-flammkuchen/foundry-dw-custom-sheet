@@ -56,6 +56,10 @@
             "SecretAccessPlayers": {
                 "name": "Permisos del editor de bloques secretos",
                 "hint": "Selecciona los jugadores que pueden ver Y editar el contenido de los bloques secretos dentro del editor (si son dono/ayudante del maestro). Ejemplo: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Compendio de Evaluación de Salud",
+                "hint": "Introduce el compendio que deseas utilizar para buscar entradas de etiquetas al hacer clic en el estado de salud de la ficha del personaje."
             }
         },
         "Notifications": {

@@ -41,6 +41,30 @@ async function preloadTemplates() {
 }
 
 /**
+ * Loads and caches the compendium index used to search tag items related to
+ * Health Estimate labels. This should run once (on 'ready') and prevent
+ * repeated calls to pack.getIndex(), improving performance when clicking the
+ * Health Estimate status.
+ */
+export async function prepareHealthEstimateCompendium() {
+    // Initialize namespace
+    game.dwcs = game.dwcs || {};
+    game.dwcs.healthEstimateTagIndex = null;
+    game.dwcs.healthEstimateTagPack = null;
+
+    // Get compendium configured by the GM
+    const packName = game.settings.get("dw-custom-sheet", "TagCompendium");
+    const pack = Array.from(game.packs.values()).find(p => p.metadata.label === packName && p.documentName === "Item");
+    if (!pack || pack.documentName !== "Item") return;
+
+    // Store pack reference
+    game.dwcs.healthEstimateTagPack = pack;
+
+    // Load lightweight index (only name and type)
+    game.dwcs.healthEstimateTagIndex = await pack.getIndex({ fields: ["name", "type"] });
+}
+
+/**
  * Hook that runs once Foundry initializes.
  * Preload templates (.hbs partials).
  * Register a handlebars helper - for localization purposes.
@@ -60,8 +84,12 @@ Hooks.once("init", async () => {
 /**
  * Hook that runs once Foundry is ready.
  * Registers the custom character sheet for Dungeon World actors.
+ * Prepares the cached compendium index used to resolve
+ * Health Estimate labels into tag items when clicked.
  */
 Hooks.once("ready", async () => {
+    await prepareHealthEstimateCompendium(); // Initialize Health Estimate compendium cache
+
     // Foundry V12 + V13 compatibility
     const ActorsCollection =
         foundry?.documents?.collections?.Actors ?? globalThis.Actors;

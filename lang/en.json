@@ -56,6 +56,10 @@
             "SecretAccessPlayers": {
                 "name": "Secret-blocks Editor Permissions",
                 "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant). Example: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Health Estimate Tag Compendium",
+                "hint": "Type the compendium to be used to search for tag items when clicking on health status on character sheet."
             }
         },
         "Notifications": {

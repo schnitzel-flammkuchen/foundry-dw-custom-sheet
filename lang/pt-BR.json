@@ -490,6 +490,10 @@
             "SecretAccessPlayers": {
                 "name": "Permissão na Edição de Segredos",
                 "hint": "Selecione os jogadores que podem ver E editar o conteúdo dos segredos dentro do editor (caso sejam dono/mestre-assistente). Exemplo: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Compêndio Para Estimativas de Saúde",
+                "hint": "Insira o compêndio que você deseja usar para pesquisar entradas de tags ao clicar no status de saúde na ficha do personagem."
             }
         },
         "Notifications": {

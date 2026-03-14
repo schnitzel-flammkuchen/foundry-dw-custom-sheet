@@ -56,6 +56,10 @@
             "SecretAccessPlayers": {
                 "name": "Autorisations de l'éditeur des blocs secrets",
                 "hint": "Sélectionnez les joueurs autorisés à voir ET modifier le contenu des blocs secrets dans l'éditeur (s'ils sont propriétaire/assistant du maître). Exemple: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Recueil des Estimations de Santé",
+                "hint": "Saisissez le recueil que vous souhaitez utiliser pour rechercher des entrées de balises lorsque vous cliquez sur l'état de santé dans la fiche de personnage."
             }
         },
         "Notifications": {

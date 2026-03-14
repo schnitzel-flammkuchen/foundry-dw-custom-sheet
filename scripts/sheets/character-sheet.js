@@ -397,7 +397,7 @@ export function defineCharacterCustom(baseClass) {
     activateListeners(html) {
       super.activateListeners(html);
 
-      /* --- HEALTH ESTIMATE CLICK --- */
+      /* --- HEALTH ESTIMATE DIV --- */
 
       // When clicking on the HP estimate, open a tag item with the same name (if it exists)
       html.find(".hp-estimate").on("click", async (ev) => {
@@ -408,7 +408,16 @@ export function defineCharacterCustom(baseClass) {
         if (!label) return;
 
         // Search for an item of type 'tag' matching the label name
-        const item = game.items.find(i => i.type === "tag" && i.name === label);
+        let item = game.items.find(i => i.type === "tag" && i.name === label); // First search in world items
+
+        // If not found, search inside cached compendium index
+        if (!item && game.dwcs?.healthEstimateTagIndex && game.dwcs?.healthEstimateTagPack) {
+          // Find matching tag entry
+          const match = game.dwcs.healthEstimateTagIndex.find(i => i.type === "tag" && i.name === label);
+
+          // Once found, load the full document
+          if (match) item = await game.dwcs.healthEstimateTagPack.getDocument(match._id);
+        }
 
         if (item) await item.sheet.render(true); // Open the item sheet
         else ui.notifications.warn(`No tag item found matching "${label}"`); // Notify if no matching tag found

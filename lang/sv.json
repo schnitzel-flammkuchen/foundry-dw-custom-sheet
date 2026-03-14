@@ -56,6 +56,10 @@
             "SecretAccessPlayers": {
                 "name": "Behörigheter för redigering av hemliga block",
                 "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent). Exempel: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Samling av Hälsovärden",
+                "hint": "Ange vilken samling du vill använda för att söka efter taggposter när du klickar på hälsostatusen på karaktärsbladet."
             }
         },
         "Notifications": {

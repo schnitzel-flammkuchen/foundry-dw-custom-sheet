@@ -56,6 +56,10 @@
             "SecretAccessPlayers": {
                 "name": "Berechtigungen für Secret-Block-Editor",
                 "hint": "Wähle Spieler aus, die Inhalte von Secret-Blöcken im Editor sehen UND bearbeiten dürfen (wenn sie Besitzer/Meisters Assistent). Beispiel: [\"Player1\", \"Player2\"]"
+            },
+            "TagCompendium": {
+                "name": "Kompendium der Gesundheitsschätzungs-Tags",
+                "hint": "Geben Sie das Kompendium ein, das verwendet werden soll, um nach Tag-Einträgen zu suchen, wenn Sie auf dem Charakterblatt auf den Gesundheitsstatus klicken."
             }
         },
         "Notifications": {

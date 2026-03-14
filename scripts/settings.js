@@ -1,3 +1,5 @@
+import { prepareHealthEstimateCompendium } from "./main.js";
+
 /**
  * DWCS Settings Registration
  * Allows dynamic creation of new move types and control over
@@ -161,6 +163,36 @@ export function registerDWCSSettings() {
         ui.notifications.error("DWCS: Invalid JSON in \"SecretAccessPlayers\" setting. PLEASE, VERIFY!");
         console.error(err);
       }
+    }
+  });
+
+  /* --- Compendium Used for Health Estimate Tags --- */
+
+  /**
+   * This setting allows the GM to define a specific compendium
+   * used to search for tag items when clicking the Health Estimate
+   * status displayed on the character sheet.
+   *
+   * When a player clicks the Health Estimate label:
+   * - The system first searches for a matching tag item in world items
+   * - If none is found, it searches inside the compendium defined here
+   *
+   * The compendium must contain Item documents, preferably of type 'tag'.
+   * The expected value is the compendium ID (e.g. 'module-name.tags').
+   *
+   * Leaving this empty will skip the compendium search step.
+   */
+  game.settings.register("dw-custom-sheet", "TagCompendium", {
+    name: "DWCS.Settings.TagCompendium.name",
+    hint: "DWCS.Settings.TagCompendium.hint",
+    scope: "world",
+    config: true,
+    restricted: true, // Only GMs can change this setting
+    type: String,
+    default: "",
+
+    onChange: async () => {
+      await prepareHealthEstimateCompendium(); // Reload cache if setting changes
     }
   });
 }
