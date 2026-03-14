@@ -397,6 +397,23 @@ export function defineCharacterCustom(baseClass) {
     activateListeners(html) {
       super.activateListeners(html);
 
+      /* --- HEALTH ESTIMATE CLICK --- */
+
+      // When clicking on the HP estimate, open a tag item with the same name (if it exists)
+      html.find(".hp-estimate").on("click", async (ev) => {
+        ev.preventDefault();
+
+        // Grab the label directly from the clicked div
+        const label = $(ev.currentTarget).text().trim();
+        if (!label) return;
+
+        // Search for an item of type 'tag' matching the label name
+        const item = game.items.find(i => i.type === "tag" && i.name === label);
+
+        if (item) await item.sheet.render(true); // Open the item sheet
+        else ui.notifications.warn(`No tag item found matching "${label}"`); // Notify if no matching tag found
+      });
+
       /* --- EQUIPMENT TAB --- */
 
       // Item filter listener
