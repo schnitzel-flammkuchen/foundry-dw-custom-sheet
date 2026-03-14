@@ -74,6 +74,10 @@
                 "name": "Kompendium der Gesundheitsschätzungs-Tags",
                 "hint": "Geben Sie das Kompendium ein, das verwendet werden soll, um nach Tag-Einträgen zu suchen, wenn Sie auf dem Charakterblatt auf den Gesundheitsstatus klicken."
             },
+            "TagSource": {
+                "name": "Kompendium für Tags",
+                "hint": "Wähle aus, ob benutzerdefinierte Tags aus Weltgegenständen, einem Kompendium oder beidem hinzugefügt werden sollen."
+            },
             "Menu": {
                 "MoveTypes": {
                     "name": "Konfiguration der Bewegungsarten"

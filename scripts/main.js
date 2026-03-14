@@ -40,10 +40,9 @@ async function preloadTemplates() {
 }
 
 /**
- * Loads and caches the compendium index used to search tag items related to
- * Health Estimate labels. This should run once (on 'ready') and prevent
- * repeated calls to pack.getIndex(), improving performance when clicking the
- * Health Estimate status.
+ * Preload the Tag Compendium for Health Estimate labels
+ * Caches lightweight index for quick lookup when clicking HP estimate on sheets.
+ * Should be run once (on ready) to avoid repeated compendium queries.
  */
 export async function prepareHealthEstimateCompendium() {
     // Initialize namespace
@@ -51,8 +50,11 @@ export async function prepareHealthEstimateCompendium() {
     game.dwcs.healthEstimateTagIndex = null;
     game.dwcs.healthEstimateTagPack = null;
 
-    // Get compendium configured by the GM
+    // Get the compendium configured by the GM
     const packName = game.settings.get("dw-custom-sheet", "TagCompendium");
+    if (!packName) return; // Skip if nothing configured
+
+    // Find the compendium by label
     const pack = Array.from(game.packs.values()).find(p => p.metadata.label === packName && p.documentName === "Item");
     if (!pack || pack.documentName !== "Item") return;
 

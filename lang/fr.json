@@ -74,6 +74,10 @@
                 "name": "Recueil des Estimations de Santé",
                 "hint": "Saisissez le recueil que vous souhaitez utiliser pour rechercher des entrées de balises lorsque vous cliquez sur l'état de santé dans la fiche de personnage."
             },
+            "TagSource": {
+                "name": "Répertoire de Balises",
+                "hint": "Indiquez le nom du répertoire de balises à utiliser comme source lorsque vous y extrayez des balises."
+            },
             "Menu": {
                 "MoveTypes": {
                     "name": "Configuration des Types de Déplacement"

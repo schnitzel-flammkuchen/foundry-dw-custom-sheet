@@ -407,16 +407,26 @@ export function defineCharacterCustom(baseClass) {
         const label = $(ev.currentTarget).text().trim();
         if (!label) return;
 
-        // Search for an item of type 'tag' matching the label name
-        let item = game.items.find(i => i.type === "tag" && i.name === label); // First search in world items
+        // Load the TagSource setting
+        const tagSource = game.settings.get("dw-custom-sheet", "TagSource") || "both";
+        let item = null;
 
-        // If not found, search inside cached compendium index
-        if (!item && game.dwcs?.healthEstimateTagIndex && game.dwcs?.healthEstimateTagPack) {
-          // Find matching tag entry
-          const match = game.dwcs.healthEstimateTagIndex.find(i => i.type === "tag" && i.name === label);
+        // Search for an item of type 'tag' matching the label name
+        // Search in global (world) items
+        if (tagSource === "global" || tagSource === "both") {
+            item = game.items.find(i => i.type === "tag" && i.name === label);
+        }
+
+        // Search in cached compendium index
+        if (!item && (tagSource === "compendium" || tagSource === "both") && game.dwcs?.healthEstimateTagPack) {
+          const pack = game.dwcs.healthEstimateTagPack;
+          const index = game.dwcs.healthEstimateTagIndex || [];
+
+          // Find the first matching tag by name
+          const match = index.find(i => i.type === "tag" && i.name === label);
 
           // Once found, load the full document
-          if (match) item = await game.dwcs.healthEstimateTagPack.getDocument(match._id);
+          if (match) item = await pack.getDocument(match._id);
         }
 
         if (item) await item.sheet.render(true); // Open the item sheet

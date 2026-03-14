@@ -488,17 +488,17 @@
                 "hint": "Selecione quais tipos de movimentos personalizados (itens com o tipo de movimento respectivo criados no mundo) devem ser adicionados automaticamente aos personagens recém-criados. Exemplo: { \"adventure\": true, \"travel\": false }"
             },
             "MovesSource": {
-                "name": "Moves Auto-Add Source",
-                "hint": "Choose whether custom moves should be added from world items, a compendium, or both.",
+                "name": "Origem dos Movimentos",
+                "hint": "Escolha se os movimentos personalizados devem ser adicionados a partir de itens do mundo, de um compêndio ou de ambos.",
                 "choices": {
-                    "Global": "Only Global (World) Moves",
-                    "Compendium": "Only Compendium Moves",
-                    "Both": "Both Global and Compendium"
+                    "Global": "Somente movimentos Globais (do mundo)",
+                    "Compendium": "Somente movimentos do Compêndio",
+                    "Both": "Ambos Movimentos Globais e do Compêndio"
                 }
             },
             "MovesCompendium": {
-                "name": "Moves Compendium",
-                "hint": "Specify the name of the compendium to pull moves from when using the compendium as source."
+                "name": "Compêndio com os Movimentos",
+                "hint": "Especifique o nome do compêndio do qual extrair movimentos ao usar o compêndio como fonte."
             },
             "SecretAccessPlayers": {
                 "name": "Permissão na Edição de Segredos",
@@ -507,6 +507,10 @@
             "TagCompendium": {
                 "name": "Compêndio Para Estimativas de Saúde",
                 "hint": "Insira o compêndio que você deseja usar para pesquisar entradas de tags ao clicar no status de saúde na ficha do personagem."
+            },
+            "TagSource": {
+                "name": "",
+                "hint": ""
             },
             "Menu": {
                 "MoveTypes": {

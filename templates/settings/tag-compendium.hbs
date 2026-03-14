@@ -1,0 +1,31 @@
+<form>
+    <label for="tagCompendium">{{localize "DWCS.Settings.TagCompendium.name"}}</label>
+    <input type="text" name="tagCompendium" value="{{tagCompendium}}" placeholder="{{localize "COMPENDIUM.Name"}}">
+    <p class="notes">{{localize "DWCS.Settings.TagCompendium.hint"}}</p>
+
+    {{!-- Compendium Input --}}
+    <div style="margin-top:10px;">
+        <label>{{localize "DWCS.Settings.TagSource.name"}}</label>
+    </div>
+
+    {{!-- Radio buttons for source selection --}}
+    <div style="margin-top:5px;">
+        <label>
+            <input type="radio" name="tagSource" value="global" {{#if (eq tagSource "global")}}checked{{/if}}>
+            {{localize "DWCS.Settings.Menu.choices.Global"}}
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tagSource" value="compendium" {{#if (eq tagSource "compendium")}}checked{{/if}}>
+            {{localize "DWCS.Settings.Menu.choices.Compendium"}}
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="tagSource" value="both" {{#if (eq tagSource "both")}}checked{{/if}}>
+            {{localize "DWCS.Settings.Menu.choices.Both"}}
+        </label>
+    </div>
+    <div style="margin-top:10px;">
+        <button type="submit" class="button">{{localize "EDITOR.Save"}}</button>
+    </div>
+</form>

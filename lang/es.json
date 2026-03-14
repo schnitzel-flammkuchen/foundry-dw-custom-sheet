@@ -74,6 +74,10 @@
                 "name": "Compendio de Evaluación de Salud",
                 "hint": "Introduce el compendio que deseas utilizar para buscar entradas de etiquetas al hacer clic en el estado de salud de la ficha del personaje."
             },
+            "TagSource": {
+                "name": "Compendio de Etiquetas",
+                "hint": "Especifica el nombre del compendio del que se extraerán las etiquetas cuando se utilice dicho compendio como fuente."
+            },
             "Menu": {
                 "MoveTypes": {
                     "name": "Configuración de Tipos de Movimientos"

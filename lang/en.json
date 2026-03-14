@@ -55,12 +55,7 @@
             },
             "MovesSource": {
                 "name": "Moves Auto-Add Source",
-                "hint": "Choose whether custom moves should be added from world items, a compendium, or both.",
-                "choices": {
-                    "Global": "Only Global (World) Moves",
-                    "Compendium": "Only Compendium Moves",
-                    "Both": "Both Global and Compendium"
-                }
+                "hint": "Choose whether custom moves should be added from world items, a compendium, or both."
             },
             "MovesCompendium": {
                 "name": "Moves Compendium",
@@ -84,6 +79,11 @@
                     "Plural": "Plural",
                     "Sidebar": "Show in Sidebar",
                     "AutoAdd": "Auto Add"
+                },
+                "choices": {
+                    "Global": "Only Global (World)",
+                    "Compendium": "Only Compendium",
+                    "Both": "Both Global and Compendium"
                 }
             }
         },

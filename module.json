@@ -22,6 +22,7 @@
     "scripts/sheets/character-sheet.js",
     "scripts/sheets/forms/MovesSettingsForm.js",
     "scripts/sheets/forms/SecretAccessForm.js",
+    "scripts/sheets/forms/TagCompendiumForm.js",
     "scripts/sheets/forms/settingsForms.js"
   ],
   "styles": [

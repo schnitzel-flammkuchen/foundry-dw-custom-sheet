@@ -147,9 +147,9 @@ export function registerDWCSSettings() {
     restricted: true, // Only GMs can change this setting
     type: String,
     choices: {
-      global: "DWCS.Settings.MovesSource.Global", // Only Global (world)
-      compendium: "DWCS.Settings.MovesSource.Compendium", // Only Compendium
-      both: "DWCS.Settings.MovesSource.Both" // Both
+      global: "DWCS.Settings.Menu.choices.Global", // Only Global (world)
+      compendium: "DWCS.Settings.Menu.choices.Compendium", // Only Compendium
+      both: "DWCS.Settings.Menu.choices.Both" // Both
     },
     default: "global"
   });
@@ -198,32 +198,35 @@ export function registerDWCSSettings() {
 
   /* --- Compendium Used for Health Estimate Tags --- */
 
-  /**
-   * This setting allows the GM to define a specific compendium
-   * used to search for tag items when clicking the Health Estimate
-   * status displayed on the character sheet.
-   *
-   * When a player clicks the Health Estimate label:
-   * - The system first searches for a matching tag item in world items
-   * - If none is found, it searches inside the compendium defined here
-   *
-   * The compendium must contain Item documents, preferably of type 'tag'.
-   * The expected value is the compendium ID (e.g. 'module-name.tags').
-   *
-   * Leaving this empty will skip the compendium search step.
-   */
+  // Register setting for the Tag Compendium string (ID)
   game.settings.register("dw-custom-sheet", "TagCompendium", {
     name: "DWCS.Settings.TagCompendium.name",
     hint: "DWCS.Settings.TagCompendium.hint",
     scope: "world",
-    config: true, // Appears directly in config
+    config: false, // Doesn't appear in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: "",
 
     onChange: async () => {
-      await prepareHealthEstimateCompendium(); // Reload cache if setting changes
+        await prepareHealthEstimateCompendium(); // Reload cache on setting change
     }
+  });
+
+  // Register setting for source: global, compendium, or both
+  game.settings.register("dw-custom-sheet", "TagSource", {
+    name: "DWCS.Settings.TagSource.name",
+    hint: "DWCS.Settings.TagSource.hint",
+    scope: "world",
+    config: false, // Doesn't appear in config
+    restricted: true, // Only GMs can change this setting
+    type: String,
+    choices: {
+      global: "DWCS.Settings.Menu.choices.Global", // Only Global (world)
+      compendium: "DWCS.Settings.Menu.choices.Compendium", // Only Compendium
+      both: "DWCS.Settings.Menu.choices.Both" // Both
+    },
+    default: "both"
   });
 
   // -------------------------------
@@ -247,6 +250,16 @@ export function registerDWCSSettings() {
     label: "DWCS.Settings.SecretAccessPlayers.name",
     icon: "fas fa-user-secret",
     type: forms.SecretAccess,
+    restricted: true
+  });
+
+  // Tag Compendium Menu
+  // Allows GM to configure the compendium ID and source (global/compendium/both) for Health Estimate tags
+  game.settings.registerMenu("dw-custom-sheet", "tagCompendiumSettings", {
+    name: "DWCS.Settings.TagCompendium.name",
+    label: "DWCS.Settings.TagCompendium.name",
+    icon: "fas fa-book",
+    type: forms.TagCompendium,
     restricted: true
   });
 }

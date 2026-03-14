@@ -74,6 +74,10 @@
                 "name": "Samling av Hälsovärden",
                 "hint": "Ange vilken samling du vill använda för att söka efter taggposter när du klickar på hälsostatusen på karaktärsbladet."
             },
+            "TagSource": {
+                "name": "Taggkompendium",
+                "hint": "Ange namnet på det kompendium som taggarna ska hämtas från när kompendiet används som källa."
+            },
             "Menu": {
                 "MoveTypes": {
                     "name": "Konfiguration av Flytttyper"

@@ -74,6 +74,10 @@
                 "name": "Compendio delle Stime di Salute",
                 "hint": "Inserisci il compendio che desideri utilizzare per cercare le voci dei tag quando clicchi sullo stato di salute nella scheda del personaggio."
             },
+            "TagSource": {
+                "name": "Compendio dei Tag",
+                "hint": "Specificare il nome del compendio da cui estrarre i tag quando si utilizza il compendio come fonte."
+            },
             "Menu": {
                 "MoveTypes": {
                     "name": "Configurazione dei tipi di spostamento"
