@@ -1,0 +1,60 @@
+<form>
+  <table>
+    <thead>
+      <tr>
+        <th>{{localize "DWCS.Settings.Menu.MovesTable.Key"}}</th>
+        <th>{{localize "DWCS.Settings.Menu.MovesTable.Singular"}}</th>
+        <th>{{localize "DWCS.Settings.Menu.MovesTable.Plural"}}</th>
+        <th>{{localize "DWCS.Settings.Menu.MovesTable.Sidebar"}}</th>
+        <th>{{localize "DWCS.Settings.Menu.MovesTable.AutoAdd"}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each moves}}
+      <tr data-index="{{@index}}">
+        <td><input type="text" name="key-{{@index}}" value="{{this.key}}"></td>
+        <td><input type="text" name="singular-{{@index}}" value="{{this.singular}}"></td>
+        <td><input type="text" name="plural-{{@index}}" value="{{this.plural}}"></td>
+        <td><input type="checkbox" name="sidebar-{{@index}}" {{#if this.sidebar}}checked{{/if}}></td>
+        <td><input type="checkbox" name="autoAdd-{{@index}}" {{#if this.autoAdd}}checked{{/if}}></td>
+        <td><button type="button" class="remove-move" title="{{localizeFallback "DW.Del"}} ({{localize "DW.MoveType"}})">-</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div style="margin-top:10px;">
+    <button type="button" id="add-move" class="button" title="{{localizeFallback "DW.Add"}} ({{localize "DW.MoveType"}})">+</button>
+  </div>
+
+  <hr style="margin:15px 0;">
+
+  {{!-- Compendium Input --}}
+  <div style="margin-top:10px;">
+    <label>
+      {{localize "DWCS.Settings.MovesCompendium.name"}}:
+      <input type="text" name="movesCompendium" value="{{movesCompendium}}" placeholder="{{localize "COMPENDIUM.Name"}}">
+    </label>
+  </div>
+
+  {{!-- Radio buttons for source selection --}}
+  <div style="margin-top:5px;">
+    <label>
+      <input type="radio" name="movesSource" value="global" {{#if (eq movesSource "global")}}checked{{/if}}>
+      {{localize "DWCS.Settings.MovesSource.Global"}}
+    </label><br>
+    <label>
+      <input type="radio" name="movesSource" value="compendium" {{#if (eq movesSource "compendium")}}checked{{/if}}>
+      {{localize "DWCS.Settings.MovesSource.Compendium"}}
+    </label><br>
+    <label>
+      <input type="radio" name="movesSource" value="both" {{#if (eq movesSource "both")}}checked{{/if}}>
+      {{localize "DWCS.Settings.MovesSource.Both"}}
+    </label>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button type="submit" class="button">{{localize "EDITOR.Save"}}</button>
+  </div>
+</form>

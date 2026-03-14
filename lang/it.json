@@ -53,13 +53,38 @@
                 "name": "Tipi di movimento aggiunti automaticamente",
                 "hint": "Seleziona quali tipi di movimento personalizzati (oggetti con il rispettivo tipo di movimento creati nel mondo) devono essere aggiunti automaticamente ai personaggi appena creati. Esempio: { \"adventure\": true, \"travel\": false }"
             },
+            "MovesSource": {
+                "name": "Aggiunta Automatica delle Mosse",
+                "hint": "Scegli se le mosse personalizzate debbano essere aggiunte dagli elementi del mondo, da un compendio o da entrambi.",
+                "choices": {
+                    "Global": "Solo mosse globali (del mondo)",
+                    "Compendium": "Solo mosse del compendio",
+                    "Both": "Sia globali che del compendio"
+                }
+            },
+            "MovesCompendium": {
+                "name": "Compendio delle Mosse",
+                "hint": "Specifica il nome del compendio da cui attingere le mosse quando si utilizza il compendio come fonte."
+            },
             "SecretAccessPlayers": {
                 "name": "Permessi dell'editor dei blocchi segreti",
-                "hint": "Seleziona i giocatori autorizzati a vedere E modificare il contenuto dei blocchi segreti nell'editor (se sono proprietario/assistente del maestro). Esempio: [\"Player1\", \"Player2\"]"
+                "hint": "Seleziona i giocatori autorizzati a vedere E modificare il contenuto dei blocchi segreti nell'editor (se sono proprietario/assistente del maestro). Esempio: [\"Player1_id\", \"Player2_id\"]"
             },
             "TagCompendium": {
                 "name": "Compendio delle Stime di Salute",
                 "hint": "Inserisci il compendio che desideri utilizzare per cercare le voci dei tag quando clicchi sullo stato di salute nella scheda del personaggio."
+            },
+            "Menu": {
+                "MoveTypes": {
+                    "name": "Configurazione dei tipi di spostamento"
+                },
+                "MovesTable": {
+                    "Key": "Identificatore di Spostamento",
+                    "Singular": "Singolare",
+                    "Plural": "Plurale",
+                    "Sidebar": "Mostra nella Barra Laterale",
+                    "AutoAdd": "Aggiungi Automaticamente"
+                }
             }
         },
         "Notifications": {

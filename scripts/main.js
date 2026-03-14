@@ -4,8 +4,7 @@ import { defineCharacterCustom } from "./sheets/character-sheet.js";
 import { defineItemCustom, defineClassItemCustom } from "./sheets/item-sheet.js"
 import { normalizeInputs, enablePersistentDropdowns, updateContentLinkIcons, convertSecretButtonsToIcons, applyOwnershipClasses } from "./utils/ui.js";
 import { registerHandlebarsHelpers } from "./utils/handlehelpers.js";
-import { registerDWCSSettings, getCustomMoveTypes, getAutoAddMoveTypes } from "./settings.js";
-
+import { registerDWCSSettings, getAutoAddMoveTypes, getCustomMoveTypes } from "./settings.js";
 
 /**
  * Preload all HBS partials used in the custom sheet.
@@ -64,6 +63,83 @@ export async function prepareHealthEstimateCompendium() {
     game.dwcs.healthEstimateTagIndex = await pack.getIndex({ fields: ["name", "type"] });
 }
 
+// Preload the moves compendium to cache documents for auto-add
+export async function prepareMovesCompendium() {
+    // Initialize namespace
+    game.dwcs = game.dwcs || {};
+
+    // Get compendium configured by the GM
+    const packName = game.settings.get("dw-custom-sheet", "MovesCompendium");
+    if (!packName) return;
+
+    const pack = Array.from(game.packs.values()).find(p => p.metadata.label === packName && p.documentName === "Item");
+    if (!pack || pack.documentName !== "Item") return;
+
+    // Store pack reference
+    game.dwcs.movesPack = pack;
+
+    // Load lightweight index (only name and type)
+    game.dwcs.movesCache = await pack.getIndex({ fields: ["name", "type", "system.moveType"] });
+}
+
+// Function to add moves to an actor using global items, compendium, or both
+export async function autoAddMovesToActor(actor) {
+    // Initialize namespace
+    game.dwcs = game.dwcs || {};
+
+    if (!actor || actor.type !== "character") return;
+
+    const existingMoveNames = new Set(actor.items.filter(i => i.type === "move").map(i => i.name));
+    const autoAddConfig = getAutoAddMoveTypes();
+    const customTypes = getCustomMoveTypes();
+
+    const compendiumId = game.settings.get("dw-custom-sheet", "MovesCompendium");
+    const movesSource = game.settings.get("dw-custom-sheet", "MovesSource"); // 'global' | 'compendium' | 'both'
+
+    const useGlobal = movesSource === "global" || movesSource === "both";
+    const useCompendium = (movesSource === "compendium" || movesSource === "both") && !!compendiumId;
+
+    let movesToAdd = [];
+
+    // --- Global moves ---
+    if (useGlobal) {
+        const worldMoves = game.items
+            .filter(i => i.type === "move") // Only items of type 'move'
+            .filter(i => Object.keys(customTypes).includes(i.system.moveType)) // Only custom move types
+            .filter(i => autoAddConfig[i.system.moveType] !== false) // Only enabled for auto-add
+            .filter(i => !existingMoveNames.has(i.name)) // Skip duplicates
+            .map(m => m.toObject()); // Convert to object for creation
+
+        movesToAdd.push(...worldMoves); // Accumulate moves to add
+    }
+
+    // --- Compendium moves ---
+    if (useCompendium && game.dwcs?.movesPack) {
+        const pack = game.dwcs.movesPack;
+
+        // Load all documents from the compendium
+        const allMoves = await pack.getDocuments();
+
+        // Filter the moves to be added
+        const compMoves = allMoves
+            .filter(i => i.type === "move")
+            .filter(i => Object.keys(customTypes).includes(i.system.moveType))
+            .filter(i => autoAddConfig[i.system.moveType] !== false)
+            .filter(i => !existingMoveNames.has(i.name));
+
+        if (compMoves.length > 0) {
+            const movesObjects = compMoves.map(m => m.toObject());
+            movesToAdd.push(...movesObjects);
+            console.log("DWCS: Compendium moves added:", movesObjects);
+        }
+    }
+
+    if (movesToAdd.length > 0) {
+        await actor.createEmbeddedDocuments("Item", movesToAdd);
+        console.log(`DWCS: Added ${movesToAdd.length} moves to actor ${actor.name}`);
+    }
+}
+
 /**
  * Hook that runs once Foundry initializes.
  * Preload templates (.hbs partials).
@@ -85,10 +161,12 @@ Hooks.once("init", async () => {
  * Hook that runs once Foundry is ready.
  * Registers the custom character sheet for Dungeon World actors.
  * Prepares the cached compendium index used to resolve
- * Health Estimate labels into tag items when clicked.
+ * Health Estimate labels into tag items when clicked
+ * and Moves Compendium for Moves Auto Add.
  */
 Hooks.once("ready", async () => {
     await prepareHealthEstimateCompendium(); // Initialize Health Estimate compendium cache
+    await prepareMovesCompendium(); // Prepare moves compendium
 
     // Foundry V12 + V13 compatibility
     const ActorsCollection =
@@ -186,33 +264,8 @@ Hooks.on("createActor", async (actor) => {
     // Wait for the actor to fully prepare, ensuring DW default moves are loaded
     await actor.prepareData();
 
-    // Collect the names of all existing moves on the actor to avoid duplicates
-    const existingMoveNames = new Set(
-        actor.items.filter(i => i.type === "move").map(i => i.name)
-    );
-
-    // Get configuration for auto-added move types
-    const autoAddConfig = getAutoAddMoveTypes();
-
-    // Get all global campaign moves of the custom categories
-    const worldMoves = game.items.filter(i => {
-        if (i.type !== "move") return false;
-        const moveType = i.system.moveType;
-        // Only consider custom move types
-        if (!Object.keys(getCustomMoveTypes()).includes(moveType)) return false;
-        // If explicitly disabled in setting, skip auto add
-        if (autoAddConfig[moveType] === false) return false;
-        return true;
-    });
-
-    // Filter moves that are not already on the actor
-    const movesToAdd = worldMoves.filter(m => !existingMoveNames.has(m.name)).map(m => m.toObject());
-
-    // Add the missing custom moves to the actor
-    if (movesToAdd.length > 0) {
-        await actor.createEmbeddedDocuments("Item", movesToAdd);
-        console.log(`Added ${movesToAdd.length} global moves to actor ${actor.name}`);
-    }
+    // Add moves when actor is created
+    await autoAddMovesToActor(actor);
 });
 
 /**

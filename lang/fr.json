@@ -53,13 +53,38 @@
                 "name": "Types de mouvements ajoutés automatiquement",
                 "hint": "Sélectionnez quels types de mouvements personnalisés (objets avec le type de mouvement correspondant créés dans le monde) doivent être ajoutés automatiquement aux personnages nouvellement créés. Exemple : { \"adventure\": true, \"travel\": false }"
             },
+            "MovesSource": {
+                "name": "Ajout automatique des techniques",
+                "hint": "Choisissez si les techniques personnalisées doivent être ajoutées à partir des éléments du monde, d'un recueil, ou des deux.",
+                "choices": {
+                    "Global": "Uniquement les techniques globales (du monde)",
+                    "Compendium": "Uniquement les techniques du recueil",
+                    "Both": "À la fois les techniques globales et celles du recueil"
+                }
+            },
+            "MovesCompendium": {
+                "name": "Recueil de Mouvements",
+                "hint": "Indiquez le nom du recueil à partir duquel extraire les mouvements lorsque vous utilisez le recueil comme source."
+            },
             "SecretAccessPlayers": {
                 "name": "Autorisations de l'éditeur des blocs secrets",
-                "hint": "Sélectionnez les joueurs autorisés à voir ET modifier le contenu des blocs secrets dans l'éditeur (s'ils sont propriétaire/assistant du maître). Exemple: [\"Player1\", \"Player2\"]"
+                "hint": "Sélectionnez les joueurs autorisés à voir ET modifier le contenu des blocs secrets dans l'éditeur (s'ils sont propriétaire/assistant du maître). Exemple: [\"Player1_id\", \"Player2_id\"]"
             },
             "TagCompendium": {
                 "name": "Recueil des Estimations de Santé",
                 "hint": "Saisissez le recueil que vous souhaitez utiliser pour rechercher des entrées de balises lorsque vous cliquez sur l'état de santé dans la fiche de personnage."
+            },
+            "Menu": {
+                "MoveTypes": {
+                    "name": "Configuration des Types de Déplacement"
+                },
+                "MovesTable": {
+                    "Key": "Identifiant de Déplacement",
+                    "Singular": "Singulier",
+                    "Plural": "Pluriel",
+                    "Sidebar": "Afficher dans la Barre Latérale",
+                    "AutoAdd": "Ajouter Automatiquement"
+                }
             }
         },
         "Notifications": {

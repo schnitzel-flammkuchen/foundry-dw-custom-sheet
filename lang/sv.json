@@ -53,13 +53,38 @@
                 "name": "Automatiskt tillagda rörelsetyper",
                 "hint": "Välj vilka anpassade rörelsetyper (föremål med respektive rörelsetyp skapade i världen) som automatiskt ska läggas till nyss skapade karaktärer. Exempel: { \"adventure\": true, \"travel\": false }"
             },
+            "MovesSource": {
+                "name": "Automatisk Tillägg av Tekniker",
+                "hint": "Välj om anpassade tekniker ska läggas till från världsobjekt, ett kompendium eller båda.",
+                "choices": {
+                    "Global": "Endast globala (världs-)tekniker",
+                    "Compendium": "Endast tekniker från kompendiet",
+                    "Both": "Både globala och tekniker från kompendiet"
+                }
+            },
+            "MovesCompendium": {
+                "name": "Teknikkompendium",
+                "hint": "Ange namnet på det kompendium som teknikerna ska hämtas från när kompendiet används som källa."
+            },
             "SecretAccessPlayers": {
                 "name": "Behörigheter för redigering av hemliga block",
-                "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent). Exempel: [\"Player1\", \"Player2\"]"
+                "hint": "Välj vilka spelare som får se OCH redigera innehållet i hemliga block i redigeraren (om de är ägare/mästarens assistent). Exempel: [\"Player1_id\", \"Player2_id\"]"
             },
             "TagCompendium": {
                 "name": "Samling av Hälsovärden",
                 "hint": "Ange vilken samling du vill använda för att söka efter taggposter när du klickar på hälsostatusen på karaktärsbladet."
+            },
+            "Menu": {
+                "MoveTypes": {
+                    "name": "Konfiguration av Flytttyper"
+                },
+                "MovesTable": {
+                    "Key": "Flyttidentifierare",
+                    "Singular": "Singular",
+                    "Plural": "Plural",
+                    "Sidebar": "Visa i Sidofältet",
+                    "AutoAdd": "Lägg till Automatiskt"
+                }
             }
         },
         "Notifications": {

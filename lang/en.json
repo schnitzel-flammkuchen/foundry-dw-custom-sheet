@@ -53,13 +53,38 @@
                 "name": "Auto-Add Move Types",
                 "hint": "Select which custom moveTypes (items with respective moveType made in the world) should automatically be added to newly created characters. Example: { \"adventure\": true, \"travel\": false }"
             },
+            "MovesSource": {
+                "name": "Moves Auto-Add Source",
+                "hint": "Choose whether custom moves should be added from world items, a compendium, or both.",
+                "choices": {
+                    "Global": "Only Global (World) Moves",
+                    "Compendium": "Only Compendium Moves",
+                    "Both": "Both Global and Compendium"
+                }
+            },
+            "MovesCompendium": {
+                "name": "Moves Compendium",
+                "hint": "Specify the name of the compendium to pull moves from when using the compendium as source."
+            },
             "SecretAccessPlayers": {
                 "name": "Secret-blocks Editor Permissions",
-                "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant). Example: [\"Player1\", \"Player2\"]"
+                "hint": "Select players who are allowed to see AND edit secret block content inside editor (if they're owner/master's assistant). Example: [\"Player1_id\", \"Player2_id\"]"
             },
             "TagCompendium": {
                 "name": "Health Estimate Tag Compendium",
                 "hint": "Type the compendium to be used to search for tag items when clicking on health status on character sheet."
+            },
+            "Menu": {
+                "MoveTypes": {
+                    "name": "Move Types Configuration"
+                },
+                "MovesTable": {
+                    "Key": "Move Key",
+                    "Singular": "Singular",
+                    "Plural": "Plural",
+                    "Sidebar": "Show in Sidebar",
+                    "AutoAdd": "Auto Add"
+                }
             }
         },
         "Notifications": {

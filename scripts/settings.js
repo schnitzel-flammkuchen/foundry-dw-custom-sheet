@@ -1,13 +1,15 @@
-import { prepareHealthEstimateCompendium } from "./main.js";
+import { forms } from "./sheets/forms/settingsForms.js";
+import { prepareHealthEstimateCompendium } from "./main.js"
 
 /**
  * DWCS Settings Registration
  * Allows dynamic creation of new move types and control over
  * which types appear in the sidebar / have auto add of existent moves;
- * Also config to allow players (if owners/assistant) to edit secrets.
+ * Also config to allow players (if owners/assistant) to edit secrets
+ * and the GM to give the compendium where the item tags are located
+ * for Health Estimate.
  */
 export function registerDWCSSettings() {
-
   // -------------------------------
   // Default values
   // -------------------------------
@@ -60,7 +62,7 @@ export function registerDWCSSettings() {
     name: "DWCS.Settings.NewMoveTypes.name",
     hint: "DWCS.Settings.NewMoveTypes.hint",
     scope: "world",
-    config: true,
+    config: false, // Doesn't appear in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultMoveTypes, null, 2),
@@ -86,7 +88,7 @@ export function registerDWCSSettings() {
     name: "DWCS.Settings.MovesOnSidebar.name",
     hint: "DWCS.Settings.MovesOnSidebar.hint",
     scope: "world",
-    config: true,
+    config: false, // Doesn't appear in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultSidebarTypes, null, 2),
@@ -119,7 +121,7 @@ export function registerDWCSSettings() {
     name: "DWCS.Settings.MovesAutoAdd.name",
     hint: "DWCS.Settings.MovesAutoAdd.hint",
     scope: "world",
-    config: true,
+    config: false, // Doesn't appear in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify(defaultAutoAddTypes, null, 2),
@@ -133,6 +135,34 @@ export function registerDWCSSettings() {
         console.error(err);
       }
     }
+  });
+
+  /* --- Setting to capture source of movements for Auto Add Move Types --- */
+
+  game.settings.register("dw-custom-sheet", "MovesSource", {
+    name: "DWCS.Settings.MovesSource.name",
+    hint: "DWCS.Settings.MovesSource.hint",
+    scope: "world",
+    config: false, // Doesn't appear in config
+    restricted: true, // Only GMs can change this setting
+    type: String,
+    choices: {
+      global: "DWCS.Settings.MovesSource.Global", // Only Global (world)
+      compendium: "DWCS.Settings.MovesSource.Compendium", // Only Compendium
+      both: "DWCS.Settings.MovesSource.Both" // Both
+    },
+    default: "global"
+  });
+
+  /* --- Setting for specifying which compendium to use --- */
+  game.settings.register("dw-custom-sheet", "MovesCompendium", {
+    name: "DWCS.Settings.MovesCompendium.name",
+    hint: "DWCS.Settings.MovesCompendium.hint",
+    scope: "world",
+    config: false, // Doesn't appear in config
+    restricted: true,
+    type: String,
+    default: ""
   });
 
   /* --- Players with GM-Like Access for Secrets --- */
@@ -150,7 +180,7 @@ export function registerDWCSSettings() {
     name: "DWCS.Settings.SecretAccessPlayers.name",
     hint: "DWCS.Settings.SecretAccessPlayers.hint",
     scope: "world",
-    config: true,
+    config: false, // Doesn't appear in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: JSON.stringify([]),
@@ -186,7 +216,7 @@ export function registerDWCSSettings() {
     name: "DWCS.Settings.TagCompendium.name",
     hint: "DWCS.Settings.TagCompendium.hint",
     scope: "world",
-    config: true,
+    config: true, // Appears directly in config
     restricted: true, // Only GMs can change this setting
     type: String,
     default: "",
@@ -194,6 +224,30 @@ export function registerDWCSSettings() {
     onChange: async () => {
       await prepareHealthEstimateCompendium(); // Reload cache if setting changes
     }
+  });
+
+  // -------------------------------
+  // Menus for FormApplications
+  // -------------------------------
+
+  // Move Types Menu
+  // It includes all the custom moves' settings mentioned above
+  game.settings.registerMenu("dw-custom-sheet", "moveSettings", {
+    name: "DWCS.Settings.Menu.MoveTypes.name",
+    label: "DWCS.Settings.Menu.MoveTypes.name",
+    icon: "fas fa-dice-d20",
+    type: forms.MovesSettings,
+    restricted: true
+  });
+
+  // Users with Secret Access Menu
+  // It includes the players access' settings mentioned above
+  game.settings.registerMenu("dw-custom-sheet", "secretAccess", {
+    name: "DWCS.Settings.SecretAccessPlayers.name",
+    label: "DWCS.Settings.SecretAccessPlayers.name",
+    icon: "fas fa-user-secret",
+    type: forms.SecretAccess,
+    restricted: true
   });
 }
 

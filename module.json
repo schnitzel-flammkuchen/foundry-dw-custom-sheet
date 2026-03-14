@@ -1,7 +1,7 @@
 {
   "id": "dw-custom-sheet",
   "title": "Dungeon World Custom Sheet",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "url": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet",
   "manifest": "https://raw.githubusercontent.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/main/module.json",
   "download": "https://github.com/schnitzel-flammkuchen/foundry-dw-custom-sheet/releases/latest/download/module.zip",
@@ -19,7 +19,10 @@
     "scripts/utils/handlehelpers.js",
     "scripts/utils/equipment.js",
     "scripts/utils/ui.js",
-    "scripts/sheets/character-sheet.js"
+    "scripts/sheets/character-sheet.js",
+    "scripts/sheets/forms/MovesSettingsForm.js",
+    "scripts/sheets/forms/SecretAccessForm.js",
+    "scripts/sheets/forms/settingsForms.js"
   ],
   "styles": [
     {

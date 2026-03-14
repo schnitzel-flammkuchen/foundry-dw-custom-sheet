@@ -344,9 +344,9 @@ export function applyOwnershipClasses(sheet, html) {
 
   // Get authorized players from settings
   const authorizedPlayers = game.settings.get("dw-custom-sheet", "SecretAccessPlayers") || [];
-
+  
   // Authorized if GM or if current user is in the 'SecretAccessPlayers' array (currently by name)
-  const isAuthorized = gm || authorizedPlayers.includes(game.user.name);
+  const isAuthorized = gm || authorizedPlayers.includes(game.user.id);
 
   // ------------------------------
   // Apply CSS to all secret blocks
@@ -459,19 +459,11 @@ export function calculateHealthEstimate(actor) {
   const HEActive = game.modules.get("healthEstimate")?.active;
   if (!actor || !HEActive) return null;
 
-  // // Retrieve Health Estimate DW array from module settings (default)
-  // const defaultSettings = game.settings.settings.get("healthEstimate.core.estimations")?.default ?? [];
-  // const dwEstimation = defaultSettings[0]?.estimates ?? [];
-  // if (!dwEstimation.length) return null;
-
   // Get the world settings storage (for GM's changed estimates settings)
   const worldStorage = game.settings.storage.get("world");
 
   // Find the setting for 'healthEstimate.core.estimations'
   const settingEntry = worldStorage.getSetting("healthEstimate.core.estimations");
-  // // Or use UNIQUE ID
-  // const settingId = "n4G61MY29cZyjpUS"; // Unique setting ID
-  // const settingEntry = worldStorage.get(settingId);  
 
   let dwEstimation = [];
   if (settingEntry?.value) {

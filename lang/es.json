@@ -53,13 +53,38 @@
                 "name": "Tipos de Movimiento Añadidos Automáticamente",
                 "hint": "Seleccione qué tipos de movimiento personalizados (objetos con el tipo de movimiento correspondiente creados en el mundo) se agregarán automáticamente a los personajes recién creados. Ejemplo: { \"adventure\": true, \"travel\": false }"
             },
+            "MovesSource": {
+                "name": "Movimientos - Añadir automáticamente desde la fuente",
+                "hint": "Elige si los movimientos personalizados deben añadirse a partir de elementos del mundo, de un compendio o de ambos.",
+                "choices": {
+                    "Global": "Solo movimientos globales (del mundo)",
+                    "Compendium": "Solo movimientos del compendio",
+                    "Both": "Tanto del mundo como del compendio"
+                }
+            },
+            "MovesCompendium": {
+                "name": "Compendio de Movimientos",
+                "hint": "Especifica el nombre del compendio del que se extraerán los movimientos cuando se utilice el compendio como fuente."
+            },
             "SecretAccessPlayers": {
                 "name": "Permisos del editor de bloques secretos",
-                "hint": "Selecciona los jugadores que pueden ver Y editar el contenido de los bloques secretos dentro del editor (si son dono/ayudante del maestro). Ejemplo: [\"Player1\", \"Player2\"]"
+                "hint": "Selecciona los jugadores que pueden ver Y editar el contenido de los bloques secretos dentro del editor (si son dono/ayudante del maestro). Ejemplo: [\"Player1_id\", \"Player2_id\"]"
             },
             "TagCompendium": {
                 "name": "Compendio de Evaluación de Salud",
                 "hint": "Introduce el compendio que deseas utilizar para buscar entradas de etiquetas al hacer clic en el estado de salud de la ficha del personaje."
+            },
+            "Menu": {
+                "MoveTypes": {
+                    "name": "Configuración de Tipos de Movimientos"
+                },
+                "MovesTable": {
+                    "Key": "Clave de Movimiento",
+                    "Singular": "Singular",
+                    "Plural": "Plural",
+                    "Sidebar": "Mostrar en la Barra Lateral",
+                    "AutoAdd": "Añadir Automáticamente"
+                }
             }
         },
         "Notifications": {
